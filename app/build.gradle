@@ -6,7 +6,7 @@ android {
     defaultConfig {
         applicationId "com.coderstory.Purify"
         minSdkVersion 19
-        targetSdkVersion 23
+       targetSdkVersion 24
         versionCode 5
         versionName "1.0"
     }
@@ -16,9 +16,8 @@ android {
     buildTypes {
         release {
             minifyEnabled true
-            //   proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-            pseudoLocalesEnabled true
-            proguardFile 'D:/Data/Desktop/MaterialDesignDemo-master/app/proguard-rules.pro'
+             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+
         }
     }
     productFlavors {
@@ -28,9 +27,9 @@ android {
 dependencies {
     provided fileTree(include: ['*.jar'], dir: 'libs')
     compile project(':library')
-    compile 'com.android.support:support-v4:24.1.1'
-    compile 'com.android.support:appcompat-v7:24.1.1'
-    compile 'com.android.support:design:24.1.1'
+    compile 'com.android.support:support-v4:24.2.0'
+    compile 'com.android.support:appcompat-v7:24.2.0'
+    compile 'com.android.support:design:24.2.0'
     compile 'com.github.paolorotolo:appintro:4.0.0'
     testCompile 'junit:junit:4.12'
     provided 'de.robv.android.xposed:api:82'

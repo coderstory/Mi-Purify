@@ -197,10 +197,8 @@ public class HostsFragment extends BaseFragment {
 
         @Override
         protected String doInBackground(String... params) {
-            try {
+           if ( Looper.myLooper()==null){
                 Looper.prepare();
-            } catch (Exception e) {
-                e.printStackTrace();
             }
             UpdateHosts();
             return null;
