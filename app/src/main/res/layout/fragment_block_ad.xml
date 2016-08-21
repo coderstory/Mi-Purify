@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    xmlns:skin="http://schemas.android.com/android/skin"
+    android:layout_height="match_parent"
+    skin:enable="true"
+    android:orientation="vertical">
+
+    <ScrollView
+        android:id="@+id/scrollView2"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    android:orientation="vertical">
+
+
+
+    <Switch
+        android:text="@string/enableBlockADS"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginTop="10dp"
+        android:background="@color/switchBtn"
+        android:paddingStart="30dp"
+        android:paddingEnd="30dp"
+        android:maxLines="10"
+        android:id="@+id/enableBlockAD" />
+
+
+    <Switch
+        android:text="@string/blockadsbasic"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginTop="10dp"
+        android:background="@color/switchBtn"
+        android:paddingStart="30dp"
+        android:paddingEnd="30dp"
+        android:id="@+id/enableBlockADBasic" />
+
+
+    <Switch
+        android:text="@string/mms"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:layout_marginTop="10dp"
+        android:background="@color/switchBtn"
+        android:paddingStart="30dp"
+        android:paddingEnd="30dp"
+
+        android:id="@+id/enableMMS" />
+
+
+
+    <Switch
+        android:text="@string/weather"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginTop="10dp"
+        android:background="@color/switchBtn"
+        android:paddingStart="30dp"
+        android:paddingEnd="30dp"
+        android:id="@+id/enableWeather" />
+
+    <Switch
+        android:text="@string/filemanager"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginTop="10dp"
+        android:background="@color/switchBtn"
+        android:paddingStart="30dp"
+        android:paddingEnd="30dp"
+        android:id="@+id/enableFileManager" />
+
+    <Switch
+        android:text="@string/downloadexplorer"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginTop="10dp"
+        android:background="@color/switchBtn"
+        android:paddingStart="30dp"
+        android:paddingEnd="30dp"
+
+        android:id="@+id/enableDownload" />
+
+    <Switch
+        android:text="@string/calendar"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginTop="10dp"
+        android:background="@color/switchBtn"
+        android:paddingStart="30dp"
+        android:paddingEnd="30dp"
+        android:id="@+id/enableCalendar" />
+
+
+
+
+    <Switch
+        android:text="@string/hotkey"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginTop="10dp"
+        android:background="@color/switchBtn"
+        android:paddingStart="30dp"
+        android:paddingEnd="30dp"
+        android:id="@+id/enableHotKey" />
+
+    <Switch
+        android:text="@string/enableSafeCenter"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginTop="10dp"
+        android:background="@color/switchBtn"
+        android:paddingStart="30dp"
+        android:paddingEnd="30dp"
+        android:id="@+id/enableSafeCenter" />
+
+
+    <Switch
+        android:text="@string/music"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginTop="10dp"
+        android:background="@color/switchBtn"
+        android:paddingStart="30dp"
+        android:paddingEnd="30dp"
+        android:id="@+id/enableMusic" />
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:text="@string/mvadnote"
+        android:paddingStart="30dp"
+        android:paddingEnd="30dp"
+        android:layout_marginTop="20dp"
+        android:layout_height="match_parent" />
+
+
+</LinearLayout>
+    </ScrollView>
+</LinearLayout>

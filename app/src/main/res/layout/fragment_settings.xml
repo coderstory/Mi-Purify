@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+    xmlns:skin="http://schemas.android.com/android/skin"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    skin:enable="true"
+    android:orientation="vertical">
+
+    <android.support.v7.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_gravity="center"
+        skin:enable="true"
+        android:orientation="vertical"
+        android:background="@color/colorPrimary"
+        android:layout_height="100dp">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/profile_image"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginTop="20dp"
+            skin:enable="true"
+            android:layout_gravity="center"
+            android:src="@mipmap/ic_launcher"
+            />
+
+    </android.support.v7.widget.LinearLayoutCompat>
+
+
+
+
+
+
+    <Switch
+        android:text="@string/enablexposed"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginTop="10dp"
+        android:background="@color/switchBtn"
+        android:paddingStart="30dp"
+        android:checked="true"
+        android:paddingEnd="30dp"
+        android:id="@+id/enableCheck" />
+
+
+
+    <Switch
+        android:text="@string/wifi"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:layout_marginTop="10dp"
+        android:background="@color/switchBtn"
+        android:paddingStart="30dp"
+        android:paddingEnd="30dp"
+        android:id="@+id/gantanhao" />
+
+    <Switch
+        android:text="@string/enableupdater"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginTop="10dp"
+        android:background="@color/switchBtn"
+        android:paddingStart="30dp"
+        android:paddingEnd="30dp"
+        android:maxLines="10"
+        android:enabled="false"
+
+        android:id="@+id/enableUpdate" />
+
+</LinearLayout>
