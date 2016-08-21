@@ -15,7 +15,6 @@
             <option value="$PROJECT_DIR$/library" />
             <option value="$PROJECT_DIR$/pull" />
             <option value="$PROJECT_DIR$/skin_black" />
-            <option value="$PROJECT_DIR$/skin_brown" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />
