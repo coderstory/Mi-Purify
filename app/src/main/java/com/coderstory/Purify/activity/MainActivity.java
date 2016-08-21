@@ -2,6 +2,7 @@ package com.coderstory.Purify.activity;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.support.design.internal.NavigationMenuView;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -12,6 +13,7 @@ import android.util.Log;
 import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 import com.coderstory.Purify.R;
 import com.coderstory.Purify.fragment.AboutFragment;
@@ -29,6 +31,8 @@ import ren.solid.library.activity.base.BaseActivity;
 import ren.solid.library.fragment.WebViewFragment;
 import ren.solid.library.utils.SnackBarUtils;
 import ren.solid.library.utils.ViewUtils;
+
+import static com.coderstory.Purify.R.id.navigation_view;
 
 public class MainActivity extends BaseActivity {
 
@@ -70,7 +74,7 @@ public class MainActivity extends BaseActivity {
 
         mToolbar = $(R.id.toolbar);
         mDrawerLayout = $(R.id.drawer_layout);
-        mNavigationView = $(R.id.navigation_view);
+        mNavigationView = $(navigation_view);
 
         if (MainActivity.this.getSharedPreferences("UserSettings", Context.MODE_WORLD_READABLE).getBoolean("enableCheck", true) && !isEnable()) {
             SnackBarUtils.makeLong(mNavigationView, "插件尚未激活,Xposed功能将不可用,请重启再试！").show();
@@ -90,6 +94,22 @@ public class MainActivity extends BaseActivity {
         dynamicAddSkinEnableView(mToolbar, "background", R.color.colorPrimary);
         dynamicAddSkinEnableView(mNavigationView.getHeaderView(0), "background", R.color.colorPrimary);
         dynamicAddSkinEnableView(mNavigationView, "navigationViewMenu", R.color.colorPrimary);
+
+        //取消滚动条
+        NavigationView  v= (NavigationView) findViewById(R.id.navigation_view);
+
+        if (v != null){
+            NavigationMenuView navigationMenuView =  (NavigationMenuView) v.getChildAt(0);
+            if (navigationMenuView != null){
+                navigationMenuView.setVerticalScrollBarEnabled(false);
+
+            }
+        }
+
+        //View headerLayout =    v.getHeaderView(0);
+
+
+
 
     }
 

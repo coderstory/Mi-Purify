@@ -32,6 +32,7 @@ public abstract class BaseFragment extends SkinBaseFragment {
         mContext = getContext();
         mProgressDialog = new ProgressDialog(getMContext());
         mProgressDialog.setCanceledOnTouchOutside(false);
+        setHasOptionsMenu(true);
         init();
         setUpView();
         setUpData();

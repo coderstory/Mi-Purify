@@ -1,18 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
-  >
+    xmlns:app="http://schemas.android.com/apk/res-auto">>
 
 
     <item
         android:id="@+id/action_reboot"
         android:orderInCategory="100"
         android:title="快速重启"
+        android:icon="@drawable/power"
+        app:showAsAction="never"
         />
 
     <item
         android:id="@+id/action_settings"
         android:orderInCategory="100"
         android:title="关于应用"
+        app:showAsAction="never"
+
         />
 
 
