@@ -96,7 +96,7 @@ public class MyAppIntro extends AppIntro {
                     super.run();
                     canRunRootCommands();
                 }
-            }.run();
+            }.start();
         }
         count++;
     }

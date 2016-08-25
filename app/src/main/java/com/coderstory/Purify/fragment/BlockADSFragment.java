@@ -7,6 +7,9 @@ import com.coderstory.Purify.R;
 
 import ren.solid.library.fragment.base.BaseFragment;
 
+import static com.coderstory.Purify.utils.root.ShellUtils.execCommand;
+import static com.coderstory.Purify.utils.root.SuHelper.canRunRootCommands;
+
 
 public class BlockADSFragment extends BaseFragment {
 
@@ -29,6 +32,35 @@ public class BlockADSFragment extends BaseFragment {
                 ((Switch)  $(R.id.enableBlockADBasic)).setChecked(((Switch) v).isChecked());
                 getEditor().putBoolean("enableBlockADBasic", ((Switch) v).isChecked());
                 getEditor().apply();
+
+                if (((Switch) v).isChecked()){
+
+                    new Thread(){
+                        @Override
+                        public void run() {
+                            super.run();
+                            execCommand("pm disable com.miui.systemAdSolution",true);
+                            execCommand("pm disable com.miui.analytics",true);
+                            execCommand("pm disable com.qualcomm.qti.seemp.service",true);
+                        }
+                    }.start();
+
+
+                }else{
+
+                    new Thread(){
+                        @Override
+                        public void run() {
+                            super.run();
+                            execCommand("pm enable com.miui.systemAdSolution",true);
+                            execCommand("pm enable com.miui.analytics",true);
+                            execCommand("pm enable com.qualcomm.qti.seemp.service",true);
+                        }
+                    }.start();
+
+                }
+
+
             }
         });
 

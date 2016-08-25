@@ -99,14 +99,13 @@ public class BisbaleAppFragment extends BaseFragment {
                 dialog.setPositiveButton(BtnText, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        String commandText = "pm disable " + appInfo.getPackageName();
+
+                        String commandText =(!appInfo.getDisable()? "pm disable ":  "pm enable " )+ appInfo.getPackageName();
                         Log.e("cc", commandText);
                         Process process = null;
                         DataOutputStream os = null;
                         try {
-                            if (appInfo.getDisable() ) {
-                                commandText = "pm enable " + appInfo.getPackageName();
-                            }
+
                             String cmd = commandText;
                             process = Runtime.getRuntime().exec("su"); //切换到root帐号
                             os = new DataOutputStream(process.getOutputStream());
@@ -118,7 +117,7 @@ public class BisbaleAppFragment extends BaseFragment {
                             if (appInfo.getDisable()) {
                                 appInfo.setDisable(false);
                                 appInfoList.set(mposition, appInfo);
-                                mview.setBackgroundColor(Color.parseColor("#d027b6d2")); //正常的颜色
+                                mview.setBackgroundColor(getResources().getColor(  R.color.colorPrimary)); //正常的颜色
                             } else {
                                 appInfo.setDisable(true);
                                 appInfoList.set(mposition, appInfo);
