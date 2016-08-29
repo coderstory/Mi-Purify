@@ -17,10 +17,7 @@
             android:icon="@drawable/iconfont_blog"
             android:title="主题和谐" />
 
-        <item
-            android:id="@+id/navigation_item_Others"
-            android:icon="@drawable/iconfont_home"
-            android:title="其他模块" />
+
         <item
             android:id="@+id/navigation_item_hosts"
             android:icon="@drawable/hosts"
@@ -49,11 +46,7 @@
                     android:icon="@drawable/iconfont_skin"
                     android:title="主题换肤" />
 
-                <item
-                    android:id="@+id/navigation_item_checkupdate"
-                    android:checkable="true"
-                    android:icon="@drawable/update"
-                    android:title="检测更新" />
+
 
                 <item
                     android:id="@+id/navigation_item_about"

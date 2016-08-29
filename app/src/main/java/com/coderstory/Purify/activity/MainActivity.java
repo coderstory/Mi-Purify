@@ -13,7 +13,6 @@ import android.util.Log;
 import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 
 import com.coderstory.Purify.R;
 import com.coderstory.Purify.fragment.AboutFragment;
@@ -22,7 +21,6 @@ import com.coderstory.Purify.fragment.BlockADSFragment;
 import com.coderstory.Purify.fragment.BlogFragment;
 import com.coderstory.Purify.fragment.ChangeSkinFragment;
 import com.coderstory.Purify.fragment.HostsFragment;
-import com.coderstory.Purify.fragment.OthersFragment;
 import com.coderstory.Purify.fragment.SettingsFragment;
 import com.coderstory.Purify.fragment.crackThemeFragment;
 import com.coderstory.Purify.utils.root.SuHelper;
@@ -96,36 +94,39 @@ public class MainActivity extends BaseActivity {
         dynamicAddSkinEnableView(mNavigationView, "navigationViewMenu", R.color.colorPrimary);
 
         //取消滚动条
-        NavigationView  v= (NavigationView) findViewById(R.id.navigation_view);
+        NavigationView v = (NavigationView) findViewById(R.id.navigation_view);
 
-        if (v != null){
-            NavigationMenuView navigationMenuView =  (NavigationMenuView) v.getChildAt(0);
-            if (navigationMenuView != null){
+
+        if (v != null) {
+            NavigationMenuView navigationMenuView = (NavigationMenuView) v.getChildAt(0);
+            if (navigationMenuView != null) {
                 navigationMenuView.setVerticalScrollBarEnabled(false);
 
             }
+
+        }
+        if (getString(R.string.Limit).equals("True")) {
+            Menu m = v.getMenu();
+            MenuItem mi = m.getItem(1);
+            mi.setVisible(false);
+
+        }
+    }
+
+        @Override
+        protected void onSaveInstanceState (Bundle outState){
+            super.onSaveInstanceState(outState);
+            Log.i(TAG, "onSaveInstanceState");
         }
 
-        //View headerLayout =    v.getHeaderView(0);
+        @Override
+        protected void onRestoreInstanceState (Bundle savedInstanceState){
+            //super.onRestoreInstanceState(savedInstanceState);
+            Log.i(TAG, "onRestoreInstanceState");
+        }
 
+        //init the default checked fragment
 
-
-
-    }
-
-    @Override
-    protected void onSaveInstanceState(Bundle outState) {
-        super.onSaveInstanceState(outState);
-        Log.i(TAG, "onSaveInstanceState");
-    }
-
-    @Override
-    protected void onRestoreInstanceState(Bundle savedInstanceState) {
-        //super.onRestoreInstanceState(savedInstanceState);
-        Log.i(TAG, "onRestoreInstanceState");
-    }
-
-    //init the default checked fragment
     private void initDefaultFragment() {
         Log.i(TAG, "initDefaultFragment");
         mCurrentFragment = ViewUtils.createFragment(AboutFragment.class);
@@ -133,6 +134,7 @@ public class MainActivity extends BaseActivity {
         mPreMenuItem = mNavigationView.getMenu().getItem(0);
         mPreMenuItem.setChecked(true);
     }
+
 
     private void setNavigationViewItemClickListener() {
         mNavigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
@@ -144,10 +146,7 @@ public class MainActivity extends BaseActivity {
                     mPreMenuItem.setChecked(false);
                 }
                 switch (item.getItemId()) {
-                    case R.id.navigation_item_Others:
-                        mToolbar.setTitle("其他模块");
-                        switchFragment(OthersFragment.class);
-                        break;
+
                     case R.id.navigation_item_blockads:
                         mToolbar.setTitle("净化广告");
                         switchFragment(BlockADSFragment.class);
@@ -177,10 +176,6 @@ public class MainActivity extends BaseActivity {
                     case R.id.navigation_item_about:
                         mToolbar.setTitle("关于");
                         switchFragment(AboutFragment.class);
-                        break;
-
-                    case R.id.navigation_item_checkupdate:
-                        SnackBarUtils.makeLong(mNavigationView, "更新功能已禁用！").show();
                         break;
 
                     case R.id.navigation_item_disableapps:

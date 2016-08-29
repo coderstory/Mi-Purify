@@ -56,16 +56,33 @@
         android:id="@+id/gantanhao" />
 
     <Switch
-        android:text="@string/enableupdater"
+        android:text="@string/miui_root_25"
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:layout_marginTop="10dp"
         android:background="@color/switchBtn"
         android:paddingStart="30dp"
         android:paddingEnd="30dp"
-        android:maxLines="10"
-        android:enabled="false"
+        android:id="@+id/enablemiuiRoot" />
 
-        android:id="@+id/enableUpdate" />
+    <Switch
+        android:text="@string/RemoveSearchBar"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginTop="10dp"
+        android:background="@color/switchBtn"
+        android:paddingStart="30dp"
+        android:paddingEnd="30dp"
+        android:id="@+id/RemoveSearchBar" />
+
+    <Switch
+        android:text="@string/miuimusic"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginTop="10dp"
+        android:background="@color/switchBtn"
+        android:paddingStart="30dp"
+        android:paddingEnd="30dp"
+        android:id="@+id/miuiMusicCustomization" />
 
 </LinearLayout>

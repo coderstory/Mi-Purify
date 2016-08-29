@@ -15,12 +15,9 @@ import de.robv.android.xposed.callbacks.XC_LoadPackage;
 public class RemoveSearchBar implements IModule {
     @Override
     public void handleInitPackageResources(XC_InitPackageResources.InitPackageResourcesParam resparam) {
-
             if (resparam.packageName.equals("com.android.systemui")) {
-
                 resparam.res.setReplacement(resparam.packageName, "bool", "config_show_statusbar_search", false);
             }
-
     }
 
     @Override

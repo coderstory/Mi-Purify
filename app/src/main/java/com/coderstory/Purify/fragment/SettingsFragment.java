@@ -4,13 +4,9 @@ package com.coderstory.Purify.fragment;
 
 import android.view.View;
 import android.widget.Switch;
-
 import com.coderstory.Purify.R;
-
 import ren.solid.library.fragment.base.BaseFragment;
-
 import static com.coderstory.Purify.utils.root.ShellUtils.execCommand;
-
 
 public class SettingsFragment extends BaseFragment {
 
@@ -26,13 +22,7 @@ public class SettingsFragment extends BaseFragment {
 
     @Override
     protected void setUpView() {
-        $(R.id.enableUpdate).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-           getEditor().putBoolean("enableUpdate",((Switch)v).isChecked());
-                getEditor().apply();
-            }
-        });
+
 
         $(R.id.enableCheck).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -57,13 +47,40 @@ public class SettingsFragment extends BaseFragment {
                 }
             }
         });
+
+        $(R.id.enablemiuiRoot).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getEditor().putBoolean("enablemiuiRoot",((Switch)v).isChecked());
+                getEditor().apply();
+            }
+        });
+
+        $(R.id.RemoveSearchBar).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getEditor().putBoolean("RemoveSearchBar",((Switch)v).isChecked());
+                getEditor().apply();
+            }
+        });
+
+        $(R.id.miuiMusicCustomization).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getEditor().putBoolean("miuiMusicCustomization",((Switch)v).isChecked());
+                getEditor().apply();
+            }
+        });
+
     }
 
     @Override
     protected void setUpData() {
-        ((Switch)$(R.id.enableUpdate)).setChecked(getPrefs().getBoolean("enableUpdate",false));
         ((Switch) $(R.id.enableCheck)).setChecked(getPrefs().getBoolean("enableCheck",false));
         ((Switch) $(R.id.gantanhao)).setChecked(getPrefs().getBoolean("gantanhao",false));
+        ((Switch) $(R.id.enablemiuiRoot)).setChecked(getPrefs().getBoolean("enablemiuiRoot",false));
+        ((Switch) $(R.id.RemoveSearchBar)).setChecked(getPrefs().getBoolean("RemoveSearchBar",false));
+        ((Switch) $(R.id.miuiMusicCustomization)).setChecked(getPrefs().getBoolean("miuiMusicCustomization",false));
     }
 
 }

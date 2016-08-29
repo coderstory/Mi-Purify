@@ -83,15 +83,7 @@
                 android:paddingStart="30dp"
                 android:text="@string/googlehosts" />
 
-            <Switch
-                android:id="@+id/enableYoutubeHosts"
-                android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:layout_marginTop="10dp"
-                android:background="@color/switchBtn"
-                android:paddingEnd="30dp"
-                android:paddingStart="30dp"
-                android:text="@string/youtube" />
+
 
             <TextView
                 android:id="@+id/textView"

@@ -18,8 +18,8 @@ import de.robv.android.xposed.callbacks.XC_LoadPackage;
 
 
 public class miuiroot implements IModule {
-    public static TextView WarningText;
-    public static Button accept;
+    private static   TextView WarningText;
+    private static   Button accept;
 
     @Override
     public void handleInitPackageResources(XC_InitPackageResources.InitPackageResourcesParam resparam) {
@@ -60,7 +60,7 @@ public class miuiroot implements IModule {
         XposedHelpers.findAndHookMethod("com.miui.permcenter.root.RootApplyActivity", lpparam.classLoader, "onCreate", Bundle.class, new XC_MethodHook() {
             protected void afterHookedMethod(MethodHookParam paramAnonymousMethodHookParam)
                     throws Throwable {
-                // XposedHelpers.setIntField(paramAnonymousMethodHookParam.thisObject, "TK", 5);
+
                 if (miuiroot.accept == null) {
                     return;
                 }

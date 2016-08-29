@@ -61,14 +61,7 @@ public class HostsFragment extends BaseFragment {
                 new MyTask().execute();
             }
         });
-        $(R.id.enableYoutubeHosts).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                getEditor().putBoolean("enableYoutubeHosts", ((Switch) v).isChecked());
-                getEditor().apply();
-                new MyTask().execute();
-            }
-        });
+
 
         $(R.id.enableStore).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -100,8 +93,7 @@ public class HostsFragment extends BaseFragment {
         ((Switch) $(R.id.enableupdater)).setChecked(getPrefs().getBoolean("enableupdater", false));
 
 
-        ((Switch) $(R.id.enableYoutubeHosts)).setChecked(getPrefs().getBoolean("enableYoutubeHosts", false));
-        $(R.id.enableYoutubeHosts).setEnabled(false);
+
         setCheck(getPrefs().getBoolean("enableHosts", false));
 
     }

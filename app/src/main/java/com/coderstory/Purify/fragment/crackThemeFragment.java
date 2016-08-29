@@ -17,13 +17,7 @@ public class crackThemeFragment extends BaseFragment {
 
     @Override
     protected void setUpView() {
-        $(R.id.enableCrackTheme).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                getEditor().putBoolean("enableCrackTheme", ((Switch) v).isChecked());
-                setCheck(((Switch) v).isChecked());
-            }
-        });
+
 
         $(R.id.CreakMIUI7).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -55,24 +49,14 @@ public class crackThemeFragment extends BaseFragment {
     @Override
     protected void setUpData() {
 
-        ((Switch) $(R.id.enableCrackTheme)).setChecked(getPrefs().getBoolean("enableCrackTheme", false));
+
         ((Switch) $(R.id.CreakMIUI7)).setChecked(getPrefs().getBoolean("CreakMIUI7", false));
         ((Switch) $(R.id.CreakMIUI8)).setChecked(getPrefs().getBoolean("CreakMIUI8", false));
-        setCheck(getPrefs().getBoolean("enableCrackTheme", false));
-    }
-
-
-    private void setCheck(boolean type) {
-
-        if (type) {
-            $(R.id.CreakMIUI7).setEnabled(true);
-            $(R.id.CreakMIUI8).setEnabled(true);
-        } else {
-            $(R.id.CreakMIUI7).setEnabled(false);
-            $(R.id.CreakMIUI8).setEnabled(false);
-        }
 
     }
+
+
+
 
 }
 
