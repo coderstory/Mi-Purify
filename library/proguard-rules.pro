@@ -15,15 +15,8 @@
 #保护注解
 -keepattributes Annotation
 #保持哪些类不被混淆
--keep class com.coderstory.Purify.plugins.start {
-     void handleInitPackageResources(de.robv.android.xposed.callbacks.XC_InitPackageResources$InitPackageResourcesParam);
-     void handleLoadPackage(de.robv.android.xposed.callbacks.XC_LoadPackage$LoadPackageParam);
-     void initZygote(de.robv.android.xposed.IXposedHookZygoteInit$StartupParam);
-     }
+-keep public class  ren.solid.library.**{*;}
 
- -keep class com.coderstory.Purify.activity.MainActivity {
-          boolean isEnable();
-  }
 
 #如果有引用v4包可以添加下面这行
 -keep public class * extends android.support.v4.app.Fragment

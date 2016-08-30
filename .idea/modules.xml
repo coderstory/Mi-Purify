@@ -4,7 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/AppIntro/AppIntro.iml" filepath="$PROJECT_DIR$/AppIntro/AppIntro.iml" />
       <module fileurl="file://$PROJECT_DIR$/Drop/Drop.iml" filepath="$PROJECT_DIR$/Drop/Drop.iml" />
-      <module fileurl="file://$PROJECT_DIR$/MIUIPurify.iml" filepath="$PROJECT_DIR$/MIUIPurify.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Mi-Purify.iml" filepath="$PROJECT_DIR$/Mi-Purify.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/library/library.iml" filepath="$PROJECT_DIR$/library/library.iml" />
       <module fileurl="file://$PROJECT_DIR$/pull/pull.iml" filepath="$PROJECT_DIR$/pull/pull.iml" />
