@@ -69,12 +69,9 @@ public class start implements IXposedHookZygoteInit, IXposedHookLoadPackage, IXp
     @Override
     public void initZygote(StartupParam startupParam) throws Throwable {
 
-        XSharedPreferences prefs = new XSharedPreferences("com.coderstory.Purify", "UserSettings");
-        prefs.makeWorldReadable();
-        prefs.reload();
-        if (prefs.getBoolean("enableCrackTheme", false) && prefs.getBoolean("CreakMIUI8", false)) {
-            new ThemePather8().initZygote(startupParam);
-        }
+//        XSharedPreferences prefs = new XSharedPreferences("com.coderstory.Purify", "UserSettings");
+//        prefs.makeWorldReadable();
+//        prefs.reload();
 
     }
 }
