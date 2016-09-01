@@ -25,9 +25,9 @@ public class crackThemeFragment extends BaseFragment {
                 getEditor().putBoolean("CreakMIUI7", ((Switch) v).isChecked());
                 getEditor().apply();
 
-                ((Switch) $(R.id.CreakMIUI8)).setChecked(!((Switch) v).isChecked());
-                getEditor().putBoolean("CreakMIUI8", !((Switch) v).isChecked());
-                getEditor().apply();
+//                ((Switch) $(R.id.CreakMIUI8)).setChecked(!((Switch) v).isChecked());
+//                getEditor().putBoolean("CreakMIUI8", !((Switch) v).isChecked());
+//                getEditor().apply();
             }
         });
 
@@ -37,9 +37,9 @@ public class crackThemeFragment extends BaseFragment {
                 getEditor().putBoolean("CreakMIUI8", ((Switch) v).isChecked());
                 getEditor().apply();
 
-                ((Switch) $(R.id.CreakMIUI7)).setChecked(!((Switch) v).isChecked());
-                getEditor().putBoolean("CreakMIUI7", !((Switch) v).isChecked());
-                getEditor().apply();
+//                ((Switch) $(R.id.CreakMIUI7)).setChecked(!((Switch) v).isChecked());
+//                getEditor().putBoolean("CreakMIUI7", !((Switch) v).isChecked());
+//                getEditor().apply();
             }
         });
 
