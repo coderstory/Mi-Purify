@@ -42,12 +42,11 @@ public class MyAppIntro extends AppIntro {
 
         if (getPrefs().getBoolean("showGuide", true)) {
             addSlide(AppIntroFragment.newInstance("欢迎使用!", "欢迎使用本软件！\n本软件可是屌丝宅男帅哥美女必备的呀~\n", R.drawable.ic_slide1, Color.parseColor("#098c01")));
-            addSlide(AppIntroFragment.newInstance("电话权限", "软件在提交应用奔溃数据的时候需要读取IMEI信息.\n", R.drawable.ic_slide1, Color.parseColor("#098c01")));
-            addSlide(AppIntroFragment.newInstance("存储权限", "软件更新的时候需要下载新版本的APP到存储器中. \n", R.drawable.ic_slide2, Color.parseColor("#098c01")));
-            addSlide(AppIntroFragment.newInstance("ROOT权限", "软件的人Hosts功能和去感叹号需要ROOT权限才能使用. \n", R.drawable.ic_slide2, Color.parseColor("#098c01")));
-            addSlide(AppIntroFragment.newInstance("使用须知!", "软件的正常运行，你需要确保MIUI系统未安装PCB软件（变色状态栏）之类的不兼容软件. \n", R.drawable.ic_slide3, Color.parseColor("#098c01")));
-            addSlide(AppIntroFragment.newInstance("使用须知!", "你需要确保Xposed安装器和本软件的自启权限不被干扰，否则会导致本软件功能异常和软件更新后失效。 \n", R.drawable.ic_slide3, Color.parseColor("#098c01")));
-            addSlide(AppIntroFragment.newInstance("设置完毕!", "Enjoy Yourself! ", R.drawable.ic_slide4, Color.parseColor("#098c01")));
+            addSlide(AppIntroFragment.newInstance("存储权限", "软件更新的时候需要下载新版本的APP到存储器中. \n", R.drawable.ic_slide3, Color.parseColor("#098c01")));
+            addSlide(AppIntroFragment.newInstance("ROOT权限", "软件的人Hosts功能和去感叹号需要ROOT权限才能使用. \n", R.drawable.ic_slide4, Color.parseColor("#098c01")));
+            addSlide(AppIntroFragment.newInstance("使用须知!", "软件的正常运行，你需要确保MIUI系统未安装PCB软件（变色状态栏）之类的不兼容软件. \n", R.drawable.ic_slide1, Color.parseColor("#098c01")));
+            addSlide(AppIntroFragment.newInstance("使用须知!", "你需要确保Xposed安装器和本软件的自启权限不被干扰，否则会导致本软件功能异常和软件更新后失效。 \n", R.drawable.ic_slide2, Color.parseColor("#098c01")));
+            addSlide(AppIntroFragment.newInstance("设置完毕!", "Enjoy Yourself! ", R.drawable.ic_slide3, Color.parseColor("#098c01")));
 
             // Ask Camera permission in the second slide
             askForPermissions(new String[]{Manifest.permission.READ_PHONE_STATE}, 2);
