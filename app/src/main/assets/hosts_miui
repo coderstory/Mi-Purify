@@ -5,10 +5,8 @@
 127.0.0.1 api.comm.miui.com
 127.0.0.1 api.device.xiaomi.net
 127.0.0.1 api.ra2.xlmc.sec.miui.com
-#127.0.0.1 api.sec.miui.com
 127.0.0.1 api.tuisong.baidu.com
 127.0.0.1 api.tw06.xlmc.sec.miui.com
-127.0.0.1 app.market.xiaomi.com
 127.0.0.1 app01.nodes.gslb.mi-idc.com
 127.0.0.1 app02.nodes.gslb.mi-idc.com
 127.0.0.1 app03.nodes.gslb.mi-idc.com
@@ -56,13 +54,9 @@
 127.0.0.1 sdkconfig.ad.xiaomi.com
 127.0.0.1 sec-cdn.static.xiaomi.net
 127.0.0.1 sec.resource.xiaomi.net
-127.0.0.1 sestat.baidu.com
-127.0.0.1 sis.jpush.io
 127.0.0.1 sousuo.xm.sjzhushou.com
-127.0.0.1 stats.jpush.cn
 127.0.0.1 test.ad.xiaomi.com
 127.0.0.1 update.avlyun.sec.miui.com
-127.0.0.1 video.xiaomi.com
 127.0.0.1 www.adview.cn
 127.0.0.1 yun.rili.cn
 127.0.0.1 zhwnlapi.etouch.cn
@@ -77,7 +71,6 @@
 127.0.0.1 test.e.ad.xiaomi.com
 127.0.0.1 test.new.api.ad.xiaomi.com
 127.0.0.1 a.stat.xiaomi.com
-127.0.0.1 union.dbba.cn
 127.0.0.1 fcanr.tracking.miui.com
 127.0.0.1 r.browser.miui.com
 127.0.0.1 security.browser.miui.com
@@ -87,22 +80,9 @@
 127.0.0.1 notice.game.xiaomi.com
 127.0.0.1 ppurifier.game.xiaomi.com
 127.0.0.1 staging.admin.e.mi.com
-# This hosts file contains exported entries from AdAway.
-127.0.0.1 stats.ipinyou.com
 127.0.0.1 tracking.miui.com
-127.0.0.1 v.admaster.com.cn
-127.0.0.1 f1.p0y.cn
-127.0.0.1 iface.iqiyi.com
-127.0.0.1 s.jpush.cn
-127.0.0.1 ifacelog.iqiyi.com
 127.0.0.1 lxcdn.dl.files.xiaomi.net
 127.0.0.1 account.xiaomi.com
-127.0.0.1 cgicol.amap.com
 127.0.0.1 sdk.open.phone.igexin.com
 127.0.0.1 o2o.api.xiaomi.com
-127.0.0.1 iface2.iqiyi.com
 127.0.0.1 api.account.xiaomi.com
-127.0.0.1 v2.reachmax.cn
-127.0.0.1 secure-chn.imrworldwide.com
-127.0.0.1 easytomessage.com
-127.0.0.1 g.cn.miaozhen.com

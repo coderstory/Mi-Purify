@@ -1,11 +1,11 @@
 #指定代码的压缩级别
 -optimizationpasses 7
 #包明不混合大小写
--dontusemixedcaseclassnames
+#-dontusemixedcaseclassnames
 #不去忽略非公共的库类
 -dontskipnonpubliclibraryclasses
 #优化 不优化输入的类文件
--dontoptimize
+#-dontoptimize
 #预校验
 -dontpreverify
 #混淆时是否记录日志
@@ -26,8 +26,8 @@
   }
 
 #如果有引用v4包可以添加下面这行
--keep public class * extends android.support.v4.app.Fragment
--keep public class * extends android.support.v7.app.Fragment
+#-keep public class * extends android.support.v4.app.Fragment
+#-keep public class * extends android.support.v7.app.Fragment
 #忽略警告
 -ignorewarning
 #记录生成的日志数据,gradle build时在本项目根目录输出
