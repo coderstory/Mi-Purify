@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:background="@drawable/bg"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView android:id="@+id/copy_right"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="12dip"
+        android:layout_centerHorizontal="true"
+        android:textColor="@color/md_black_1000"
+        android:layout_alignParentBottom="true"
+        android:text="by 油炸包子 出品"
+        android:textSize="11sp"/>
+
+    <RelativeLayout android:layout_width="fill_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingTop="20dp"
+            android:id="@+id/linearLayout"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="185dp">
+
+            <LinearLayout android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingTop="20dp"
+                android:layout_gravity="center_horizontal">
+                <TextView android:id="@+id/app_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="6dip"
+                    android:textColor="@color/md_black_1000"
+                    android:paddingTop="20dp"
+                    android:text="@string/app_name"
+                    android:textSize="24sp"/>
+                <TextView android:id="@+id/version_name"
+                    android:paddingTop="20dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="bottom"
+                    android:textColor="@color/md_black_1000"
+                    android:text="@string/version"
+                    android:paddingBottom="6dip"
+                    android:textSize="14sp"/>
+            </LinearLayout>
+            <View android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:layout_marginLeft="20dip"
+                android:layout_marginRight="20dip"
+                android:background="#dddddd"/>
+            <TextView android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:padding="6dip"
+                android:textColor="@color/md_black_1000"
+                android:text="新的旅程,新的开始."
+                android:textSize="15sp"/>
+
+        </LinearLayout>
+
+        <ImageView
+            android:layout_width="125dp"
+            android:layout_height="wrap_content"
+            android:src="@drawable/shooter"
+android:adjustViewBounds="true"
+            android:id="@+id/imageView3"
+            android:layout_above="@+id/linearLayout"
+            android:layout_centerHorizontal="true" />
+
+
+    </RelativeLayout>
+</RelativeLayout>

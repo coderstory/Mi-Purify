@@ -10,8 +10,8 @@
     \n\n 新浪微博ID:如此帅气的昵称</string>
 
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="version">Version: 1.3 群友专用版 </string>
-    <string name="Limit">FULL</string>
+    <string name="version">1.3</string>
+    <string name="Limit">True</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="enableBlockADS"><b>启用模块</b>\n去广告功能的总开关</string>
     <string name="downloadexplorer"><b>下载管理</b>\n去下载管理节点的广告,启用后无法设置仅wifi下载和文件大小限制</string>
@@ -24,21 +24,21 @@
     <string name="miuiads"><b>屏蔽小米广告</b>\n通过hosts屏蔽部分小米的广告,但可能导致小部分小米服务访问异常</string>
     <string name="blockads"><b>开启常规去广告</b>\nGithub上的hosts合集,用于屏蔽国内广告.</string>
     <string name="googlehosts"><b>开启常见国外网站访问支持</b>\nGithub上随意找的Hosts,包含了一些常见的国外网站,有时效性</string>
-    <string name="youtube"><b>Youtube视频支持</b>\n免翻墙看Youtube视频(暂不可用)</string>
-    <string name="hostsnote"><b>注意事项:</b>\n因为本功能是修改Hosts的，所以部分应用需要重启后才能看到效果,且和所有修改hosts软件冲突(比如广告快走开).本功能需要ROOT权限支持.\n<b>与Hosts相关的问题,不必反馈,想要稳定的,请购买相关服务。\n访问谷歌搜索请使用网址 https://www.google.com,必须使用https协议</b></string>
-    <string name="enablecrack"><b>启用模块</b>\n启用主题支持模块 \n从此畅游任意MIUI主题</string>
+    <!--<string name="youtube"><b>Youtube视频支持</b>\n免翻墙看Youtube视频(暂不可用)</string>-->
+    <string name="hostsnote"><b>注意事项:</b>\本功能许ROOT,所有修改重启后才能生效,且和修改hosts软件冲突(比如广告快走).\n<b>与Hosts相关的问题,不必反馈,想要稳定的,请购买相关服务。\n注意:访问谷歌搜索请使用网址 https://www.google.com</b></string>
+    <!--<string name="enablecrack"><b>启用模块</b>\n启用主题支持模块 \n从此畅游任意MIUI主题</string>-->
     <string name="miui7crack"><b>旧版本的MIUI模式</b>\nMIUI8之前的用户请勾选</string>
     <string name="miui8crack"><b>MIUI8模式</b>\nMIUI8用户请勾选</string>
     <string name="cracknote"><b>注意事项</b>\n此为Xposed插件功能,必须在启用插件的情况下才能使用,且所有选项修改重启生效。</string>
     <string name="enableupdater"><b>开启更新检测</b>\n启用后每次打开应用都会检测一次新版本</string>
-    <string name="enablexposed"><b>开启Xposed启用检测</b>\n开启后,如果未在Xposed中激活则弹出相应提示,此时所有的xposed功能全部失效.</string>
-    <string name="miui_root_25"><b>去除MIUI Root的25秒等待</b>\n开启后使用MIUI自带的ROOT授权无需等待25秒的倒计时(此为Xposed插件功能)</string>
-    <string name="RemoveSearchBar"><b>移除通知栏下拉菜单的搜索</b>\n移除通知栏下拉菜单中的搜索框(此为Xposed插件功能)</string>
+    <string name="enablexposed"><b>开启Xposed启用检测</b>\n开启后,如果未在Xposed中激活则弹出相应提示</string>
+    <string name="miui_root_25"><b>去除MIUI Root的25秒等待</b>\n开启后使用MIUI自带的ROOT授权无需等待25秒的倒计时</string>
+    <string name="RemoveSearchBar"><b>移除通知栏下拉菜单的搜索</b>\n移除通知栏下拉菜单中的搜索框</string>
     <string name="hotkey"><b>去下拉框搜索热词</b>\n去除下拉菜单搜索框中的搜索热词</string>
     <string name="enableSafeCenter"><b>去除安全中心的推广信息</b>\n去除安全中心中显示的推广信息</string>
     <string name="mvadnote"><b>注意事项</b>\n部分应用需要清空应用数据才能去除广告,并且有些广告是可以在应用中直接关闭的，并不需要本插件去修改.</string>
     <string name="music"><b>屏蔽音乐广告</b>\n屏蔽系统自带的音乐APP中的广告内容</string>
-    <string name="miuimusic"><b>miui音乐本地化</b>\n让miui音乐变成本地播放器,移除互联网音乐模块(此为Xposed插件功能)</string>
+    <string name="miuimusic"><b>miui音乐本地化</b>\n移除互联网音乐模块,让miui音乐变成本地播放器.</string>
     <string name="Tips_Title">温馨提示</string>
     <string name="Btn_Sure">确定</string>
     <string name="Btn_Cancel">取消</string>
@@ -48,7 +48,7 @@
     <string name="Download_Success">下载完毕</string>
     <string name="Download_Fail">下载错误</string>
     <string name="Tips_HotBoot">你确定要快速重启吗？</string>
-    <string name="wifi"><b>修复wifi自动连接</b>\n修复MIUI系统提示wifi热点未检测网络连接而不会自动连接的错误(叹号助手,需ROOT)</string>
+    <string name="wifi"><b>修复wifi自动连接</b>\n修复系统提示wifi热点未检测网络连接而不会自动连接的问题,需ROOT</string>
     <string name="Working">正在处理</string>
     <string name="Waiting">请耐心等待。。</string>
     <string name="noupdater"><b>禁止系统检测更新</b>\n禁止系统更新检测新版本</string>
@@ -59,7 +59,7 @@
     <string name="sureAntiDisable">你确定要解除</string>
     <string name="sureAntiDisableAfter">的冻结状态吗?</string>
     <string name="sureDisable">你确定要冻结</string>
-    <string name="sureDisableAfter">吗？</string>
+    <string name="sureDisableAfter">吗?</string>
     <string name="loadappinfo">正在读取应用信息。。。</string>
 
 </resources>

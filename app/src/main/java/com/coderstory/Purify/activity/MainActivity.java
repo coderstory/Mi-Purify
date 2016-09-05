@@ -13,6 +13,7 @@ import android.util.Log;
 import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.coderstory.Purify.R;
 import com.coderstory.Purify.fragment.AboutFragment;
@@ -31,6 +32,7 @@ import ren.solid.library.utils.SnackBarUtils;
 import ren.solid.library.utils.ViewUtils;
 
 import static com.coderstory.Purify.R.id.navigation_view;
+import static com.coderstory.Purify.utils.root.SuHelper.canRunRootCommands;
 
 public class MainActivity extends BaseActivity {
 
@@ -113,19 +115,19 @@ public class MainActivity extends BaseActivity {
         }
     }
 
-        @Override
-        protected void onSaveInstanceState (Bundle outState){
-            super.onSaveInstanceState(outState);
-            Log.i(TAG, "onSaveInstanceState");
-        }
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        Log.i(TAG, "onSaveInstanceState");
+    }
 
-        @Override
-        protected void onRestoreInstanceState (Bundle savedInstanceState){
-            //super.onRestoreInstanceState(savedInstanceState);
-            Log.i(TAG, "onRestoreInstanceState");
-        }
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        //super.onRestoreInstanceState(savedInstanceState);
+        Log.i(TAG, "onRestoreInstanceState");
+    }
 
-        //init the default checked fragment
+    //init the default checked fragment
 
     private void initDefaultFragment() {
         Log.i(TAG, "initDefaultFragment");
@@ -156,8 +158,12 @@ public class MainActivity extends BaseActivity {
                         switchFragment(BlogFragment.class);
                         break;
                     case R.id.navigation_item_hosts:
-                        mToolbar.setTitle("Hosts设置");
-                        switchFragment(HostsFragment.class);
+                        if (!canRunRootCommands()) {
+                            Toast.makeText(MainActivity.this, "尚未获取Root授权,Hosts功能将不可用！", Toast.LENGTH_LONG).show();
+                        } else {
+                            mToolbar.setTitle("Hosts设置");
+                            switchFragment(HostsFragment.class);
+                        }
                         break;
 
                     case R.id.navigation_item_cracktheme:

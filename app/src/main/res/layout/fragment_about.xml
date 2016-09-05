@@ -27,13 +27,32 @@
             skin:enable="true"
             app:border_width="2dp" />
 
-        <TextView
-            android:layout_width="wrap_content"
+        <LinearLayout
             android:layout_height="wrap_content"
-            android:text="@string/version"
-            android:textColor="#fff"
-            skin:enable="true"
-            android:textSize="16sp" />
+            android:layout_width="wrap_content"
+            android:gravity="fill_vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="版本号:"
+                android:textColor="#fff"
+                skin:enable="true"
+                android:layout_weight="1"
+                android:textSize="16sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/version"
+                android:textColor="#fff"
+                skin:enable="true"
+                android:layout_weight="1"
+                android:textSize="16sp" />
+
+
+        </LinearLayout>
+
     </LinearLayout>
 
     <TextView

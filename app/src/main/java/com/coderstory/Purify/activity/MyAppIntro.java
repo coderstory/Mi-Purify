@@ -28,8 +28,9 @@ public class MyAppIntro extends AppIntro {
 
     }
 
-    protected SharedPreferences getPrefs() {
+      protected SharedPreferences getPrefs() {
         if (prefs == null) {
+
             prefs = getApplicationContext().getSharedPreferences("UserSettings", Context.MODE_WORLD_READABLE);
         }
         return prefs;
@@ -64,7 +65,7 @@ public class MyAppIntro extends AppIntro {
             setSwipeLock(false);
             setDoneText("完成");
         }else{
-            loadMainActivity();
+            SplashActivity();
         }
     }
 
@@ -104,8 +105,15 @@ public class MyAppIntro extends AppIntro {
     public void getStarted(View v) {
         loadMainActivity();
     }
+
     void loadMainActivity() {
         Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+        this.finish();
+    }
+
+    void SplashActivity() {
+        Intent intent = new Intent(this, SplashActivity.class);
         startActivity(intent);
         this.finish();
     }

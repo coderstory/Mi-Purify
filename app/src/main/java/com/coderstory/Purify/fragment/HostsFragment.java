@@ -6,6 +6,7 @@ import android.os.AsyncTask;
 import android.os.Looper;
 import android.view.View;
 import android.widget.Switch;
+import android.widget.Toast;
 
 import com.coderstory.Purify.R;
 import com.coderstory.Purify.utils.hosts.HostsHelper;
@@ -14,6 +15,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 import ren.solid.library.fragment.base.BaseFragment;
+import ren.solid.library.utils.SnackBarUtils;
+
+import static com.coderstory.Purify.utils.root.SuHelper.canRunRootCommands;
 
 
 public class HostsFragment extends BaseFragment {
@@ -26,6 +30,9 @@ public class HostsFragment extends BaseFragment {
 
     @Override
     protected void setUpView() {
+
+
+
         $(R.id.enableHosts).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -88,12 +95,8 @@ public class HostsFragment extends BaseFragment {
         ((Switch) $(R.id.enableMIUIHosts)).setChecked(getPrefs().getBoolean("enableMIUIHosts", false));
         ((Switch) $(R.id.enableBlockAdsHosts)).setChecked(getPrefs().getBoolean("enableBlockAdsHosts", false));
         ((Switch) $(R.id.enableGoogleHosts)).setChecked(getPrefs().getBoolean("enableGoogleHosts", false));
-
         ((Switch) $(R.id.enableStore)).setChecked(getPrefs().getBoolean("enableStore", false));
         ((Switch) $(R.id.enableupdater)).setChecked(getPrefs().getBoolean("enableupdater", false));
-
-
-
         setCheck(getPrefs().getBoolean("enableHosts", false));
 
     }
@@ -213,6 +216,8 @@ public class HostsFragment extends BaseFragment {
             dialog.cancel();
         }
     }
+
+
 
 }
 

@@ -13,12 +13,16 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
+        android:fullBackupContent="true"
         android:theme="@style/AppTheme">
         <activity
             android:name=".activity.MainActivity"
             android:launchMode="singleTask"
             android:screenOrientation="portrait">
-
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="de.robv.android.xposed.category.MODULE_SETTINGS" />
+            </intent-filter>
         </activity>
         <activity
             android:name=".activity.AboutActivity"
@@ -30,6 +34,20 @@
             android:name="ren.solid.library.activity.ViewPicActivity"
             android:screenOrientation="portrait" />
 
+
+        <activity
+            android:name=".activity.MyAppIntro"
+            android:theme="@style/AppTheme">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".activity.SplashActivity"
+            android:theme="@style/fulscreen_theme" />
+
         <meta-data
             android:name="xposedmodule"
             android:value="true" />
@@ -40,18 +58,6 @@
             android:name="xposedminversion"
             android:value="54" />
 
-        <activity
-            android:name=".activity.MyAppIntro"
-
-            android:theme="@style/AppTheme">
-
-
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
     </application>
 
 </manifest>

@@ -7,30 +7,36 @@
     skin:enable="true"
     android:orientation="vertical">
 
-    <android.support.v7.widget.LinearLayoutCompat
+    <!--<android.support.v7.widget.LinearLayoutCompat-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_gravity="center"-->
+        <!--skin:enable="true"-->
+        <!--android:orientation="vertical"-->
+        <!--android:background="@color/colorPrimary"-->
+        <!--android:layout_height="100dp">-->
+
+        <!--<de.hdodenhof.circleimageview.CircleImageView-->
+            <!--android:id="@+id/profile_image"-->
+            <!--android:layout_width="60dp"-->
+            <!--android:layout_height="60dp"-->
+            <!--android:layout_marginTop="20dp"-->
+            <!--skin:enable="true"-->
+            <!--android:layout_gravity="center"-->
+            <!--android:src="@mipmap/ic_launcher"-->
+            <!--/>-->
+
+    <!--</android.support.v7.widget.LinearLayoutCompat>-->
+
+
+
+
+    <TextView
         android:layout_width="match_parent"
-        android:layout_gravity="center"
-        skin:enable="true"
-        android:orientation="vertical"
-        android:background="@color/colorPrimary"
-        android:layout_height="100dp">
-
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/profile_image"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:layout_marginTop="20dp"
-            skin:enable="true"
-            android:layout_gravity="center"
-            android:src="@mipmap/ic_launcher"
-            />
-
-    </android.support.v7.widget.LinearLayoutCompat>
-
-
-
-
-
+        android:paddingStart="30dp"
+        android:paddingEnd="30dp"
+        android:layout_marginTop="20dp"
+        android:layout_height="25dp"
+        android:text="常用功能" />
 
     <Switch
         android:text="@string/enablexposed"
@@ -54,6 +60,15 @@
         android:paddingStart="30dp"
         android:paddingEnd="30dp"
         android:id="@+id/gantanhao" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:paddingStart="30dp"
+        android:paddingEnd="30dp"
+        android:layout_marginTop="20dp"
+        android:layout_height="25dp"
+        android:text="Xposed模块功能">
+    </TextView>
 
     <Switch
         android:text="@string/miui_root_25"

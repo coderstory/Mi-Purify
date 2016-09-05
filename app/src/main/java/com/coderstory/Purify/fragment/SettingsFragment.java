@@ -76,7 +76,7 @@ public class SettingsFragment extends BaseFragment {
 
     @Override
     protected void setUpData() {
-        ((Switch) $(R.id.enableCheck)).setChecked(getPrefs().getBoolean("enableCheck",false));
+        ((Switch) $(R.id.enableCheck)).setChecked(getPrefs().getBoolean("enableCheck",true));
         ((Switch) $(R.id.gantanhao)).setChecked(getPrefs().getBoolean("gantanhao",false));
         ((Switch) $(R.id.enablemiuiRoot)).setChecked(getPrefs().getBoolean("enablemiuiRoot",false));
         ((Switch) $(R.id.RemoveSearchBar)).setChecked(getPrefs().getBoolean("RemoveSearchBar",false));
