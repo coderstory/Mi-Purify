@@ -6,18 +6,12 @@ import android.os.AsyncTask;
 import android.os.Looper;
 import android.view.View;
 import android.widget.Switch;
-import android.widget.Toast;
 
 import com.coderstory.Purify.R;
+import com.coderstory.Purify.utils.hosts.FileHelper;
 import com.coderstory.Purify.utils.hosts.HostsHelper;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import ren.solid.library.fragment.base.BaseFragment;
-import ren.solid.library.utils.SnackBarUtils;
-
-import static com.coderstory.Purify.utils.root.SuHelper.canRunRootCommands;
 
 
 public class HostsFragment extends BaseFragment {
@@ -30,7 +24,6 @@ public class HostsFragment extends BaseFragment {
 
     @Override
     protected void setUpView() {
-
 
 
         $(R.id.enableHosts).setOnClickListener(new View.OnClickListener() {
@@ -127,80 +120,71 @@ public class HostsFragment extends BaseFragment {
         boolean enableStore = getPrefs().getBoolean("enableStore", false); //4
         boolean enableupdater = getPrefs().getBoolean("enableupdater", false); //4
 
-        Map<String, String> setMap = new HashMap<>();
+
         if (enableHosts) {
-
-            setMap.put("enableHosts", "True");
-
-            if (enableMIUIHosts) {
-                setMap.put("enableMIUIHosts", "True");
-            } else {
-                setMap.put("enableMIUIHosts", "False");
-            }
+            FileHelper fh = new FileHelper();
+            String HostsContext = fh.getFromAssets("none", getMContext());
             if (enableBlockAdsHosts) {
-                setMap.put("enableBlockAdsHosts", "True");
-            } else {
-                setMap.put("enableBlockAdsHosts", "False");
+                HostsContext += fh.getFromAssets("hosts_noad", getMContext());
             }
             if (enableGoogleHosts) {
-                setMap.put("enableGoogleHosts", "True");
-            } else {
-                setMap.put("enableGoogleHosts", "False");
+                HostsContext += fh.getFromAssets("hosts_Foreign", getMContext());
+                HostsContext += fh.getFromAssets("hosts_google", getMContext());
             }
             if (enableStore) {
-                setMap.put("enableStore", "True");
-            } else {
-                setMap.put("enableStore", "False");
+                HostsContext += fh.getFromAssets("hosts_nostore", getMContext());
             }
             if (enableupdater) {
-                setMap.put("enableupdater", "True");
-            } else {
-                setMap.put("enableupdater", "False");
+                HostsContext += fh.getFromAssets("hosts_noup", getMContext());
             }
-        } else {
-            setMap.put("enableHosts", "False");
-        }
-
-        HostsHelper h = new HostsHelper(getContext(), setMap);
-        return h.execute();
-
-    }
-
-    //因为hosts修改比较慢 所以改成异步的
-    private class MyTask extends AsyncTask<String, Integer, String> {
-        @Override
-        protected void onPreExecute() {
-            // setProgressBarIndeterminateVisibility(true);
-            showProgress();
-        }
-
-        @Override
-        protected void onPostExecute(String param) {
-            closeProgress();
-        }
-
-        @Override
-        protected void onCancelled() {
-
-            super.onCancelled();
-        }
-
-        @Override
-        protected void onProgressUpdate(Integer... values) {
-            super.onProgressUpdate(values);
-        }
-
-        @Override
-        protected String doInBackground(String... params) {
-           if ( Looper.myLooper()==null){
-                Looper.prepare();
+            if (enableMIUIHosts) {
+                HostsContext += fh.getFromAssets("hosts_miui", getMContext());
             }
-            UpdateHosts();
-            return null;
+
+            HostsHelper h = new HostsHelper(HostsContext);
+            return h.execute();
+
+        }else{
+            return true;
         }
     }
 
-    private Dialog dialog;
+
+        //因为hosts修改比较慢 所以改成异步的
+        private class MyTask extends AsyncTask<String, Integer, String> {
+            @Override
+            protected void onPreExecute() {
+                // setProgressBarIndeterminateVisibility(true);
+                showProgress();
+            }
+
+            @Override
+            protected void onPostExecute(String param) {
+                closeProgress();
+            }
+
+            @Override
+            protected void onCancelled() {
+
+                super.onCancelled();
+            }
+
+            @Override
+            protected void onProgressUpdate(Integer... values) {
+                super.onProgressUpdate(values);
+            }
+
+            @Override
+            protected String doInBackground(String... params) {
+                if (Looper.myLooper() == null) {
+                    Looper.prepare();
+                }
+                UpdateHosts();
+                return null;
+            }
+        }
+
+        private Dialog dialog;
 
     private void showProgress() {
         if (dialog == null || (dialog != null && !dialog.isShowing())) { //dialog未实例化 或者实例化了但没显示
@@ -216,7 +200,6 @@ public class HostsFragment extends BaseFragment {
             dialog.cancel();
         }
     }
-
 
 
 }

@@ -12,7 +12,7 @@
         android:layout_centerHorizontal="true"
         android:textColor="@color/md_black_1000"
         android:layout_alignParentBottom="true"
-        android:text="by 油炸包子 出品"
+        android:text="by CoderStory 出品"
         android:textSize="11sp"/>
 
     <RelativeLayout android:layout_width="fill_parent"

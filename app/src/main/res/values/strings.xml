@@ -3,11 +3,11 @@
     <string name="drawer_open">Open</string>
     <string name="drawer_close">Close</string>
 
-    <string name="about_msg">此应用是基于ADUI适配的Xposed小插件，用于挽救已经迷失自我的MIUI。古人云:浪子回头金不换，希望你改过自新，也不枉费我这辛苦的调教。
+    <string name="about_msg">\n小米净化适配于MIUI8系统，主要用于去除系统自带的一些广告和其他一些修改.注意,应用需要配合Xposed模块才能使用全部的功能.
     \n\n 作者:CoderStory
     \n\n 博客主页 http://blog.coderstory.cn
     \n\n GitHub主页 https://github.com/coderstory
-    \n\n 新浪微博ID:如此帅气的昵称</string>
+ </string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="version">1.3</string>
@@ -25,7 +25,7 @@
     <string name="blockads"><b>开启常规去广告</b>\nGithub上的hosts合集,用于屏蔽国内广告.</string>
     <string name="googlehosts"><b>开启常见国外网站访问支持</b>\nGithub上随意找的Hosts,包含了一些常见的国外网站,有时效性</string>
     <!--<string name="youtube"><b>Youtube视频支持</b>\n免翻墙看Youtube视频(暂不可用)</string>-->
-    <string name="hostsnote"><b>注意事项:</b>\本功能许ROOT,所有修改重启后才能生效,且和修改hosts软件冲突(比如广告快走).\n<b>与Hosts相关的问题,不必反馈,想要稳定的,请购买相关服务。\n注意:访问谷歌搜索请使用网址 https://www.google.com</b></string>
+    <string name="hostsnote"><b>注意事项:</b>\本功能许ROOT,所有修改重启后才能生效,且和修改hosts软件冲突(比如广告快走).\n<b>与Hosts相关的问题,不必反馈,想要稳定的,请购买相关服务。\n注意:访问谷歌搜索请使用网址 \nhttps://www.google.com</b></string>
     <!--<string name="enablecrack"><b>启用模块</b>\n启用主题支持模块 \n从此畅游任意MIUI主题</string>-->
     <string name="miui7crack"><b>旧版本的MIUI模式</b>\nMIUI8之前的用户请勾选</string>
     <string name="miui8crack"><b>MIUI8模式</b>\nMIUI8用户请勾选</string>
