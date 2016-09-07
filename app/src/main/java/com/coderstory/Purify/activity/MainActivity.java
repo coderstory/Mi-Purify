@@ -21,9 +21,11 @@ import com.coderstory.Purify.fragment.BisbaleAppFragment;
 import com.coderstory.Purify.fragment.BlockADSFragment;
 import com.coderstory.Purify.fragment.BlogFragment;
 import com.coderstory.Purify.fragment.ChangeSkinFragment;
+import com.coderstory.Purify.fragment.CleanFragment;
 import com.coderstory.Purify.fragment.HostsFragment;
 import com.coderstory.Purify.fragment.SettingsFragment;
 import com.coderstory.Purify.fragment.crackThemeFragment;
+import com.coderstory.Purify.utils.MyConfig;
 import com.coderstory.Purify.utils.root.SuHelper;
 
 import ren.solid.library.activity.base.BaseActivity;
@@ -97,15 +99,13 @@ public class MainActivity extends BaseActivity {
 
         //取消滚动条
         NavigationView v = (NavigationView) findViewById(R.id.navigation_view);
-
-
+        v.setEnabled(false);
+        v.setClickable(false);
         if (v != null) {
             NavigationMenuView navigationMenuView = (NavigationMenuView) v.getChildAt(0);
             if (navigationMenuView != null) {
                 navigationMenuView.setVerticalScrollBarEnabled(false);
-
             }
-
         }
         if (getString(R.string.Limit).equals("True")) {
             Menu m = v.getMenu();
@@ -141,12 +141,18 @@ public class MainActivity extends BaseActivity {
     private void setNavigationViewItemClickListener() {
         mNavigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
 
-
             @Override
             public boolean onNavigationItemSelected(MenuItem item) {
                 if (null != mPreMenuItem) {
                     mPreMenuItem.setChecked(false);
                 }
+
+                if (MyConfig.isProcessing) {
+                  //  Toast.makeText(MainActivity.this, "请耐心等待应用气力完成再进行其他的操作！", Toast.LENGTH_SHORT).show();
+                    SnackBarUtils.makeShort(mDrawerLayout, "请耐心等待应用清理完成再进行其他的操作！").danger();
+                    return false;
+                }
+
                 switch (item.getItemId()) {
 
                     case R.id.navigation_item_blockads:
@@ -182,6 +188,11 @@ public class MainActivity extends BaseActivity {
                     case R.id.navigation_item_about:
                         mToolbar.setTitle("关于");
                         switchFragment(AboutFragment.class);
+                        break;
+
+                    case R.id.navigation_item_Clean:
+                        mToolbar.setTitle("应用清理");
+                        switchFragment(CleanFragment.class);
                         break;
 
                     case R.id.navigation_item_disableapps:

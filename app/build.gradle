@@ -6,7 +6,7 @@ android {
     defaultConfig {
         applicationId "com.coderstory.Purify"
         minSdkVersion 19
-       targetSdkVersion 24
+        targetSdkVersion 24
         versionCode 25
         versionName "1.3"
         resConfigs "cn"
@@ -18,7 +18,7 @@ android {
         release {
             shrinkResources true
             minifyEnabled true
-             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
 
         }
     }
@@ -29,14 +29,15 @@ android {
 dependencies {
     provided fileTree(include: ['*.jar'], dir: 'libs')
     compile project(':library')
+    compile project(':pull')
     compile 'com.android.support:support-v4:24.2.0'
     compile 'com.android.support:appcompat-v7:24.2.0'
     compile 'com.android.support:design:24.2.0'
     compile 'com.github.paolorotolo:appintro:4.0.0'
     testCompile 'junit:junit:4.12'
     provided 'de.robv.android.xposed:api:82'
-    compile project(':pull')
 }
+
 
 
 repositories {

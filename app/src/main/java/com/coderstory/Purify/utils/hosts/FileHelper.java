@@ -99,7 +99,18 @@ public class FileHelper {
         return fileText;
     }
 
-
+    public static String getReadableFileSize(long size) {
+        String[] units = new String[]{"K", "M", "G", "T", "P"};
+        double nSize = size * 1L * 1.0f;
+        double mod = 1024.0f;
+        int i = 0;
+        while (nSize >= mod) {
+            nSize /= mod;
+            i++;
+        }
+        DecimalFormat df = new DecimalFormat("#.##");
+        return String.format("%s %s", df.format(nSize), units[i]);
+    }
 
 
 }
