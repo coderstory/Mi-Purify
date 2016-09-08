@@ -1,12 +1,15 @@
 package com.coderstory.Purify.utils.hosts;
 
 
-import android.os.Environment;
+import android.content.Context;
 
 import com.coderstory.Purify.utils.root.SuHelper;
 
-import java.io.File;
+import java.io.BufferedWriter;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.OutputStreamWriter;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 
@@ -16,9 +19,11 @@ import java.util.ArrayList;
  */
 public class HostsHelper extends SuHelper {
     private String mcontent;
+    private  Context mcontext=null;
 
-    public HostsHelper(String mcontent) {
+    public HostsHelper(String mcontent,Context m) {
         this.mcontent = mcontent;
+        this.mcontext=m;
     }
 
     /**
@@ -32,19 +37,25 @@ public class HostsHelper extends SuHelper {
         ArrayList<String> list = new ArrayList<>();
         list.add("mount -o rw,remount /system");
 
-        String tmpDir = Environment.getExternalStorageDirectory().getAbsolutePath();
-        File fDir = new File(tmpDir, ".tmp");
-        if (!fDir.exists()) {
-            fDir.mkdirs();
-        }
-        String tmpFile = new File(fDir, "hosts").getAbsolutePath();
+        String path="/data/data/com.coderstory.Purify/files/hosts";
 
+        FileOutputStream out=null;
+        BufferedWriter writer;
         try {
-            FileHelper.rewriteFile(tmpFile, mcontent);
+            out=mcontext.openFileOutput("hosts", Context.MODE_PRIVATE);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        writer=new BufferedWriter(new OutputStreamWriter(out));
+        try {
+            writer.write(mcontent);
+            writer.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
-        list.add(String.format("cp %s %s", tmpFile, "/etc/hosts"));
+
+        list.add(String.format("mv %s %s", path, "/etc/hosts"));
         list.add(String.format("chmod 755 %s", "/etc/hosts"));
 
 
