@@ -28,21 +28,22 @@ public class RootUtils {
         return runCommand(new String[]{command}, root, callback);
     }
 
-    static Process process;
-    static DataOutputStream os = null;
-    static BufferedReader brOut = null;
-    static BufferedReader brErr = null;
 
     public static CommandResult runCommand(String[] command, boolean root, CommandCallback callback) {
+
+        Process process;
+        DataOutputStream os = null;
+        BufferedReader brOut = null;
+        BufferedReader brErr = null;
 
         CommandResult ret = new CommandResult();
         try {
             StringBuffer output = new StringBuffer();
             StringBuffer error = new StringBuffer();
             if (root) {
-                if (process==null) {
-                    process = Runtime.getRuntime().exec("su");
-                }
+
+                process = Runtime.getRuntime().exec("su");
+
                 os = new DataOutputStream(process.getOutputStream());
 
                 os.writeBytes(command[0] + "\n");
