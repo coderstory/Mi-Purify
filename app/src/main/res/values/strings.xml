@@ -3,14 +3,15 @@
     <string name="drawer_open">Open</string>
     <string name="drawer_close">Close</string>
 
-    <string name="about_msg">\n小米净化适配于MIUI8系统，主要用于去除系统自带的一些广告和其他一些修改.注意,应用需要配合Xposed模块才能使用全部的功能.
+    <string name="about_msg">小米净化适配于MIUI8系统，主要用于去除系统自带的一些广告和其他一些修改.注意,应用需要配合Xposed模块才能使用全部的功能.
     \n\n作者:CoderStory
-    \n\博客主页 http://blog.coderstory.cn
+    \n博客主页 http://blog.coderstory.cn
     \n\n致谢如下开源项目:
     \n\n主UI和皮肤功能:https://github.com/burgessjp/MaterialDesignDemo
     \n下拉刷新：https://github.com/Yalantis
     \n引导页：https://github.com/PaoloRotolo/AppIntro
      \n应用清理:https://github.com/rarnu/root-tools
+        \nHosts源:\nhttps://github.com/racaljk/hosts \nhttps://github.com/vokins/yhosts
 
  </string>
 
