@@ -1,6 +1,7 @@
 package com.coderstory.Purify.module;
 
 import android.content.Context;
+import android.content.Intent;
 
 import com.coderstory.Purify.plugins.IModule;
 
@@ -181,6 +182,25 @@ public class RemoveAds implements IModule {
                 return;
             }
         }
+
+        //安全中心
+        if (loadPackageParam.packageName.equals("com.miui.securitycenter")) {
+
+
+            findAndHookMethod("com.miui.permcenter.install.b", loadPackageParam.classLoader, "isEnabled",  XC_MethodReplacement.returnConstant(false));
+            findAndHookMethod("com.miui.permcenter.install.b", loadPackageParam.classLoader, "ds",  XC_MethodReplacement.returnConstant(false));
+            findAndHookMethod("com.miui.permcenter.install.b", loadPackageParam.classLoader, "dF",XC_MethodReplacement.returnConstant(false));
+
+            findAndHookMethod("com.miui.permcenter.install.f", loadPackageParam.classLoader, "onReceive", Context.class, Intent.class, new XC_MethodReplacement() {
+                @Override
+                protected Object replaceHookedMethod(MethodHookParam param) throws Throwable {
+                    return null;
+                }
+            });
+          return;
+
+        }
+
 
         //搜索框
         if (loadPackageParam.packageName.equals("com.android.quicksearchbox")) {
