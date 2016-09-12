@@ -3,7 +3,7 @@
     <string name="drawer_open">Open</string>
     <string name="drawer_close">Close</string>
 
-    <string name="about_msg">\n小米净化适配于MIUI8系统，主要用于去除系统自带的一些广告和其他一些修改.注意,应用需要配合Xposed模块才能使用全部的功能.
+    <string name="about_msg">\n小米净化适配于MIUI8系统，主要用于去除系统自带的一些广告和其他一些修改.功能需要Xposed模块和ROOT支持.
     \n\n作者:CoderStory
     \n博客主页 http://blog.coderstory.cn
     \n\n致谢如下开源项目:
@@ -12,7 +12,7 @@
     \n引导页：https://github.com/PaoloRotolo/AppIntro
      \n应用清理:https://github.com/rarnu/root-tools
     </string>
-    <string name="version">1.3</string>
+    <string name="version">1.4</string>
     <string name="Limit">Full</string>
 
     <string name="enableBlockADS"><b>启用模块</b>\n去广告功能的总开关</string>

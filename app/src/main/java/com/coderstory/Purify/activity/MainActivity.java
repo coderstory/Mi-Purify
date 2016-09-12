@@ -17,10 +17,9 @@ import android.widget.Toast;
 
 import com.coderstory.Purify.R;
 import com.coderstory.Purify.fragment.AboutFragment;
-import com.coderstory.Purify.fragment.BisbaleAppFragment;
+import com.coderstory.Purify.fragment.DisbaleAppFragment;
 import com.coderstory.Purify.fragment.BlockADSFragment;
 import com.coderstory.Purify.fragment.BlogFragment;
-import com.coderstory.Purify.fragment.ChangeSkinFragment;
 import com.coderstory.Purify.fragment.CleanFragment;
 import com.coderstory.Purify.fragment.HostsFragment;
 import com.coderstory.Purify.fragment.SettingsFragment;
@@ -93,9 +92,7 @@ public class MainActivity extends BaseActivity {
         mDrawerLayout.setDrawerListener(mDrawerToggle);
         mToolbar.setNavigationIcon(R.drawable.ic_drawer_home);
         initDefaultFragment();
-        dynamicAddSkinEnableView(mToolbar, "background", R.color.colorPrimary);
-        dynamicAddSkinEnableView(mNavigationView.getHeaderView(0), "background", R.color.colorPrimary);
-        dynamicAddSkinEnableView(mNavigationView, "navigationViewMenu", R.color.colorPrimary);
+
 
         //取消滚动条
         NavigationView v = (NavigationView) findViewById(R.id.navigation_view);
@@ -181,12 +178,9 @@ public class MainActivity extends BaseActivity {
                         mToolbar.setTitle("其他设置");
                         switchFragment(SettingsFragment.class);
                         break;
-                    case R.id.navigation_item_switch_theme:
-                        mToolbar.setTitle("主题换肤");
-                        switchFragment(ChangeSkinFragment.class);
-                        break;
+
                     case R.id.navigation_item_about:
-                        mToolbar.setTitle("关于");
+                        mToolbar.setTitle("关于应用");
                         switchFragment(AboutFragment.class);
                         break;
 
@@ -197,7 +191,7 @@ public class MainActivity extends BaseActivity {
 
                     case R.id.navigation_item_disableapps:
                         mToolbar.setTitle("冻结应用");
-                        switchFragment(BisbaleAppFragment.class);
+                        switchFragment(DisbaleAppFragment.class);
                         break;
                     default:
                         break;
@@ -272,7 +266,7 @@ public class MainActivity extends BaseActivity {
 
         long currentTick = System.currentTimeMillis();
         if (currentTick - lastBackKeyDownTick > MAX_DOUBLE_BACK_DURATION) {
-            SnackBarUtils.makeShort(mDrawerLayout, "再按一次退出").success();
+            SnackBarUtils.makeShort(mDrawerLayout, "再按一次退出").info();
             lastBackKeyDownTick = currentTick;
         } else {
             finish();

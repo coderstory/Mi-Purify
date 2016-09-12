@@ -38,7 +38,7 @@ public abstract class ToolbarActivity extends BaseActivity {
 
         setUpToolBar();
 
-        dynamicAddSkinEnableView(mToolbar, "background", R.color.colorPrimary);
+
     }
 
     private void setUpToolBar() {

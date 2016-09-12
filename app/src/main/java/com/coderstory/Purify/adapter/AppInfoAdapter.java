@@ -35,25 +35,25 @@ public class AppInfoAdapter extends ArrayAdapter {
         } else {
             view = LayoutInflater.from(getContext()).inflate(resourceId, null); //读取items.xml文件并实例化
             vh = new ViewHolder();
-            vh.myimage = (ImageView) view.findViewById(R.id.app_image);//查找items实例中的myimage
-            vh.mytext = (TextView) view.findViewById(R.id.app_name);//查找items实例中的mytext
+            vh.myImage = (ImageView) view.findViewById(R.id.app_image);//查找items实例中的myimage
+            vh.myText = (TextView) view.findViewById(R.id.app_name);//查找items实例中的mytext
             view.setTag(vh); //保存到view中
         }
 
 
-        vh.mytext.setTag(appInfo.getPackageName());
-        vh.myimage.setImageDrawable(appInfo.getImageId());
-        vh.mytext.setText(" 应用名 : " + appInfo.getName() + "\r\n 版本号 : " + appInfo.getVersion());
+        vh.myText.setTag(appInfo.getPackageName());
+        vh.myImage.setImageDrawable(appInfo.getImageId());
+        vh.myText.setText(" 应用名 : " + appInfo.getName() + "\r\n 版本号 : " + appInfo.getVersion());
         if (appInfo.getDisable()) {
             view.setBackgroundColor(Color.parseColor("#d0d7d7d7")); //冻结的颜色
         } else {
-            view.setBackgroundColor(getContext().getResources().getColor(R.color.colorPrimary)); //冻结的颜色
+            view.setBackgroundColor(getContext().getResources().getColor(R.color.colorPrimary)); //正常的的颜色
         }
         return view;
     }
 
     private class ViewHolder {
-        ImageView myimage;
-        TextView mytext;
+        ImageView myImage;
+        TextView myText;
     }
 }

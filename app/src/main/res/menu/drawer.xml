@@ -43,15 +43,6 @@
                     android:id="@+id/navigation_item_myblog"
                     android:icon="@drawable/iconfont_blog"
                     android:title="@string/myblog" />
-
-                <item
-                    android:id="@+id/navigation_item_switch_theme"
-                    android:checkable="true"
-                    android:icon="@drawable/iconfont_skin"
-                    android:title="@string/changeskin" />
-
-
-
                 <item
                     android:id="@+id/navigation_item_about"
                     android:checkable="true"

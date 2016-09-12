@@ -31,7 +31,7 @@ import ren.solid.library.fragment.base.BaseFragment;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class BisbaleAppFragment extends BaseFragment {
+public class DisbaleAppFragment extends BaseFragment {
 
 
     private List<AppInfo> appInfoList = new ArrayList<>();
@@ -76,7 +76,7 @@ public class BisbaleAppFragment extends BaseFragment {
 
     private  void  showData()
     {
-        adapter = new AppInfoAdapter(getContext(), R.layout.app_info_item, R.color.disableApp,appInfoList);
+        adapter = new AppInfoAdapter(getContext(), R.layout.app_info_item, R.color.colorPrimaryDark,appInfoList);
         listView = (ListView) getContentView().findViewById(R.id.listView);
         assert listView != null;
         listView.setAdapter(adapter);

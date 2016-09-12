@@ -2,16 +2,17 @@ package ren.solid.library.activity.base;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
-import ren.solid.skinloader.base.SkinBaseActivity;
+
 
 /**
  * Created by _SOLID
  * Date:2016/3/30
  * Time:9:40
  */
-public abstract class BaseActivity extends SkinBaseActivity {
+public abstract class BaseActivity extends AppCompatActivity {
     
     @Override
     protected void onCreate(Bundle savedInstanceState) {

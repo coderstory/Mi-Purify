@@ -1,5 +1,6 @@
 package ren.solid.library.fragment.base;
 
+import android.support.v4.app.Fragment;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -9,14 +10,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import ren.solid.skinloader.base.SkinBaseFragment;
+
 
 /**
  * Created by _SOLID
  * Date:2016/3/30
  * Time:11:30
  */
-public abstract class BaseFragment extends SkinBaseFragment {
+public abstract class BaseFragment extends Fragment {
 
     private View mContentView;
     private Context mContext;
@@ -36,6 +37,7 @@ public abstract class BaseFragment extends SkinBaseFragment {
         init();
         setUpView();
         setUpData();
+        getPrefs();
         return mContentView;
     }
 
@@ -46,7 +48,6 @@ public abstract class BaseFragment extends SkinBaseFragment {
     }
 
     protected SharedPreferences.Editor getEditor() {
-        getPrefs();
         if (editor == null) {
             editor = prefs.edit();
         }

@@ -1,14 +1,16 @@
 package ren.solid.library;
 
+import android.app.Application;
+
 import ren.solid.library.utils.ToastUtils;
-import ren.solid.skinloader.base.SkinBaseApplication;
+
 
 /**
  * Created by _SOLID
  * Date:2016/3/30
  * Time:20:59
  */
-public class SolidApplication extends SkinBaseApplication {
+public class SolidApplication extends Application {
     private static SolidApplication mInstance;
 
     @Override
@@ -16,9 +18,13 @@ public class SolidApplication extends SkinBaseApplication {
         super.onCreate();
         mInstance = this;
         ToastUtils.init(this);
+        CrashHandler crashHandler = CrashHandler.getInstance();
+        crashHandler.init(getApplicationContext());
     }
 
     public static SolidApplication getInstance() {
         return mInstance;
     }
+
+
 }

@@ -61,7 +61,7 @@ public class WebViewActivity extends BaseActivity {
                 onBackPressed();
             }
         });
-        dynamicAddSkinEnableView(mToolbar, "background", R.color.colorPrimary);
+
 
 
     }

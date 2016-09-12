@@ -1,25 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!--ToolBar-->
-    <color name="colorPrimary">#32a331</color>
+    <color name="colorPrimary">#ff7997</color>
     <!--状态栏-->
-    <color name="colorPrimaryDark">#32a331</color>
-    <color name="colorAccent">#42b678</color>
-    <color name="windowBackground">#fafafa</color>
-    <color name="colorItem">#32a331</color>
-    <color name="enableApp">#42b678</color>
-    <color name="disableApp">#42b678</color>
+    <color name="colorPrimaryDark">#ff7997</color>
+    <color name="colorAccent">#ff7997</color>
+    <color name="colorItem">#ff7997</color>
+    <color name="enableApp">#ff7997</color>
     <color name="divider">#00eeefc3</color>
     <color name="disablefunction">#cacaca</color>
 
     <color name="white">#ffffff</color>
     <color name="switchBtn">#fff</color>
 
-
-    <!-- google's material design colours from
-   http://www.google.com/design/spec/style/color.html#color-ui-color-palette -->
-
-    <!--reds-->
     <color name="md_red_50">#fde0dc</color>
     <color name="md_red_100">#f9bdbb</color>
     <color name="md_red_200">#f69988</color>

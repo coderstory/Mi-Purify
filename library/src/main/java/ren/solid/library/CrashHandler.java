@@ -1,4 +1,4 @@
-package com.coderstory.Purify.utils.CrashHelper;
+package ren.solid.library;
 
 
 import android.content.Context;
@@ -24,7 +24,6 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
-
 
 
 /**

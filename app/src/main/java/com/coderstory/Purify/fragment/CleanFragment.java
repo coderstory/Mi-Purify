@@ -5,6 +5,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.support.v4.app.Fragment;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.coderstory.Purify.R;
@@ -14,6 +15,7 @@ import com.coderstory.Purify.utils.root.CommandResult;
 import com.coderstory.Purify.utils.root.RootUtils;
 
 import ren.solid.library.fragment.base.BaseFragment;
+import ren.solid.library.utils.SnackBarUtils;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -55,8 +57,10 @@ public class CleanFragment extends BaseFragment {
     private Handler hComplete = new Handler() {
         @Override
         public void handleMessage(Message msg) {
-
             super.handleMessage(msg);
+            ((Button) $(R.id.button)).setText("开始清理");
+            $(R.id.button).setEnabled(true);
+            SnackBarUtils.makeShort($(R.id.button), "应用清理完成！").info();
         }
     };
 
@@ -67,11 +71,9 @@ public class CleanFragment extends BaseFragment {
     }
 
     Thread th;
-
-
-
     public void threadClean() {
         tvClean = $(R.id.tvClean);
+        ((Button) $(R.id.button)).setText("正在清理中...");
         tvClean.append(getString(R.string.view_start_clean));
         $(R.id.button).setEnabled(false);
         th = new Thread(new Runnable() {
@@ -102,12 +104,15 @@ public class CleanFragment extends BaseFragment {
                 totalSize += deleteRemainArtCache();
                 sendMessageStr(getString(R.string.view_clean_complete, FileHelper.getReadableFileSize(totalSize)));
                 hComplete.sendEmptyMessage(0);
-
                 MyConfig.isProcessing=false;
             }
         });
         th.start();
     }
+
+
+
+
 
     private CacheSize getSize(String path) {
 
