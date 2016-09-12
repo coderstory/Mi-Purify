@@ -5,7 +5,7 @@
 
     <string name="about_msg">\n小米净化适配于MIUI8系统，主要用于去除系统自带的一些广告和其他一些修改.注意,应用需要配合Xposed模块才能使用全部的功能.
     \n\n作者:CoderStory
-    \n\博客主页 http://blog.coderstory.cn
+    \n博客主页 http://blog.coderstory.cn
     \n\n致谢如下开源项目:
     \n\n主UI和皮肤功能:https://github.com/burgessjp/MaterialDesignDemo
     \n下拉刷新：https://github.com/Yalantis

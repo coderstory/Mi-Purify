@@ -1,6 +1,18 @@
-
+# Copyright (c) 2014-2016, racaljk.
 # https://github.com/racaljk/hosts
-# Last updated: 2016-09-06
+# Last updated: 2016-09-11
+
+# This work is licensed under a CC BY-NC-SA 4.0 International License.
+# https://creativecommons.org/licenses/by-nc-sa/4.0/
+
+# Localhost (DO NOT REMOVE)
+127.0.0.1	localhost
+255.255.255.255	broadcasthost
+::1	localhost
+fe80::1%lo0	localhost
+
+# Modified hosts start
+
 # Amazon AWS Start
 27.0.1.125	ap-northeast-1.console.aws.amazon.com
 54.240.226.19	ap-southeast-1.console.aws.amazon.com
@@ -142,6 +154,8 @@
 31.13.95.17	secure.facebook.com
 31.13.95.17	zh-cn.facebook.com
 31.13.95.17	login.facebook.com
+31.13.95.17	i.facebook.com
+31.13.95.17	im.facebook.com
 #50.63.202.88	message-facebook.com
 31.13.95.17	attachments.facebook.com
 31.13.95.17	touch.facebook.com
@@ -389,6 +403,7 @@
 220.255.2.153	mail.google.com
 220.255.2.153	www.gmail.com
 220.255.2.153	mail-settings.google.com
+64.233.188.121	m.android.com
 # Gmail web End
 
 # Google Start
@@ -688,6 +703,7 @@
 220.255.2.153	chromium.googlesource.com
 220.255.2.153	kernel.googlesource.com
 220.255.2.153	android-review.googlesource.com
+220.255.2.153	r.android.com
 220.255.2.153	gwt.googlesource.com
 220.255.2.153	code.google.com
 220.255.2.153	uploads.code.google.com
@@ -800,6 +816,7 @@
 220.255.2.153	groups.google.com.hk
 220.255.2.153	groups-beta.google.com
 220.255.2.153	productforums.google.com
+220.255.2.153	a77db9aa-a-7b23c8ea-s-sites.googlegroups.com
 220.255.2.153	blob-s-docs.googlegroups.com
 220.255.2.153	health.google.com
 220.255.2.153	images.google.com
@@ -902,6 +919,7 @@
 220.255.2.153	plus.url.google.com
 220.255.2.153	plus.url.google.com.hk
 220.255.2.153	spaces.google.com
+220.255.2.153	pixel.google.com
 220.255.2.153	vr.google.com
 220.255.2.153	reader.google.com
 220.255.2.153	research.google.com
@@ -966,6 +984,7 @@
 220.255.2.153	cloudconsole-pa.clients6.google.com
 220.255.2.153	iam.clients6.google.com
 220.255.2.153	clientauthconfig.clients6.google.com
+220.255.2.153	realtimesupport.clients6.google.com
 220.255.2.153	360suite.google.com
 220.255.2.153	optimize.google.com
 216.58.203.85	attribution.google.com
@@ -1284,6 +1303,7 @@
 64.233.188.121	b.android.com
 64.233.188.121	tools.android.com
 220.255.2.153	source.android.com
+220.255.2.153	a.android.com
 220.255.2.153	market.android.com
 220.255.2.153	play.google.com
 220.255.2.153	payments.google.com
@@ -3073,6 +3093,7 @@
 64.233.188.121	www.thegobridgeoglepuzzle.com
 64.233.188.121	www.googlezeitgeist.com
 64.233.188.121	news.dartlang.org
+64.233.188.121	dartpad.dartlang.org
 # Google:ghs End
 
 # Google:gcm Start

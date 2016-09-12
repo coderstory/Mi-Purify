@@ -32,12 +32,9 @@ public class Others implements IModule {
 
         //安全中心
         if (loadPackageParam.packageName.equals("com.miui.securitycenter")) {
-
-
             findAndHookMethod("com.miui.permcenter.install.b", loadPackageParam.classLoader, "isEnabled", XC_MethodReplacement.returnConstant(false));
             findAndHookMethod("com.miui.permcenter.install.b", loadPackageParam.classLoader, "ds", XC_MethodReplacement.returnConstant(false));
             findAndHookMethod("com.miui.permcenter.install.b", loadPackageParam.classLoader, "dF", XC_MethodReplacement.returnConstant(false));
-
             findAndHookMethod("com.miui.permcenter.install.f", loadPackageParam.classLoader, "onReceive", Context.class, Intent.class, new XC_MethodReplacement() {
                 @Override
                 protected Object replaceHookedMethod(MethodHookParam param) throws Throwable {

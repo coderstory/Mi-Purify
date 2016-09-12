@@ -31,6 +31,7 @@ public class AppInfoAdapter extends ArrayAdapter {
         if (convertView != null) { //查询布局是否已经缓存
             view = convertView;
             vh = (ViewHolder) view.getTag();//重新获取ViewHolder
+
         } else {
             view = LayoutInflater.from(getContext()).inflate(resourceId, null); //读取items.xml文件并实例化
             vh = new ViewHolder();
@@ -45,14 +46,14 @@ public class AppInfoAdapter extends ArrayAdapter {
         vh.mytext.setText(" 应用名 : " + appInfo.getName() + "\r\n 版本号 : " + appInfo.getVersion());
         if (appInfo.getDisable()) {
             view.setBackgroundColor(Color.parseColor("#d0d7d7d7")); //冻结的颜色
+        } else {
+            view.setBackgroundColor(getContext().getResources().getColor(R.color.colorPrimary)); //冻结的颜色
         }
         return view;
     }
 
-    class ViewHolder {
+    private class ViewHolder {
         ImageView myimage;
         TextView mytext;
     }
-
-
 }
