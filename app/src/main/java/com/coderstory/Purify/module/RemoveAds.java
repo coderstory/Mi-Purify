@@ -2,6 +2,7 @@ package com.coderstory.Purify.module;
 
 import android.content.Context;
 import android.content.Intent;
+import android.view.WindowManager;
 
 import com.coderstory.Purify.plugins.IModule;
 
@@ -16,7 +17,6 @@ import de.robv.android.xposed.XposedBridge;
 import de.robv.android.xposed.XposedHelpers;
 import de.robv.android.xposed.callbacks.XC_InitPackageResources;
 import de.robv.android.xposed.callbacks.XC_LoadPackage;
-
 
 
 public class RemoveAds implements IModule {
@@ -53,6 +53,7 @@ public class RemoveAds implements IModule {
                         paramAnonymousMethodHookParam.setResult("gemini_global");
                     }
                 }
+
                 protected void beforeHookedMethod(MethodHookParam paramAnonymousMethodHookParam)
                         throws Throwable {
                     if (paramAnonymousMethodHookParam.args[0].toString().equals("ro.product.mod_device")) {
@@ -144,7 +145,7 @@ public class RemoveAds implements IModule {
         if (loadPackageParam.packageName.equals("com.miui.player")) {
             if (prefs.getBoolean("enableMusic", false)) {
                 findAndHookMethod("com.miui.player.util.AdUtils", loadPackageParam.classLoader, "isAdEnable", XC_MethodReplacement.returnConstant(false));
-                findAndHookMethod("com.miui.player.util.AdUtils", loadPackageParam.classLoader, "getPlayAd","esponse.Listener<Result>","Response.ErrorListener", XC_MethodReplacement.returnConstant(null));
+                findAndHookMethod("com.miui.player.util.AdUtils", loadPackageParam.classLoader, "getPlayAd", "esponse.Listener<Result>", "Response.ErrorListener", XC_MethodReplacement.returnConstant(null));
                 findAndHookMethod("com.miui.player.util.ExperimentsHelper", loadPackageParam.classLoader, "isAdEnabled", XC_MethodReplacement.returnConstant(false));
                 //findAndHookMethod("com.miui.player.util.Configuration", loadPackageParam.classLoader, "isCmCustomization", XC_MethodReplacement.returnConstant(true));
                 findAndHookMethod("com.miui.player.util.Configuration", loadPackageParam.classLoader, "isCmTest", XC_MethodReplacement.returnConstant(true));
@@ -187,9 +188,9 @@ public class RemoveAds implements IModule {
         if (loadPackageParam.packageName.equals("com.miui.securitycenter")) {
 
 
-            findAndHookMethod("com.miui.permcenter.install.b", loadPackageParam.classLoader, "isEnabled",  XC_MethodReplacement.returnConstant(false));
-            findAndHookMethod("com.miui.permcenter.install.b", loadPackageParam.classLoader, "ds",  XC_MethodReplacement.returnConstant(false));
-            findAndHookMethod("com.miui.permcenter.install.b", loadPackageParam.classLoader, "dF",XC_MethodReplacement.returnConstant(false));
+            findAndHookMethod("com.miui.permcenter.install.b", loadPackageParam.classLoader, "isEnabled", XC_MethodReplacement.returnConstant(false));
+            findAndHookMethod("com.miui.permcenter.install.b", loadPackageParam.classLoader, "ds", XC_MethodReplacement.returnConstant(false));
+            findAndHookMethod("com.miui.permcenter.install.b", loadPackageParam.classLoader, "dF", XC_MethodReplacement.returnConstant(false));
 
             findAndHookMethod("com.miui.permcenter.install.f", loadPackageParam.classLoader, "onReceive", Context.class, Intent.class, new XC_MethodReplacement() {
                 @Override
@@ -197,8 +198,20 @@ public class RemoveAds implements IModule {
                     return null;
                 }
             });
-          return;
+            return;
 
+        }
+
+        //窗口权限 miui 8
+        if (loadPackageParam.packageName.equals("android")) {
+            XposedHelpers.findAndHookMethod("com.android.server.policy.PhoneWindowManager", loadPackageParam.classLoader, "checkAddPermission", new Object[]{WindowManager.LayoutParams.class, int[].class, new XC_MethodHook() {
+                protected void afterHookedMethod(XC_MethodHook.MethodHookParam paramAnonymousMethodHookParam) {
+                    if (((Integer) paramAnonymousMethodHookParam.getResult()).intValue() < 0) {
+                        paramAnonymousMethodHookParam.setResult(Integer.valueOf(0));
+                    }
+                }
+            }});
+            return;
         }
 
 
@@ -207,7 +220,7 @@ public class RemoveAds implements IModule {
 
             if (prefs.getBoolean("enableHotKey", false)) {
                 //新版本 v8
-               findAndHookMethod("com.android.quicksearchbox.ui.LocalListView", loadPackageParam.classLoader, "updateHotQuery", List.class, int.class, new XC_MethodReplacement() {
+                findAndHookMethod("com.android.quicksearchbox.ui.LocalListView", loadPackageParam.classLoader, "updateHotQuery", List.class, int.class, new XC_MethodReplacement() {
                     @Override
                     protected Object replaceHookedMethod(MethodHookParam param) throws Throwable {
                         return null;

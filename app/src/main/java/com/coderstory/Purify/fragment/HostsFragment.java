@@ -141,7 +141,7 @@ public class HostsFragment extends BaseFragment {
                 HostsContext += fh.getFromAssets("hosts_miui", getMContext());
             }
 
-            HostsHelper h = new HostsHelper(HostsContext);
+            HostsHelper h = new HostsHelper(HostsContext,getMContext());
             return h.execute();
 
         }else{
