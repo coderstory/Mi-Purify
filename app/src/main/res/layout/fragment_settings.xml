@@ -1,103 +1,117 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-
     xmlns:skin="http://schemas.android.com/android/skin"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    skin:enable="true"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    skin:enable="true">
 
-    <!--<android.support.v7.widget.LinearLayoutCompat-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_gravity="center"-->
-        <!--skin:enable="true"-->
-        <!--android:orientation="vertical"-->
-        <!--android:background="@color/colorPrimary"-->
-        <!--android:layout_height="100dp">-->
-
-        <!--<de.hdodenhof.circleimageview.CircleImageView-->
-            <!--android:id="@+id/profile_image"-->
-            <!--android:layout_width="60dp"-->
-            <!--android:layout_height="60dp"-->
-            <!--android:layout_marginTop="20dp"-->
-            <!--skin:enable="true"-->
-            <!--android:layout_gravity="center"-->
-            <!--android:src="@mipmap/ic_launcher"-->
-            <!--/>-->
-
-    <!--</android.support.v7.widget.LinearLayoutCompat>-->
-
-
-
-
-    <TextView
+    <ScrollView
+        android:id="@+id/scrollView2"
         android:layout_width="match_parent"
-        android:paddingStart="30dp"
-        android:paddingEnd="30dp"
-        android:layout_marginTop="20dp"
-        android:layout_height="25dp"
-        android:text="常用功能" />
+        xmlns:skin="http://schemas.android.com/android/skin"
+        android:layout_height="match_parent">
 
-    <Switch
-        android:text="@string/enablexposed"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:layout_marginTop="10dp"
-        android:background="@color/switchBtn"
-        android:paddingStart="30dp"
-        android:checked="true"
-        android:paddingEnd="30dp"
-        android:id="@+id/enableCheck" />
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:skin="http://schemas.android.com/android/skin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
 
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:background="@color/colorPrimary"
+                android:paddingEnd="30dp"
+                android:paddingStart="30dp"
+                android:paddingTop="10dp"
+                android:text="常用功能"
+                skin:enable="true" />
 
-    <Switch
-        android:text="@string/wifi"
-        android:layout_width="match_parent"
-        android:layout_height="70dp"
-        android:layout_marginTop="10dp"
-        android:background="@color/switchBtn"
-        android:paddingStart="30dp"
-        android:paddingEnd="30dp"
-        android:id="@+id/gantanhao" />
+            <Switch
+                android:id="@+id/enableCheck"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_marginTop="10dp"
+                android:background="@color/switchBtn"
+                android:checked="true"
+                android:paddingEnd="30dp"
+                android:paddingStart="30dp"
+                android:text="@string/enablexposed" />
 
-    <TextView
-        android:layout_width="match_parent"
-        android:paddingStart="30dp"
-        android:paddingEnd="30dp"
-        android:layout_marginTop="20dp"
-        android:layout_height="25dp"
-        android:text="Xposed模块功能">
-    </TextView>
 
-    <Switch
-        android:text="@string/miui_root_25"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:layout_marginTop="10dp"
-        android:background="@color/switchBtn"
-        android:paddingStart="30dp"
-        android:paddingEnd="30dp"
-        android:id="@+id/enablemiuiRoot" />
+            <Switch
+                android:id="@+id/gantanhao"
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:layout_marginTop="10dp"
+                android:background="@color/switchBtn"
+                android:paddingEnd="30dp"
+                android:paddingStart="30dp"
+                android:text="@string/wifi" />
 
-    <Switch
-        android:text="@string/RemoveSearchBar"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:layout_marginTop="10dp"
-        android:background="@color/switchBtn"
-        android:paddingStart="30dp"
-        android:paddingEnd="30dp"
-        android:id="@+id/RemoveSearchBar" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:background="@color/colorPrimary"
+                android:paddingEnd="30dp"
+                android:paddingStart="30dp"
+                android:paddingTop="10dp"
+                android:text="@string/xposedmodule"
+                skin:enable="true" />
 
-    <Switch
-        android:text="@string/miuimusic"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:layout_marginTop="10dp"
-        android:background="@color/switchBtn"
-        android:paddingStart="30dp"
-        android:paddingEnd="30dp"
-        android:id="@+id/miuiMusicCustomization" />
+            <Switch
+                android:id="@+id/enablemiuiRoot"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_marginTop="10dp"
+                android:background="@color/switchBtn"
+                android:paddingEnd="30dp"
+                android:paddingStart="30dp"
+                android:text="@string/miui_root_25" />
 
+            <Switch
+                android:id="@+id/RemoveSearchBar"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_marginTop="10dp"
+                android:background="@color/switchBtn"
+                android:paddingEnd="30dp"
+                android:paddingStart="30dp"
+                android:text="@string/RemoveSearchBar" />
+
+            <Switch
+                android:id="@+id/miuiMusicCustomization"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_marginTop="10dp"
+                android:background="@color/switchBtn"
+                android:paddingEnd="30dp"
+                android:paddingStart="30dp"
+                android:text="@string/miuimusic" />
+
+            <Switch
+                android:id="@+id/fixpcb"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_marginTop="10dp"
+                android:background="@color/switchBtn"
+                android:paddingEnd="30dp"
+                android:paddingStart="30dp"
+                android:text="@string/fixpcb" />
+
+
+            <Switch
+                android:id="@+id/enableadb"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_marginTop="10dp"
+                android:background="@color/switchBtn"
+                android:paddingEnd="30dp"
+                android:paddingStart="30dp"
+                android:text="@string/enableadb" />
+
+        </LinearLayout>
+    </ScrollView>
 </LinearLayout>

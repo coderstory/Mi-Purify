@@ -9,7 +9,7 @@
     <item
         android:id="@+id/action_copy"
         android:orderInCategory="101"
-        android:title="复制链接"
+        android:title="@string/copy_url"
         android:icon="@drawable/copy"
         app:showAsAction="always" />
 </menu>

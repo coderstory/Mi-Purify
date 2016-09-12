@@ -25,7 +25,6 @@ public class HostsFragment extends BaseFragment {
     @Override
     protected void setUpView() {
 
-
         $(R.id.enableHosts).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -62,7 +61,6 @@ public class HostsFragment extends BaseFragment {
             }
         });
 
-
         $(R.id.enableStore).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -83,7 +81,6 @@ public class HostsFragment extends BaseFragment {
 
     @Override
     protected void setUpData() {
-
         ((Switch) $(R.id.enableHosts)).setChecked(getPrefs().getBoolean("enableHosts", false));
         ((Switch) $(R.id.enableMIUIHosts)).setChecked(getPrefs().getBoolean("enableMIUIHosts", false));
         ((Switch) $(R.id.enableBlockAdsHosts)).setChecked(getPrefs().getBoolean("enableBlockAdsHosts", false));
@@ -91,7 +88,6 @@ public class HostsFragment extends BaseFragment {
         ((Switch) $(R.id.enableStore)).setChecked(getPrefs().getBoolean("enableStore", false));
         ((Switch) $(R.id.enableupdater)).setChecked(getPrefs().getBoolean("enableupdater", false));
         setCheck(getPrefs().getBoolean("enableHosts", false));
-
     }
 
     private void setCheck(boolean type) {
@@ -151,34 +147,23 @@ public class HostsFragment extends BaseFragment {
 
 
         //因为hosts修改比较慢 所以改成异步的
+
         private class MyTask extends AsyncTask<String, Integer, String> {
             @Override
-            protected void onPreExecute() {
-                // setProgressBarIndeterminateVisibility(true);
-                showProgress();
-            }
-
+            protected void onPreExecute() {showProgress();}
             @Override
             protected void onPostExecute(String param) {
                 closeProgress();
             }
-
             @Override
-            protected void onCancelled() {
-
-                super.onCancelled();
-            }
-
+            protected void onCancelled() {super.onCancelled();}
             @Override
             protected void onProgressUpdate(Integer... values) {
                 super.onProgressUpdate(values);
             }
-
             @Override
             protected String doInBackground(String... params) {
-                if (Looper.myLooper() == null) {
-                    Looper.prepare();
-                }
+                if (Looper.myLooper() == null) {Looper.prepare();}
                 UpdateHosts();
                 return null;
             }
@@ -188,17 +173,12 @@ public class HostsFragment extends BaseFragment {
 
     private void showProgress() {
         if (dialog == null || (dialog != null && !dialog.isShowing())) { //dialog未实例化 或者实例化了但没显示
-//		    dialog.setContentView(R.layout.progress_dialog);
-            //    dialog.getWindow().setAttributes(params);
             dialog = ProgressDialog.show(getActivity(), getString(R.string.Working), getString(R.string.Waiting));
             dialog.show();
         }
     }
-
     private void closeProgress() {
-        if (!getActivity().isFinishing()) {
-            dialog.cancel();
-        }
+        if (!getActivity().isFinishing()) {dialog.cancel();}
     }
 
 

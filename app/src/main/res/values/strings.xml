@@ -53,6 +53,21 @@
     <string name="Download_Success">下载完毕</string>
     <string name="Download_Fail">下载错误</string>
     <string name="Tips_HotBoot">你确定要快速重启吗？</string>
+    <string name="copy_url">复制链接</string>
+    <string name="save">保存</string>
+    <string name="share">分享</string>
+    <string name="fastboot">快速重启</string>
+    <string name="about">关于应用</string>
+    <string name="MIUI_Purify">净化广告</string>
+    <string name="fucktheme">主题和谐</string>
+    <string name="hosts">Hosts设置</string>
+    <string name="disableapp">冻结应用</string>
+    <string name="appclean">应用清理</string>
+    <string name="othersettings">其他设置</string>
+    <string name="other">其他</string>
+    <string name="myblog">我的博客</string>
+    <string name="changeskin">主题换肤</string>
+
 
     <string name="Working">正在处理</string>
     <string name="Waiting">请耐心等待。。</string>
@@ -74,6 +89,8 @@
     <string name="view_clean_anr" formatted="false">清理 ANR 日志 (%s) ...\n</string>
     <string name="view_clean_art_remain" formatted="false">清理 ART: %s (%s) ...\n</string>
     <string name="view_clean_complete" formatted="false">清理完毕, 共清理文件 %s\n\n</string>
+    <string name="xposedmodule">Xposed模块功能</string>
+    <string name="startclean">开始清理</string>
 
 
 </resources>

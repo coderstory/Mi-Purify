@@ -184,35 +184,9 @@ public class RemoveAds implements IModule {
             }
         }
 
-        //安全中心
-        if (loadPackageParam.packageName.equals("com.miui.securitycenter")) {
 
 
-            findAndHookMethod("com.miui.permcenter.install.b", loadPackageParam.classLoader, "isEnabled", XC_MethodReplacement.returnConstant(false));
-            findAndHookMethod("com.miui.permcenter.install.b", loadPackageParam.classLoader, "ds", XC_MethodReplacement.returnConstant(false));
-            findAndHookMethod("com.miui.permcenter.install.b", loadPackageParam.classLoader, "dF", XC_MethodReplacement.returnConstant(false));
 
-            findAndHookMethod("com.miui.permcenter.install.f", loadPackageParam.classLoader, "onReceive", Context.class, Intent.class, new XC_MethodReplacement() {
-                @Override
-                protected Object replaceHookedMethod(MethodHookParam param) throws Throwable {
-                    return null;
-                }
-            });
-            return;
-
-        }
-
-        //窗口权限 miui 8
-        if (loadPackageParam.packageName.equals("android")) {
-            XposedHelpers.findAndHookMethod("com.android.server.policy.PhoneWindowManager", loadPackageParam.classLoader, "checkAddPermission", new Object[]{WindowManager.LayoutParams.class, int[].class, new XC_MethodHook() {
-                protected void afterHookedMethod(XC_MethodHook.MethodHookParam paramAnonymousMethodHookParam) {
-                    if (((Integer) paramAnonymousMethodHookParam.getResult()).intValue() < 0) {
-                        paramAnonymousMethodHookParam.setResult(Integer.valueOf(0));
-                    }
-                }
-            }});
-            return;
-        }
 
 
         //搜索框

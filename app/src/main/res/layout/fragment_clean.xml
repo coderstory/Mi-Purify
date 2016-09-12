@@ -33,7 +33,7 @@
         android:layout_marginBottom="14dp"
         android:paddingBottom="10dp"
         android:layout_height="wrap_content"
-        android:text="开始清理"
+        android:text="@string/startclean"
 
         android:layout_alignParentBottom="true"
         android:layout_alignParentStart="true" />
