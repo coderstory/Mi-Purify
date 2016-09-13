@@ -75,7 +75,7 @@ public class CrashHandler implements Thread.UncaughtExceptionHandler {
         mDefaultHandler = Thread.getDefaultUncaughtExceptionHandler();
         //设置该CrashHandler为程序的默认处理器
         Thread.setDefaultUncaughtExceptionHandler(this);
-        CrashFilePath = Environment.getExternalStorageDirectory().getPath() + "/Mi Kit/crashlog/";
+        CrashFilePath = Environment.getExternalStorageDirectory().getPath() + "/MUI Purify/crashlog/";
     }
 
     /**
@@ -109,8 +109,8 @@ public class CrashHandler implements Thread.UncaughtExceptionHandler {
             PackageManager pm = ctx.getPackageManager();
             PackageInfo pi = pm.getPackageInfo(ctx.getPackageName(), PackageManager.GET_ACTIVITIES);
             if (pi != null) {
-                String versionName = pi.versionName == null ? "null" : pi.versionName;
-                String versionCode = pi.versionCode + "";
+                String versionName = pi.versionName == null ? "null" : pi.versionName.toString();
+                String versionCode =  pi.versionCode+"";
                 infos.put("versionName", versionName);
                 infos.put("versionCode", versionCode);
             }

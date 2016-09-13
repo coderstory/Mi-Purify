@@ -1,1 +1,1 @@
-include ':app',  ':skin_black', ':library', ':AppIntro', ':Drop', ':pull'
+include ':app', ':library', ':AppIntro',  ':pull'
