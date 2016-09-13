@@ -9,7 +9,7 @@
         <item
             android:id="@+id/navigation_item_blockads"
             android:checked="true"
-            android:icon="@drawable/blockads"
+            android:icon="@drawable/skin"
             android:title="@string/MIUI_Purify" />
 
         <item
@@ -29,7 +29,7 @@
             android:title="@string/disableapp" />
         <item
             android:id="@+id/navigation_item_Clean"
-            android:icon="@drawable/disable"
+            android:icon="@drawable/clean"
             android:title="@string/appclean" />
         <item
             android:id="@+id/navigation_item_settings"

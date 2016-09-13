@@ -4,7 +4,6 @@ import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.View;
@@ -41,11 +40,11 @@ public class MyAppIntro extends AppIntro {
         super.onCreate(savedInstanceState);
 
         if (getPrefs().getBoolean("showGuide", true)) {
-            addSlide(AppIntroFragment.newInstance("欢迎使用!", "欢迎使用本软件！\n", R.drawable.ic_slide1, Color.parseColor("#098c01")));
-            addSlide(AppIntroFragment.newInstance("存储权限", "软件在发生异常的时候需要保存相关日志到本地. \n", R.drawable.ic_slide2, Color.parseColor("#098c01")));
-            addSlide(AppIntroFragment.newInstance("ROOT权限", "软件的功能不是需要Xposed模块就是需要ROOT,不支持的话就无法生效. \n", R.drawable.ic_slide3, Color.parseColor("#098c01")));
-            addSlide(AppIntroFragment.newInstance("使用须知!", "请勿未禁止软件自启,否则功能可能失效\n", R.drawable.ic_slide4, Color.parseColor("#098c01")));
-            addSlide(AppIntroFragment.newInstance("设置完毕!", "祝您玩的愉快! ", R.drawable.ic_slide5, Color.parseColor("#098c01")));
+            addSlide(AppIntroFragment.newInstance("欢迎使用!", "欢迎使用本软件！\n", R.drawable.ic_slide1,getResources().getColor(R.color.colorPrimary)));
+            addSlide(AppIntroFragment.newInstance("存储权限", "软件在发生异常的时候需要保存相关日志到本地. \n", R.drawable.ic_slide2,getResources().getColor(R.color.colorPrimary)));
+            addSlide(AppIntroFragment.newInstance("ROOT权限", "软件的功能不是需要Xposed模块就是需要ROOT,不支持的话就无法生效. \n", R.drawable.ic_slide3,getResources().getColor(R.color.colorPrimary)));
+            addSlide(AppIntroFragment.newInstance("使用须知!", "请勿未禁止软件自启,否则功能可能失效\n", R.drawable.ic_slide4, getResources().getColor(R.color.colorPrimary)));
+            addSlide(AppIntroFragment.newInstance("设置完毕!", "祝您玩的愉快! ", R.drawable.ic_slide5, getResources().getColor(R.color.colorPrimary)));
 
             // Ask Camera permission in the second slide
             askForPermissions(new String[]{Manifest.permission.READ_PHONE_STATE}, 2);
@@ -62,6 +61,10 @@ public class MyAppIntro extends AppIntro {
             setNextPageSwipeLock(false);
             setSwipeLock(false);
             setDoneText("完成");
+
+            setBarColor(getResources().getColor(R.color.colorPrimary));
+            setSeparatorColor(getResources().getColor(R.color.colorPrimary));
+
         }else{
             SplashActivity();
         }

@@ -13,14 +13,13 @@ import android.util.Log;
 import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Toast;
 
 import com.coderstory.Purify.R;
 import com.coderstory.Purify.fragment.AboutFragment;
-import com.coderstory.Purify.fragment.DisbaleAppFragment;
 import com.coderstory.Purify.fragment.BlockADSFragment;
 import com.coderstory.Purify.fragment.BlogFragment;
 import com.coderstory.Purify.fragment.CleanFragment;
+import com.coderstory.Purify.fragment.DisbaleAppFragment;
 import com.coderstory.Purify.fragment.HostsFragment;
 import com.coderstory.Purify.fragment.SettingsFragment;
 import com.coderstory.Purify.fragment.crackThemeFragment;
@@ -161,8 +160,9 @@ public class MainActivity extends BaseActivity {
                         switchFragment(BlogFragment.class);
                         break;
                     case R.id.navigation_item_hosts:
+                        SnackBarUtils.makeLong(mNavigationView, "正在检测root授权,如果卡死请检查root授权！").show();
                         if (!canRunRootCommands()) {
-                            Toast.makeText(MainActivity.this, "尚未获取Root授权,Hosts功能将不可用！", Toast.LENGTH_LONG).show();
+                            SnackBarUtils.makeLong(mNavigationView, "尚未获取Root授权,Hosts功能将不可用！").show();
                         } else {
                             mToolbar.setTitle("Hosts设置");
                             switchFragment(HostsFragment.class);
@@ -185,8 +185,14 @@ public class MainActivity extends BaseActivity {
                         break;
 
                     case R.id.navigation_item_Clean:
-                        mToolbar.setTitle("应用清理");
-                        switchFragment(CleanFragment.class);
+                        SnackBarUtils.makeLong(mNavigationView, "正在检测root授权,如果卡死请检查root授权！").show();
+                        if (!canRunRootCommands()) {
+                            SnackBarUtils.makeLong(mNavigationView, "尚未获取Root授权,Hosts功能将不可用！").show();
+                        } else {
+                            mToolbar.setTitle("应用清理");
+                            switchFragment(CleanFragment.class);
+                        }
+
                         break;
 
                     case R.id.navigation_item_disableapps:
