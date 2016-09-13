@@ -210,7 +210,10 @@ public class DisbaleAppFragment extends BaseFragment {
 
         @Override
         protected String doInBackground(String... params) {
-            Looper.prepare();
+
+            if (Looper.myLooper()==null) {
+                Looper.prepare();
+            }
             initData();
             return null;
         }
@@ -219,8 +222,6 @@ public class DisbaleAppFragment extends BaseFragment {
     private Dialog dialog;
     protected void showProgress() {
         if(dialog == null) {
-//		    dialog.setContentView(R.layout.progress_dialog);
-            //    dialog.getWindow().setAttributes(params);
             dialog = ProgressDialog.show(getContext(),getString( R.string.Tips_Title), getString(R.string.loadappinfo));
             dialog.show();
         }

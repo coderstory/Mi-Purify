@@ -1,8 +1,6 @@
 package com.coderstory.Purify.module;
 
 import android.content.Context;
-import android.content.Intent;
-import android.view.WindowManager;
 
 import com.coderstory.Purify.plugins.IModule;
 
@@ -183,11 +181,6 @@ public class RemoveAds implements IModule {
                 return;
             }
         }
-
-
-
-
-
 
         //搜索框
         if (loadPackageParam.packageName.equals("com.android.quicksearchbox")) {
