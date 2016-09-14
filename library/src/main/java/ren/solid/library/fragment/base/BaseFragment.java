@@ -64,16 +64,16 @@ public abstract class BaseFragment extends Fragment {
 
     protected SharedPreferences getPrefs() {
 
-        String  a="3149a6fe037f6ccd515fd229df6bebc4";
+//        String  a="3149a6fe037f6ccd515fd229df6bebc4";
 
-        if (prefs == null) {
-         String ab=   getSign(getMContext());
-            if (a.equals(ab)) {
+//        if (prefs == null) {
+//         String ab=   getSign(getMContext());
+//            if (a.equals(ab)) {
                 prefs = getContext().getSharedPreferences("UserSettings", Context.MODE_WORLD_READABLE);
-            }else {
-                prefs = getContext().getSharedPreferences("UserSettings1", Context.MODE_WORLD_READABLE);
-            }
-        }
+//            }else {
+//                prefs = getContext().getSharedPreferences("UserSettings1", Context.MODE_WORLD_READABLE);
+//            }
+//        }
         return prefs;
     }
 
