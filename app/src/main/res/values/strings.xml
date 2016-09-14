@@ -13,8 +13,8 @@
      \n应用清理:https://github.com/rarnu/root-tools
     </string>
     <string name="version">1.4</string>
-    <string name="Limit">Full</string>
-    <!--<string name="Limit">Limit</string>-->
+    <string name="Limit">0</string>
+
     <string name="enableBlockADS"><b>启用模块</b>\n去广告功能的总开关</string>
     <string name="downloadexplorer"><b>下载管理</b>\n去下载管理节点的广告,启用后无法设置仅wifi下载和文件大小限制</string>
     <string name="calendar"><b>日历</b>\n去除日历界面上的小广告和默认的卡片</string>
@@ -89,6 +89,5 @@
     <string name="view_clean_complete" formatted="false">清理完毕, 共清理文件 %s\n\n</string>
     <string name="xposedmodule">Xposed模块功能</string>
     <string name="startclean">开始清理</string>
-
 
 </resources>

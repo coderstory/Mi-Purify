@@ -17,7 +17,6 @@ import android.view.MenuItem;
 import com.coderstory.Purify.R;
 import com.coderstory.Purify.fragment.AboutFragment;
 import com.coderstory.Purify.fragment.BlockADSFragment;
-import com.coderstory.Purify.fragment.BlogFragment;
 import com.coderstory.Purify.fragment.CleanFragment;
 import com.coderstory.Purify.fragment.DisbaleAppFragment;
 import com.coderstory.Purify.fragment.HostsFragment;
@@ -51,7 +50,10 @@ public class MainActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
     }
+
+
 
     @Override
     protected int setLayoutResourceID() {
@@ -103,7 +105,7 @@ public class MainActivity extends BaseActivity {
                 navigationMenuView.setVerticalScrollBarEnabled(false);
             }
         }
-        if (getString(R.string.Limit).equals("True")) {
+        if (getString(R.string.Limit).equals("1")) {
             Menu m = v.getMenu();
             MenuItem mi = m.getItem(1);
             mi.setVisible(false);
@@ -155,10 +157,10 @@ public class MainActivity extends BaseActivity {
                         mToolbar.setTitle("净化广告");
                         switchFragment(BlockADSFragment.class);
                         break;
-                    case R.id.navigation_item_myblog:
-                        mToolbar.setTitle("我的博客");
-                        switchFragment(BlogFragment.class);
-                        break;
+//                    case R.id.navigation_item_myblog:
+//                        mToolbar.setTitle("我的博客");
+//                        switchFragment(BlogFragment.class);
+//                        break;
                     case R.id.navigation_item_hosts:
                         SnackBarUtils.makeLong(mNavigationView, "正在检测root授权,如果卡死请检查root授权！").show();
                         if (!canRunRootCommands()) {
@@ -241,11 +243,12 @@ public class MainActivity extends BaseActivity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            startActivityWithoutExtras(AboutActivity.class);
-        } else if (id == R.id.action_reboot) {
+
+//        if (id == R.id.action_settings) {
+//            startActivityWithoutExtras(AboutActivity.class);
+//        } else if (id == R.id.action_reboot) {
             SuHelper.showTips("busybox killall system_server", getString(R.string.Tips_HotBoot), this);
-        }
+//        }
 
 
         return super.onOptionsItemSelected(item);

@@ -125,7 +125,11 @@ public class HostsFragment extends BaseFragment {
             }
             if (enableGoogleHosts) {
                 HostsContext += fh.getFromAssets("hosts_Foreign", getMContext());
-                HostsContext += fh.getFromAssets("hosts_google", getMContext());
+
+                if (getString(R.string.Limit).equals("1")) {
+                    HostsContext += fh.getFromAssets("hosts_google", getMContext());
+                }
+
             }
             if (enableStore) {
                 HostsContext += fh.getFromAssets("hosts_nostore", getMContext());
