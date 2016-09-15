@@ -31,25 +31,28 @@
             android:id="@+id/navigation_item_Clean"
             android:icon="@drawable/clean"
             android:title="@string/appclean" />
-        <item
-            android:id="@+id/navigation_item_settings"
-            android:icon="@drawable/iconfont_custom_view"
-            android:title="@string/othersettings" />
 
 
-        <!--<item android:title="@string/other">-->
-            <!--<menu>-->
+
+        <item android:title="@string/other">
+            <menu>
                 <!--<item-->
                     <!--android:id="@+id/navigation_item_myblog"-->
                     <!--android:icon="@drawable/iconfont_blog"-->
                     <!--android:title="@string/myblog" />-->
+
+                <item
+                    android:id="@+id/navigation_item_settings"
+                    android:icon="@drawable/iconfont_custom_view"
+                    android:title="@string/othersettings" />
+
                 <item
                     android:id="@+id/navigation_item_about"
                     android:checkable="true"
                     android:icon="@drawable/iconfont_about"
                     android:title="@string/about" />
-            <!--</menu>-->
-        <!--</item>-->
+            </menu>
+        </item>
     </group>
 
 </menu>

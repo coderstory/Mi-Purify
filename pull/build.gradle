@@ -5,7 +5,7 @@ android {
     buildToolsVersion '24.0.2'
 
     defaultConfig {
-        minSdkVersion 19
+        minSdkVersion 21
         targetSdkVersion 24
     }
     compileOptions {
@@ -14,6 +14,6 @@ android {
 }
 
 dependencies {
-    compile 'com.android.support:appcompat-v7:24.2.0'
+    compile 'com.android.support:appcompat-v7:24.2.1'
 }
 
