@@ -162,13 +162,8 @@ public class MainActivity extends BaseActivity {
 //                        switchFragment(BlogFragment.class);
 //                        break;
                     case R.id.navigation_item_hosts:
-                        SnackBarUtils.makeLong(mNavigationView, "正在检测root授权,如果卡死请检查root授权！").show();
-                        if (!canRunRootCommands()) {
-                            SnackBarUtils.makeLong(mNavigationView, "尚未获取Root授权,Hosts功能将不可用！").show();
-                        } else {
-                            mToolbar.setTitle("Hosts设置");
-                            switchFragment(HostsFragment.class);
-                        }
+                        mToolbar.setTitle("Hosts设置");
+                        switchFragment(HostsFragment.class);
                         break;
 
                     case R.id.navigation_item_cracktheme:
@@ -187,14 +182,8 @@ public class MainActivity extends BaseActivity {
                         break;
 
                     case R.id.navigation_item_Clean:
-                        SnackBarUtils.makeLong(mNavigationView, "正在检测root授权,如果卡死请检查root授权！").show();
-                        if (!canRunRootCommands()) {
-                            SnackBarUtils.makeLong(mNavigationView, "尚未获取Root授权,Hosts功能将不可用！").show();
-                        } else {
                             mToolbar.setTitle("应用清理");
                             switchFragment(CleanFragment.class);
-                        }
-
                         break;
 
                     case R.id.navigation_item_disableapps:

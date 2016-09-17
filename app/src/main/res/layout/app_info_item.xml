@@ -1,11 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-
     android:orientation="horizontal"
     android:layout_width="match_parent"
-    xmlns:skin="http://schemas.android.com/android/skin"
     android:layout_height="match_parent"
-    skin:enable="true"
     android:background="@color/colorPrimary">
     <ImageView
         android:id="@+id/app_image"
