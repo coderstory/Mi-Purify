@@ -7,7 +7,7 @@
     <color name="colorAccent">#5CACEE</color>
     <color name="colorItem">#5CACEE</color>
     <color name="enableApp">#5CACEE</color>
-    <color name="divider">#5CACEE</color>
+    <!--<color name="divider">#5CACEE</color>-->
     <color name="disablefunction">#cacaca</color>
 
     <color name="white">#ffffff</color>
