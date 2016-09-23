@@ -17,7 +17,7 @@ public class SolidApplication extends Application {
     public void onCreate() {
         super.onCreate();
         mInstance = this;
-        ToastUtils.init(this);
+        ToastUtils.init(mInstance);
         CrashHandler crashHandler = CrashHandler.getInstance();
         crashHandler.init(getApplicationContext());
     }

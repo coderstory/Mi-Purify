@@ -82,7 +82,7 @@ public class MainActivity extends BaseActivity {
             SnackBarUtils.makeLong(mNavigationView, "插件尚未激活,Xposed功能将不可用,请重启再试！").show();
         }
 
-        mToolbar.setTitle("关于应用");
+        mToolbar.setTitle("净化广告");
 
         //这句一定要在下面几句之前调用，不然就会出现点击无反应
         setSupportActionBar(mToolbar);
@@ -129,7 +129,7 @@ public class MainActivity extends BaseActivity {
 
     private void initDefaultFragment() {
         Log.i(TAG, "initDefaultFragment");
-        mCurrentFragment = ViewUtils.createFragment(AboutFragment.class);
+        mCurrentFragment = ViewUtils.createFragment(BlockADSFragment.class);
         mFragmentManager.beginTransaction().add(R.id.frame_content, mCurrentFragment).commit();
         mPreMenuItem = mNavigationView.getMenu().getItem(0);
         mPreMenuItem.setChecked(true);
@@ -162,13 +162,8 @@ public class MainActivity extends BaseActivity {
 //                        switchFragment(BlogFragment.class);
 //                        break;
                     case R.id.navigation_item_hosts:
-                        SnackBarUtils.makeLong(mNavigationView, "正在检测root授权,如果卡死请检查root授权！").show();
-                        if (!canRunRootCommands()) {
-                            SnackBarUtils.makeLong(mNavigationView, "尚未获取Root授权,Hosts功能将不可用！").show();
-                        } else {
-                            mToolbar.setTitle("Hosts设置");
-                            switchFragment(HostsFragment.class);
-                        }
+                        mToolbar.setTitle("Hosts设置");
+                        switchFragment(HostsFragment.class);
                         break;
 
                     case R.id.navigation_item_cracktheme:
@@ -187,14 +182,8 @@ public class MainActivity extends BaseActivity {
                         break;
 
                     case R.id.navigation_item_Clean:
-                        SnackBarUtils.makeLong(mNavigationView, "正在检测root授权,如果卡死请检查root授权！").show();
-                        if (!canRunRootCommands()) {
-                            SnackBarUtils.makeLong(mNavigationView, "尚未获取Root授权,Hosts功能将不可用！").show();
-                        } else {
                             mToolbar.setTitle("应用清理");
                             switchFragment(CleanFragment.class);
-                        }
-
                         break;
 
                     case R.id.navigation_item_disableapps:
@@ -244,11 +233,11 @@ public class MainActivity extends BaseActivity {
 
         //noinspection SimplifiableIfStatement
 
-//        if (id == R.id.action_settings) {
-//            startActivityWithoutExtras(AboutActivity.class);
-//        } else if (id == R.id.action_reboot) {
+        if (id == R.id.action_settings) {
+            startActivityWithoutExtras(AboutActivity.class);
+        } else if (id == R.id.action_reboot) {
             SuHelper.showTips("busybox killall system_server", getString(R.string.Tips_HotBoot), this);
-//        }
+       }
 
 
         return super.onOptionsItemSelected(item);

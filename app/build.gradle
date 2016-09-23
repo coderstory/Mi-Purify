@@ -5,10 +5,10 @@ android {
     buildToolsVersion '24.0.2'
     defaultConfig {
         applicationId "com.coderstory.Purify"
-        minSdkVersion 19
+        minSdkVersion 21
         targetSdkVersion 24
-        versionCode 35
-        versionName "1.4"
+        versionCode 38
+        versionName "1.4.1"
         resConfigs "cn"
     }
     repositories {
@@ -29,9 +29,9 @@ dependencies {
     provided fileTree(include: ['*.jar'], dir: 'libs')
     compile project(':library')
     compile project(':pull')
-    compile 'com.android.support:support-v4:24.2.0'
-    compile 'com.android.support:appcompat-v7:24.2.0'
-    compile 'com.android.support:design:24.2.0'
+    compile 'com.android.support:support-v4:24.2.1'
+    compile 'com.android.support:appcompat-v7:24.2.1'
+    compile 'com.android.support:design:24.2.1'
     compile 'com.github.paolorotolo:appintro:4.0.0'
     testCompile 'junit:junit:4.12'
     provided 'de.robv.android.xposed:api:82'
