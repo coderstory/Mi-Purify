@@ -7,13 +7,13 @@
     \n\n作者:CoderStory
     \n博客主页 blog.coderstory.cn
     \n\n致谢如下开源项目:
-    \n\n帮助类:github.com/burgessjp
-    \n下拉刷新:github.com/Yalantis
-    \n引导页:github.com/PaoloRotolo/AppIntro
-     \n应用清理:github.com/rarnu/root-tools
+    \n\n帮助类:https://github.com/burgessjp
+    \n下拉刷新:https://github.com/Yalantis
+    \n引导页:https://github.com/PaoloRotolo/AppIntro
+     \n应用清理:https://github.com/rarnu/root-tools
     </string>
     <string name="version">1.4.1</string>
-    <string name="Limit">0</string>
+    <string name="Limit">1</string>
 
     <string name="enableBlockADS"><b>启用模块</b>\n去广告功能的总开关</string>
     <string name="downloadexplorer"><b>下载管理</b>\n去下载管理节点的广告,启用后无法设置仅wifi下载和文件大小限制</string>
