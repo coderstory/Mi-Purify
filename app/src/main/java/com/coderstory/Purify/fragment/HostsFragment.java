@@ -120,25 +120,28 @@ public class HostsFragment extends BaseFragment {
         if (enableHosts) {
             FileHelper fh = new FileHelper();
             String HostsContext = fh.getFromAssets("none", getMContext());
-            if (enableBlockAdsHosts) {
-                HostsContext += fh.getFromAssets("hosts_noad", getMContext());
-            }
-            if (enableGoogleHosts) {
-                HostsContext += fh.getFromAssets("hosts_Foreign", getMContext());
 
-                if (getString(R.string.Limit).equals("1")) {
-                    HostsContext += fh.getFromAssets("hosts_google", getMContext());
+            if (getPrefs().getBoolean("enableHosts", false)) { //如果未启用hosts
+                if (enableBlockAdsHosts) {
+                    HostsContext += fh.getFromAssets("hosts_noad", getMContext());
                 }
+                if (enableGoogleHosts) {
+                    HostsContext += fh.getFromAssets("hosts_Foreign", getMContext());
 
-            }
-            if (enableStore) {
-                HostsContext += fh.getFromAssets("hosts_nostore", getMContext());
-            }
-            if (enableupdater) {
-                HostsContext += fh.getFromAssets("hosts_noup", getMContext());
-            }
-            if (enableMIUIHosts) {
-                HostsContext += fh.getFromAssets("hosts_miui", getMContext());
+                    if (getString(R.string.Limit).equals("1")) {
+                        HostsContext += fh.getFromAssets("hosts_google", getMContext());
+                    }
+
+                }
+                if (enableStore) {
+                    HostsContext += fh.getFromAssets("hosts_nostore", getMContext());
+                }
+                if (enableupdater) {
+                    HostsContext += fh.getFromAssets("hosts_noup", getMContext());
+                }
+                if (enableMIUIHosts) {
+                    HostsContext += fh.getFromAssets("hosts_miui", getMContext());
+                }
             }
 
             HostsHelper h = new HostsHelper(HostsContext,getMContext());
@@ -176,7 +179,7 @@ public class HostsFragment extends BaseFragment {
         private Dialog dialog;
 
     private void showProgress() {
-        if (dialog == null || (dialog != null && !dialog.isShowing())) { //dialog未实例化 或者实例化了但没显示
+        if (dialog == null || !dialog.isShowing()) { //dialog未实例化 或者实例化了但没显示
             dialog = ProgressDialog.show(getActivity(), getString(R.string.Working), getString(R.string.Waiting));
             dialog.show();
         }
