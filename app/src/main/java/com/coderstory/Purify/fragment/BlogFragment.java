@@ -8,8 +8,6 @@ import android.net.Uri;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Toast;
 
 import com.coderstory.Purify.R;
 
@@ -26,18 +24,18 @@ import static android.content.Context.CLIPBOARD_SERVICE;
  * Time:17:46
  */
 public class BlogFragment extends WebViewFragment  {
-
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.menu_webview_toolbar, menu);
+        super.onCreateOptionsMenu(menu,inflater);
+    }
 
     @Override
     public String getLoadUrl() {
         return "http://blog.coderstory.cn";
     }
 
-    @Override
-    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        inflater.inflate(R.menu.menu_webview_toolbar, menu);
-        super.onCreateOptionsMenu(menu,inflater);
-    }
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

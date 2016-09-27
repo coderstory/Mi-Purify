@@ -135,6 +135,22 @@ public class BlockADSFragment extends BaseFragment {
             }
         });
 
+        $(R.id.enablevideo).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getEditor().putBoolean("enablemiuividio", ((Switch) v).isChecked());
+                getEditor().apply();
+            }
+        });
+
+        $(R.id.enablecalendar).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getEditor().putBoolean("enablecalendar", ((Switch) v).isChecked());
+                getEditor().apply();
+            }
+        });
+
     }
 
     @Override
@@ -150,6 +166,8 @@ public class BlockADSFragment extends BaseFragment {
         ((Switch) $(R.id.enableHotKey)).setChecked(getPrefs().getBoolean("enableHotKey", false));
         ((Switch) $(R.id.enableSafeCenter)).setChecked(getPrefs().getBoolean("enableSafeCenter", false));
         ((Switch) $(R.id.enableMusic)).setChecked(getPrefs().getBoolean("enableMusic", false));
+        ((Switch) $(R.id.enablevideo)).setChecked(getPrefs().getBoolean("enablemiuividio", false));
+        ((Switch) $(R.id.enablecalendar)).setChecked(getPrefs().getBoolean("enablecalendar", false));
         setCheck(getPrefs().getBoolean("enableBlockAD", false));
     }
 
@@ -165,6 +183,8 @@ public class BlockADSFragment extends BaseFragment {
             $(R.id.enableHotKey).setEnabled(true);
             $(R.id.enableSafeCenter).setEnabled(true);
             $(R.id.enableMusic).setEnabled(true);
+            $(R.id.enablevideo).setEnabled(true);
+            $(R.id.enablecalendar).setEnabled(true);
         } else {
             $(R.id.enableBlockADBasic).setEnabled(false);
             $(R.id.enableMMS).setEnabled(false);
@@ -175,6 +195,8 @@ public class BlockADSFragment extends BaseFragment {
             $(R.id.enableHotKey).setEnabled(false);
             $(R.id.enableSafeCenter).setEnabled(false);
             $(R.id.enableMusic).setEnabled(false);
+            $(R.id.enablevideo).setEnabled(false);
+            $(R.id.enablecalendar).setEnabled(false);
         }
 
     }

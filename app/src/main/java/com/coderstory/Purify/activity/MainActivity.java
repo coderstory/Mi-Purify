@@ -31,7 +31,6 @@ import ren.solid.library.utils.SnackBarUtils;
 import ren.solid.library.utils.ViewUtils;
 
 import static com.coderstory.Purify.R.id.navigation_view;
-import static com.coderstory.Purify.utils.root.SuHelper.canRunRootCommands;
 
 public class MainActivity extends BaseActivity {
 
@@ -67,9 +66,7 @@ public class MainActivity extends BaseActivity {
 
     }
 
-    public boolean isEnable() {
-        return false;
-    }
+
 
     @Override
     protected void setUpView() {
@@ -119,14 +116,6 @@ public class MainActivity extends BaseActivity {
         Log.i(TAG, "onSaveInstanceState");
     }
 
-    @Override
-    protected void onRestoreInstanceState(Bundle savedInstanceState) {
-        //super.onRestoreInstanceState(savedInstanceState);
-        Log.i(TAG, "onRestoreInstanceState");
-    }
-
-    //init the default checked fragment
-
     private void initDefaultFragment() {
         Log.i(TAG, "initDefaultFragment");
         mCurrentFragment = ViewUtils.createFragment(BlockADSFragment.class);
@@ -135,6 +124,18 @@ public class MainActivity extends BaseActivity {
         mPreMenuItem.setChecked(true);
     }
 
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        //super.onRestoreInstanceState(savedInstanceState);
+        Log.i(TAG, "onRestoreInstanceState");
+    }
+
+    //init the default checked fragment
+
+
+    public boolean isEnable() {
+        return false;
+    }
 
     private void setNavigationViewItemClickListener() {
         mNavigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {

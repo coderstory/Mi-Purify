@@ -200,7 +200,12 @@ public class CleanFragment extends BaseFragment {
             return true;
         }
         String newAppPath = app.replace("data@app@", "");
-        newAppPath = newAppPath.substring(0, newAppPath.indexOf("@"));
+        try {
+            newAppPath = newAppPath.substring(0, newAppPath.indexOf("@"));
+        }
+        catch (Exception e){
+            return  false;
+        }
         boolean ret = false;
         for (String s : oriList) {
             if (s.equals(newAppPath)) {

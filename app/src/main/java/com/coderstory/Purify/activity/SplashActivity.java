@@ -9,7 +9,7 @@ import com.coderstory.Purify.R;
 
 public class SplashActivity extends Activity {
 
-    private static final int SHOW_TIME_MIN = 1800;
+    private static final int SHOW_TIME_MIN = 1200;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

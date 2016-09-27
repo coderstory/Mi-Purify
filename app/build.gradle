@@ -5,10 +5,10 @@ android {
     buildToolsVersion '24.0.2'
     defaultConfig {
         applicationId "com.coderstory.Purify"
-        minSdkVersion 21
+        minSdkVersion 19
         targetSdkVersion 24
-        versionCode 38
-        versionName "1.4.1"
+        versionCode 40
+        versionName "1.4.2"
         resConfigs "cn"
     }
     repositories {

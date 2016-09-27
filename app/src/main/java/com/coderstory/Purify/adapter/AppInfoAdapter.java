@@ -16,10 +16,6 @@ import java.util.List;
 public class AppInfoAdapter extends ArrayAdapter {
     private int resourceId;
 
-    public AppInfoAdapter(Context context, int textViewResourceId, int disable, List<AppInfo> objects) {
-        super(context, textViewResourceId, objects);
-        resourceId = textViewResourceId;
-    }
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
@@ -50,6 +46,11 @@ public class AppInfoAdapter extends ArrayAdapter {
             view.setBackgroundColor(getContext().getResources().getColor(R.color.colorPrimary)); //正常的的颜色
         }
         return view;
+    }
+
+    public AppInfoAdapter(Context context, int textViewResourceId, int disable, List<AppInfo> objects) {
+        super(context, textViewResourceId, objects);
+        resourceId = textViewResourceId;
     }
 
     private class ViewHolder {

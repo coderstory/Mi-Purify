@@ -90,22 +90,7 @@ public class HostsFragment extends BaseFragment {
         setCheck(getPrefs().getBoolean("enableHosts", false));
     }
 
-    private void setCheck(boolean type) {
 
-        if (type) {
-            $(R.id.enableMIUIHosts).setEnabled(true);
-            $(R.id.enableBlockAdsHosts).setEnabled(true);
-            $(R.id.enableGoogleHosts).setEnabled(true);
-            $(R.id.enableStore).setEnabled(true);
-            $(R.id.enableupdater).setEnabled(true);
-        } else {
-            $(R.id.enableMIUIHosts).setEnabled(false);
-            $(R.id.enableBlockAdsHosts).setEnabled(false);
-            $(R.id.enableGoogleHosts).setEnabled(false);
-            $(R.id.enableStore).setEnabled(false);
-            $(R.id.enableupdater).setEnabled(false);
-        }
-    }
 
     //更新hosts操作
     private boolean UpdateHosts() {
@@ -187,7 +172,22 @@ public class HostsFragment extends BaseFragment {
     private void closeProgress() {
         if (!getActivity().isFinishing()) {dialog.cancel();}
     }
+    private void setCheck(boolean type) {
 
+        if (type) {
+            $(R.id.enableMIUIHosts).setEnabled(true);
+            $(R.id.enableBlockAdsHosts).setEnabled(true);
+            $(R.id.enableGoogleHosts).setEnabled(true);
+            $(R.id.enableStore).setEnabled(true);
+            $(R.id.enableupdater).setEnabled(true);
+        } else {
+            $(R.id.enableMIUIHosts).setEnabled(false);
+            $(R.id.enableBlockAdsHosts).setEnabled(false);
+            $(R.id.enableGoogleHosts).setEnabled(false);
+            $(R.id.enableStore).setEnabled(false);
+            $(R.id.enableupdater).setEnabled(false);
+        }
+    }
 
 }
 

@@ -12,7 +12,7 @@
     \n引导页:https://github.com/PaoloRotolo/AppIntro
      \n应用清理:https://github.com/rarnu/root-tools
     </string>
-    <string name="version">1.4.1</string>
+    <string name="version">1.4.2</string>
     <string name="Limit">1</string>
 
     <string name="enableBlockADS"><b>启用模块</b>\n去广告功能的总开关</string>
@@ -42,6 +42,8 @@
     <string name="fixpcb"><b>禁用窗口权限检测</b>\n修复PCB在miui8上的问题,仅Android 6.0系统可用</string>
     <string name="enableadb"><b>屏蔽检测ADB安装应用</b>\n启用本功能后，MIUI系统将不再自动阻止后台静默安装APP</string>
     <string name="wifi"><b>修复wifi自动连接</b>\n修复系统提示wifi热点未检测网络连接而不会自动连接的问题,需ROOT</string>
+    <string name="enablecalendar"><b>去除日历广告</b>\n去除miui日历中的一些广告</string>
+    <string name="enablevideo"><b>去除miui视频广告</b>\n去除miui视频的splash广告</string>
     <string name="Tips_Title">温馨提示</string>
     <string name="Btn_Sure">确定</string>
     <string name="Btn_Cancel">取消</string>
@@ -89,5 +91,6 @@
     <string name="view_clean_complete" formatted="false">清理完毕, 共清理文件 %s\n\n</string>
     <string name="xposedmodule">Xposed模块功能</string>
     <string name="startclean">开始清理</string>
+
 
 </resources>

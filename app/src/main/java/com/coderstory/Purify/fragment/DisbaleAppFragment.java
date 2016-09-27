@@ -46,7 +46,12 @@ public class DisbaleAppFragment extends BaseFragment {
     com.yalantis.phoenix.PullToRefreshView mPullToRefreshView;
 
 
-
+    private void initData()
+    {
+        packages = new ArrayList<>();
+        packages  = getContext().getPackageManager().getInstalledPackages(0);
+        initFruit();
+    }
 
     private void initFruit() {
         //packageInfo.applicationInfo.flags&ApplicationInfo.FLAG_SYSTEM)==0 表示是系统应用
@@ -67,12 +72,7 @@ public class DisbaleAppFragment extends BaseFragment {
         appInfoList.addAll(appInfoList2);
     }
 
-    private void initData()
-    {
-        packages = new ArrayList<>();
-        packages  = getContext().getPackageManager().getInstalledPackages(0);
-        initFruit();
-    }
+
 
     private  void  showData()
     {

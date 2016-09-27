@@ -107,14 +107,16 @@ public class MyAppIntro extends AppIntro {
         loadMainActivity();
     }
 
-    void loadMainActivity() {
-        Intent intent = new Intent(this, MainActivity.class);
+
+
+    void SplashActivity() {
+        Intent intent = new Intent(this, SplashActivity.class);
         startActivity(intent);
         this.finish();
     }
 
-    void SplashActivity() {
-        Intent intent = new Intent(this, SplashActivity.class);
+    void loadMainActivity() {
+        Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
         this.finish();
     }
