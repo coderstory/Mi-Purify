@@ -53,7 +53,7 @@
             android:value="true" />
         <meta-data
             android:name="xposeddescription"
-            android:value="ADUI ToolKit" />
+            android:value="小米净化 by coderstory" />
         <meta-data
             android:name="xposedminversion"
             android:value="54" />
