@@ -71,6 +71,7 @@ public class CleanFragment extends BaseFragment {
     }
 
     Thread th;
+
     public void threadClean() {
         tvClean = $(R.id.tvClean);
         ((Button) $(R.id.button)).setText("正在清理中...");
@@ -80,7 +81,7 @@ public class CleanFragment extends BaseFragment {
             @Override
             public void run() {
                 long totalSize = 0L; // K
-                MyConfig.isProcessing=true;
+                MyConfig.isProcessing = true;
                 // clean app cache
                 CommandResult ret = RootUtils.runCommand("find /data/data/ -type dir -name \"cache\"", true);
                 String[] items = ret.result.split("\n");
@@ -104,14 +105,11 @@ public class CleanFragment extends BaseFragment {
                 totalSize += deleteRemainArtCache();
                 sendMessageStr(getString(R.string.view_clean_complete, FileHelper.getReadableFileSize(totalSize)));
                 hComplete.sendEmptyMessage(0);
-                MyConfig.isProcessing=false;
+                MyConfig.isProcessing = false;
             }
         });
         th.start();
     }
-
-
-
 
 
     private CacheSize getSize(String path) {
@@ -202,10 +200,9 @@ public class CleanFragment extends BaseFragment {
         String newAppPath = app.replace("data@app@", "");
         try {
             newAppPath = newAppPath.substring(0, newAppPath.indexOf("@"));
+        } catch (Exception e) {
         }
-        catch (Exception e){
-            return  false;
-        }
+
         boolean ret = false;
         for (String s : oriList) {
             if (s.equals(newAppPath)) {
