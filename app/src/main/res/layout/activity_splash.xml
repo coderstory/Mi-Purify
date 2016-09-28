@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
-    android:background="@drawable/splash"
+android:background="#fff"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -17,14 +17,22 @@
 
     <RelativeLayout android:layout_width="fill_parent"
         android:layout_height="match_parent"
+        android:paddingTop="100dp"
         android:layout_alignParentTop="true"
         android:layout_alignParentStart="true">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:src="@drawable/splash"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentStart="true" />
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:paddingTop="20dp"
+            android:paddingTop="50dp"
             android:id="@+id/linearLayout"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
@@ -32,7 +40,7 @@
 
             <LinearLayout android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:paddingTop="20dp"
+                android:layout_marginTop="80dp"
                 android:layout_gravity="center_horizontal">
                 <TextView android:id="@+id/app_name"
                     android:layout_width="wrap_content"
