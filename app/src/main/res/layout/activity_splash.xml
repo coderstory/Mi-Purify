@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
-    android:background="@drawable/bg"
+    android:background="@drawable/splash"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -18,7 +18,7 @@
     <RelativeLayout android:layout_width="fill_parent"
         android:layout_height="match_parent"
         android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true">
+        android:layout_alignParentStart="true">
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -67,14 +67,15 @@
 
         </LinearLayout>
 
-        <ImageView
-            android:layout_width="125dp"
-            android:layout_height="wrap_content"
-            android:src="@drawable/shooter"
-android:adjustViewBounds="true"
-            android:id="@+id/imageView3"
-            android:layout_above="@+id/linearLayout"
-            android:layout_centerHorizontal="true" />
+        <!--<ImageView-->
+            <!--android:layout_width="125dp"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:src="@drawable/shooter"-->
+<!--android:adjustViewBounds="true"-->
+            <!--android:id="@+id/imageView3"-->
+            <!---->
+            <!--android:layout_above="@+id/linearLayout"-->
+            <!--android:layout_centerHorizontal="true" />-->
 
 
     </RelativeLayout>

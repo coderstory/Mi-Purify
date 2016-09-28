@@ -17,8 +17,10 @@ import android.view.MenuItem;
 import com.coderstory.Purify.R;
 import com.coderstory.Purify.fragment.AboutFragment;
 import com.coderstory.Purify.fragment.BlockADSFragment;
+import com.coderstory.Purify.fragment.BlogFragment;
 import com.coderstory.Purify.fragment.CleanFragment;
 import com.coderstory.Purify.fragment.DisbaleAppFragment;
+import com.coderstory.Purify.fragment.DonationFragment;
 import com.coderstory.Purify.fragment.HostsFragment;
 import com.coderstory.Purify.fragment.SettingsFragment;
 import com.coderstory.Purify.fragment.crackThemeFragment;
@@ -158,10 +160,10 @@ public class MainActivity extends BaseActivity {
                         mToolbar.setTitle("净化广告");
                         switchFragment(BlockADSFragment.class);
                         break;
-//                    case R.id.navigation_item_myblog:
-//                        mToolbar.setTitle("我的博客");
-//                        switchFragment(BlogFragment.class);
-//                        break;
+                    case R.id.navigation_item_myblog:
+                        mToolbar.setTitle("我的博客");
+                        switchFragment(BlogFragment.class);
+                        break;
                     case R.id.navigation_item_hosts:
                         mToolbar.setTitle("Hosts设置");
                         switchFragment(HostsFragment.class);
@@ -191,6 +193,9 @@ public class MainActivity extends BaseActivity {
                         mToolbar.setTitle("冻结应用");
                         switchFragment(DisbaleAppFragment.class);
                         break;
+                    case R.id.navigation_item_donation:
+                        mToolbar.setTitle("捐赠");
+                        switchFragment(DonationFragment.class);
                     default:
                         break;
                 }

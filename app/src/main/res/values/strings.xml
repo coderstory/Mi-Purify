@@ -12,9 +12,9 @@
     \n引导页:https://github.com/PaoloRotolo/AppIntro
      \n应用清理:https://github.com/rarnu/root-tools
     </string>
-    <string name="version">1.4.2</string>
+    <string name="version">1.4.3</string>
     <string name="Limit">1</string>
-
+    <string name="alipay_url">https://qr.alipay.com/aex06874ga0wkuhwuajgzb8</string>
     <string name="enableBlockADS"><b>启用模块</b>\n去广告功能的总开关</string>
     <string name="downloadexplorer"><b>下载管理</b>\n去下载管理节点的广告,启用后无法设置仅wifi下载和文件大小限制</string>
     <string name="calendar"><b>日历</b>\n去除日历界面上的小广告和默认的卡片</string>
@@ -91,6 +91,9 @@
     <string name="view_clean_complete" formatted="false">清理完毕, 共清理文件 %s\n\n</string>
     <string name="xposedmodule">Xposed模块功能</string>
     <string name="startclean">开始清理</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 
 </resources>

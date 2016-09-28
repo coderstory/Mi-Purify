@@ -17,12 +17,6 @@
             android:icon="@drawable/iconfont_blog"
             android:title="@string/fucktheme" />
 
-
-        <item
-            android:id="@+id/navigation_item_hosts"
-            android:icon="@drawable/hosts"
-            android:title="@string/hosts" />
-
         <item
             android:id="@+id/navigation_item_disableapps"
             android:icon="@drawable/disable"
@@ -31,15 +25,24 @@
             android:id="@+id/navigation_item_Clean"
             android:icon="@drawable/clean"
             android:title="@string/appclean" />
-
+        <item
+            android:id="@+id/navigation_item_hosts"
+            android:icon="@drawable/hosts"
+            android:title="@string/hosts" />
 
 
         <item android:title="@string/other">
             <menu>
-                <!--<item-->
-                    <!--android:id="@+id/navigation_item_myblog"-->
-                    <!--android:icon="@drawable/iconfont_blog"-->
-                    <!--android:title="@string/myblog" />-->
+
+                <item
+                    android:id="@+id/navigation_item_donation"
+                    android:icon="@drawable/iconfont_custom_view"
+                    android:title="捐赠" />
+
+                <item
+                    android:id="@+id/navigation_item_myblog"
+                    android:icon="@drawable/iconfont_blog"
+                    android:title="@string/myblog" />
 
                 <item
                     android:id="@+id/navigation_item_settings"
