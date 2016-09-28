@@ -119,11 +119,12 @@ public class HostsFragment extends BaseFragment {
                     }
 
                 }
-                if (enableStore) {
-                    HostsContext += fh.getFromAssets("hosts_nostore", getMContext());
-                }
+
                 if (enableupdater) {
                     HostsContext += fh.getFromAssets("hosts_noup", getMContext());
+                }
+                if (enableStore) {
+                    HostsContext += fh.getFromAssets("hosts_nostore", getMContext());
                 }
                 if (enableMIUIHosts) {
                     HostsContext += fh.getFromAssets("hosts_miui", getMContext());
