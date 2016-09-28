@@ -250,7 +250,14 @@ public class RemoveAds implements IModule {
                 findAndHookMethod("com.android.thememanager.controller.online.OnlineJSONDataParser", loadPackageParam.classLoader, "parseAdInfo", String.class, XC_MethodReplacement.returnConstant(null));
                // findAndHookMethod("com.android.thememanager.util.UIHelper", loadPackageParam.classLoader, "supportOnlineContent", String.class, XC_MethodReplacement.returnConstant(false));
 
-                findAndHookConstructor("com.android.thememanager.view.AdBannerView", loadPackageParam.classLoader, "AdBannerView", Context.class, new XC_MethodReplacement() {
+//                findAndHookMethod("com.android.thememanager.view.AdBannerView", loadPackageParam.classLoader, "AdBannerView", Context.class, new XC_MethodReplacement() {
+//                    @Override
+//                    protected Object replaceHookedMethod(MethodHookParam param) throws Throwable {
+//                        return null;
+//                    }
+//                });
+
+                findAndHookMethod("com.android.thememanager.view.AdBannerView", loadPackageParam.classLoader, "init", new XC_MethodReplacement() {
                     @Override
                     protected Object replaceHookedMethod(MethodHookParam param) throws Throwable {
                         return null;
