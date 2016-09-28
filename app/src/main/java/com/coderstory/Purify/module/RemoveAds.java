@@ -244,6 +244,22 @@ public class RemoveAds implements IModule {
             }
         }
 
+        //个性主题
+        if (loadPackageParam.packageName.equals("com.android.thememanager")) {
+            if (prefs.getBoolean("enabletheme", false)) {
+                findAndHookMethod("com.android.thememanager.controller.online.OnlineJSONDataParser", loadPackageParam.classLoader, "parseAdInfo", String.class, XC_MethodReplacement.returnConstant(null));
+               // findAndHookMethod("com.android.thememanager.util.UIHelper", loadPackageParam.classLoader, "supportOnlineContent", String.class, XC_MethodReplacement.returnConstant(false));
+
+                findAndHookConstructor("com.android.thememanager.view.AdBannerView", loadPackageParam.classLoader, "AdBannerView", Context.class, new XC_MethodReplacement() {
+                    @Override
+                    protected Object replaceHookedMethod(MethodHookParam param) throws Throwable {
+                        return null;
+                    }
+                });
+
+            }
+        }
+
         //搜索框
         if (loadPackageParam.packageName.equals("com.android.quicksearchbox")) {
 
@@ -315,6 +331,15 @@ public class RemoveAds implements IModule {
     private static void findAndHookMethod(String p1, ClassLoader lpparam, String p2, Object... parameterTypesAndCallback) {
         try {
             XposedHelpers.findAndHookMethod(p1, lpparam, p2, parameterTypesAndCallback);
+
+        } catch (Throwable localString3) {
+            XposedBridge.log(localString3.toString());
+        }
+    }
+
+    private static void findAndHookConstructor(String p1, ClassLoader lpparam, String p2, Object... parameterTypesAndCallback) {
+        try {
+            XposedHelpers.findAndHookConstructor(p1, lpparam, p2, parameterTypesAndCallback);
 
         } catch (Throwable localString3) {
             XposedBridge.log(localString3.toString());
