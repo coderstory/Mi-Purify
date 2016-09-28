@@ -13,7 +13,7 @@
      \n应用清理:https://github.com/rarnu/root-tools
     </string>
     <string name="version">1.4.3</string>
-    <string name="Limit">1</string>
+    <string name="pwd">ce4c72d73e8b7b3c2bd84f389213133c</string>
     <string name="alipay_url">https://qr.alipay.com/aex06874ga0wkuhwuajgzb8</string>
     <string name="enableBlockADS"><b>启用模块</b>\n去广告功能的总开关</string>
     <string name="downloadexplorer"><b>下载管理</b>\n去下载管理节点的广告,启用后无法设置仅wifi下载和文件大小限制</string>
