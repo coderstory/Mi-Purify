@@ -34,17 +34,21 @@ public class Others implements IModule {
 
         //安全中心
         if (loadPackageParam.packageName.equals("com.miui.securitycenter")) {
-            findAndHookMethod("com.miui.permcenter.install.c", loadPackageParam.classLoader, "isEnabled", XC_MethodReplacement.returnConstant(false));
-            findAndHookMethod("com.miui.permcenter.install.c", loadPackageParam.classLoader, "ds", XC_MethodReplacement.returnConstant(false));
-            findAndHookMethod("com.miui.permcenter.install.c", loadPackageParam.classLoader, "dU", XC_MethodReplacement.returnConstant(false));
-            findAndHookMethod("com.miui.permcenter.install.c", loadPackageParam.classLoader, "dT", XC_MethodReplacement.returnConstant(true));
-            findAndHookMethod("com.miui.permcenter.install.AdbInstallActivity", loadPackageParam.classLoader, "v",String.class, XC_MethodReplacement.returnConstant(true));
-            findAndHookMethod("com.miui.permcenter.install.i", loadPackageParam.classLoader, "onReceive", Context.class, Intent.class, new XC_MethodReplacement() {
-                @Override
-                protected Object replaceHookedMethod(MethodHookParam param) throws Throwable {
-                    return null;
-                }
-            });
+
+            if (prefs.getBoolean("enableadb", false)) {
+                findAndHookMethod("com.miui.permcenter.install.c", loadPackageParam.classLoader, "isEnabled", XC_MethodReplacement.returnConstant(false));
+                findAndHookMethod("com.miui.permcenter.install.c", loadPackageParam.classLoader, "ds", XC_MethodReplacement.returnConstant(false));
+                findAndHookMethod("com.miui.permcenter.install.c", loadPackageParam.classLoader, "dU", XC_MethodReplacement.returnConstant(false));
+                findAndHookMethod("com.miui.permcenter.install.c", loadPackageParam.classLoader, "dT", XC_MethodReplacement.returnConstant(true));
+                findAndHookMethod("com.miui.permcenter.install.AdbInstallActivity", loadPackageParam.classLoader, "v", String.class, XC_MethodReplacement.returnConstant(true));
+                findAndHookMethod("com.miui.permcenter.install.i", loadPackageParam.classLoader, "onReceive", Context.class, Intent.class, new XC_MethodReplacement() {
+                    @Override
+                    protected Object replaceHookedMethod(MethodHookParam param) throws Throwable {
+                        return null;
+                    }
+                });
+
+            }
 
             findAndHookMethod("com.miui.securitycenter.SysAppProtActivity", loadPackageParam.classLoader, "c", Map.class, new XC_MethodReplacement() {
 
@@ -68,14 +72,15 @@ public class Others implements IModule {
 
         //窗口权限 miui 8
         if (loadPackageParam.packageName.equals("android")) {
-            XposedHelpers.findAndHookMethod("com.android.server.policy.PhoneWindowManager", loadPackageParam.classLoader, "checkAddPermission", WindowManager.LayoutParams.class, int[].class, new XC_MethodHook() {
-                protected void afterHookedMethod(XC_MethodHook.MethodHookParam paramAnonymousMethodHookParam) {
-                    if ((Integer) paramAnonymousMethodHookParam.getResult() < 0) {
-                        paramAnonymousMethodHookParam.setResult(0);
+            if (prefs.getBoolean("fixpcb", false)) {
+                XposedHelpers.findAndHookMethod("com.android.server.policy.PhoneWindowManager", loadPackageParam.classLoader, "checkAddPermission", WindowManager.LayoutParams.class, int[].class, new XC_MethodHook() {
+                    protected void afterHookedMethod(XC_MethodHook.MethodHookParam paramAnonymousMethodHookParam) {
+                        if ((Integer) paramAnonymousMethodHookParam.getResult() < 0) {
+                            paramAnonymousMethodHookParam.setResult(0);
+                        }
                     }
-                }
-            });
-
+                });
+            }
         }
     }
 
