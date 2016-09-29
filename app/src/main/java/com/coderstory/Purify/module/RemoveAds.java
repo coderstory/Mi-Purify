@@ -97,6 +97,26 @@ public class RemoveAds implements IModule {
             }
         }
 
+        //安全中心
+        if (loadPackageParam.packageName.equals("com.miui.securitycenter")) {
+
+            findAndHookMethod("com.miui.securitycenter.SysAppProtActivity", loadPackageParam.classLoader, "c", Map.class, new XC_MethodReplacement() {
+
+                @Override
+                protected Object replaceHookedMethod(MethodHookParam param) throws Throwable {
+                    return null;
+                }
+            });
+            findAndHookMethod("com.miui.securitycenter.SysAppProtActivity", loadPackageParam.classLoader, "lj", Map.class, new XC_MethodReplacement() {
+
+                @Override
+                protected Object replaceHookedMethod(MethodHookParam param) throws Throwable {
+                    return null;
+                }
+            });
+        }
+
+
         //视频
         if (loadPackageParam.packageName.equals("com.miui.video")) {
             if (prefs.getBoolean("enablemiuividio", false)) {
