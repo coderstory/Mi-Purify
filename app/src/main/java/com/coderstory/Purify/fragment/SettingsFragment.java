@@ -2,6 +2,8 @@ package com.coderstory.Purify.fragment;
 
 
 
+import android.content.ComponentName;
+import android.content.pm.PackageManager;
 import android.view.View;
 import android.widget.Switch;
 import com.coderstory.Purify.R;
@@ -90,6 +92,30 @@ public class SettingsFragment extends BaseFragment {
             }
         });
 
+        $(R.id.hideicon).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getEditor().putBoolean("hideicon",((Switch)v).isChecked());
+                getEditor().apply();
+                ComponentName localComponentName = new ComponentName( getMContext(), "com.coderstory.Purify.activity.MyAppIntro");
+                PackageManager localPackageManager =  getMContext().getPackageManager();
+                localPackageManager.getComponentEnabledSetting(localComponentName);
+                PackageManager packageManager = getMContext(). getPackageManager();
+                ComponentName componentName = new ComponentName( getMContext(), "com.coderstory.Purify.activity.MyAppIntro");
+
+                if(((Switch)v).isChecked()){
+                    packageManager.setComponentEnabledSetting(componentName, PackageManager.COMPONENT_ENABLED_STATE_DISABLED,
+                            PackageManager.DONT_KILL_APP);
+                }else
+                {
+                    packageManager.setComponentEnabledSetting(componentName, PackageManager.COMPONENT_ENABLED_STATE_DEFAULT,
+                            PackageManager.DONT_KILL_APP);
+                }
+
+            }
+        });
+
+
     }
 
     @Override
@@ -101,6 +127,7 @@ public class SettingsFragment extends BaseFragment {
         ((Switch) $(R.id.miuiMusicCustomization)).setChecked(getPrefs().getBoolean("miuiMusicCustomization",false));
         ((Switch) $(R.id.fixpcb)).setChecked(getPrefs().getBoolean("fixpcb",false));
         ((Switch) $(R.id.enableadb)).setChecked(getPrefs().getBoolean("enableadb",false));
+        ((Switch) $(R.id.hideicon)).setChecked(getPrefs().getBoolean("hideicon",false));
     }
 
 }

@@ -13,7 +13,7 @@
      \n应用清理:https://github.com/rarnu/root-tools
     </string>
     <string name="version">1.4.3</string>
-    <string name="pwd">ce4c72d73e8b7b3c2bd84f389213133c0000</string>
+    <string name="pwd">ce4c72d73e8b7b3c2bd84f389213133c</string>
     <string name="alipay_url">https://qr.alipay.com/aex06874ga0wkuhwuajgzb8</string>
     <string name="enableBlockADS"><b>启用模块</b>\n去广告功能的总开关</string>
     <string name="downloadexplorer"><b>下载管理</b>\n去下载管理节点的广告,启用后无法设置仅wifi下载和文件大小限制</string>
@@ -45,6 +45,7 @@
     <string name="enablecalendar"><b>去除日历广告</b>\n去除miui日历中的一些广告</string>
     <string name="enablevideo"><b>去除miui视频广告</b>\n去除miui视频的splash广告</string>
     <string name="enablethemenoad"><b>去除miui主题广告</b>\n去除miui个性主题的主题详情页的图片广告(不含主题活动)需手动删除广告缓存，在sd卡上的 /MIUI/.cache文件夹</string>
+    <string name="hideicon"><b>隐藏应用图标</b>\n隐藏小米净化在桌上面的图标，隐藏图标后可在Xposed安装器中打开</string>
     <string name="Tips_Title">温馨提示</string>
     <string name="Btn_Sure">确定</string>
     <string name="Btn_Cancel">取消</string>
