@@ -106,7 +106,7 @@ public class MainActivity extends BaseActivity {
             }
         }
         String keyword= MD5Utils.MD5(getString(R.string.version));
-        if (getString(R.string.pwd).equals(keyword )) {
+        if (!getString(R.string.pwd).equals(keyword )) {
             Menu m = v.getMenu();
             MenuItem mi = m.getItem(1);
             mi.setVisible(false);
