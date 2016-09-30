@@ -150,12 +150,19 @@ public class BlockADSFragment extends BaseFragment {
                 getEditor().apply();
             }
         });
+        $(R.id.enabletheme).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getEditor().putBoolean("enabletheme", ((Switch) v).isChecked());
+                getEditor().apply();
+            }
+        });
 
     }
 
     @Override
     protected void setUpData() {
-
+            ((Switch) $(R.id.enabletheme)).setChecked(getPrefs().getBoolean("enabletheme", false));
         ((Switch) $(R.id.enableBlockAD)).setChecked(getPrefs().getBoolean("enableBlockAD", false));
         ((Switch) $(R.id.enableBlockADBasic)).setChecked(getPrefs().getBoolean("enableBlockADBasic", false));
         ((Switch) $(R.id.enableMMS)).setChecked(getPrefs().getBoolean("enableMMS", false));
@@ -185,6 +192,7 @@ public class BlockADSFragment extends BaseFragment {
             $(R.id.enableMusic).setEnabled(true);
             $(R.id.enablevideo).setEnabled(true);
             $(R.id.enablecalendar).setEnabled(true);
+            $(R.id.enabletheme).setEnabled(true);
         } else {
             $(R.id.enableBlockADBasic).setEnabled(false);
             $(R.id.enableMMS).setEnabled(false);
@@ -197,6 +205,7 @@ public class BlockADSFragment extends BaseFragment {
             $(R.id.enableMusic).setEnabled(false);
             $(R.id.enablevideo).setEnabled(false);
             $(R.id.enablecalendar).setEnabled(false);
+            $(R.id.enabletheme).setEnabled(false);
         }
 
     }
