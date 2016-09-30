@@ -44,6 +44,7 @@
     <string name="wifi"><b>修复wifi自动连接</b>\n修复系统提示wifi热点未检测网络连接而不会自动连接的问题,需ROOT</string>
     <string name="enablecalendar"><b>去除日历广告</b>\n去除miui日历中的一些广告</string>
     <string name="enablevideo"><b>去除miui视频广告</b>\n去除miui视频的splash广告</string>
+    <string name="enablethemenoad"><b>去除miui主题广告</b>\n去除miui个性主题的主题详情页的图片广告(不含主题活动)需手动删除广告缓存，在sd卡上的 /MIUI/.cache文件夹</string>
     <string name="Tips_Title">温馨提示</string>
     <string name="Btn_Sure">确定</string>
     <string name="Btn_Cancel">取消</string>
@@ -94,6 +95,7 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
 
 
 </resources>
