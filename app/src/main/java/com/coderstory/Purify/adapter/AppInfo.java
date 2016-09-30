@@ -7,22 +7,22 @@ import android.graphics.drawable.Drawable;
  */
 public class AppInfo {
 
-    public AppInfo() {
-    }
+//    public AppInfo() {
+//    }
 
     private String name;
     private Drawable imageId;
-    private String AppDir;
+    //private String AppDir;
     private boolean isDisable = true;
     private String packageName = "";
     private  String Version="";
 
-    public void setAppDir(String AppDir) {this.AppDir=AppDir;}
+    //public void setAppDir(String AppDir) {this.AppDir=AppDir;}
     public void setDisable(boolean disable) {
         this.isDisable = disable;
     }
 
-    public Drawable getImageId() {
+    Drawable getImageId() {
         return this.imageId;
     }
     public String getVersion() {
@@ -34,19 +34,19 @@ public class AppInfo {
     public String getName() {
         return this.name;
     }
-    public String getappdir() {
-        return this.AppDir;
-    }
+//    public String getappdir() {
+//        return this.AppDir;
+//    }
     public boolean getDisable() {
         return isDisable;
     }
 
-    public AppInfo(String name, Drawable imageId, String packageName, boolean Disable, String appdir,String version) {
+    public AppInfo(String name, Drawable imageId, String packageName, boolean Disable, String version) {
         this.name = name;
         this.imageId = imageId;
         this.packageName = packageName;
         this.isDisable = Disable;
-        this.AppDir = appdir;
+       // this.AppDir = appdir;
         this.Version=version;
     }
 }

@@ -2,6 +2,7 @@ package com.coderstory.Purify.adapter;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.coderstory.Purify.R;
+import com.coderstory.Purify.activity.MyAppIntro;
 
 import java.util.List;
 
@@ -43,12 +45,12 @@ public class AppInfoAdapter extends ArrayAdapter {
         if (appInfo.getDisable()) {
             view.setBackgroundColor(Color.parseColor("#d0d7d7d7")); //冻结的颜色
         } else {
-            view.setBackgroundColor(getContext().getResources().getColor(R.color.colorPrimary)); //正常的的颜色
+            view.setBackgroundColor(ContextCompat.getColor( getContext(), R.color.colorPrimary)); //正常的的颜色
         }
         return view;
     }
 
-    public AppInfoAdapter(Context context, int textViewResourceId, int disable, List<AppInfo> objects) {
+    public AppInfoAdapter(Context context, int textViewResourceId,  List<AppInfo> objects) {
         super(context, textViewResourceId, objects);
         resourceId = textViewResourceId;
     }

@@ -40,7 +40,6 @@ public class MainActivity extends BaseActivity {
     private static String TAG = "MainActivity";
 
     private DrawerLayout mDrawerLayout;//侧边菜单视图
-    private ActionBarDrawerToggle mDrawerToggle;  //菜单开关
     private Toolbar mToolbar;
     private NavigationView mNavigationView;//侧边菜单项
 
@@ -88,7 +87,7 @@ public class MainActivity extends BaseActivity {
         setSupportActionBar(mToolbar);
         setNavigationViewItemClickListener();
         //ActionBarDrawerToggle配合Toolbar，实现Toolbar上菜单按钮开关效果。
-        mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout, mToolbar, R.string.drawer_open, R.string.drawer_close);
+        ActionBarDrawerToggle mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout, mToolbar, R.string.drawer_open, R.string.drawer_close);
         mDrawerToggle.syncState();
         mDrawerLayout.setDrawerListener(mDrawerToggle);
         mToolbar.setNavigationIcon(R.drawable.ic_drawer_home);

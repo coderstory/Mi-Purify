@@ -61,10 +61,10 @@ public class DisbaleAppFragment extends BaseFragment {
             PackageInfo packageInfo = packages.get(i);
             if ((packageInfo.applicationInfo.flags & ApplicationInfo.FLAG_SYSTEM) > 0) {
                 if (packageInfo.applicationInfo.enabled) {
-                    AppInfo appInfo = new AppInfo(packageInfo.applicationInfo.loadLabel(getContext().getPackageManager()).toString(), packageInfo.applicationInfo.loadIcon(getContext().getPackageManager()), packageInfo.packageName, false, packageInfo.applicationInfo.sourceDir, String.valueOf(packageInfo.versionName));
+                    AppInfo appInfo = new AppInfo(packageInfo.applicationInfo.loadLabel(getContext().getPackageManager()).toString(), packageInfo.applicationInfo.loadIcon(getContext().getPackageManager()), packageInfo.packageName, false,  String.valueOf(packageInfo.versionName));
                     appInfoList.add(appInfo);
                 } else {
-                    AppInfo appInfo = new AppInfo(packageInfo.applicationInfo.loadLabel(getContext().getPackageManager()).toString(), packageInfo.applicationInfo.loadIcon(getContext().getPackageManager()), packageInfo.packageName, true, packageInfo.applicationInfo.sourceDir, String.valueOf(packageInfo.versionName));
+                    AppInfo appInfo = new AppInfo(packageInfo.applicationInfo.loadLabel(getContext().getPackageManager()).toString(), packageInfo.applicationInfo.loadIcon(getContext().getPackageManager()), packageInfo.packageName, true, String.valueOf(packageInfo.versionName));
                     appInfoList2.add(appInfo);
                 }
             }
@@ -76,7 +76,7 @@ public class DisbaleAppFragment extends BaseFragment {
 
     private  void  showData()
     {
-        adapter = new AppInfoAdapter(getContext(), R.layout.app_info_item, R.color.colorPrimaryDark,appInfoList);
+        adapter = new AppInfoAdapter(getContext(), R.layout.app_info_item, appInfoList);
         listView = (ListView) getContentView().findViewById(R.id.listView);
         assert listView != null;
         listView.setAdapter(adapter);
@@ -106,10 +106,9 @@ public class DisbaleAppFragment extends BaseFragment {
                         DataOutputStream os = null;
                         try {
 
-                            String cmd = commandText;
                             process = Runtime.getRuntime().exec("su"); //切换到root帐号
                             os = new DataOutputStream(process.getOutputStream());
-                            os.writeBytes(cmd + "\n");
+                            os.writeBytes(commandText + "\n");
                             os.writeBytes("exit\n");
                             os.flush();
                             process.waitFor();

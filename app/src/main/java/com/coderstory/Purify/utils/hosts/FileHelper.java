@@ -21,24 +21,7 @@ import java.util.List;
 public class FileHelper {
 
 
-    public static int S_IRU = 400;
-    public static int S_IRG = 40;
-    public static int S_IRO = 4;
-    public static int S_IWU = 200;
-    public static int S_IWG = 20;
-    public static int S_IWO = 2;
-    public static int S_IXU = 100;
-    public static int S_IXG = 10;
-    public static int S_IXO = 1;
-    public static int S_IRWU = S_IRU | S_IWU;
-    public static int S_IRWG = S_IRG | S_IWG;
-    public static int S_IRWO = S_IRO | S_IWO;
-    public static int S_IRXU = S_IRU | S_IXU;
-    public static int S_IRXG = S_IRG | S_IXG;
-    public static int S_IRXO = S_IRO | S_IXO;
-    public static int S_IRWXU = S_IRU | S_IWU | S_IXU;
-    public static int S_IRWXG = S_IRG | S_IWG | S_IXG;
-    public static int S_IRWXO = S_IRO | S_IWO | S_IXO;
+
 
     /**
      * 从Assets中读取文本
