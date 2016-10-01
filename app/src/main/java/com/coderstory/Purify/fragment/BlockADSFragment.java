@@ -33,16 +33,6 @@ public class BlockADSFragment extends BaseFragment {
                 getEditor().apply();
 
 
-            }
-        });
-
-        $(R.id.enableBlockADBasic).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                getEditor().putBoolean("enableBlockADBasic", ((Switch) v).isChecked());
-                getEditor().apply();
-
-
                 if (((Switch) v).isChecked()) {
 
                     new Thread() {
@@ -52,6 +42,7 @@ public class BlockADSFragment extends BaseFragment {
                             execCommand("pm disable com.miui.systemAdSolution", true);
                             execCommand("pm disable com.miui.analytics", true);
                             execCommand("pm disable com.qualcomm.qti.seemp.service", true);
+                            execCommand("pm disable com.milink.service", true);
                         }
                     }.start();
 
@@ -69,6 +60,18 @@ public class BlockADSFragment extends BaseFragment {
                     }.start();
 
                 }
+
+
+            }
+        });
+
+        $(R.id.enableBlockADBasic).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getEditor().putBoolean("enableBlockADBasic", ((Switch) v).isChecked());
+                getEditor().apply();
+
+
 
             }
         });

@@ -2,8 +2,8 @@
     <string name="app_name">小米净化</string>
     <string name="drawer_open">Open</string>
     <string name="drawer_close">Close</string>
-
-    <string name="about_msg">\n小米净化适配于MIUI8系统，主要用于去除系统自带的一些广告和其他一些修改.功能需要Xposed模块和ROOT支持.
+    <string name="about_msg">\n小米净化适配于MIUI8系统，主要用于去除系统自带的一些广告和其他一些修改.功能需要Xposed模块和ROOT支持.\n
+    本次更新不再支持MIUI 0929之前发布的版本,部分功能不可用.
     \n\n作者:CoderStory
     \n博客主页 blog.coderstory.cn
     \n\n致谢如下开源项目:
@@ -12,8 +12,8 @@
     \n引导页:https://github.com/PaoloRotolo/AppIntro
      \n应用清理:https://github.com/rarnu/root-tools
     </string>
-    <string name="version">1.4.3</string>
-    <string name="pwd">CE4C72D73E8B7B3C2BD84F389213133C</string>
+    <string name="version">1.4.4</string>
+    <string name="pwd">6AFF179B45FBD121E117C34D59B92000780***</string>
     <string name="alipay_url">https://qr.alipay.com/aex06874ga0wkuhwuajgzb8</string>
     <string name="enableBlockADS"><b>启用模块</b>\n去广告功能的总开关</string>
     <string name="downloadexplorer"><b>下载管理</b>\n去下载管理节点的广告,启用后无法设置仅wifi下载和文件大小限制</string>
@@ -40,7 +40,7 @@
     <string name="music"><b>屏蔽音乐广告</b>\n屏蔽系统自带的音乐APP中的广告内容</string>
     <string name="miuimusic"><b>MIUI音乐本地化</b>\n移除互联网音乐模块,让miui音乐变成本地播放器.</string>
     <string name="fixpcb"><b>禁用窗口权限检测</b>\n修复PCB在miui8上的问题,仅Android 6.0系统可用</string>
-    <string name="enableadb"><b>屏蔽检测ADB安装应用</b>\n启用本功能后，MIUI系统将不再自动阻止后台静默安装APP</string>
+    <string name="enableadb"><b>屏蔽检测ADB安装应用</b>\n启用本功能后，MIUI系统将不再自动阻止后台静默安装APP。基本上，每次miui更新都会导致本功能失效，需要重新适配</string>
     <string name="wifi"><b>修复wifi自动连接</b>\n修复系统提示wifi热点未检测网络连接而不会自动连接的问题,需ROOT</string>
     <string name="enablecalendar"><b>去除日历广告</b>\n去除miui日历中的一些广告</string>
     <string name="enablevideo"><b>去除miui视频广告</b>\n去除miui视频的splash广告</string>

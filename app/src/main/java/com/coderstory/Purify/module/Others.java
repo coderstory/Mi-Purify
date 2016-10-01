@@ -37,10 +37,11 @@ public class Others implements IModule {
 
             if (prefs.getBoolean("enableadb", false)) {
                 findAndHookMethod("com.miui.permcenter.install.c", loadPackageParam.classLoader, "isEnabled", XC_MethodReplacement.returnConstant(false));
-                findAndHookMethod("com.miui.permcenter.install.c", loadPackageParam.classLoader, "ds", XC_MethodReplacement.returnConstant(false));
-                findAndHookMethod("com.miui.permcenter.install.c", loadPackageParam.classLoader, "dU", XC_MethodReplacement.returnConstant(false));
-                findAndHookMethod("com.miui.permcenter.install.c", loadPackageParam.classLoader, "dT", XC_MethodReplacement.returnConstant(true));
-                findAndHookMethod("com.miui.permcenter.install.AdbInstallActivity", loadPackageParam.classLoader, "v", String.class, XC_MethodReplacement.returnConstant(true));
+              findAndHookMethod("com.miui.permcenter.install.c", loadPackageParam.classLoader, "dK", XC_MethodReplacement.returnConstant(true));
+               findAndHookMethod("com.miui.permcenter.install.c", loadPackageParam.classLoader, "dw", XC_MethodReplacement.returnConstant(true));
+               findAndHookMethod("com.miui.permcenter.install.AdbInstallVerifyActivity", loadPackageParam.classLoader, "c", Context.class,boolean.class, XC_MethodReplacement.returnConstant(false));
+               // findAndHookMethod("com.miui.permcenter.install.c", loadPackageParam.classLoader, "dT", XC_MethodReplacement.returnConstant(true));
+               // findAndHookMethod("com.miui.permcenter.install.AdbInstallActivity", loadPackageParam.classLoader, "v", String.class, XC_MethodReplacement.returnConstant(true));
                 findAndHookMethod("com.miui.permcenter.install.i", loadPackageParam.classLoader, "onReceive", Context.class, Intent.class, new XC_MethodReplacement() {
                     @Override
                     protected Object replaceHookedMethod(MethodHookParam param) throws Throwable {
@@ -48,22 +49,40 @@ public class Others implements IModule {
                     }
                 });
 
+                findAndHookMethod("com.miui.permcenter.install.c", loadPackageParam.classLoader, "X",String.class, new XC_MethodReplacement() {
+                    @Override
+                    protected Object replaceHookedMethod(MethodHookParam param) throws Throwable {
+                        return null;
+                    }
+                });
+
+                findAndHookMethod("com.miui.common.persistence.b", loadPackageParam.classLoader, "c", String.class, boolean.class, new XC_MethodHook() {
+                    @Override
+                    protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
+                        super.beforeHookedMethod(param);
+                        if (param.args[0].toString().equals("perm_adb_install_notify")) {
+                            param.setResult(true);
+                        }
+                    }
+                });
+
+
             }
 
-            findAndHookMethod("com.miui.securitycenter.SysAppProtActivity", loadPackageParam.classLoader, "c", Map.class, new XC_MethodReplacement() {
-
-                @Override
-                protected Object replaceHookedMethod(MethodHookParam param) throws Throwable {
-                    return null;
-                }
-            });
-            findAndHookMethod("com.miui.securitycenter.SysAppProtActivity", loadPackageParam.classLoader, "lj", Map.class, new XC_MethodReplacement() {
-
-                @Override
-                protected Object replaceHookedMethod(MethodHookParam param) throws Throwable {
-                    return null;
-                }
-            });
+//            findAndHookMethod("com.miui.securitycenter.SysAppProtActivity", loadPackageParam.classLoader, "c", Map.class, new XC_MethodReplacement() {
+//
+//                @Override
+//                protected Object replaceHookedMethod(MethodHookParam param) throws Throwable {
+//                    return null;
+//                }
+//            });
+//            findAndHookMethod("com.miui.securitycenter.SysAppProtActivity", loadPackageParam.classLoader, "lj", Map.class, new XC_MethodReplacement() {
+//
+//                @Override
+//                protected Object replaceHookedMethod(MethodHookParam param) throws Throwable {
+//                    return null;
+//                }
+//            });
 
             return;
 

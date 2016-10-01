@@ -77,7 +77,7 @@
 127.0.0.1 sdkinit.taobao.com
 
 
-#version=201609261630
+#version=20160928
 #url=https://github.com/vokins/yhosts
 127.0.0.1 iadctest.qwapi.com
 5.196.172.196 www.dxomark.com
@@ -610,6 +610,41 @@
 127.0.0.1 ads.dh.duba.com
 127.0.0.1 j.wan.liebao.cn
 127.0.0.1 cr.m.liebao.cn
+127.0.0.1 a.union.mi.com
+127.0.0.1 d.g.mi.com
+127.0.0.1 migc.g.mi.com
+127.0.0.1 migcreport.g.mi.com
+127.0.0.1 mis.g.mi.com
+127.0.0.1 sg.a.stat.mi.com
+127.0.0.1 api.ad.xiaomi.com
+127.0.0.1 cdn.ad.xiaomi.com
+127.0.0.1 e.ad.xiaomi.com
+127.0.0.1 new.api.ad.xiaomi.com
+127.0.0.1 sdkconfig.ad.xiaomi.com
+127.0.0.1 test.ad.xiaomi.com
+127.0.0.1 test.e.ad.xiaomi.com
+127.0.0.1 test.new.api.ad.xiaomi.com
+127.0.0.1 a.stat.xiaomi.com
+127.0.0.1 abtest.mistat.xiaomi.com
+127.0.0.1 data.mistat.xiaomi.com
+127.0.0.1 mlog.search.xiaomi.net
+127.0.0.1 resolver.gslb.mi-idc.com
+127.0.0.1 union.dbba.cn
+127.0.0.1 fcanr.tracking.miui.com
+127.0.0.1 r.browser.miui.com
+127.0.0.1 security.browser.miui.com
+127.0.0.1 tracking.miui.com
+127.0.0.1 resolver.msg.xiaomi.net
+127.0.0.1 sousuo.xm.sjzhushou.com
+127.0.0.1 api.tw06.xlmc.sec.miui.com
+127.0.0.1 pre.api.tw06.xlmc.sandai.net
+127.0.0.1 test.api.xlmc.sandai.net
+127.0.0.1 tw13b093.sandai.net
+127.0.0.1 notice.game.xiaomi.com
+127.0.0.1 ppurifier.game.xiaomi.com
+127.0.0.1 adv.sec.miui.com
+127.0.0.1 adinfo.ra1.xlmc.sec.miui.com
+127.0.0.1 staging.admin.e.mi.com
 127.0.0.1 ads-banner.1mobile.com
 127.0.0.1 ads.1mobile.com
 127.0.0.1 advertise.1mobile.com
@@ -1076,7 +1111,6 @@
 127.0.0.1 ganjituiguang.ganji.com
 127.0.0.1 sta.ganji.com
 127.0.0.1 tralog.ganji.com
-127.0.0.1 sta.ganjistatic1.com
 127.0.0.1 ad.house365.com
 127.0.0.1 adadmin.house365.com
 127.0.0.1 ads.house365.com
@@ -1634,7 +1668,6 @@
 127.0.0.1 ad.sitemaji.com
 127.0.0.1 ssl.sitemaji.com
 127.0.0.1 static.awempire.com
-127.0.0.1 ss.phncdn.com
 127.0.0.1 vi2ishae.xhamster.com
 127.0.0.1 ads.adxpansion.com
 127.0.0.1 cs.adxpansion.com
@@ -3618,3 +3651,24 @@
 127.0.0.1 img2.hrccb.com
 127.0.0.1 js1597.anreson.net
 127.0.0.1 js1597.cnbole.net
+##temporary.txt
+#@视频网
+#www.pronhub.com
+127.0.0.1 cdn2.reporo.net
+127.0.0.1 cdn11.i-stream.pl
+127.0.0.1 media.i-stream.pl
+127.0.0.1 cdn1.reporo.net
+127.0.0.1 cdn-a2.contentabc.com
+
+#@BT网
+#http://www.btmango.com/
+127.0.0.1 souacode.com
+127.0.0.1 freespace.juchaojie.com
+
+#@漫画网
+#http://m.xieeyn.com/sexi/
+127.0.0.1 vip.zzbzwy.com
+
+#@小说网
+#m.biquge.la
+127.0.0.1 llsp.gfd80.com

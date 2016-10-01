@@ -2,12 +2,9 @@ package com.coderstory.Purify.module;
 
 import android.content.Context;
 import android.content.Intent;
-
 import com.coderstory.Purify.plugins.IModule;
-
 import java.util.List;
 import java.util.Map;
-
 import de.robv.android.xposed.IXposedHookZygoteInit;
 import de.robv.android.xposed.XC_MethodHook;
 import de.robv.android.xposed.XC_MethodReplacement;
@@ -16,7 +13,6 @@ import de.robv.android.xposed.XposedBridge;
 import de.robv.android.xposed.XposedHelpers;
 import de.robv.android.xposed.callbacks.XC_InitPackageResources;
 import de.robv.android.xposed.callbacks.XC_LoadPackage;
-
 
 public class RemoveAds implements IModule {
 
@@ -96,9 +92,6 @@ public class RemoveAds implements IModule {
                 });
             }
         }
-
-
-
 
         //视频
         if (loadPackageParam.packageName.equals("com.miui.video")) {
@@ -189,10 +182,9 @@ public class RemoveAds implements IModule {
                 findAndHookMethod("com.miui.player.util.ExperimentsHelper", loadPackageParam.classLoader, "isAdEnabled", XC_MethodReplacement.returnConstant(false));
                 //findAndHookMethod("com.miui.player.util.Configuration", loadPackageParam.classLoader, "isCmCustomization", XC_MethodReplacement.returnConstant(true));
                 findAndHookMethod("com.miui.player.util.Configuration", loadPackageParam.classLoader, "isCmTest", XC_MethodReplacement.returnConstant(true));
-                findAndHookMethod("com.miui.player.util.Configuration", loadPackageParam.classLoader, "isCpLogoVisiable", XC_MethodReplacement.returnConstant(false));
-
-                findAndHookMethod("com.miui.optimizecenter.result.DataModel", loadPackageParam.classLoader, "post", Map.class, XC_MethodReplacement.returnConstant(""));
-                findAndHookMethod("com.miui.optimizecenter.config.MiStat", loadPackageParam.classLoader, "getChannel", XC_MethodReplacement.returnConstant("international"));
+                //findAndHookMethod("com.miui.player.util.Configuration", loadPackageParam.classLoader, "isCpLogoVisiable", XC_MethodReplacement.returnConstant(false));
+                //findAndHookMethod("com.miui.optimizecenter.result.DataModel", loadPackageParam.classLoader, "post", Map.class, XC_MethodReplacement.returnConstant(""));
+                //findAndHookMethod("com.miui.optimizecenter.config.MiStat", loadPackageParam.classLoader, "getChannel", XC_MethodReplacement.returnConstant("international"));
                 Class<?> clsAdImageView = Class.forName("com.miui.optimizecenter.widget.AdImageView");
                 Class<?> clsAdvertisement = Class.forName("com.miui.optimizecenter.result.Advertisement");
                 if (clsAdImageView != null && clsAdvertisement != null) {
@@ -250,22 +242,11 @@ public class RemoveAds implements IModule {
         //个性主题
         if (loadPackageParam.packageName.equals("com.android.thememanager")) {
             if (prefs.getBoolean("enabletheme", false)) {
-                findAndHookMethod("com.android.thememanager.controller.online.OnlineJSONDataParser", loadPackageParam.classLoader, "parseAdInfo", String.class, XC_MethodReplacement.returnConstant(null));
-               // findAndHookMethod("com.android.thememanager.util.UIHelper", loadPackageParam.classLoader, "supportOnlineContent", String.class, XC_MethodReplacement.returnConstant(false));
+                //0930之前的版本
+               // findAndHookMethod("com.android.thememanager.controller.online.OnlineJSONDataParser", loadPackageParam.classLoader, "parseAdInfo", String.class, XC_MethodReplacement.returnConstant(null));
+                //0930版本
+                findAndHookMethod("com.android.thememanager.model.AdInfo", loadPackageParam.classLoader, "parseAdInfo", String.class, XC_MethodReplacement.returnConstant(null));
 
-//                findAndHookMethod("com.android.thememanager.view.AdBannerView", loadPackageParam.classLoader, "AdBannerView", Context.class, new XC_MethodReplacement() {
-//                    @Override
-//                    protected Object replaceHookedMethod(MethodHookParam param) throws Throwable {
-//                        return null;
-//                    }
-//                });
-
-                findAndHookMethod("com.android.thememanager.view.AdBannerView", loadPackageParam.classLoader, "init", new XC_MethodReplacement() {
-                    @Override
-                    protected Object replaceHookedMethod(MethodHookParam param) throws Throwable {
-                        return null;
-                    }
-                });
 
             }
         }
@@ -282,12 +263,12 @@ public class RemoveAds implements IModule {
                     }
                 });
                 //旧版本 v7
-                findAndHookMethod("com.android.quicksearchbox.util.HotWordsUtil", loadPackageParam.classLoader, "setHotQueryView", "com.android.quicksearchbox.ui.HotQueryView", new XC_MethodHook() {
-                    protected void beforeHookedMethod(MethodHookParam paramAnonymousMethodHookParam)
-                            throws Throwable {
-                        paramAnonymousMethodHookParam.setResult(null);
-                    }
-                });
+              //  findAndHookMethod("com.android.quicksearchbox.util.HotWordsUtil", loadPackageParam.classLoader, "setHotQueryView", "com.android.quicksearchbox.ui.HotQueryView", new XC_MethodHook() {
+                //    protected void beforeHookedMethod(MethodHookParam paramAnonymousMethodHookParam)
+                 //           throws Throwable {
+                  ////      paramAnonymousMethodHookParam.setResult(null);
+                    //}
+                //});
             }
         }
         //日历
@@ -347,13 +328,14 @@ public class RemoveAds implements IModule {
         }
     }
 
-    private static void findAndHookConstructor(String p1, ClassLoader lpparam, String p2, Object... parameterTypesAndCallback) {
-        try {
-            XposedHelpers.findAndHookConstructor(p1, lpparam, p2, parameterTypesAndCallback);
-
-        } catch (Throwable localString3) {
-            XposedBridge.log(localString3.toString());
-        }
-    }
+//    private static void findAndHookConstructor(String p1, ClassLoader lpparam, String p2, Object... parameterTypesAndCallback) {
+//        try {
+//            XposedHelpers.findAndHookConstructor(p1, lpparam, p2, parameterTypesAndCallback);
+//
+//        } catch (Throwable localString3) {
+//            XposedBridge.log(localString3.toString());
+//        }
+//        }
+//    }
 
 }
