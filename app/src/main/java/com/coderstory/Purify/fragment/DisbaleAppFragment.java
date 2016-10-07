@@ -380,7 +380,7 @@ public class DisbaleAppFragment extends BaseFragment {
                 SB.append(info.getPackageName() + "\n");
             }
         }
-        String CrashFilePath = Environment.getExternalStorageDirectory().getPath() + "/MUI Purify/backup/";
+        String CrashFilePath = Environment.getExternalStorageDirectory().getPath() + "/MIUI Purify/backup/";
         File dir = new File(CrashFilePath);
         String fileName = "userList";
         if (!dir.exists()) {
