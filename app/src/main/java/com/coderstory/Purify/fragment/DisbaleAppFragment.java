@@ -298,8 +298,8 @@ public class DisbaleAppFragment extends BaseFragment {
                     dialog.cancel();
                 }
             });
-            mydialog= dialog.create();
-             mydialog.show();
+            mydialog = dialog.create();
+            mydialog.show();
         }
 
         return false;
@@ -308,18 +308,25 @@ public class DisbaleAppFragment extends BaseFragment {
 
     private void restoreList() {
         FileInputStream fos = null;
-        String CrashFilePath = Environment.getExternalStorageDirectory().getPath() + "/MUI Purify/backup/";
+        String CrashFilePath = Environment.getExternalStorageDirectory().getPath() + "/MIUI Purify/backup/";
         File dir = new File(CrashFilePath);
         String fileName = "userList";
         String content = "";
         if (!dir.exists()) {
             SnackBarUtils.makeShort($(R.id.listView), "未找到备份列表！").danger();
+            return;
         }
         try {
             content = readFile(CrashFilePath + fileName, null);
         } catch (Exception e) {
             e.printStackTrace();
         }
+
+        if (content.isEmpty()) {
+            SnackBarUtils.makeShort($(R.id.listView), "未找到备份列表！").danger();
+            return;
+        }
+
         final String[] list = content.split("\n");
 
 
@@ -328,14 +335,13 @@ public class DisbaleAppFragment extends BaseFragment {
         dialog.show();
 
 
-        new Thread(new Runnable(){
+        new Thread(new Runnable() {
             public void run() {
                 disableHelp dh = new disableHelp(list);
                 dh.execute();
                 myHandler.sendMessage(new Message());
             }
         }).start();
-
 
 
     }
@@ -346,7 +352,7 @@ public class DisbaleAppFragment extends BaseFragment {
             initData();
             adapter.notifyDataSetChanged();
             dialog.cancel();
-            dialog=null;
+            dialog = null;
             super.handleMessage(msg);
         }
     };
