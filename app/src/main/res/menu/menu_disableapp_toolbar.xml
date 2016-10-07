@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/action_backupList"
+        android:icon="@drawable/backup"
+        android:title="备份列表"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/action_restoreList"
+        android:icon="@drawable/restor"
+        android:title="还原设置"
+        app:showAsAction="ifRoom" />
+</menu>
