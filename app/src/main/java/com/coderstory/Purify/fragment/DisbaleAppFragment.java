@@ -330,7 +330,6 @@ public class DisbaleAppFragment extends BaseFragment {
         final String[] list = content.split("\n");
 
 
-
         dialog = ProgressDialog.show(getContext(), "提示", "OK,正在恢复配置！");
         dialog.show();
 
@@ -393,15 +392,20 @@ public class DisbaleAppFragment extends BaseFragment {
             dir.mkdirs();
         }
         FileOutputStream fos = null;
+        String result = "";
         try {
             fos = new FileOutputStream(CrashFilePath + fileName);
             fos.write(SB.toString().getBytes());
             fos.close();
         } catch (IOException e) {
             e.printStackTrace();
+            result = e.getMessage();
         }
-
-        SnackBarUtils.makeShort($(R.id.listView), "OK,列表备份完成！").show();
+        if (result.equals("")) {
+            SnackBarUtils.makeShort($(R.id.listView), "OK,列表备份完成！").show();
+        } else {
+            SnackBarUtils.makeShort($(R.id.listView), "备份失败,一般是因为APP没读写存储权限导致的" + result).show();
+        }
     }
-
 }
+
