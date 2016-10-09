@@ -169,7 +169,7 @@ public class DisbaleAppFragment extends BaseFragment {
 
     @Override
     protected int setLayoutResourceID() {
-        return R.layout.fragment_bisbale_app;
+        return R.layout.fragment_disbale_app;
     }
 
     @Override

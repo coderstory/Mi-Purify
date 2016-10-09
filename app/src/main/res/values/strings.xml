@@ -12,7 +12,7 @@
     \n引导页:https://github.com/PaoloRotolo/AppIntro
      \n应用清理:https://github.com/rarnu/root-tools
     </string>
-    <string name="version">1.4.5</string>
+    <string name="version">1.4.6 功能测试版</string>
     <string name="pwd">2BF58B177D031070AECD224411C367FC</string>
     <string name="alipay_url">https://qr.alipay.com/aex06874ga0wkuhwuajgzb8</string>
     <string name="enableBlockADS"><b>启用模块</b>\n去广告功能的总开关</string>
@@ -85,17 +85,19 @@
     <string name="sureDisableAfter">吗?</string>
     <string name="loadappinfo">正在读取应用信息。。。</string>
 
-    <string name="view_ready">已准备就绪, 请点击『开始清理』按钮开始清理...\n</string>
-    <string name="view_start_clean">开始清理, 请耐心等待...\n</string>
-    <string name="view_clean_cache" formatted="false">清理: %s (%s) ...\n</string>
-    <string name="view_clean_anr" formatted="false">清理 ANR 日志 (%s) ...\n</string>
-    <string name="view_clean_art_remain" formatted="false">清理 ART: %s (%s) ...\n</string>
+
+    <string name="view_ready">已准备就绪, 请点击『开始清理』按钮开始清理…\n</string>
+    <string name="view_start_clean">开始清理, 请耐心等待…\n</string>
+    <string name="view_clean_cache" formatted="false">清理: %s (%s) …\n</string>
+    <string name="view_clean_anr" formatted="false">清理 ANR 日志 (%s) …\n</string>
+    <string name="view_clean_art_remain" formatted="false">清理 ART: %s (%s) …\n</string>
     <string name="view_clean_complete" formatted="false">清理完毕, 共清理文件 %s\n\n</string>
     <string name="xposedmodule">Xposed模块功能</string>
     <string name="startclean">开始清理</string>
 
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="isWorkingTips">请耐心等待应用清理完成再进行其他的操作！</string>
 
-
-
+    <string name="tab_1">备份应用</string>
+    <string name="tab_2">还原应用</string>
 </resources>

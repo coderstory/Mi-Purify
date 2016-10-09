@@ -1,17 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!--ToolBar-->
-    <color name="colorPrimary">#29b6f6</color>
+    <color name="colorPrimary">#27b6d2</color>
     <!--状态栏-->
-    <color name="colorPrimaryDark">#29b6f6</color>
-    <color name="colorAccent">#29b6f6</color>
-    <color name="colorItem">#29b6f6</color>
-    <color name="enableApp">#29b6f6</color>
+    <color name="colorPrimaryDark">#27b6d2</color>
+    <color name="colorAccent">#27b6d2</color>
+    <color name="colorItem">#d027b6d2</color>
+    <color name="enableApp">#d027b6d2</color>
     <!--<color name="divider">#5CACEE</color>-->
     <color name="disablefunction">#cacaca</color>
 
     <color name="white">#ffffff</color>
     <color name="switchBtn">#fff</color>
+    <color name="divider">#00f7f7f7</color>
+    <color name="disableApp">#b337ae60</color>
+
 
     <color name="md_red_50">#fde0dc</color>
     <color name="md_red_100">#f9bdbb</color>

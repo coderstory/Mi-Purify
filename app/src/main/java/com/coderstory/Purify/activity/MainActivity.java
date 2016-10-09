@@ -1,6 +1,9 @@
 package com.coderstory.Purify.activity;
 
+import android.Manifest;
 import android.content.Context;
+import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.design.internal.NavigationMenuView;
 import android.support.design.widget.NavigationView;
@@ -22,6 +25,7 @@ import com.coderstory.Purify.fragment.CleanFragment;
 import com.coderstory.Purify.fragment.DisbaleAppFragment;
 import com.coderstory.Purify.fragment.DonationFragment;
 import com.coderstory.Purify.fragment.HostsFragment;
+import com.coderstory.Purify.fragment.ManagerAppFragment;
 import com.coderstory.Purify.fragment.SettingsFragment;
 import com.coderstory.Purify.fragment.crackThemeFragment;
 import com.coderstory.Purify.utils.MD5Utils;
@@ -70,8 +74,30 @@ public class MainActivity extends BaseActivity {
 
 
 
+    private static final int REQUEST_PERMISSION_CAMERA_CODE = 1;
+    private void requestCameraPermission() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            MainActivity.this.requestPermissions(new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, REQUEST_PERMISSION_CAMERA_CODE);
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (requestCode == REQUEST_PERMISSION_CAMERA_CODE) {
+            int grantResult = grantResults[0];
+            boolean granted = grantResult == PackageManager.PERMISSION_GRANTED;
+            Log.i("MainActivity", "onRequestPermissionsResult granted=" + granted);
+        }
+    }
+
     @Override
     protected void setUpView() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            if (!(MainActivity.this.checkSelfPermission(Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED)) {
+                requestCameraPermission();
+            }
+        }
 
         mToolbar = $(R.id.toolbar);
         mDrawerLayout = $(R.id.drawer_layout);
@@ -149,8 +175,7 @@ public class MainActivity extends BaseActivity {
                 }
 
                 if (MyConfig.isProcessing) {
-                  //  Toast.makeText(MainActivity.this, "请耐心等待应用气力完成再进行其他的操作！", Toast.LENGTH_SHORT).show();
-                    SnackBarUtils.makeShort(mDrawerLayout, "请耐心等待应用清理完成再进行其他的操作！").danger();
+                    SnackBarUtils.makeShort(mDrawerLayout, getString(R.string.isWorkingTips)).danger();
                     return false;
                 }
 
@@ -196,6 +221,11 @@ public class MainActivity extends BaseActivity {
                     case R.id.navigation_item_donation:
                         mToolbar.setTitle("捐赠");
                         switchFragment(DonationFragment.class);
+                        break;
+                    case R.id.navigation_item_ManagerApp:
+                        mToolbar.setTitle("应用管理");
+                        switchFragment(ManagerAppFragment.class);
+                        break;
                     default:
                         break;
                 }

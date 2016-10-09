@@ -30,6 +30,12 @@
             android:icon="@drawable/hosts"
             android:title="@string/hosts" />
 
+        <item
+            android:id="@+id/navigation_item_ManagerApp"
+            android:icon="@drawable/hosts"
+            android:title="应用管理" />
+
+
 
         <item android:title="@string/other">
             <menu>
