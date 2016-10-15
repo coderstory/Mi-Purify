@@ -30,7 +30,7 @@ public class ThemePather8 implements IModule {
             MIUI_DRM();
         }
         if (lpparam.packageName.equals("com.android.thememanager")) {
-            XposedBridge.log("start thememanager Patch");
+           // XposedBridge.log("start thememanager Patch");
             //设计师资格
             findAndHookMethod("com.android.thememanager.util.ThemeOperationHandler", lpparam.classLoader,"isTrialable", XC_MethodReplacement.returnConstant(true));
             //是否合法
@@ -45,7 +45,7 @@ public class ThemePather8 implements IModule {
     @Override
     public void initZygote(IXposedHookZygoteInit.StartupParam startupParam) {
 
-        XposedBridge.log("start DRM Patch");
+        //XposedBridge.log("start DRM Patch");
         MIUI_DRM();
     }
 

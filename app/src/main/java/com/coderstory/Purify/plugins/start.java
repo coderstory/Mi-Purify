@@ -78,6 +78,9 @@ public class start implements IXposedHookZygoteInit, IXposedHookLoadPackage, IXp
         if (prefs.getBoolean("CreakMIUI8", false)) {
             new ThemePather8().initZygote(startupParam);
         }
+        if (prefs.getBoolean("enableadb", false)) {
+             new Others().initZygote(startupParam);
+        }
 
     }
 }

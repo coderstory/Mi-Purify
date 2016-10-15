@@ -32,85 +32,55 @@ public class Others implements IModule {
         prefs.makeWorldReadable();
         prefs.reload();
 
-        //安全中心
-        if (loadPackageParam.packageName.equals("com.miui.securitycenter")) {
-
-            if (prefs.getBoolean("enableadb", false)) {
-                findAndHookMethod("com.miui.permcenter.install.c", loadPackageParam.classLoader, "isEnabled", XC_MethodReplacement.returnConstant(false));
-              findAndHookMethod("com.miui.permcenter.install.c", loadPackageParam.classLoader, "dK", XC_MethodReplacement.returnConstant(true));
-               findAndHookMethod("com.miui.permcenter.install.c", loadPackageParam.classLoader, "dw", XC_MethodReplacement.returnConstant(true));
-               findAndHookMethod("com.miui.permcenter.install.AdbInstallVerifyActivity", loadPackageParam.classLoader, "c", Context.class,boolean.class, XC_MethodReplacement.returnConstant(false));
-               // findAndHookMethod("com.miui.permcenter.install.c", loadPackageParam.classLoader, "dT", XC_MethodReplacement.returnConstant(true));
-               // findAndHookMethod("com.miui.permcenter.install.AdbInstallActivity", loadPackageParam.classLoader, "v", String.class, XC_MethodReplacement.returnConstant(true));
-                findAndHookMethod("com.miui.permcenter.install.i", loadPackageParam.classLoader, "onReceive", Context.class, Intent.class, new XC_MethodReplacement() {
-                    @Override
-                    protected Object replaceHookedMethod(MethodHookParam param) throws Throwable {
-                        return null;
-                    }
-                });
-
-                findAndHookMethod("com.miui.permcenter.install.c", loadPackageParam.classLoader, "X",String.class, new XC_MethodReplacement() {
-                    @Override
-                    protected Object replaceHookedMethod(MethodHookParam param) throws Throwable {
-                        return null;
-                    }
-                });
-
-                findAndHookMethod("com.miui.common.persistence.b", loadPackageParam.classLoader, "c", String.class, boolean.class, new XC_MethodHook() {
-                    @Override
-                    protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
-                        super.beforeHookedMethod(param);
-                        if (param.args[0].toString().equals("perm_adb_install_notify")) {
-                            param.setResult(true);
-                        }
-                    }
-                });
+        //XposedBridge.log("正在加载"+loadPackageParam.packageName);
 
 
-            }
-
-//            findAndHookMethod("com.miui.securitycenter.SysAppProtActivity", loadPackageParam.classLoader, "c", Map.class, new XC_MethodReplacement() {
-//
-//                @Override
-//                protected Object replaceHookedMethod(MethodHookParam param) throws Throwable {
-//                    return null;
-//                }
-//            });
-//            findAndHookMethod("com.miui.securitycenter.SysAppProtActivity", loadPackageParam.classLoader, "lj", Map.class, new XC_MethodReplacement() {
-//
-//                @Override
-//                protected Object replaceHookedMethod(MethodHookParam param) throws Throwable {
-//                    return null;
-//                }
-//            });
-
-            return;
-
-        }
 
 
         //窗口权限 miui 8
         if (loadPackageParam.packageName.equals("android")) {
+
+//            findAndHookConstructor("com.android.commands.pm.PmInjector", loadPackageParam.classLoader, "isSupport", XC_MethodReplacement.returnConstant(false));
+//            findAndHookConstructor("com.android.commands.pm.PmInjector", loadPackageParam.classLoader, "startPackageInstallerForConfirm", String.class, XC_MethodReplacement.returnConstant(true));
+//            findAndHookConstructor("com.android.commands.pm.PmInjector", loadPackageParam.classLoader, "getDefaultUserID", XC_MethodReplacement.returnConstant(true));
+
+
             if (prefs.getBoolean("fixpcb", false)) {
-                XposedHelpers.findAndHookMethod("com.android.server.policy.PhoneWindowManager", loadPackageParam.classLoader, "checkAddPermission", WindowManager.LayoutParams.class, int[].class, new XC_MethodHook() {
+               findAndHookMethod("com.android.server.policy.PhoneWindowManager", loadPackageParam.classLoader, "checkAddPermission", WindowManager.LayoutParams.class, int[].class, new XC_MethodHook() {
                     protected void afterHookedMethod(XC_MethodHook.MethodHookParam paramAnonymousMethodHookParam) {
                         if ((Integer) paramAnonymousMethodHookParam.getResult() < 0) {
                             paramAnonymousMethodHookParam.setResult(0);
                         }
-                    }
+                       }
                 });
             }
         }
+
+
+
     }
 
     @Override
     public void initZygote(IXposedHookZygoteInit.StartupParam startupParam) {
-
+//               if (startupParam.startsSystemServer) {
+//                   findAndHookConstructor("com.android.commands.pm.PmInjector", null, "isSupport", XC_MethodReplacement.returnConstant(false));
+//                   findAndHookConstructor("com.android.commands.pm.PmInjector", null, "startPackageInstallerForConfirm", String.class, XC_MethodReplacement.returnConstant(true));
+//                   findAndHookConstructor("com.android.commands.pm.PmInjector", null, "getDefaultUserID", XC_MethodReplacement.returnConstant(true));
+//               }
     }
 
     private static void findAndHookMethod(String p1, ClassLoader lpparam, String p2, Object... parameterTypesAndCallback) {
         try {
             XposedHelpers.findAndHookMethod(p1, lpparam, p2, parameterTypesAndCallback);
+
+        } catch (Throwable localString3) {
+            XposedBridge.log(localString3.toString());
+        }
+    }
+
+    private static void findAndHookConstructor(String p1, ClassLoader lpparam, Object... parameterTypesAndCallback) {
+        try {
+            XposedHelpers.findAndHookConstructor(p1, lpparam,  parameterTypesAndCallback);
 
         } catch (Throwable localString3) {
             XposedBridge.log(localString3.toString());

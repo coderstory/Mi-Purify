@@ -22,7 +22,7 @@ public class isEnable implements IModule {
     public void handleLoadPackage(XC_LoadPackage.LoadPackageParam lpparam) {
         if (lpparam.packageName.equals("com.coderstory.Purify")) {
             try {
-                XposedBridge.log("插件已激活");
+               XposedBridge.log("小米净化 1.x 开始Patch");
                 XposedHelpers.findAndHookMethod("com.coderstory.Purify.activity.MainActivity", lpparam.classLoader, "isEnable", XC_MethodReplacement.returnConstant(true));
             } catch (Throwable p1) {
                 XposedBridge.log(p1);

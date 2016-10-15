@@ -74,17 +74,17 @@ public class MainActivity extends BaseActivity {
 
 
 
-    private static final int REQUEST_PERMISSION_CAMERA_CODE = 1;
+    private static final int READ_EXTERNAL_STORAGE_CODE = 1;
     private void requestCameraPermission() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            MainActivity.this.requestPermissions(new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, REQUEST_PERMISSION_CAMERA_CODE);
+            MainActivity.this.requestPermissions(new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, READ_EXTERNAL_STORAGE_CODE);
         }
     }
 
     @Override
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        if (requestCode == REQUEST_PERMISSION_CAMERA_CODE) {
+        if (requestCode == READ_EXTERNAL_STORAGE_CODE) {
             int grantResult = grantResults[0];
             boolean granted = grantResult == PackageManager.PERMISSION_GRANTED;
             Log.i("MainActivity", "onRequestPermissionsResult granted=" + granted);
@@ -94,7 +94,7 @@ public class MainActivity extends BaseActivity {
     @Override
     protected void setUpView() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            if (!(MainActivity.this.checkSelfPermission(Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED)) {
+            if (!(MainActivity.this.checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED)) {
                 requestCameraPermission();
             }
         }
