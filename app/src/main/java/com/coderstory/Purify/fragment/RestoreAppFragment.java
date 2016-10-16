@@ -197,7 +197,9 @@ public class RestoreAppFragment extends BaseFragment {
 
         @Override
         protected String doInBackground(String... params) {
-            Looper.prepare();
+            if (Looper.myLooper()==null) {
+                Looper.prepare();
+            }
             initData();
             return null;
         }
