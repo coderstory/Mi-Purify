@@ -53,8 +53,6 @@ public class RemoveAds implements IModule {
         prefs.makeWorldReadable();
         prefs.reload();
 
-
-
         //核心模块
         if (loadPackageParam.packageName.equals("com.miui.core")) {
             findAndHookMethod("miui.os.SystemProperties", loadPackageParam.classLoader, "get", String.class, String.class, new XC_MethodHook() {
@@ -99,10 +97,6 @@ public class RemoveAds implements IModule {
         if (loadPackageParam.packageName.equals("com.miui.video")) {
             if (prefs.getBoolean("enablemiuividio", false)) {
                 findAndHookMethod("com.video.ui.view.AdView", loadPackageParam.classLoader, "getAdsBlock", Context.class, XC_MethodReplacement.returnConstant(null));
-//                Class<?> clsCallback = Class.forName("com.video.ui.idata.SyncServiceHelper$Callback");
-//                if (clsCallback != null) {
-//                    findAndHookMethod("com.video.ui.idata.SyncServiceHelper", loadPackageParam.classLoader, "fetchAds", Context.class, clsCallback, XC_MethodReplacement.returnConstant(null));
-//                }
                 findAndHookMethod("com.video.ui.idata.iDataORM", loadPackageParam.classLoader, "getBooleanValue", Context.class, String.class, boolean.class, new XC_MethodHook() {
                     @Override
                     protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
@@ -154,7 +148,6 @@ public class RemoveAds implements IModule {
                 findAndHookMethod("com.android.fileexplorer.model.ConfigHelper", loadPackageParam.classLoader, "tryInit", Context.class, XC_MethodReplacement.returnConstant(false));
                 findAndHookMethod("com.android.fileexplorer.model.ConfigHelper", loadPackageParam.classLoader, "isVideoEnable", Context.class, XC_MethodReplacement.returnConstant(false));
                 findAndHookMethod("com.android.fileexplorer.model.ConfigHelper", loadPackageParam.classLoader, "isStickerEnable", Context.class, XC_MethodReplacement.returnConstant(false));
-                // findAndHookMethod("com.android.fileexplorer.util.XLUtil", loadPackageParam.classLoader, "isNetworkAvailable", Context.class, XC_MethodReplacement.returnConstant(false));
                 findAndHookMethod("com.xunlei.adlibrary.XunleiADSdk", loadPackageParam.classLoader, "setup", Context.class, new XC_MethodReplacement() {
                     @Override
                     protected Object replaceHookedMethod(MethodHookParam methodHookParam) throws Throwable {
@@ -174,7 +167,6 @@ public class RemoveAds implements IModule {
                     }
                 });
 
-
                 findAndHookMethod("com.android.fileexplorer.model.Config", loadPackageParam.classLoader, "isCloudVideoEnabled", Context.class, XC_MethodReplacement.returnConstant(false));
                 findAndHookMethod("com.android.fileexplorer.model.Config", loadPackageParam.classLoader, "isRecentAdShow", Context.class, XC_MethodReplacement.returnConstant(false));
                 findAndHookMethod("com.android.fileexplorer.model.Config", loadPackageParam.classLoader, "isStickerEnabled",  XC_MethodReplacement.returnConstant(false));
@@ -191,30 +183,9 @@ public class RemoveAds implements IModule {
                 findAndHookMethod("com.miui.player.util.AdUtils", loadPackageParam.classLoader, "isAdEnable", XC_MethodReplacement.returnConstant(false));
                 findAndHookMethod("com.miui.player.util.AdUtils", loadPackageParam.classLoader, "getPlayAd", "esponse.Listener<Result>", "Response.ErrorListener", XC_MethodReplacement.returnConstant(null));
                 findAndHookMethod("com.miui.player.util.ExperimentsHelper", loadPackageParam.classLoader, "isAdEnabled", XC_MethodReplacement.returnConstant(false));
-                //findAndHookMethod("com.miui.player.util.Configuration", loadPackageParam.classLoader, "isCmCustomization", XC_MethodReplacement.returnConstant(true));
+
                 findAndHookMethod("com.miui.player.util.Configuration", loadPackageParam.classLoader, "isCmTest", XC_MethodReplacement.returnConstant(true));
-                //findAndHookMethod("com.miui.player.util.Configuration", loadPackageParam.classLoader, "isCpLogoVisiable", XC_MethodReplacement.returnConstant(false));
-                //findAndHookMethod("com.miui.optimizecenter.result.DataModel", loadPackageParam.classLoader, "post", Map.class, XC_MethodReplacement.returnConstant(""));
-                //findAndHookMethod("com.miui.optimizecenter.config.MiStat", loadPackageParam.classLoader, "getChannel", XC_MethodReplacement.returnConstant("international"));
-              //  Class<?> clsAdImageView = Class.forName("com.miui.optimizecenter.widget.AdImageView");
-               // Class<?> clsAdvertisement = Class.forName("com.miui.optimizecenter.result.Advertisement");
-             //   if (clsAdImageView != null && clsAdvertisement != null) {
-               //     findAndHookMethod("com.miui.optimizecenter.result.CleanResultActivity", loadPackageParam.classLoader, "startAdCountdown", clsAdImageView, clsAdvertisement, XC_MethodReplacement.returnConstant(null));
-               //     findAndHookMethod("com.miui.optimizecenter.result.CleanResultActivity", loadPackageParam.classLoader, "addAdvertisementEvent", String.class, clsAdvertisement, XC_MethodReplacement.returnConstant(null));
-              //  }
-//                Class<?> clsAdInfo = Class.forName("com.xiaomi.music.online.model.AdInfo");
-//                if (clsAdInfo != null) {
-//                    findAndHookMethod("com.miui.player.util.AdForbidManager", loadPackageParam.classLoader, "recordAdInfo", clsAdInfo, int.class, XC_MethodReplacement.returnConstant(null));
-//                    findAndHookMethod("com.miui.player.util.AdForbidManager", loadPackageParam.classLoader, "addForbidInfo", String.class, XC_MethodReplacement.returnConstant(null));
-//                    findAndHookMethod("com.miui.player.util.AdForbidManager", loadPackageParam.classLoader, "isForbidden", String.class, XC_MethodReplacement.returnConstant(true));
-//                }
-//                final Class<?> clsDisplayItem = Class.forName("com.miui.player.display.model.DisplayItem");
-//                findAndHookMethod("com.miui.player.display.view.LocalDynamicList", loadPackageParam.classLoader, "createHeader", new XC_MethodReplacement() {
-//                    @Override
-//                    protected Object replaceHookedMethod(MethodHookParam methodHookParam) throws Throwable {
-//                        return clsDisplayItem.newInstance();
-//                    }
-//                });
+
 
             }
         }
@@ -222,20 +193,10 @@ public class RemoveAds implements IModule {
         //下载管理
         if (loadPackageParam.packageName.equals("com.android.providers.downloads.ui")) {
             if (prefs.getBoolean("enableDownload", false)) {
-//                findAndHookMethod("com.android.providers.downloads.ui.recommend.config.ADConfig", loadPackageParam.classLoader, "OSSupportAD", new XC_MethodHook() {
-//                    protected void beforeHookedMethod(MethodHookParam paramAnonymousMethodHookParam)
-//                            throws Throwable {
-//                        paramAnonymousMethodHookParam.setResult(false);
-//                    }
-//                });
-            //    XposedBridge.log("开始修改下载管理");
-               // findAndHookMethod("com.android.providers.downloads.ui.utils.BuildUtils", loadPackageParam.classLoader, "isCmTestBuilder", XC_MethodReplacement.returnConstant(true));
-
                 findAndHookConstructor("com.android.providers.downloads.ui.recommend.HomePageRecommendApi", loadPackageParam.classLoader, "getAdNumlnRecommendAppList",List.class, XC_MethodReplacement.returnConstant(0));
                 findAndHookConstructor("com.android.providers.downloads.ui.recommend.HomePageRecommendApi", loadPackageParam.classLoader, "getBannerAdList",long.class,String.class,String.class, XC_MethodReplacement.returnConstant(null));
                 findAndHookConstructor("com.android.providers.downloads.ui.recommend.HomePageRecommendApi", loadPackageParam.classLoader, "getDatailPageRecommend", String.class,String.class,XC_MethodReplacement.returnConstant(null));
                 findAndHookConstructor("com.android.providers.downloads.ui.recommend.HomePageRecommendApi", loadPackageParam.classLoader, "requestBannerRecommend",String.class,String.class, XC_MethodReplacement.returnConstant(null));
-
                 findAndHookMethod("com.android.providers.downloads.ui.utils.CloudConfigHelper", loadPackageParam.classLoader, "getAdButtonType", XC_MethodReplacement.returnConstant(0));
                 findAndHookMethod("com.android.providers.downloads.ui.utils.CloudConfigHelper", loadPackageParam.classLoader, "getAdSummaryType", XC_MethodReplacement.returnConstant(0));
                 findAndHookMethod("com.android.providers.downloads.ui.utils.CloudConfigHelper", loadPackageParam.classLoader, "getAdType", XC_MethodReplacement.returnConstant(6));
@@ -245,8 +206,6 @@ public class RemoveAds implements IModule {
                 findAndHookMethod("com.android.providers.downloads.ui.utils.CloudConfigHelper", loadPackageParam.classLoader, "isShouldShowRecommendInfo", XC_MethodReplacement.returnConstant(false));
                 findAndHookMethod("com.android.providers.downloads.ui.utils.CloudConfigHelper", loadPackageParam.classLoader, "isStableShowActivateNotify", XC_MethodReplacement.returnConstant(false));
                 findAndHookMethod("com.android.providers.downloads.ui.utils.CloudConfigHelper", loadPackageParam.classLoader, "supportRank", XC_MethodReplacement.returnConstant(false));
-
-                //findAndHookMethod("com.android.providers.downloads.ui.utils.PreferenceUtil", loadPackageParam.classLoader, "supportRank", XC_MethodReplacement.returnConstant(false));
             }
         }
 
@@ -270,9 +229,6 @@ public class RemoveAds implements IModule {
         //个性主题
         if (loadPackageParam.packageName.equals("com.android.thememanager")) {
             if (prefs.getBoolean("enabletheme", false)) {
-                //0930之前的版本
-                // findAndHookMethod("com.android.thememanager.controller.online.OnlineJSONDataParser", loadPackageParam.classLoader, "parseAdInfo", String.class, XC_MethodReplacement.returnConstant(null));
-                //0930版本
                 findAndHookMethod("com.android.thememanager.model.AdInfo", loadPackageParam.classLoader, "parseAdInfo", String.class, XC_MethodReplacement.returnConstant(null));
                 findAndHookMethod("com.android.thememanager.model.AdInfo", loadPackageParam.classLoader, "isSupported", "com.android.thememanager.model.AdInfo", XC_MethodReplacement.returnConstant(false));
                 findAndHookMethod("com.android.thememanager.view.AdBannerView", loadPackageParam.classLoader, "showAdMark", new XC_MethodHook() {
@@ -284,77 +240,17 @@ public class RemoveAds implements IModule {
             }
         }
 
-        //搜索框
-        if (loadPackageParam.packageName.equals("com.android.quicksearchbox")) {
-
-            if (prefs.getBoolean("enableHotKey", false)) {
-                //新版本 v8
-                findAndHookMethod("com.android.quicksearchbox.ui.LocalListView", loadPackageParam.classLoader, "updateHotQuery", List.class, int.class, new XC_MethodReplacement() {
-                    @Override
-                    protected Object replaceHookedMethod(MethodHookParam param) throws Throwable {
-                        return null;
-                    }
-                });
-                //旧版本 v7
-                //  findAndHookMethod("com.android.quicksearchbox.util.HotWordsUtil", loadPackageParam.classLoader, "setHotQueryView", "com.android.quicksearchbox.ui.HotQueryView", new XC_MethodHook() {
-                //    protected void beforeHookedMethod(MethodHookParam paramAnonymousMethodHookParam)
-                //           throws Throwable {
-                ////      paramAnonymousMethodHookParam.setResult(null);
-                //}
-                //});
-            }
-        }
-        //日历
-        if (loadPackageParam.packageName.equals("com.android.calendar")) {
-            if (prefs.getBoolean("enablecalendar", false)) {
-                findAndHookMethod("com.miui.calendar.ad.AdUtils", loadPackageParam.classLoader, "canShowBrandAd", Context.class, XC_MethodReplacement.returnConstant(false));
-
-                findAndHookMethod("com.miui.calendar.ad.AdService", loadPackageParam.classLoader, "onHandleIntent", Intent.class, XC_MethodReplacement.returnConstant(null));
-
-                //findAndHookConstructor("com.miui.calendar.settings", loadPackageParam.classLoader, "canHolidayDisplay", Context.class, XC_MethodReplacement.returnConstant(false));
-
-                findAndHookMethod("com.miui.calendar.card.single.local.SummarySingleCard", loadPackageParam.classLoader, "needShowAdBanner", XC_MethodReplacement.returnConstant(false));
-                findAndHookMethod("com.miui.calendar.card.single.custom.ad.AdSingleCard", loadPackageParam.classLoader, "needDisplay", XC_MethodReplacement.returnConstant(false));
-                findAndHookMethod("com.miui.calendar.card.single.custom.ad.LargeImageAdSingleCard", loadPackageParam.classLoader, "needDisplay", XC_MethodReplacement.returnConstant(false));
-                findAndHookMethod("com.miui.calendar.card.single.custom.ad.LargeImageWithInstallAdSingleCard", loadPackageParam.classLoader, "needDisplay", XC_MethodReplacement.returnConstant(false));
-                findAndHookMethod("com.miui.calendar.card.single.custom.ad.SmallImageWithInstallAdSingleCard", loadPackageParam.classLoader, "needDisplay", XC_MethodReplacement.returnConstant(false));
-              //  findAndHookMethod("com.miui.calendar.card.single.custom.ad.SmallImageAdSingleCard", loadPackageParam.classLoader, "needDisplay", XC_MethodReplacement.returnConstant(false));
-                findAndHookMethod("com.miui.calendar.card.single.custom.ad.ThreeImagesAdSingleCard", loadPackageParam.classLoader, "needDisplay", XC_MethodReplacement.returnConstant(false));
-                findAndHookMethod("com.miui.calendar.card.single.custom.ad.ThreeImagesWithInstallAdSingleCard", loadPackageParam.classLoader, "needDisplay", XC_MethodReplacement.returnConstant(false));
-             //   ("com.miui.calendar.card.single.SingleCard", loadPackageParam.classLoader, "needDisplay", XC_MethodReplacement.returnConstant(false));
-
-
-                findAndHookMethod("com.miui.calendar.ad.AdAnalytics", loadPackageParam.classLoader, "trackImmediately", Context.class,String.class,String.class,new XC_MethodReplacement() {
-                    @Override
-                    protected Object replaceHookedMethod(MethodHookParam param) throws Throwable {
-                        return null;
-                    }
-                });
-
-                findAndHookMethod("com.miui.calendar.ad.AdAnalytics", loadPackageParam.classLoader, "trackImmediately", Context.class,"com.miui.calendar.ad.AdAnalytics.AdEvent",new XC_MethodReplacement() {
-                    @Override
-                    protected Object replaceHookedMethod(MethodHookParam param) throws Throwable {
-                        return null;
-                    }
-                });
-            }
-        }
-
         // 短信
         if (loadPackageParam.packageName.equals("com.android.mms")) {
             if (prefs.getBoolean("enableMMS", false)) {
-              //  XposedBridge.log("开始短信mod");
                 findAndHookMethod("com.android.mms.ui.MessageUtils", loadPackageParam.classLoader, "isMessagingTemplateAllowed", Context.class, new XC_MethodHook() {
                     protected void beforeHookedMethod(MethodHookParam paramAnonymousMethodHookParam)
                             throws Throwable {
                         Context mc = (Context) paramAnonymousMethodHookParam.args[0];
-                        //XposedBridge.log("短信 当前类：" + mc.getClass().getName().toLowerCase());
                         if (mc.getClass().getName().toLowerCase().contains("app")) {
                             paramAnonymousMethodHookParam.setResult(false);
-                           // XposedBridge.log("返回false");
                         } else {
                             paramAnonymousMethodHookParam.setResult(true);
-                          //  XposedBridge.log("返回true");
                         }
                     }
                 });

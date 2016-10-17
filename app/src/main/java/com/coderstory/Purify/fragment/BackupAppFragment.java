@@ -132,11 +132,9 @@ public class BackupAppFragment extends BaseFragment {
 //1 已备份  0未备份 2 有新的版本未备份
     private int isBackuped(PackageInfo packageInfo) {
         int result = 0;
-       // DirManager.apkAll = DirManager.GetApkFileName(Environment.getExternalStorageDirectory().getPath() + "/MIUI Purify/backup/");
         if (DirManager.apkAll != null) {
             for (AppInfo element :appInfoList2)
             {
-              //  if(packageInfo.packageName.equals("com.coderstory.Purify")) {
                     if ((packageInfo.packageName).equals(element.getPackageName())) {
                         if (packageInfo.versionCode > element.getVersionCode()) {
                             result = 2;
@@ -144,7 +142,6 @@ public class BackupAppFragment extends BaseFragment {
                             result = 1;
                         }
                         break;
-                 //   }
                 }
             }
         }
@@ -153,7 +150,6 @@ public class BackupAppFragment extends BaseFragment {
 
     private void initData() {
         packages.clear();
-        //   Toast.makeText(getActivity(), R.string.isloading, Toast.LENGTH_LONG).show();
         packages = getActivity().getPackageManager().getInstalledPackages(0);
         initFruit();
     }
@@ -224,14 +220,12 @@ public class BackupAppFragment extends BaseFragment {
 
         @Override
         protected void onPreExecute() {
-            //getActivity().setProgressBarIndeterminateVisibility(true);
             showProgress();
         }
 
         @Override
         protected void onPostExecute(String param) {
             showData();
-           // getActivity().setProgressBarIndeterminateVisibility(false);
             adapter.notifyDataSetChanged();
             closeProgress();
         }
@@ -262,8 +256,6 @@ public class BackupAppFragment extends BaseFragment {
 
     protected void showProgress() {
         if (dialog == null) {
-//		    dialog.setContentView(R.layout.progress_dialog);
-            //    dialog.getWindow().setAttributes(params);
             dialog = ProgressDialog.show(getActivity(), getString(R.string.Tips_Title), getString(R.string.loadappinfo));
             dialog.show();
         }

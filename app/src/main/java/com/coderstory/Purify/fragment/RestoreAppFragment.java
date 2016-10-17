@@ -170,15 +170,13 @@ public class RestoreAppFragment extends BaseFragment {
     public class MyTask extends AsyncTask<String, Integer, String> {
 
         @Override
-        protected void onPreExecute() {
-         //   getActivity().setProgressBarIndeterminateVisibility(true);
+        protected void onPreExecute() {;
             showProgress();
         }
 
         @Override
         protected void onPostExecute(String param) {
             showData();
-           // getActivity().setProgressBarIndeterminateVisibility(false);
             adapter.notifyDataSetChanged();
             closeProgress();
         }
@@ -210,11 +208,7 @@ public class RestoreAppFragment extends BaseFragment {
 
     protected void showProgress() {
         if (dialog == null) {
-
-//		    dialog.setContentView(R.layout.progress_dialog);
-            //    dialog.getWindow().setAttributes(params);
             dialog = ProgressDialog.show(getActivity(), getString(R.string.Tips_Title), getString(R.string.loadappinfo));
-
             dialog.show();
         }
     }

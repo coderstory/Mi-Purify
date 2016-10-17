@@ -45,7 +45,6 @@ public class SettingsFragment extends BaseFragment {
 
                 }else{
                     execCommand("settings put global captive_portal_detection_enabled 0",true);
-                  //  execCommand("adb shell settings put global captive_portal_detection_enabled 1",true);
                 }
             }
         });

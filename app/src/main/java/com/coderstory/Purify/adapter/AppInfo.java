@@ -7,9 +7,6 @@ import android.graphics.drawable.Drawable;
  */
 public class AppInfo {
 
-//    public AppInfo() {
-//    }
-
     private String name;
     private Drawable imageId;
     //private String AppDir;
@@ -17,7 +14,7 @@ public class AppInfo {
     private String packageName = "";
     private  String Version="";
 
-    //public void setAppDir(String AppDir) {this.AppDir=AppDir;}
+
     public void setDisable(boolean disable) {
         this.isDisable = disable;
     }
@@ -34,9 +31,7 @@ public class AppInfo {
     public String getName() {
         return this.name;
     }
-//    public String getappdir() {
-//        return this.AppDir;
-//    }
+
     public boolean getDisable() {
         return isDisable;
     }
@@ -46,7 +41,6 @@ public class AppInfo {
         this.imageId = imageId;
         this.packageName = packageName;
         this.isDisable = Disable;
-       // this.AppDir = appdir;
         this.Version=version;
     }
 }

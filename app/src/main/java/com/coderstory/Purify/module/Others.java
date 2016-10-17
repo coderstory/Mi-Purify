@@ -32,18 +32,8 @@ public class Others implements IModule {
         prefs.makeWorldReadable();
         prefs.reload();
 
-        //XposedBridge.log("正在加载"+loadPackageParam.packageName);
-
-
-
-
         //窗口权限 miui 8
         if (loadPackageParam.packageName.equals("android")) {
-
-//            findAndHookConstructor("com.android.commands.pm.PmInjector", loadPackageParam.classLoader, "isSupport", XC_MethodReplacement.returnConstant(false));
-//            findAndHookConstructor("com.android.commands.pm.PmInjector", loadPackageParam.classLoader, "startPackageInstallerForConfirm", String.class, XC_MethodReplacement.returnConstant(true));
-//            findAndHookConstructor("com.android.commands.pm.PmInjector", loadPackageParam.classLoader, "getDefaultUserID", XC_MethodReplacement.returnConstant(true));
-
 
             if (prefs.getBoolean("fixpcb", false)) {
                findAndHookMethod("com.android.server.policy.PhoneWindowManager", loadPackageParam.classLoader, "checkAddPermission", WindowManager.LayoutParams.class, int[].class, new XC_MethodHook() {
@@ -62,11 +52,6 @@ public class Others implements IModule {
 
     @Override
     public void initZygote(IXposedHookZygoteInit.StartupParam startupParam) {
-//               if (startupParam.startsSystemServer) {
-//                   findAndHookConstructor("com.android.commands.pm.PmInjector", null, "isSupport", XC_MethodReplacement.returnConstant(false));
-//                   findAndHookConstructor("com.android.commands.pm.PmInjector", null, "startPackageInstallerForConfirm", String.class, XC_MethodReplacement.returnConstant(true));
-//                   findAndHookConstructor("com.android.commands.pm.PmInjector", null, "getDefaultUserID", XC_MethodReplacement.returnConstant(true));
-//               }
     }
 
     private static void findAndHookMethod(String p1, ClassLoader lpparam, String p2, Object... parameterTypesAndCallback) {

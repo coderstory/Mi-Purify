@@ -47,15 +47,8 @@ public class MyAppIntro extends AppIntro {
             addSlide(AppIntroFragment.newInstance("ROOT权限", "软件的功能不是需要Xposed模块就是需要ROOT,不支持的话就无法生效. \n", R.drawable.ic_slide3,color));
             addSlide(AppIntroFragment.newInstance("使用须知!", "请勿未禁止软件自启,否则功能可能失效\n", R.drawable.ic_slide4, color));
             addSlide(AppIntroFragment.newInstance("设置完毕!", "祝您玩的愉快! ", R.drawable.ic_slide5, color));
-
-            // Ask Camera permission in the second slide
             askForPermissions(new String[]{Manifest.permission.READ_PHONE_STATE}, 2);
-
-            // Ask Storage permission in the third slide
             askForPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 3);
-
-            // Ask Location permission in the fifth slide
-            // askForPermissions(new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 5);
 
             //禁用skip
             showSkipButton(false);
@@ -85,8 +78,6 @@ public class MyAppIntro extends AppIntro {
     public void onSkipPressed(Fragment currentFragment) {
         super.onSkipPressed(currentFragment);
         loadMainActivity();
-       // Toast.makeText(getApplicationContext(), getString(R.string.skip), Toast.LENGTH_SHORT).show();
-
     }
     int count=0;
     @Override
@@ -108,7 +99,6 @@ public class MyAppIntro extends AppIntro {
     public void getStarted(View v) {
         loadMainActivity();
     }
-
 
 
     void SplashActivity() {

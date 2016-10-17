@@ -64,8 +64,6 @@ public class ManagerAppFragment extends BaseFragment implements ViewPager.OnPage
         tabHost.addTab(newTab(R.string.tab_2));
 
         for (int i = 0; i < tabHost.getTabWidget().getChildCount(); i++) {
-
-            // tabHost.setBackgroundResource(R.drawable.tab_selector);
             final View view = tabHost.getTabWidget().getChildTabViewAt(i);
             final View textView = view.findViewById(android.R.id.title);
             ((TextView) textView).setTextColor(getResources().getColor(R.color.white));
@@ -73,8 +71,6 @@ public class ManagerAppFragment extends BaseFragment implements ViewPager.OnPage
             ((TextView) textView).setTextSize(20);
             ((TextView) textView).setTextSize(20);
             ((TextView) textView).setSingleLine(true);
-           // tabHost.getTabWidget().getChildAt(i).findViewById(android.R.id.icon);
-           // tabHost.getTabWidget().getChildAt(i).getLayoutParams().height = 75;
         }
         tabHost.setOnTabChangedListener(ManagerAppFragment.this);
         tabHost.setCurrentTab(currentTab);
