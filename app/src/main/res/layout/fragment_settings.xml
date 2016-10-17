@@ -101,16 +101,7 @@
                 android:text="@string/fixpcb" />
 
 
-            <Switch
-                android:id="@+id/enableadb"
-                android:layout_width="match_parent"
-                android:layout_height="80dp"
-                android:layout_marginTop="10dp"
-                android:background="@color/switchBtn"
-                android:paddingEnd="30dp"
-                android:visibility="gone"
-                android:paddingStart="30dp"
-                android:text="@string/enableadb" />
+
 
             <Switch
                 android:id="@+id/hideicon"

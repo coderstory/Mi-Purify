@@ -106,13 +106,7 @@ public class BlockADSFragment extends BaseFragment {
             }
         });
 
-        $(R.id.enableCalendar).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                getEditor().putBoolean("enableCalendar", ((Switch) v).isChecked());
-                getEditor().apply();
-            }
-        });
+
 
         $(R.id.enableSafeCenter).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -122,13 +116,7 @@ public class BlockADSFragment extends BaseFragment {
             }
         });
 
-        $(R.id.enableHotKey).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                getEditor().putBoolean("enableHotKey", ((Switch) v).isChecked());
-                getEditor().apply();
-            }
-        });
+
 
         $(R.id.enableMusic).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -146,13 +134,7 @@ public class BlockADSFragment extends BaseFragment {
             }
         });
 
-        $(R.id.enablecalendar).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                getEditor().putBoolean("enablecalendar", ((Switch) v).isChecked());
-                getEditor().apply();
-            }
-        });
+
         $(R.id.enabletheme).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -172,12 +154,12 @@ public class BlockADSFragment extends BaseFragment {
         ((Switch) $(R.id.enableWeather)).setChecked(getPrefs().getBoolean("enableWeather", false));
         ((Switch) $(R.id.enableFileManager)).setChecked(getPrefs().getBoolean("enableFileManager", false));
         ((Switch) $(R.id.enableDownload)).setChecked(getPrefs().getBoolean("enableDownload", false));
-        ((Switch) $(R.id.enableCalendar)).setChecked(getPrefs().getBoolean("enableCalendar", false));
-        ((Switch) $(R.id.enableHotKey)).setChecked(getPrefs().getBoolean("enableHotKey", false));
+
+
         ((Switch) $(R.id.enableSafeCenter)).setChecked(getPrefs().getBoolean("enableSafeCenter", false));
         ((Switch) $(R.id.enableMusic)).setChecked(getPrefs().getBoolean("enableMusic", false));
         ((Switch) $(R.id.enablevideo)).setChecked(getPrefs().getBoolean("enablemiuividio", false));
-        ((Switch) $(R.id.enablecalendar)).setChecked(getPrefs().getBoolean("enablecalendar", false));
+
         setCheck(getPrefs().getBoolean("enableBlockAD", false));
     }
 
@@ -189,12 +171,12 @@ public class BlockADSFragment extends BaseFragment {
             $(R.id.enableWeather).setEnabled(true);
             $(R.id.enableFileManager).setEnabled(true);
             $(R.id.enableDownload).setEnabled(true);
-            $(R.id.enableCalendar).setEnabled(true);
-            $(R.id.enableHotKey).setEnabled(true);
+
+
             $(R.id.enableSafeCenter).setEnabled(true);
             $(R.id.enableMusic).setEnabled(true);
             $(R.id.enablevideo).setEnabled(true);
-            $(R.id.enablecalendar).setEnabled(true);
+
             $(R.id.enabletheme).setEnabled(true);
         } else {
             $(R.id.enableBlockADBasic).setEnabled(false);
@@ -202,12 +184,12 @@ public class BlockADSFragment extends BaseFragment {
             $(R.id.enableWeather).setEnabled(false);
             $(R.id.enableFileManager).setEnabled(false);
             $(R.id.enableDownload).setEnabled(false);
-            $(R.id.enableCalendar).setEnabled(false);
-            $(R.id.enableHotKey).setEnabled(false);
+
+
             $(R.id.enableSafeCenter).setEnabled(false);
             $(R.id.enableMusic).setEnabled(false);
             $(R.id.enablevideo).setEnabled(false);
-            $(R.id.enablecalendar).setEnabled(false);
+
             $(R.id.enabletheme).setEnabled(false);
         }
 

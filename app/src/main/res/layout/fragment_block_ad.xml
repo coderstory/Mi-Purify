@@ -87,29 +87,7 @@
 
         android:id="@+id/enableDownload" />
 
-    <Switch
-        android:text="@string/calendar"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:layout_marginTop="10dp"
-        android:background="@color/switchBtn"
-        android:paddingStart="30dp"
-        android:paddingEnd="30dp"
-        android:id="@+id/enableCalendar" />
 
-
-
-
-    <Switch
-        android:text="@string/hotkey"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:layout_marginTop="10dp"
-        android:background="@color/switchBtn"
-        android:paddingStart="30dp"
-        android:visibility="gone"
-        android:paddingEnd="30dp"
-        android:id="@+id/enableHotKey" />
 
     <Switch
         android:text="@string/enableSafeCenter"
@@ -133,16 +111,7 @@
         android:id="@+id/enableMusic" />
 
 
-    <Switch
-        android:text="@string/enablecalendar"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:layout_marginTop="10dp"
-        android:background="@color/switchBtn"
-        android:paddingStart="30dp"
-        android:paddingEnd="30dp"
-        android:visibility="gone"
-        android:id="@+id/enablecalendar" />
+
 
 
     <Switch

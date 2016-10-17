@@ -75,13 +75,7 @@ public class SettingsFragment extends BaseFragment {
         });
 
 
-        $(R.id.enableadb).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                getEditor().putBoolean("enableadb",((Switch)v).isChecked());
-                getEditor().apply();
-            }
-        });
+
 
 
         $(R.id.fixpcb).setOnClickListener(new View.OnClickListener() {
@@ -126,7 +120,7 @@ public class SettingsFragment extends BaseFragment {
         ((Switch) $(R.id.RemoveSearchBar)).setChecked(getPrefs().getBoolean("RemoveSearchBar",false));
         ((Switch) $(R.id.miuiMusicCustomization)).setChecked(getPrefs().getBoolean("miuiMusicCustomization",false));
         ((Switch) $(R.id.fixpcb)).setChecked(getPrefs().getBoolean("fixpcb",false));
-        ((Switch) $(R.id.enableadb)).setChecked(getPrefs().getBoolean("enableadb",false));
+
         ((Switch) $(R.id.hideicon)).setChecked(getPrefs().getBoolean("hideicon",false));
     }
 
