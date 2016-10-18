@@ -31,6 +31,7 @@ import com.coderstory.Purify.fragment.crackThemeFragment;
 import com.coderstory.Purify.utils.MD5Utils;
 import com.coderstory.Purify.utils.MyConfig;
 import com.coderstory.Purify.utils.root.SuHelper;
+import com.yolanda.nohttp.NoHttp;
 
 import ren.solid.library.activity.base.BaseActivity;
 import ren.solid.library.fragment.WebViewFragment;
@@ -55,7 +56,7 @@ public class MainActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        NoHttp.initialize(this);
     }
 
 
