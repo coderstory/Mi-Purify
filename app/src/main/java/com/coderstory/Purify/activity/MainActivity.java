@@ -28,12 +28,23 @@ import com.coderstory.Purify.fragment.HostsFragment;
 import com.coderstory.Purify.fragment.ManagerAppFragment;
 import com.coderstory.Purify.fragment.SettingsFragment;
 import com.coderstory.Purify.fragment.crackThemeFragment;
+import com.coderstory.Purify.nohttp.HttpListener;
 import com.coderstory.Purify.utils.MD5Utils;
 import com.coderstory.Purify.utils.MyConfig;
 import com.coderstory.Purify.utils.root.SuHelper;
+import com.yolanda.nohttp.Logger;
 import com.yolanda.nohttp.NoHttp;
+import com.yolanda.nohttp.RequestMethod;
+import com.yolanda.nohttp.rest.OnResponseListener;
+import com.yolanda.nohttp.rest.Request;
+import com.yolanda.nohttp.rest.RequestQueue;
+import com.yolanda.nohttp.rest.Response;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
-import ren.solid.library.activity.base.BaseActivity;
+import java.util.Locale;
+
 import ren.solid.library.fragment.WebViewFragment;
 import ren.solid.library.utils.SnackBarUtils;
 import ren.solid.library.utils.ViewUtils;
@@ -57,7 +68,43 @@ public class MainActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         NoHttp.initialize(this);
+        Logger.setDebug(true);
+
+
+        Request<JSONObject> request = NoHttp.createJsonObjectRequest("https://blog.coderstory.cn/updater-info111", RequestMethod.GET);
+        request(1, request, objectListener, true, true);
+
     }
+    private HttpListener<JSONObject> objectListener = new HttpListener<JSONObject>() {
+        @Override
+        public void onSucceed(int what, Response<JSONObject> response) {
+            JSONObject jsonObject = response.get();
+            if (0 == jsonObject.optInt("error", -1)) {
+                String result = "";
+                result = String.format(Locale.getDefault(), result, response.request().getRequestMethod().toString(), jsonObject.optString("url"), jsonObject.optString("data"), jsonObject.optString("error"));
+            //    mTvResult.setText(result);
+            }
+            Log.d(TAG, "onSucceed: ");
+
+            try {
+                String b=response.get().getString("URL");
+                boolean c=response.get().has("Version");
+                String ccc=":";
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+
+        @Override
+        public void onFailed(int what, Response<JSONObject> response) {
+            Log.d(TAG, "onSucceed: ");
+         //   showMessageDialog(R.string.request_failed, response.getException().getMessage());
+        }
+    };
+
+
+
+
 
 
 
