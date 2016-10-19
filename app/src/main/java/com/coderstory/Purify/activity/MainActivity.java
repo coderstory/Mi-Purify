@@ -2,6 +2,7 @@ package com.coderstory.Purify.activity;
 
 import android.Manifest;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
@@ -20,7 +21,6 @@ import android.view.MenuItem;
 import com.coderstory.Purify.R;
 import com.coderstory.Purify.fragment.AboutFragment;
 import com.coderstory.Purify.fragment.BlockADSFragment;
-import com.coderstory.Purify.fragment.BlogFragment;
 import com.coderstory.Purify.fragment.CleanFragment;
 import com.coderstory.Purify.fragment.DisbaleAppFragment;
 import com.coderstory.Purify.fragment.DonationFragment;
@@ -35,11 +35,9 @@ import com.coderstory.Purify.utils.root.SuHelper;
 import com.yolanda.nohttp.Logger;
 import com.yolanda.nohttp.NoHttp;
 import com.yolanda.nohttp.RequestMethod;
-import com.yolanda.nohttp.rest.OnResponseListener;
 import com.yolanda.nohttp.rest.Request;
-import com.yolanda.nohttp.rest.RequestQueue;
 import com.yolanda.nohttp.rest.Response;
-import org.json.JSONArray;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -73,6 +71,9 @@ public class MainActivity extends BaseActivity {
 
         Request<JSONObject> request = NoHttp.createJsonObjectRequest("https://blog.coderstory.cn/updater-info111", RequestMethod.GET);
         request(1, request, objectListener, true, true);
+
+
+
 
     }
     private HttpListener<JSONObject> objectListener = new HttpListener<JSONObject>() {
@@ -229,12 +230,14 @@ public class MainActivity extends BaseActivity {
                 switch (item.getItemId()) {
 
                     case R.id.navigation_item_blockads:
-                        mToolbar.setTitle("净化广告");
-                        switchFragment(BlockADSFragment.class);
+                        startActivity(new Intent(MainActivity.this, SampleActivity.class));
+                       // mToolbar.setTitle("净化广告");
+                       // switchFragment(BlockADSFragment.class);
                         break;
                     case R.id.navigation_item_myblog:
-                        mToolbar.setTitle("我的博客");
-                        switchFragment(BlogFragment.class);
+                        startActivity(new Intent(MainActivity.this, AppCompatSampleActivity.class));
+                        //mToolbar.setTitle("我的博客");
+                        //switchFragment(BlogFragment.class);
                         break;
                     case R.id.navigation_item_hosts:
                         mToolbar.setTitle("Hosts设置");

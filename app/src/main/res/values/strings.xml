@@ -2,16 +2,38 @@
     <string name="app_name">小米净化</string>
     <string name="drawer_open">Open</string>
     <string name="drawer_close">Close</string>
-    <string name="about_msg">\n小米净化适配于MIUI8系统，主要用于去除系统自带的一些广告和其他一些修改.功能需要Xposed模块和ROOT支持.\n
-    本次更新不再支持10月份之前发布的MIUI版本,部分功能不可用.
+    <string name="about_msg">\n小米净化适配于MIUI8系统，主要用于去除系统自带的一些广告和其他一些修改.功能需要Xposed模块和ROOT支持
     \n\n作者:CoderStory
-    \n博客主页 blog.coderstory.cn
-    \n\n致谢如下开源项目:
-    \n\n帮助类:https://github.com/burgessjp
-    \n下拉刷新:https://github.com/Yalantis
-    \n引导页:https://github.com/PaoloRotolo/AppIntro
-     \n应用清理:https://github.com/rarnu/root-tools
+    \n博客主页: blog.coderstory.cn
     </string>
+       <string name="about_msg2">\
+          <b> 致谢如下开源项目</b>:\n
+           MaterialDesignDemo\n
+           github.com/burgessjp/MaterialDesignDemo
+           \n\n
+           PullToRefresh
+           \n
+           https://github.com/Yalantis
+           \n\n
+           AppIntro
+           \n
+           https://github.com/PaoloRotolo/AppIntro
+           \n\n
+          root-tools
+           \n
+            https://github.com/rarnu/root-tools
+           \n\n
+           LicensesDialog\n
+           https://github.com/PSDev/LicensesDialog
+           \n\n
+           NoHttp\
+           \n
+           https://github.com/yanzhenjie/NoHttp
+           \n\n
+    </string>
+
+    <string name="about_msg3">开源协议</string>
+
     <string name="version">1.4.7</string>
     <string name="pwd">73838B033A565A61A48F2B0FA6A5DA60</string>
     <string name="pwd2">73838B033A565A61A48F2B0FA6B5DA60</string>
@@ -101,4 +123,20 @@
 
     <string name="tab_1">备份应用</string>
     <string name="tab_2">还原应用</string>
+
+
+    <string name="notices_title">开放源代码许可</string>
+    <string name="notices_close">关闭</string>
+
+    <string name="single">Single</string>
+    <string name="multiple">Multiple</string>
+    <string name="multiple_include_own">Multiple with own License</string>
+    <string name="multiple_programmatic">Multiple programmaticly</string>
+    <string name="single_fragment">Single (Fragment)</string>
+    <string name="multiple_fragment">Multiple (Fragment)</string>
+    <string name="multiple_include_own_fragment">Multiple with own License (Fragment)</string>
+    <string name="multiple_programmatic_fragment">Multiple programmaticly (Fragment)</string>
+    <string name="custom_theme">Custom theme</string>
+    <string name="custom_theme_fragment">Custom theme (Fragment)</string>
+
 </resources>

@@ -2,10 +2,11 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.coderstory.Purify">
 
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
 
     <application
         android:name="ren.solid.library.SolidApplication"
@@ -34,6 +35,13 @@
             android:name="ren.solid.library.activity.ViewPicActivity"
             android:screenOrientation="portrait" />
 
+        <activity
+            android:name="com.coderstory.Purify.activity.AppCompatSampleActivity"
+             />
+
+        <activity
+            android:name="com.coderstory.Purify.activity.SampleActivity"
+            />
 
         <activity
             android:name=".activity.MyAppIntro"
