@@ -6,40 +6,22 @@
     \n\n作者:CoderStory
     \n博客主页: blog.coderstory.cn
     </string>
-       <string name="about_msg2">\
-          <b> 致谢如下开源项目</b>:\n
-           MaterialDesignDemo\n
-           github.com/burgessjp/MaterialDesignDemo
-           \n\n
-           PullToRefresh
-           \n
-           https://github.com/Yalantis
-           \n\n
-           AppIntro
-           \n
-           https://github.com/PaoloRotolo/AppIntro
-           \n\n
-          root-tools
-           \n
-            https://github.com/rarnu/root-tools
-           \n\n
-           LicensesDialog\n
-           https://github.com/PSDev/LicensesDialog
-           \n\n
-           NoHttp\
-           \n
-           https://github.com/yanzhenjie/NoHttp
-           \n\n
+    <string name="G1">
+<b>致谢如下开源项目</b>\n\n
+<b>MaterialDesignDemo</b>\nhttps://github.com/burgessjp/MaterialDesignDemo\n\n
+<b>PullToRefresh</b>\nhttps://github.com/Yalantis\n\n
+<b>AppIntro</b>\nhttps://github.com/PaoloRotolo/AppIntro\n\n
+<b>root-tools</b>\nhttps://github.com/rarnu/root-tools\n\n
+<b>LicensesDialog</b>\nhttps://github.com/PSDev/LicensesDialog\n\n
+<b>NoHttp</b>\nhttps://github.com/yanzhenjie/NoHttp
     </string>
-
-    <string name="about_msg3">开源协议</string>
-
+    <string name="about_msg3"><b>声明</b>\n软件授权协议</string>
     <string name="version">1.4.7</string>
     <string name="pwd">73838B033A565A61A48F2B0FA6A5DA60</string>
     <string name="pwd2">73838B033A565A61A48F2B0FA6B5DA60</string>
     <string name="alipay_url">https://qr.alipay.com/aex06874ga0wkuhwuajgzb8</string>
     <string name="enableBlockADS"><b>启用模块</b>\n去广告功能的总开关</string>
-    <string name="downloadexplorer"><b>下载管理</b>\n去下载管理节点的广告,启用后无法设置仅wifi下载和文件大小限制</string>
+    <string name="downloadexplorer"><b>下载管理</b>\n去下载管理界面的广告</string>
     <string name="calendar"><b>日历</b>\n去除日历界面上的小广告和默认的卡片</string>
     <string name="filemanager"><b>文件管理器</b>\n去文件管理界面上的热门表情和热门视频等无用信息</string>
     <string name="weather"><b>天气</b>\n去除天气中的广告和天气资讯</string>
@@ -49,7 +31,7 @@
     <string name="miuiads"><b>屏蔽小米广告</b>\n通过hosts屏蔽部分小米的广告,但可能导致小部分小米服务访问异常</string>
     <string name="blockads"><b>开启常规去广告</b>\nGithub上的hosts合集,用于屏蔽国内广告.</string>
     <string name="googlehosts"><b>开启常见国外网站访问支持</b>\nGithub上随意找的Hosts,包含了一些常见的国外网站,有时效性</string>
-    <string name="hostsnote"><b>注意事项:</b>\本功能许ROOT,所有修改重启后才能生效,且和修改hosts软件冲突(比如广告快走).\n<b>与Hosts相关的问题,不必反馈,想要稳定的,请购买相关服务。\n注意:访问谷歌搜索请使用网址 \nhttps://www.google.com</b></string>
+    <string name="hostsnote"><b>注意事项:</b>\n本功能需要ROOT权限,所有修改重启后才能生效.hosts的更新需要重新启用一次开关才能生效.国外网站请使用https访问.</string>
     <string name="miui7crack"><b>旧版本的MIUI模式</b>\nMIUI8之前的用户请勾选</string>
     <string name="miui8crack"><b>MIUI8模式</b>\nMIUI8用户请勾选</string>
     <string name="cracknote"><b>注意事项</b>\n此为Xposed插件功能,必须在启用插件的情况下才能使用,且所有选项修改重启生效。</string>
@@ -57,17 +39,14 @@
     <string name="enablexposed"><b>开启Xposed启用检测</b>\n开启后,如果未在Xposed中激活则弹出相应提示</string>
     <string name="miui_root_25"><b>去除MIUI Root的25秒等待</b>\n开启后使用MIUI自带的ROOT授权无需等待25秒的倒计时</string>
     <string name="RemoveSearchBar"><b>移除通知栏下拉菜单的搜索</b>\n移除通知栏下拉菜单中的搜索框</string>
-    <string name="hotkey"><b>去下拉框搜索热词</b>\n去除下拉菜单搜索框中的搜索热词</string>
     <string name="enableSafeCenter"><b>去除安全中心的推广信息</b>\n去除安全中心中显示的推广信息</string>
     <string name="mvadnote"><b>注意事项</b>\n部分应用需要清空应用数据才能去除广告,并且有些广告是可以在应用中直接关闭的，并不需要本插件去修改.</string>
     <string name="music"><b>屏蔽音乐广告</b>\n屏蔽系统自带的音乐APP中的广告内容</string>
     <string name="miuimusic"><b>MIUI音乐本地化</b>\n移除互联网音乐模块,让miui音乐变成本地播放器.</string>
     <string name="fixpcb"><b>禁用窗口权限检测</b>\n修复PCB在miui8上的问题,仅Android 6.0系统可用</string>
-    <string name="enableadb"><b>屏蔽检测ADB安装应用</b>\n启用本功能后，MIUI系统将不再自动阻止后台静默安装APP。基本上，每次miui更新都会导致本功能失效，需要重新适配</string>
     <string name="wifi"><b>修复wifi自动连接</b>\n修复系统提示wifi热点未检测网络连接而不会自动连接的问题,需ROOT</string>
-    <string name="enablecalendar"><b>去除日历广告</b>\n去除miui日历中的一些广告</string>
     <string name="enablevideo"><b>去除miui视频广告</b>\n去除miui视频的splash广告</string>
-    <string name="enablethemenoad"><b>去除miui主题广告</b>\n去除miui个性主题的主题详情页的图片广告(不含主题活动)需手动删除广告缓存，在sd卡上的 /MIUI/.cache文件夹</string>
+    <string name="enablethemenoad"><b>去除miui主题广告</b>\n去除miui个性主题的主题详情页的图片广告</string>
     <string name="hideicon"><b>隐藏应用图标</b>\n隐藏小米净化在桌上面的图标，隐藏图标后可在Xposed安装器中打开</string>
     <string name="Tips_Title">温馨提示</string>
     <string name="Btn_Sure">确定</string>
@@ -115,7 +94,8 @@
     <string name="view_clean_anr" formatted="false">清理 ANR 日志 (%s) …\n</string>
     <string name="view_clean_art_remain" formatted="false">清理 ART: %s (%s) …\n</string>
     <string name="view_clean_complete" formatted="false">清理完毕, 共清理文件 %s\n\n</string>
-    <string name="xposedmodule">Xposed模块功能</string>
+    <string name="xposedmodule">\n<b>Xposed模块功能</b></string>
+    <string name="common">\n<b>常用功能</b></string>
     <string name="startclean">开始清理</string>
 
     <string name="hello_blank_fragment">Hello blank fragment</string>
@@ -138,5 +118,6 @@
     <string name="multiple_programmatic_fragment">Multiple programmaticly (Fragment)</string>
     <string name="custom_theme">Custom theme</string>
     <string name="custom_theme_fragment">Custom theme (Fragment)</string>
+
 
 </resources>

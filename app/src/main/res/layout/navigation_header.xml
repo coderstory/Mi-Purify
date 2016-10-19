@@ -4,7 +4,8 @@
     android:id="@+id/ll_navigation_header"
     android:layout_width="match_parent"
     android:layout_height="135dp"
-    android:background="@color/colorItem"
+    android:background="@drawable/bg2"
+
     android:gravity="center"
     android:orientation="vertical"
     android:padding="0dp"
@@ -18,17 +19,23 @@
         android:layout_marginTop="20dp"
         android:src="@mipmap/ic_launcher"
         app:border_color="#fff"
+
         app:border_width="2dp" />
 
 
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_marginTop="10dp"
         android:gravity="center"
         android:text="@string/app_name"
-        android:textColor="#ffffff"
+        android:shadowColor="#dede5d"
+        android:shadowRadius="5"
+        android:shadowDx="2"
+        android:background="#a0D3D3D3"
+        android:shadowDy="2"
+        android:textColor="#fd5353"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-        android:textSize="18sp" />
+        android:textSize="23sp" />
 
 </LinearLayout>

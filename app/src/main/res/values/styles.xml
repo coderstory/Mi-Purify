@@ -6,6 +6,7 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
         <!--<item name="android:textColorPrimary">@color/white</item>-->
+        <item name="android:windowContentOverlay">@null</item>
         <item name="android:windowBackground">@color/windowBackground</item>
         <item name="actionOverflowButtonStyle">@style/ActionButton.Overflow.App</item>
     </style>

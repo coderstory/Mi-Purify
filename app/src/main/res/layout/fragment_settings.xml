@@ -20,13 +20,13 @@
 
             <TextView
                 android:layout_width="match_parent"
-                android:layout_height="35dp"
-                android:background="@color/colorPrimary"
+                android:layout_height="60dp"
+
                 android:paddingEnd="30dp"
                 android:paddingStart="30dp"
                 android:paddingTop="10dp"
-                android:text="常用功能"
-                skin:enable="true" />
+                android:text="@string/common"
+             />
 
             <Switch
                 android:id="@+id/enableCheck"
@@ -52,13 +52,13 @@
 
             <TextView
                 android:layout_width="match_parent"
-                android:layout_height="35dp"
-                android:background="@color/colorPrimary"
+                android:layout_height="60dp"
+
                 android:paddingEnd="30dp"
                 android:paddingStart="30dp"
                 android:paddingTop="10dp"
                 android:text="@string/xposedmodule"
-                skin:enable="true" />
+                 />
 
             <Switch
                 android:id="@+id/enablemiuiRoot"

@@ -1,10 +1,12 @@
 package com.coderstory.Purify.module;
 
 import android.content.Context;
-import android.content.Intent;
+
 import com.coderstory.Purify.plugins.IModule;
+
 import java.util.List;
 import java.util.Map;
+
 import de.robv.android.xposed.IXposedHookZygoteInit;
 import de.robv.android.xposed.XC_MethodHook;
 import de.robv.android.xposed.XC_MethodReplacement;
@@ -96,7 +98,7 @@ public class RemoveAds implements IModule {
         //视频
         if (loadPackageParam.packageName.equals("com.miui.video")) {
             if (prefs.getBoolean("enablemiuividio", false)) {
-                findAndHookMethod("com.video.ui.view.AdView", loadPackageParam.classLoader, "getAdsBlock", Context.class, XC_MethodReplacement.returnConstant(null));
+                findAndHookMethod("com.video.ui.view.dView", loadPackageParam.classLoader, "getAdsBlock", Context.class, XC_MethodReplacement.returnConstant(null));
                 findAndHookMethod("com.video.ui.idata.iDataORM", loadPackageParam.classLoader, "getBooleanValue", Context.class, String.class, boolean.class, new XC_MethodHook() {
                     @Override
                     protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
