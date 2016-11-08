@@ -35,5 +35,4 @@ dependencies {
     compile 'com.github.paolorotolo:appintro:4.0.0'
     testCompile 'junit:junit:4.12'
     provided 'de.robv.android.xposed:api:82'
-    compile project(path: ':nohttp')
 }

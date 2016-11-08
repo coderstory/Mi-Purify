@@ -321,7 +321,16 @@ public class RemoveAds implements IModule {
                         return null;
                     }
                 });
+            }
+        }
 
+        //浏览器
+        if (loadPackageParam.packageName.equals("com.android.browser")) {
+            findAndHookMethod("miui.browser.a.a", loadPackageParam.classLoader, "a", String.class, String.class, String.class, List.class, HashMap.class, XC_MethodReplacement.returnConstant(null));
+            Class<?> clsA = XposedHelpers.findClass("com.a.a.d.a",loadPackageParam.classLoader);
+            if (clsA != null) {
+              findAndHookMethod("com.android.browser.suggestion.SuggestItem$AdsInfo", loadPackageParam.classLoader, "deserialize", clsA, XC_MethodReplacement.returnConstant(null));
+               findAndHookMethod("com.android.browser.homepage.HomepageBannerProvider$AdTrackingInfo", loadPackageParam.classLoader, "deserialize", clsA, XC_MethodReplacement.returnConstant(null));
             }
         }
     }
