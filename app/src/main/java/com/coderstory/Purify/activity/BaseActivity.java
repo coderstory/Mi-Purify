@@ -5,9 +5,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
-import com.coderstory.Purify.nohttp.CallServer;
-import com.coderstory.Purify.nohttp.HttpListener;
-import com.yolanda.nohttp.rest.Request;
+
 
 /**
  * Created by Baby Song on 2016/10/18.
@@ -55,15 +53,5 @@ public abstract class BaseActivity extends AppCompatActivity {
     }
 
 
-    public <T> void request(int what, Request<T> request, HttpListener<T> callback, boolean canCancel, boolean isLoading) {
-        request.setCancelSign(this);
-        CallServer.getRequestInstance().add(this, what, request, callback, canCancel, isLoading);
-    }
-
-    @Override
-    protected void onDestroy() {
-        CallServer.getRequestInstance().cancelBySign(this);
-        super.onDestroy();
-    }
 
 }

@@ -28,7 +28,6 @@ import com.coderstory.Purify.fragment.HostsFragment;
 import com.coderstory.Purify.fragment.ManagerAppFragment;
 import com.coderstory.Purify.fragment.SettingsFragment;
 import com.coderstory.Purify.fragment.crackThemeFragment;
-import com.coderstory.Purify.utils.MD5Utils;
 import com.coderstory.Purify.utils.MyConfig;
 import com.coderstory.Purify.utils.root.SuHelper;
 
@@ -125,12 +124,8 @@ public class MainActivity extends BaseActivity {
                 navigationMenuView.setVerticalScrollBarEnabled(false);
             }
         }
-        String keyword= MD5Utils.MD5(getString(R.string.version));
-        if (!getString(R.string.pwd).equals(keyword )) {
-            Menu m = v.getMenu();
-            MenuItem mi = m.getItem(1);
-            mi.setVisible(false);
-        }
+
+
     }
 
     @Override

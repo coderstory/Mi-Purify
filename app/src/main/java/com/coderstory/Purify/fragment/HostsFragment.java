@@ -8,7 +8,6 @@ import android.view.View;
 import android.widget.Switch;
 
 import com.coderstory.Purify.R;
-import com.coderstory.Purify.utils.MD5Utils;
 import com.coderstory.Purify.utils.hosts.FileHelper;
 import com.coderstory.Purify.utils.hosts.HostsHelper;
 
@@ -113,11 +112,7 @@ public class HostsFragment extends BaseFragment {
                 }
                 if (enableGoogleHosts) {
                     HostsContext += fh.getFromAssets("hosts_Foreign", getMContext());
-                    String keyword= MD5Utils.MD5(getString(R.string.version));
-                    if (getString(R.string.pwd).equals(keyword)) {
                         HostsContext += fh.getFromAssets("hosts_google", getMContext());
-                    }
-
                 }
 
                 if (enableupdater) {
