@@ -148,7 +148,7 @@ public class RemoveAds implements IModule {
         //视频
         if (loadPackageParam.packageName.equals("com.miui.video")) {
             if (prefs.getBoolean("enablemiuividio", false)) {
-                findAndHookMethod("com.video.ui.view.dView", loadPackageParam.classLoader, "getAdsBlock", Context.class, XC_MethodReplacement.returnConstant(null));
+
                 findAndHookMethod("com.video.ui.idata.iDataORM", loadPackageParam.classLoader, "getBooleanValue", Context.class, String.class, boolean.class, new XC_MethodHook() {
                     @Override
                     protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
@@ -233,7 +233,7 @@ public class RemoveAds implements IModule {
         if (loadPackageParam.packageName.equals("com.miui.player")) {
             if (prefs.getBoolean("enableMusic", false)) {
                 findAndHookMethod("com.miui.player.util.AdUtils", loadPackageParam.classLoader, "isAdEnable", XC_MethodReplacement.returnConstant(false));
-                findAndHookMethod("com.miui.player.util.AdUtils", loadPackageParam.classLoader, "getPlayAd", "esponse.Listener<Result>", "Response.ErrorListener", XC_MethodReplacement.returnConstant(null));
+
                 findAndHookMethod("com.miui.player.util.ExperimentsHelper", loadPackageParam.classLoader, "isAdEnabled", XC_MethodReplacement.returnConstant(false));
 
                 findAndHookMethod("com.miui.player.util.Configuration", loadPackageParam.classLoader, "isCmTest", XC_MethodReplacement.returnConstant(true));
