@@ -1,16 +1,11 @@
 package com.coderstory.Purify.module;
 
-import android.content.Context;
-import android.content.Intent;
 import android.view.WindowManager;
 
 import com.coderstory.Purify.plugins.IModule;
 
-import java.util.Map;
-
 import de.robv.android.xposed.IXposedHookZygoteInit;
 import de.robv.android.xposed.XC_MethodHook;
-import de.robv.android.xposed.XC_MethodReplacement;
 import de.robv.android.xposed.XSharedPreferences;
 import de.robv.android.xposed.XposedBridge;
 import de.robv.android.xposed.XposedHelpers;
@@ -59,7 +54,7 @@ public class Others implements IModule {
             XposedHelpers.findAndHookMethod(p1, lpparam, p2, parameterTypesAndCallback);
 
         } catch (Throwable localString3) {
-            XposedBridge.log(localString3.toString());
+            XposedBridge.log(localString3);
         }
     }
 
@@ -68,7 +63,7 @@ public class Others implements IModule {
             XposedHelpers.findAndHookConstructor(p1, lpparam,  parameterTypesAndCallback);
 
         } catch (Throwable localString3) {
-            XposedBridge.log(localString3.toString());
+            XposedBridge.log(localString3);
         }
     }
 }

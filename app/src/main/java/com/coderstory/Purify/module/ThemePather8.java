@@ -55,7 +55,7 @@ public class ThemePather8 implements IModule {
                 return Enum.valueOf(drmSuccess, "DRM_SUCCESS");
             }
         } catch (Throwable localString4) {
-            XposedBridge.log(localString4.toString());
+            XposedBridge.log(localString4);
 
         }
         return null;
@@ -71,14 +71,14 @@ public class ThemePather8 implements IModule {
         try {
             XposedHelpers.findAndHookMethod(p1,lpparam, p2, parameterTypesAndCallback);
         } catch (Throwable localString3) {
-            XposedBridge.log(localString3.toString());
+            XposedBridge.log(localString3);
         }
     }
     private static void findAndHookMethod(String p1, String p2, Object[] p3) {
         try {
             XposedHelpers.findAndHookMethod(Class.forName(p1), p2, p3);
         } catch (Throwable localString3) {
-            XposedBridge.log(localString3.toString());
+            XposedBridge.log(localString3);
         }
     }
 }

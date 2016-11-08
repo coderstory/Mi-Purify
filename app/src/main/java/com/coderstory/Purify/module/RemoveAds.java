@@ -45,7 +45,7 @@ public class RemoveAds implements IModule {
         try {
             patchcode();
         } catch (ClassNotFoundException e) {
-            XposedBridge.log(e.toString());
+            XposedBridge.log(e);
         }
     }
 
@@ -331,7 +331,7 @@ public class RemoveAds implements IModule {
             XposedHelpers.findAndHookMethod(p1, lpparam, p2, parameterTypesAndCallback);
 
         } catch (Throwable localString3) {
-            XposedBridge.log(localString3.toString());
+            XposedBridge.log(localString3);
         }
     }
 
@@ -340,7 +340,7 @@ public class RemoveAds implements IModule {
             XposedHelpers.findAndHookConstructor(p1, lpparam, lpparam, parameterTypesAndCallback);
 
         } catch (Throwable localString3) {
-            XposedBridge.log(localString3.toString());
+            XposedBridge.log(localString3);
         }
     }
 

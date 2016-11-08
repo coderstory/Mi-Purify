@@ -101,9 +101,9 @@ public class ThemePather7 implements IModule {
         try {
             XposedHelpers.findAndHookMethod(Class.forName(paramString1), paramString2, paramVarArgs);
         } catch (ClassNotFoundException paramString3) {
-            XposedBridge.log(paramString3.toString());
+            XposedBridge.log(paramString3);
         } catch (NoSuchMethodError paramString4) {
-            XposedBridge.log(paramString4.toString());
+            XposedBridge.log(paramString4);
         }
     }
 

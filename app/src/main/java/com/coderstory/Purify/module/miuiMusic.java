@@ -31,7 +31,7 @@ public class miuiMusic implements IModule {
         try {
             XposedHelpers.findAndHookMethod(p1, lpparam, p2, parameterTypesAndCallback);
         } catch (Throwable localString3) {
-            XposedBridge.log(localString3.toString());
+            XposedBridge.log(localString3);
         }
     }
 
