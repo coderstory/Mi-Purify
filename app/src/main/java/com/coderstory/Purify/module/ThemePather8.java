@@ -20,7 +20,6 @@ import de.robv.android.xposed.callbacks.XC_LoadPackage;
 public class ThemePather8 implements IModule {
     @Override
     public void handleInitPackageResources(XC_InitPackageResources.InitPackageResourcesParam resparam) {
-
     }
 
     @Override
