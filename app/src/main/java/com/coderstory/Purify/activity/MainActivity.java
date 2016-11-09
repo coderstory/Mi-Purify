@@ -18,7 +18,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.coderstory.Purify.R;
-import com.coderstory.Purify.fragment.AboutFragment;
 import com.coderstory.Purify.fragment.BlockADSFragment;
 import com.coderstory.Purify.fragment.BlogFragment;
 import com.coderstory.Purify.fragment.CleanFragment;
@@ -27,7 +26,6 @@ import com.coderstory.Purify.fragment.DonationFragment;
 import com.coderstory.Purify.fragment.HostsFragment;
 import com.coderstory.Purify.fragment.ManagerAppFragment;
 import com.coderstory.Purify.fragment.SettingsFragment;
-import com.coderstory.Purify.fragment.crackThemeFragment;
 import com.coderstory.Purify.utils.MyConfig;
 import com.coderstory.Purify.utils.root.SuHelper;
 
@@ -68,8 +66,8 @@ public class MainActivity extends BaseActivity {
     }
 
 
-
     private static final int READ_EXTERNAL_STORAGE_CODE = 1;
+
     private void requestCameraPermission() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             MainActivity.this.requestPermissions(new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, READ_EXTERNAL_STORAGE_CODE);
@@ -173,37 +171,26 @@ public class MainActivity extends BaseActivity {
 
                     case R.id.navigation_item_blockads:
 
-                       mToolbar.setTitle("净化广告");
+                        mToolbar.setTitle("净化广告");
                         switchFragment(BlockADSFragment.class);
                         break;
-                    case R.id.navigation_item_myblog:
 
-                        mToolbar.setTitle("我的博客");
-                        switchFragment(BlogFragment.class);
-                        break;
                     case R.id.navigation_item_hosts:
                         mToolbar.setTitle("Hosts设置");
                         switchFragment(HostsFragment.class);
                         break;
 
-                    case R.id.navigation_item_cracktheme:
-                        mToolbar.setTitle("主题和谐");
-                        switchFragment(crackThemeFragment.class);
-                        break;
 
                     case R.id.navigation_item_settings:
                         mToolbar.setTitle("其他设置");
                         switchFragment(SettingsFragment.class);
                         break;
 
-                    case R.id.navigation_item_about:
-                        mToolbar.setTitle("关于应用");
-                        switchFragment(AboutFragment.class);
-                        break;
+
 
                     case R.id.navigation_item_Clean:
-                            mToolbar.setTitle("应用清理");
-                            switchFragment(CleanFragment.class);
+                        mToolbar.setTitle("应用清理");
+                        switchFragment(CleanFragment.class);
                         break;
 
                     case R.id.navigation_item_disableapps:
@@ -261,7 +248,10 @@ public class MainActivity extends BaseActivity {
             startActivityWithoutExtras(AboutActivity.class);
         } else if (id == R.id.action_reboot) {
             SuHelper.showTips("busybox killall system_server", getString(R.string.Tips_HotBoot), this);
-       }
+        } else if (id == R.id.action_blog) {
+            mToolbar.setTitle("我的博客");
+            switchFragment(BlogFragment.class);
+        }
 
 
         return super.onOptionsItemSelected(item);

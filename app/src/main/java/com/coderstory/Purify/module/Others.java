@@ -42,7 +42,6 @@ public class Others implements IModule {
         }
 
 
-
     }
 
     @Override
@@ -58,12 +57,4 @@ public class Others implements IModule {
         }
     }
 
-    private static void findAndHookConstructor(String p1, ClassLoader lpparam, Object... parameterTypesAndCallback) {
-        try {
-            XposedHelpers.findAndHookConstructor(p1, lpparam,  parameterTypesAndCallback);
-
-        } catch (Throwable localString3) {
-            XposedBridge.log(localString3);
-        }
-    }
 }

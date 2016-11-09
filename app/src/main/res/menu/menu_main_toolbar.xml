@@ -8,7 +8,13 @@
         android:icon="@drawable/power"
         app:showAsAction="never"
         />
+    <item
+        android:id="@+id/action_blog"
+        android:orderInCategory="100"
+        android:title="我的博客"
+        app:showAsAction="never"
 
+        />
     <item
         android:id="@+id/action_settings"
         android:orderInCategory="100"
@@ -16,6 +22,4 @@
         app:showAsAction="never"
 
         />
-
-
 </menu>

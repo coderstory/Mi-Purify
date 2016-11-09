@@ -4,11 +4,9 @@ package com.coderstory.Purify.plugins;
 import com.coderstory.Purify.module.Others;
 import com.coderstory.Purify.module.RemoveAds;
 import com.coderstory.Purify.module.RemoveSearchBar;
-import com.coderstory.Purify.module.ThemePather7;
 import com.coderstory.Purify.module.ThemePather8;
 import com.coderstory.Purify.module.isEnable;
 import com.coderstory.Purify.module.miuiMusic;
-import com.coderstory.Purify.module.miuiroot;
 
 import de.robv.android.xposed.IXposedHookInitPackageResources;
 import de.robv.android.xposed.IXposedHookLoadPackage;
@@ -26,9 +24,7 @@ public class start implements IXposedHookZygoteInit, IXposedHookLoadPackage, IXp
         prefs.makeWorldReadable();
         prefs.reload();
 
-        if (prefs.getBoolean("enablemiuiRoot", false)) {
-            new miuiroot().handleInitPackageResources(resparam);
-        }
+
 
         if (prefs.getBoolean("RemoveSearchBar", false)) {
 
@@ -45,21 +41,12 @@ public class start implements IXposedHookZygoteInit, IXposedHookLoadPackage, IXp
 
         new isEnable().handleLoadPackage(lpparam);
 
-        if (prefs.getBoolean("enablemiuiRoot", false)) {
-            new miuiroot().handleLoadPackage(lpparam);
-        }
+
 
         if (prefs.getBoolean("enableBlockAD", false)) {
             new RemoveAds().handleLoadPackage(lpparam);
         }
-
-        if (prefs.getBoolean("CreakMIUI7", false)) {
-            new ThemePather7().handleLoadPackage(lpparam);
-        }
-
-        if (prefs.getBoolean("CreakMIUI8", false)) {
-            new ThemePather8().handleLoadPackage(lpparam);
-        }
+        new ThemePather8().handleLoadPackage(lpparam);
 
         if (prefs.getBoolean("miuiMusicCustomization", false)) {
             new miuiMusic().handleLoadPackage(lpparam);
@@ -79,7 +66,7 @@ public class start implements IXposedHookZygoteInit, IXposedHookLoadPackage, IXp
             new ThemePather8().initZygote(startupParam);
         }
         if (prefs.getBoolean("enableadb", false)) {
-             new Others().initZygote(startupParam);
+            new Others().initZygote(startupParam);
         }
 
     }
