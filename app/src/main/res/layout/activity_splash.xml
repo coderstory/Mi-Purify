@@ -1,32 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
-android:background="#fff"
+     android:background="#5acace"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView android:id="@+id/copy_right"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:padding="12dip"
-        android:layout_centerHorizontal="true"
-        android:textColor="@color/md_black_1000"
-        android:layout_alignParentBottom="true"
-        android:text="by CoderStory 出品"
-        android:textSize="11sp"/>
+
 
     <RelativeLayout android:layout_width="fill_parent"
         android:layout_height="match_parent"
-        android:paddingTop="100dp"
+
         android:layout_alignParentTop="true"
         android:layout_alignParentStart="true">
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:src="@drawable/splash"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentStart="true" />
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -39,41 +24,31 @@ android:background="#fff"
 
             <LinearLayout android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-
                 android:layout_gravity="center_horizontal">
-                <TextView android:id="@+id/app_name"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:padding="6dip"
-                    android:gravity="center_horizontal"
-                    android:textColor="@color/md_black_1000"
-                    android:paddingTop="20dp"
-                    android:text="@string/app_name"
-                    android:textSize="24sp"/>
-                <TextView android:id="@+id/version_name"
-                    android:paddingTop="20dp"
-                    android:gravity="center_horizontal"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:textColor="@color/md_black_1000"
-                    android:text="@string/version"
-                    android:paddingBottom="6dip"
-                    android:textSize="14sp"/>
+
             </LinearLayout>
-            <View android:layout_width="match_parent"
-                android:layout_height="1px"
-                android:layout_marginLeft="20dip"
-                android:layout_marginRight="20dip"
-                android:background="#dddddd"/>
-            <TextView android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:padding="6dip"
-                android:textColor="@color/md_black_1000"
-                android:text="新的旅程,新的开始."
-                android:textSize="15sp"/>
+
 
         </LinearLayout>
+
+        <ImageView
+            android:paddingTop="100dp"
+            android:layout_width="wrap_content"
+         android:src="@drawable/mybg"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+
+            android:layout_marginEnd="17dp" />
+
+        <android.support.v7.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:text="小米净化 1.5"
+            android:gravity="center"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:textSize="25sp"
+            android:layout_marginTop="30dp" />
 
         <!--<ImageView-->
             <!--android:layout_width="125dp"-->
