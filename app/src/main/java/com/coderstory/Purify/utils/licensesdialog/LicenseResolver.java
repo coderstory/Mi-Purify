@@ -18,21 +18,8 @@ package com.coderstory.Purify.utils.licensesdialog;
 
 
 import com.coderstory.Purify.utils.licensesdialog.licenses.ApacheSoftwareLicense20;
-import com.coderstory.Purify.utils.licensesdialog.licenses.BSD2ClauseLicense;
-import com.coderstory.Purify.utils.licensesdialog.licenses.BSD3ClauseLicense;
-import com.coderstory.Purify.utils.licensesdialog.licenses.CreativeCommonsAttribution30Unported;
-import com.coderstory.Purify.utils.licensesdialog.licenses.CreativeCommonsAttributionNoDerivs30Unported;
-import com.coderstory.Purify.utils.licensesdialog.licenses.EclipsePublicLicense10;
 import com.coderstory.Purify.utils.licensesdialog.licenses.GnuGeneralPublicLicense20;
-import com.coderstory.Purify.utils.licensesdialog.licenses.GnuGeneralPublicLicense30;
-import com.coderstory.Purify.utils.licensesdialog.licenses.GnuLesserGeneralPublicLicense21;
-import com.coderstory.Purify.utils.licensesdialog.licenses.GnuLesserGeneralPublicLicense3;
-import com.coderstory.Purify.utils.licensesdialog.licenses.ISCLicense;
 import com.coderstory.Purify.utils.licensesdialog.licenses.License;
-import com.coderstory.Purify.utils.licensesdialog.licenses.MITLicense;
-import com.coderstory.Purify.utils.licensesdialog.licenses.MozillaPublicLicense11;
-import com.coderstory.Purify.utils.licensesdialog.licenses.MozillaPublicLicense20;
-import com.coderstory.Purify.utils.licensesdialog.licenses.SILOpenFontLicense11;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -49,20 +36,7 @@ public final class LicenseResolver {
     static void registerDefaultLicenses() {
         sLicenses.clear();
         registerLicense(new ApacheSoftwareLicense20());
-        registerLicense(new BSD2ClauseLicense());
-        registerLicense(new BSD3ClauseLicense());
-        registerLicense(new ISCLicense());
-        registerLicense(new MITLicense());
-        registerLicense(new GnuLesserGeneralPublicLicense21());
-        registerLicense(new GnuLesserGeneralPublicLicense3());
-        registerLicense(new CreativeCommonsAttributionNoDerivs30Unported());
-        registerLicense(new GnuGeneralPublicLicense30());
         registerLicense(new GnuGeneralPublicLicense20());
-        registerLicense(new MozillaPublicLicense11());
-        registerLicense(new SILOpenFontLicense11());
-        registerLicense(new MozillaPublicLicense20());
-        registerLicense(new CreativeCommonsAttribution30Unported());
-        registerLicense(new EclipsePublicLicense10());
     }
 
     /**

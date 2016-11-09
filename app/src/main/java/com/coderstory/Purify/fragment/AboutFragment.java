@@ -8,7 +8,7 @@ import android.widget.TextView;
 import com.coderstory.Purify.R;
 import com.coderstory.Purify.utils.licensesdialog.LicensesDialog;
 import com.coderstory.Purify.utils.licensesdialog.licenses.ApacheSoftwareLicense20;
-import com.coderstory.Purify.utils.licensesdialog.licenses.GnuLesserGeneralPublicLicense21;
+import com.coderstory.Purify.utils.licensesdialog.licenses.GnuGeneralPublicLicense20;
 import com.coderstory.Purify.utils.licensesdialog.model.Notice;
 import com.coderstory.Purify.utils.licensesdialog.model.Notices;
 
@@ -40,7 +40,7 @@ public class AboutFragment extends BaseFragment {
             public void onClick(View v) {
                 final Notices notices = new Notices();
                 notices.addNotice(new Notice("ApacheSoftwareLicense", "", "", new ApacheSoftwareLicense20()));
-                notices.addNotice(new Notice("GnuLesserGeneralPublicLicense2", "", "", new GnuLesserGeneralPublicLicense21()));
+                notices.addNotice(new Notice("GnuGeneralPublicLicense", "", "", new GnuGeneralPublicLicense20()));
 
                 new LicensesDialog.Builder(getMContext())
                         .setNotices(notices)

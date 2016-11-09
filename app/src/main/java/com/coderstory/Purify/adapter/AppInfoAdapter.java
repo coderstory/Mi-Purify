@@ -11,7 +11,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.coderstory.Purify.R;
-import com.coderstory.Purify.activity.MyAppIntro;
 
 import java.util.List;
 

@@ -70,11 +70,11 @@ public class SettingsFragment extends BaseFragment {
             public void onClick(View v) {
                 getEditor().putBoolean("hideicon",((Switch)v).isChecked());
                 getEditor().apply();
-                ComponentName localComponentName = new ComponentName( getMContext(), "com.coderstory.Purify.activity.MyAppIntro");
+                ComponentName localComponentName = new ComponentName( getMContext(), "com.coderstory.Purify.activity.SplashActivity");
                 PackageManager localPackageManager =  getMContext().getPackageManager();
                 localPackageManager.getComponentEnabledSetting(localComponentName);
                 PackageManager packageManager = getMContext(). getPackageManager();
-                ComponentName componentName = new ComponentName( getMContext(), "com.coderstory.Purify.activity.MyAppIntro");
+                ComponentName componentName = new ComponentName( getMContext(), "com.coderstory.Purify.activity.SplashActivity");
 
                 if(((Switch)v).isChecked()){
                     packageManager.setComponentEnabledSetting(componentName, PackageManager.COMPONENT_ENABLED_STATE_DISABLED,

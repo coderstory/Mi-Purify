@@ -32,7 +32,6 @@ dependencies {
     compile 'com.android.support:support-v4:25.0.0'
     compile 'com.android.support:appcompat-v7:25.0'
     compile 'com.android.support:design:25.0.0'
-    compile 'com.github.paolorotolo:appintro:4.0.0'
     testCompile 'junit:junit:4.12'
     provided 'de.robv.android.xposed:api:82'
 }

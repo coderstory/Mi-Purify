@@ -35,26 +35,19 @@
             android:name="ren.solid.library.activity.ViewPicActivity"
             android:screenOrientation="portrait" />
 
-        <activity
-            android:name="com.coderstory.Purify.activity.AppCompatSampleActivity"
-             />
 
         <activity
-            android:name="com.coderstory.Purify.activity.SampleActivity"
-            />
+            android:name=".activity.SplashActivity"
 
-        <activity
-            android:name=".activity.MyAppIntro"
-            android:theme="@style/AppTheme">
+            android:theme="@style/fulscreen_theme" >
+
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
 
-        <activity
-            android:name=".activity.SplashActivity"
-            android:theme="@style/fulscreen_theme" />
+        </activity>
 
         <meta-data
             android:name="xposedmodule"
