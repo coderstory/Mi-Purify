@@ -1,9 +1,11 @@
+127.0.0.1 adv.sec.miui.com
+127.0.0.1 data.mistat.xiaomi.com
+#127.0.0.1 hm.xiaomi.com
 127.0.0.1 a.stat.xiaomi.com
 127.0.0.1 a.union.mi.com
 127.0.0.1 abtest.mistat.xiaomi.com
 #127.0.0.1 account.xiaomi.com
 127.0.0.1 adinfo.ra1.xlmc.sec.miui.com
-127.0.0.1 adv.sec.miui.com
 #127.0.0.1 api.account.xiaomi.com
 127.0.0.1 api.ad.xiaomi.com
 #127.0.0.1 api.comm.miui.com
@@ -24,7 +26,6 @@
 127.0.0.1 cm066.getui.igexin.com
 127.0.0.1 connect.rom.miui.com
 #127.0.0.1 d.g.mi.com
-127.0.0.1 data.mistat.xiaomi.com
 #127.0.0.1 data.sec.miui.com
 127.0.0.1 e.ad.xiaomi.com
 127.0.0.1 etl.xlmc.sandai.net
@@ -32,7 +33,6 @@
 127.0.0.1 fclick.baidu.com
 127.0.0.1 get.sogou.com
 #127.0.0.1 global.search.xiaomi.net
-127.0.0.1 hm.xiaomi.com
 127.0.0.1 hub5pn.wap.sandai.net
 127.0.0.1 idx.m.hub.sandai.net
 127.0.0.1 image.box.xiaomi.com
