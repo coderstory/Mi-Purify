@@ -27,6 +27,7 @@ import com.coderstory.Purify.utils.DirManager;
 import com.yalantis.phoenix.PullToRefreshView;
 
 import java.io.DataOutputStream;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -59,9 +60,17 @@ public class BackupAppFragment extends BaseFragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        //创建备份目录
+        File file=new File(path_backup);
+        if (!file.exists()){
+            file.mkdirs();
+        }
         view = inflater.inflate(R.layout.fragment_backupapp, container, false);
         return view;
     }
+
+
+
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
