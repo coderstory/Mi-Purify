@@ -54,7 +54,13 @@ public class SettingsFragment extends BaseFragment {
         });
 
 
-
+        $(R.id.installType).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getEditor().putBoolean("installType",((Switch)v).isChecked());
+                getEditor().apply();
+            }
+        });
 
 
         $(R.id.fixpcb).setOnClickListener(new View.OnClickListener() {
@@ -94,12 +100,11 @@ public class SettingsFragment extends BaseFragment {
     @Override
     protected void setUpData() {
         ((Switch) $(R.id.enableCheck)).setChecked(getPrefs().getBoolean("enableCheck",true));
-
         ((Switch) $(R.id.RemoveSearchBar)).setChecked(getPrefs().getBoolean("RemoveSearchBar",false));
         ((Switch) $(R.id.miuiMusicCustomization)).setChecked(getPrefs().getBoolean("miuiMusicCustomization",false));
         ((Switch) $(R.id.fixpcb)).setChecked(getPrefs().getBoolean("fixpcb",false));
-
         ((Switch) $(R.id.hideicon)).setChecked(getPrefs().getBoolean("hideicon",false));
+        ((Switch) $(R.id.installType)).setChecked(getPrefs().getBoolean("installType",false));
     }
 
 }

@@ -14,7 +14,7 @@
 <b>LicensesDialog</b>\nhttps://github.com/PSDev/LicensesDialog\n\n
     </string>
     <string name="about_msg3"><b>声明</b>\n软件授权协议</string>
-    <string name="version">1.5.0</string>
+    <string name="version">1.5.0 A</string>
     <string name="alipay_url">https://qr.alipay.com/aex06874ga0wkuhwuajgzb8</string>
     <string name="enableBlockADS"><b>启用模块</b>\n去广告功能的总开关</string>
     <string name="downloadexplorer"><b>下载管理</b>\n去下载管理界面的广告</string>
@@ -44,6 +44,7 @@
     <string name="enablevideo"><b>去除miui视频广告</b>\n去除miui视频的splash广告</string>
     <string name="enablethemenoad"><b>去除miui主题广告</b>\n去除miui个性主题的主题详情页的图片广告</string>
     <string name="hideicon"><b>隐藏应用图标</b>\n隐藏小米净化在桌上面的图标，隐藏图标后可在Xposed安装器中打开</string>
+    <string name="installapk"><b>APK安装模式</b>\n默认为显示安装模式（普通模式），开启选项后改为后台安装模式(静默安装)。在MIUI系统中，由于系统底层机制被修改，无法开启静默安装，否则会安装失败，切记！</string>
     <string name="Tips_Title">温馨提示</string>
     <string name="Btn_Sure">确定</string>
     <string name="Btn_Cancel">取消</string>
@@ -114,6 +115,7 @@
     <string name="multiple_programmatic_fragment">Multiple programmaticly (Fragment)</string>
     <string name="custom_theme">Custom theme</string>
     <string name="custom_theme_fragment">Custom theme (Fragment)</string>
+
 
 
 </resources>

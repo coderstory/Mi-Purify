@@ -7,6 +7,8 @@ import android.os.Bundle;
 
 import com.coderstory.Purify.R;
 
+import static com.coderstory.Purify.utils.root.SuHelper.canRunRootCommands;
+
 public class SplashActivity extends Activity {
 
     private static final int SHOW_TIME_MIN = 1200;
@@ -14,7 +16,13 @@ public class SplashActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
-
+        new Thread(){
+            @Override
+            public void run() {
+                super.run();
+                canRunRootCommands();
+            }
+        }.start();
         //倒计时返回主界面
         new AsyncTask<Void, Void, Integer>() {
             @Override
