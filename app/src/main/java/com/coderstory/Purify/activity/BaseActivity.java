@@ -1,6 +1,9 @@
 package com.coderstory.Purify.activity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -12,6 +15,10 @@ import android.view.View;
  */
 
 public abstract class BaseActivity extends AppCompatActivity {
+
+    private static SharedPreferences prefs;
+    private static SharedPreferences.Editor editor;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,6 +59,24 @@ public abstract class BaseActivity extends AppCompatActivity {
 
     }
 
+    protected SharedPreferences.Editor getEditor() {
+        if (editor == null) {
+            editor = prefs.edit();
+        }
+        return editor;
 
+    }
+
+    protected SharedPreferences getPrefs() {
+
+
+        if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.N) {
+            prefs = getBaseContext().getSharedPreferences("UserSettings", Context.MODE_PRIVATE);
+        }else{
+            prefs = getBaseContext().getSharedPreferences("UserSettings", Context.MODE_WORLD_READABLE);
+        }
+
+        return prefs;
+    }
 
 }
