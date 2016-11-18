@@ -48,7 +48,7 @@
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
             android:textSize="25sp"
-            android:layout_marginTop="30dp" />
+            android:layout_marginTop="50dp" />
 
         <!--<ImageView-->
             <!--android:layout_width="125dp"-->
