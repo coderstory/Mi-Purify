@@ -1,7 +1,6 @@
 package com.coderstory.Purify.activity;
 
 import android.Manifest;
-import android.content.Context;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
@@ -96,9 +95,10 @@ public class MainActivity extends BaseActivity {
         mDrawerLayout = $(R.id.drawer_layout);
         mNavigationView = $(navigation_view);
 
-        if (MainActivity.this.getSharedPreferences("UserSettings", Context.MODE_WORLD_READABLE).getBoolean("enableCheck", true) && !isEnable()) {
-            SnackBarUtils.makeLong(mNavigationView, "插件尚未激活,Xposed功能将不可用,请重启再试！").show();
-        }
+            if (getPrefs().getBoolean("enableCheck", true) && !isEnable()) {
+                SnackBarUtils.makeLong(mNavigationView, "插件尚未激活,Xposed功能将不可用,请重启再试！").show();
+            }
+
 
         mToolbar.setTitle("净化广告");
 
