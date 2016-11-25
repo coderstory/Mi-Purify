@@ -16,6 +16,18 @@
         android:supportsRtl="true"
         android:fullBackupContent="true"
         android:theme="@style/AppTheme">
+
+        <provider
+            android:name="android.support.v4.content.FileProvider"
+            android:authorities="com.coderstory.Purify.fileprovider"
+            android:grantUriPermissions="true"
+            android:exported="false"
+            >
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider>
+
         <activity
             android:name=".activity.MainActivity"
             android:launchMode="singleTask"
@@ -34,21 +46,16 @@
         <activity
             android:name="ren.solid.library.activity.ViewPicActivity"
             android:screenOrientation="portrait" />
-
-
         <activity
             android:name=".activity.SplashActivity"
 
             android:theme="@style/fulscreen_theme" >
 
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
-
         <meta-data
             android:name="xposedmodule"
             android:value="true" />
@@ -59,6 +66,11 @@
             android:name="xposedminversion"
             android:value="54" />
 
+
+
+
     </application>
+
+
 
 </manifest>

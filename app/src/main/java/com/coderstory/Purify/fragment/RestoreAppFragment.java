@@ -11,10 +11,12 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Looper;
 import android.support.annotation.Nullable;
+import android.support.v4.content.FileProvider;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -132,7 +134,7 @@ public class RestoreAppFragment extends BaseFragment {
                     public void onClick(DialogInterface dialog, int which) {
 
                         if (getPrefs().getBoolean("installType", false)) {
-                            String commandText = "pm install  " + path_backup + appInfo.getPackageName() + ".apk";
+                            String commandText = "pm install  \"" + path_backup + appInfo.getPackageName() + ".apk\"";
                             Log.e("cc", commandText);
                             Process process = null;
                             DataOutputStream os = null;
@@ -158,10 +160,11 @@ public class RestoreAppFragment extends BaseFragment {
                             closeProgress();
                             Toast.makeText(context, "正在后台安装！", Toast.LENGTH_SHORT).show();
                         } else {
-                            Intent intent = new Intent();
-                            intent.setAction(Intent.ACTION_VIEW);
-                            intent.setDataAndType(Uri.fromFile(new File(path_backup + appInfo.getPackageName() + ".apk")), "application/vnd.android.package-archive");
-                            startActivity(intent);
+//                            Intent intent = new Intent();
+//                            intent.setAction(Intent.ACTION_VIEW);
+//                            intent.setDataAndType(Uri.fromFile(new File(path_backup + appInfo.getPackageName() + ".apk")), "application/vnd.android.package-archive");
+//                            startActivity(intent);
+                            installApkFile(path_backup + appInfo.getPackageName() + ".apk");
                         }
 
 
@@ -235,6 +238,19 @@ public class RestoreAppFragment extends BaseFragment {
             dialog.cancel();
             dialog = null;
         }
+    }
+
+    public  void installApkFile(String filePath) {
+        Intent intent = new Intent(Intent.ACTION_VIEW);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            intent.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+            Uri contentUri = FileProvider.getUriForFile(context, "com.coderstory.Purify.fileprovider", new File(filePath));
+            intent.setDataAndType(contentUri, "application/vnd.android.package-archive");
+        } else {
+            intent.setDataAndType(Uri.fromFile(new File(filePath)), "application/vnd.android.package-archive");
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        }
+        startActivity(intent);
     }
 
 }
