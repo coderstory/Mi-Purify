@@ -324,7 +324,7 @@ public class RemoveAds implements IModule {
 
                 findAndHookMethod("com.miui.systemAdSolution.landingPage.LandingPageService", loadPackageParam.classLoader, "init", Context.class, XC_MethodReplacement.returnConstant(null));
             }
-            return ;
+            return;
         }
 
 
@@ -417,7 +417,7 @@ public class RemoveAds implements IModule {
                 findAndHookMethod("com.miui.weather2.tools.ToolUtils", loadPackageParam.classLoader, "checkCommericalStatue", Context.class, XC_MethodReplacement.returnConstant(false));
 
                 findAndHookMethod("com.miui.weather2.ActivityDailyForecastDetail", loadPackageParam.classLoader, "ep", XC_MethodReplacement.returnConstant(null));
-               findAndHookMethod("com.miui.weather2.ActivityDailyForecastDetail", loadPackageParam.classLoader, "eq", XC_MethodReplacement.returnConstant(null));
+                findAndHookMethod("com.miui.weather2.ActivityDailyForecastDetail", loadPackageParam.classLoader, "eq", XC_MethodReplacement.returnConstant(null));
                 findAndHookMethod("com.miui.weather2.ActivityDailyForecastDetail", loadPackageParam.classLoader, "er", XC_MethodReplacement.returnConstant(null));
                 findAndHookMethod("com.miui.weather2.ActivityDailyForecastDetail", loadPackageParam.classLoader, "eo", XC_MethodReplacement.returnConstant(null));
                 findAndHookMethod("com.miui.weather2.structures.DailyForecastAdData", loadPackageParam.classLoader, "isAdInfosExistence", XC_MethodReplacement.returnConstant(false));
@@ -429,7 +429,7 @@ public class RemoveAds implements IModule {
                 findAndHookMethod("com.miui.weather2.WeatherApplication", loadPackageParam.classLoader, "attachBaseContext", Context.class, new XC_MethodHook() {
                     @Override
                     protected void afterHookedMethod(MethodHookParam param) {
-                        Context ctx = (Context)param.args[0] ;
+                        Context ctx = (Context) param.args[0];
                         SharedPreferences pref = ctx.getSharedPreferences("com.miui.weather2.information", 0);
                         pref.edit().putBoolean("agree_to_have_information", false).apply();
                     }
@@ -450,6 +450,28 @@ public class RemoveAds implements IModule {
                         paramAnonymousMethodHookParam.args[0] = false;
                     }
                 });
+
+                Class<?> clsPageItem = XposedHelpers.findClass("com.android.thememanager.model.PageItem",loadPackageParam.classLoader );
+                if (clsPageItem != null) {
+                    findAndHookMethod("com.android.thememanager.controller.online.PageItemViewConverter", loadPackageParam.classLoader, "buildAdView", clsPageItem, XC_MethodReplacement.returnConstant(null));
+                }
+
+                Class<?> clsHybridView = XposedHelpers.findClass("miui.hybrid.HybridView",loadPackageParam.classLoader);
+                if (clsHybridView != null) {
+                    findAndHookMethod("com.android.thememanager.h5.ThemeHybridFragment$BaseWebViewClient", loadPackageParam.classLoader, "shouldInterceptRequest", clsHybridView, String.class, new XC_MethodHook() {
+                       @Override
+                        protected void  beforeHookedMethod( MethodHookParam param) {
+                            String url =(String) param.args[1] ;
+                            if (url.contains("AdCenter")) {
+                                param.args[1] = "http://127.0.0.1/";
+                            }
+                        }
+                    });
+                }
+                findAndHookMethod("com.android.thememanager.util.ApplicationHelper", loadPackageParam.classLoader, "isFreshMan", XC_MethodReplacement.returnConstant(false));
+               findAndHookMethod("com.android.thememanager.util.ApplicationHelper", loadPackageParam.classLoader, "hasFreshManMarkRecord", Context.class, XC_MethodReplacement.returnConstant(false));
+                findAndHookMethod("com.miui.systemAdSolution.landingPage.LandingPageService", loadPackageParam.classLoader, "init", Context.class, XC_MethodReplacement.returnConstant(null));
+                return;
             }
         }
 
