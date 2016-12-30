@@ -2,14 +2,24 @@ package com.coderstory.Purify.module;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.Loader;
+import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.FrameLayout;
 
 import com.coderstory.Purify.plugins.IModule;
 
 import org.json.JSONObject;
 
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 import de.robv.android.xposed.IXposedHookZygoteInit;
 import de.robv.android.xposed.XC_MethodHook;
@@ -42,18 +52,14 @@ public class RemoveAds implements IModule {
     @Override
     public void handleLoadPackage(XC_LoadPackage.LoadPackageParam lpparam) {
         loadPackageParam = lpparam;
-        try {
-            patchcode();
-        } catch (ClassNotFoundException e) {
-            XposedBridge.log(e);
-        }
+        patchcode();
     }
 
     @Override
     public void initZygote(IXposedHookZygoteInit.StartupParam startupParam) {
     }
 
-    private void patchcode() throws ClassNotFoundException {
+    private void patchcode() {
 
         XSharedPreferences prefs = new XSharedPreferences("com.coderstory.Purify", "UserSettings");
         prefs.makeWorldReadable();
@@ -149,40 +155,173 @@ public class RemoveAds implements IModule {
         if (loadPackageParam.packageName.equals("com.miui.video")) {
             if (prefs.getBoolean("enablemiuividio", false)) {
 
-                findAndHookMethod("com.video.ui.idata.iDataORM", loadPackageParam.classLoader, "getBooleanValue", Context.class, String.class, boolean.class, new XC_MethodHook() {
+                findAndHookMethod("com.miui.videoplayer.ads.DynamicAd", loadPackageParam.classLoader, "replaceList", List.class, String.class, new XC_MethodHook() {
                     @Override
-                    protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
-                        String key = (String) param.args[1];
-                        if (key.equals("debug_mode") || key.equals("show_first_ads") || key.equals("ads_show_homekey") || key.equals("startup_ads_loop") || key.equals("app_upgrade_splash")) {
-                            param.setResult(false);
-                        }
+                    protected void beforeHookedMethod(XC_MethodHook.MethodHookParam paramAnonymousMethodHookParam) {
+                        paramAnonymousMethodHookParam.args[0] = null;
+                        paramAnonymousMethodHookParam.args[1] = null;
                     }
-
+                });
+                findAndHookMethod("com.video.ui.view.AdView", loadPackageParam.classLoader, "getAdsBlock", Context.class, XC_MethodReplacement.returnConstant(null));
+                Class clsCallback = XposedHelpers.findClass("com.video.ui.idata.SyncServiceHelper$Callback", loadPackageParam.classLoader);
+                if (clsCallback != null) {
+                    findAndHookMethod("com.video.ui.idata.SyncServiceHelper", loadPackageParam.classLoader, "fetchAds", Context.class, clsCallback, XC_MethodReplacement.returnConstant(null));
+                }
+                findAndHookMethod("com.video.ui.idata.iDataORM", loadPackageParam.classLoader, "getBooleanValue", Context.class, String.class, java.lang.Boolean.TYPE, new XC_MethodHook() {
                     @Override
-                    protected void afterHookedMethod(MethodHookParam param) throws Throwable {
+                    protected void beforeHookedMethod(XC_MethodHook.MethodHookParam param) {
                         String key = (String) param.args[1];
-                        if (key.equals("debug_mode") || key.equals("show_first_ads") || key.equals("ads_show_homekey") || key.equals("startup_ads_loop") || key.equals("app_upgrade_splash")) {
+                        if (Objects.equals(key, "debug_mode") || Objects.equals(key, "show_first_ads") || Objects.equals(key, "ads_show_homekey") || Objects.equals(key, "startup_ads_loop") || Objects.equals(key, "app_upgrade_splash")) {
                             param.setResult(false);
                         }
                     }
                 });
                 findAndHookMethod("com.video.ui.idata.iDataORM", loadPackageParam.classLoader, "getStringValue", Context.class, String.class, String.class, new XC_MethodHook() {
                     @Override
-                    protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
+                    protected void beforeHookedMethod(XC_MethodHook.MethodHookParam param) {
                         String key = (String) param.args[1];
-                        if (key.equals("startup_ads")) {
-                            param.setResult(null);
-                        }
-                    }
-
-                    @Override
-                    protected void afterHookedMethod(MethodHookParam param) throws Throwable {
-                        String key = (String) param.args[1];
-                        if (key.equals("startup_ads")) {
+                        if (Objects.equals(key, "startup_ads")) {
                             param.setResult(null);
                         }
                     }
                 });
+                findAndHookMethod("com.video.ui.idata.iDataORM", loadPackageParam.classLoader, "getBooleanValue", Context.class, String.class, java.lang.Boolean.TYPE, new XC_MethodHook() {
+                    @Override
+                    protected void beforeHookedMethod(XC_MethodHook.MethodHookParam param) {
+                        String key = (String) param.args[1];
+                        if (Objects.equals(key, "show_title_ads") || Objects.equals(key, "show_channel_title_ads")) {
+                            param.setResult(false);
+                        }
+                    }
+                });
+                findAndHookMethod("com.video.ui.idata.iDataORM", loadPackageParam.classLoader, "enabledAds", Context.class, XC_MethodReplacement.returnConstant(false));
+                Class clsAdListener = XposedHelpers.findClass("com.miui.systemAdSolution.splashAd.IAdListener", loadPackageParam.classLoader);
+                if (clsAdListener != null) {
+                    findAndHookMethod("com.miui.ad.sdk.api.RemoteSystemSplashAdService", loadPackageParam.classLoader, "requestSystemSplashAd", clsAdListener, XC_MethodReplacement.returnConstant(false));
+                    findAndHookMethod("com.miui.ad.sdk.api.SystemSplashAd", loadPackageParam.classLoader, "requestAd", Context.class, clsAdListener, XC_MethodReplacement.returnConstant(null));
+                    findAndHookMethod("com.miui.ad.sdk.api.SystemSplashAd", loadPackageParam.classLoader, "requestAd", clsAdListener, XC_MethodReplacement.returnConstant(null));
+                }
+
+                findAndHookMethod("com.miui.videoplayer.model.OnlineUri", loadPackageParam.classLoader, "supportFrontAD", XC_MethodReplacement.returnConstant(false));
+                findAndHookMethod("com.miui.videoplayer.model.OnlineUri", loadPackageParam.classLoader, "supportPauseAD", XC_MethodReplacement.returnConstant(false));
+                findAndHookMethod("com.miui.videoplayer.model.OnlineUri", loadPackageParam.classLoader, "supportCornerAD", XC_MethodReplacement.returnConstant(false));
+                findAndHookMethod("com.miui.videoplayer.model.OnlineUri", loadPackageParam.classLoader, "skipAllAD", XC_MethodReplacement.returnConstant(true));
+                findAndHookMethod("com.miui.videoplayer.model.OnlineUri", loadPackageParam.classLoader, "skipSDKAD", XC_MethodReplacement.returnConstant(true));
+                findAndHookMethod("com.miui.videoplayer.model.OnlineUri", loadPackageParam.classLoader, "getMiAdFlag", XC_MethodReplacement.returnConstant(-1));
+
+                findAndHookMethod("com.miui.videoplayer.ads.AdsContainer", loadPackageParam.classLoader, "setCornerAd", XC_MethodReplacement.returnConstant(null));
+                findAndHookMethod("com.miui.videoplayer.ads.AdsContainer", loadPackageParam.classLoader, "enableOfflineAds", XC_MethodReplacement.returnConstant(false));
+
+                findAndHookMethod("com.miui.videoplayer.videoview.VideoViewContainer", loadPackageParam.classLoader, "playAd", XC_MethodReplacement.returnConstant(null));
+                Class clsVideoView = XposedHelpers.findClass("com.miui.videoplayer.videoview.IVideoView", loadPackageParam.classLoader);
+                if (clsVideoView != null) {
+                    findAndHookMethod("com.miui.videoplayer.videoview.VideoViewContainer", loadPackageParam.classLoader, "playRealVideo", clsVideoView, java.lang.Boolean.TYPE, new XC_MethodHook() {
+                        @Override
+                        protected void beforeHookedMethod(XC_MethodHook.MethodHookParam param) {
+                            param.args[1] = true;
+                        }
+                    });
+                }
+
+                findAndHookMethod("com.miui.videoplayer.videoview.VideoViewContainer", loadPackageParam.classLoader, "prepareRealVideoView", java.lang.Boolean.TYPE, new XC_MethodHook() {
+                    @Override
+                    protected void beforeHookedMethod(XC_MethodHook.MethodHookParam param) {
+                        param.args[0] = true;// haveAd
+                    }
+                });
+
+                findAndHookMethod("com.miui.videoplayer.ads.AdsService", loadPackageParam.classLoader, "doLaunch", String.class, XC_MethodReplacement.returnConstant(null));
+                findAndHookMethod("com.miui.videoplayer.videoview.MiAdsVideoView", loadPackageParam.classLoader, "haveAd", XC_MethodReplacement.returnConstant(false));
+                findAndHookMethod("com.xiaomi.miui.ad.listeners.impl.AdEventListenerImpl", loadPackageParam.classLoader, "onAdRequest", String.class, JSONObject.class, XC_MethodReplacement.returnConstant(null));
+                findAndHookMethod("com.xiaomi.miui.ad.listeners.impl.AdEventListenerImpl", loadPackageParam.classLoader, "onAdClicked", String.class, JSONObject.class, XC_MethodReplacement.returnConstant(null));
+
+                Class clsBlock = XposedHelpers.findClass("com.tv.ui.metro.model.Block", loadPackageParam.classLoader);
+                Class clsPool = XposedHelpers.findClass("android.support.v7.widget.RecyclerView$RecycledViewPool", loadPackageParam.classLoader);
+                if (clsBlock != null && clsPool != null) {
+                    findAndHookConstructor("com.video.ui.view.BlockAdapter", loadPackageParam.classLoader, Context.class, clsBlock, new XC_MethodHook() {
+                        @Override
+                        protected void afterHookedMethod(XC_MethodHook.MethodHookParam param) {
+                            fuckParam(param, "ui_type");
+
+                        }
+                    });
+                    findAndHookConstructor("com.video.ui.view.BlockAdapter", loadPackageParam.classLoader, Context.class, clsBlock, clsPool, new XC_MethodHook() {
+                        @Override
+                        protected void afterHookedMethod(XC_MethodHook.MethodHookParam param) {
+                            fuckParam(param, "ui_type");
+                        }
+                    });
+                    findAndHookMethod("com.video.ui.view.BlockAdapter", loadPackageParam.classLoader, "addGroup", clsBlock, new XC_MethodHook() {
+                        @Override
+                        protected void afterHookedMethod(XC_MethodHook.MethodHookParam param) {
+                            fuckParam(param, "ui_type");
+                        }
+                    });
+                    findAndHookMethod("com.video.ui.view.block.PortBlockView", loadPackageParam.classLoader, "initUI", clsBlock, new XC_MethodHook() {
+                        @Override
+                        protected void beforeHookedMethod(XC_MethodHook.MethodHookParam param) {
+                            fuckParam(param, "blocks");
+                        }
+                    });
+                }
+
+                if (clsBlock != null) {
+                    findAndHookMethod("com.video.ui.view.ListFragment", loadPackageParam.classLoader, "setBlockView", clsBlock, new XC_MethodHook() {
+                        @Override
+                        protected void beforeHookedMethod(XC_MethodHook.MethodHookParam param) throws IllegalAccessException, NoSuchFieldException {
+                            Class<?> o = (Class<?>) param.args[0];
+                            Field fBlocks = o.getClass().getDeclaredField("blocks");
+                            fBlocks.isAccessible();
+                            fBlocks.set(o, null);
+                            Field fFooters = o.getClass().getDeclaredField("footers");
+                            fFooters.isAccessible();
+                            fFooters.set(o, null);
+                        }
+                    });
+                }
+
+                Class<?> clsVideo = XposedHelpers.findClass("com.tv.ui.metro.model.VideoItem", loadPackageParam.classLoader);
+                if (clsVideo != null) {
+                    findAndHookMethod("com.video.ui.view.DetailFragment", loadPackageParam.classLoader, "updateVideo", clsVideo, new XC_MethodHook() {
+                        @Override
+                        protected void beforeHookedMethod(XC_MethodHook.MethodHookParam param) throws IllegalAccessException, NoSuchFieldException {
+                            Class<?> oVideo = (Class<?>) param.args[0];
+                            Field fBlocks = oVideo.getClass().getDeclaredField("blocks");
+                            fBlocks.isAccessible();
+                            fBlocks.set(oVideo, null);
+                            Field fHeaders = oVideo.getClass().getDeclaredField("headers");
+                            fHeaders.isAccessible();
+                            fHeaders.set(oVideo, null);
+                        }
+                    });
+                }
+
+                findAndHookMethod("com.video.ui.view.DetailFragment", loadPackageParam.classLoader, "onCreateView", LayoutInflater.class, ViewGroup.class, Bundle.class, new XC_MethodHook() {
+                    @Override
+                    protected void afterHookedMethod(XC_MethodHook.MethodHookParam param) throws IllegalAccessException, NoSuchFieldException {
+                        Class<?> fragment = (Class<?>) param.thisObject;
+                        Field fR1 = fragment.getClass().getDeclaredField("relative_region");
+                        Field fR2 = fragment.getClass().getDeclaredField("headers_region");
+                        FrameLayout r1 = (FrameLayout) fR1.get(fragment);
+                        FrameLayout r2 = (FrameLayout) fR2.get(fragment);
+                        r1.setVisibility(View.GONE);
+                        r2.setVisibility(View.GONE);
+                    }
+                });
+                findAndHookMethod("com.video.ui.view.DetailFragment", loadPackageParam.classLoader, "checkAdsPresentVisibility", View.class, XC_MethodReplacement.returnConstant(null));
+                findAndHookMethod("com.video.ui.view.ListFragment", loadPackageParam.classLoader, "checkAdsPresentVisibility", View.class, XC_MethodReplacement.returnConstant(null));
+
+                Class<?> clsGenericBlock = XposedHelpers.findClass("com.tv.ui.metro.model.GenericBlock", loadPackageParam.classLoader);
+                if (clsGenericBlock != null) {
+                    findAndHookMethod("com.video.ui.view.user.MyVideoFragment", loadPackageParam.classLoader, "onLoadFinished", Loader.class, clsGenericBlock, new XC_MethodHook() {
+                        @Override
+                        protected void beforeHookedMethod(XC_MethodHook.MethodHookParam param) {
+                            param.args[1] = null;
+                        }
+                    });
+                }
+
+                findAndHookMethod("com.miui.systemAdSolution.landingPage.LandingPageService", loadPackageParam.classLoader, "init", Context.class, XC_MethodReplacement.returnConstant(null));
             }
         }
 
@@ -341,6 +480,29 @@ public class RemoveAds implements IModule {
 
         } catch (Throwable localString3) {
             XposedBridge.log(localString3);
+        }
+    }
+
+    private void fuckParam(XC_MethodHook.MethodHookParam param, String param1) {
+
+        try {
+            Class clsThis = param.thisObject.getClass();
+            Field fBlockRootArrayList = clsThis.getDeclaredField("mBlockRootArrayList");
+            fBlockRootArrayList.isAccessible();
+            ArrayList<?> mBlockRootArrayList = (ArrayList<?>) fBlockRootArrayList.get(param.thisObject);
+            for (Object b : mBlockRootArrayList) {
+                Field fUI = b.getClass().getSuperclass().getDeclaredField(param1);
+                fUI.isAccessible();
+                Class<?> oUI = (Class<?>) fUI.get(b);
+                Method mId = oUI.getClass().getMethod("id");
+                int id = (int) mId.invoke(oUI);
+                if (id == 101 || id == 10001 || id == 282 || id == 257 || id == 221 ||
+                        id == 501 || id == 502 || id == 503 || (id == 601) || (id == 602) || id == 603 || id == 604) {
+                    mBlockRootArrayList.remove(b);
+                }
+            }
+        } catch (Exception e) {
+            XposedBridge.log(e.fillInStackTrace());
         }
     }
 
