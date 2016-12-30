@@ -569,32 +569,15 @@ public class RemoveAds implements IModule {
         // 短信
         if (loadPackageParam.packageName.equals("com.android.mms")) {
             if (prefs.getBoolean("enableMMS", false)) {
-                findAndHookMethod("com.android.mms.ui.MessageUtils", loadPackageParam.classLoader, "isMessagingTemplateAllowed", Context.class, new XC_MethodHook() {
-                    protected void beforeHookedMethod(MethodHookParam paramAnonymousMethodHookParam)
-                            throws Throwable {
-                        Context mc = (Context) paramAnonymousMethodHookParam.args[0];
-                        if (mc.getClass().getName().toLowerCase().contains("app")) {
-                            paramAnonymousMethodHookParam.setResult(false);
-                        } else {
-                            paramAnonymousMethodHookParam.setResult(true);
-                        }
-                    }
-                });
-                //显示短信功能按钮
-                findAndHookMethod("com.android.mms.ui.SingleRecipientConversationActivity", loadPackageParam.classLoader, "showMenuMode", boolean.class, new XC_MethodReplacement() {
+                findAndHookMethod("com.android.mms.ui.MessageUtils", loadPackageParam.classLoader, "isMessagingTemplateAllowed", Context.class, new  XC_MethodHook() {
                     @Override
-                    protected Object replaceHookedMethod(MethodHookParam param) throws Throwable {
-                        return null;
+                    protected void beforeHookedMethod( XC_MethodHook.MethodHookParam paramAnonymousMethodHookParam) {
+                        Context mc =(Context) paramAnonymousMethodHookParam.args[0];
+                        paramAnonymousMethodHookParam.setResult(!mc.getClass().getName().toLowerCase().contains("app"));
                     }
                 });
-
-                //显示短信推荐信息
-                findAndHookMethod("com.android.mms.util.MiStatSdkHelper", loadPackageParam.classLoader, "recordBottomMenuShown", String.class, new XC_MethodReplacement() {
-                    @Override
-                    protected Object replaceHookedMethod(MethodHookParam param) throws Throwable {
-                        return null;
-                    }
-                });
+                findAndHookMethod("com.android.mms.ui.SingleRecipientConversationActivity", loadPackageParam.classLoader, "showMenuMode", XC_MethodReplacement.returnConstant(null));
+                findAndHookMethod("com.android.mms.util.MiStatSdkHelper", loadPackageParam.classLoader, "recordBottomMenuShown", String.class, XC_MethodReplacement.returnConstant(null));
             }
         }
     }
