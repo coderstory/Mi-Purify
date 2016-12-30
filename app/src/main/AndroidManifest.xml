@@ -41,12 +41,6 @@
             android:name=".activity.AboutActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="ren.solid.library.activity.WebViewActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name="ren.solid.library.activity.ViewPicActivity"
-            android:screenOrientation="portrait" />
-        <activity
             android:name=".activity.SplashActivity"
 
             android:theme="@style/fulscreen_theme" >
