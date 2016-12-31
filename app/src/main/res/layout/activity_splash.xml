@@ -1,65 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
-     android:background="#5acace"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
 
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
-
-    <RelativeLayout android:layout_width="fill_parent"
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:scaleType="center"
+        android:src="@drawable/background"
 
         android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true">
+        android:layout_alignParentStart="true" />
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:id="@+id/linearLayout"
-            android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true"
-            android:layout_marginBottom="150dp">
+    <TextView
+        android:id="@+id/ccd"
+        android:text="1.6.0"
+        android:textColor="#fff"
+        android:fontFamily="sans-serif-condensed"
+        android:textSize="25sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_below="@+id/cc"
+        android:layout_alignStart="@+id/ccdd" />
 
-            <LinearLayout android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal">
+    <TextView
+        android:id="@+id/ccdd"
+        android:text="还你一个干净的世界"
+        android:textColor="#fff"
+        android:fontFamily="sans-serif-condensed"
+        android:textSize="30sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="13dp"
+        android:layout_below="@+id/ccd"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="30dp" />
 
-            </LinearLayout>
+    <TextView
+        android:id="@+id/cc"
+        android:text="小米净化"
+        android:textColor="#fff"
+        android:fontFamily="sans-serif-condensed"
+        android:textSize="35sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="38dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignStart="@+id/ccd" />
 
-
-        </LinearLayout>
-
-        <ImageView
-            android:paddingTop="100dp"
-            android:layout_width="wrap_content"
-         android:src="@drawable/mybg"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-
-            android:layout_marginEnd="17dp" />
-
-        <android.support.v7.widget.AppCompatTextView
-            android:layout_width="wrap_content"
-            android:text="小米净化 1.5"
-            android:gravity="center"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true"
-            android:textSize="25sp"
-            android:layout_marginTop="50dp" />
-
-        <!--<ImageView-->
-            <!--android:layout_width="125dp"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:src="@drawable/shooter"-->
-<!--android:adjustViewBounds="true"-->
-            <!--android:id="@+id/imageView3"-->
-            <!---->
-            <!--android:layout_above="@+id/linearLayout"-->
-            <!--android:layout_centerHorizontal="true" />-->
-
-
-    </RelativeLayout>
 </RelativeLayout>
