@@ -58,9 +58,9 @@ public class CleanFragment extends BaseFragment {
         @Override
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
-            ((Button) $(R.id.button)).setText("开始清理");
+            ((Button) $(R.id.button)).setText(R.string.starting_clean);
             $(R.id.button).setEnabled(true);
-            SnackBarUtils.makeShort($(R.id.button), "应用清理完成！").info();
+            SnackBarUtils.makeShort($(R.id.button), getString(R.string.clean_success)).info();
         }
     };
 
@@ -74,7 +74,7 @@ public class CleanFragment extends BaseFragment {
 
     public void threadClean() {
         tvClean = $(R.id.tvClean);
-        ((Button) $(R.id.button)).setText("正在清理中...");
+        ((Button) $(R.id.button)).setText(R.string.cleaning);
         tvClean.append(getString(R.string.view_start_clean));
         $(R.id.button).setEnabled(false);
         th = new Thread(new Runnable() {

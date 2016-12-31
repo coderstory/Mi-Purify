@@ -115,7 +115,22 @@
     <string name="multiple_programmatic_fragment">Multiple programmaticly (Fragment)</string>
     <string name="custom_theme">Custom theme</string>
     <string name="custom_theme_fragment">Custom theme (Fragment)</string>
-
+    <string name="cp_url_success">已复制网址到粘贴板！</string>
+    <string name="share_url">网址分享</string>
+    <string name="starting_clean">开始清理</string>
+    <string name="clean_success">应用清理完成！</string>
+    <string name="cleaning">正在清理中...</string>
+    <string name="tips_backup_success">OK,列表备份完成！</string>
+    <string name="tips_backup_error">备份失败,一般是因为APP没读写存储权限导致的</string>
+    <string name="backup_list">备份列表</string>
+    <string name="tips_sure_backuplist">你确定要备份当前系统应用的冻结列表吗?</string>
+    <string name="tips_sure_restore_settings">还原设置</string>
+    <string name="restore_set">你确定要还原当前系统应用的冻结状态吗?</string>
+    <string name="refreshing_list">OK,正在刷新列表</string>
+    <string name="tips">提示</string>
+    <string name="restoreing">OK,正在恢复配置！</string>
+    <string name="not_fond_backup_list">未找到备份列表！</string>
+    <string name="not_fond_backup_list_file">未找到备份列表！</string>
 
 
 </resources>

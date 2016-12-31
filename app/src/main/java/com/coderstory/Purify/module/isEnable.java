@@ -2,6 +2,7 @@ package com.coderstory.Purify.module;
 
 
 import com.coderstory.Purify.plugins.IModule;
+
 import de.robv.android.xposed.IXposedHookZygoteInit;
 import de.robv.android.xposed.XC_MethodReplacement;
 import de.robv.android.xposed.XposedBridge;
@@ -9,6 +10,7 @@ import de.robv.android.xposed.XposedHelpers;
 import de.robv.android.xposed.callbacks.XC_InitPackageResources;
 import de.robv.android.xposed.callbacks.XC_LoadPackage;
 
+import static com.coderstory.Purify.utils.MyConfig.ApplicationName;
 
 
 public class isEnable implements IModule {
@@ -20,10 +22,10 @@ public class isEnable implements IModule {
 
     @Override
     public void handleLoadPackage(XC_LoadPackage.LoadPackageParam lpparam) {
-        if (lpparam.packageName.equals("com.coderstory.Purify")) {
+        if (lpparam.packageName.equals(ApplicationName)) {
             try {
-               XposedBridge.log("小米净化 1.x 开始Patch");
-                XposedHelpers.findAndHookMethod("com.coderstory.Purify.activity.MainActivity", lpparam.classLoader, "isEnable", XC_MethodReplacement.returnConstant(true));
+                XposedBridge.log("小米净化 1.x 开始Patch");
+                XposedHelpers.findAndHookMethod(ApplicationName+".activity.MainActivity", lpparam.classLoader, "isEnable", XC_MethodReplacement.returnConstant(true));
             } catch (Throwable p1) {
                 XposedBridge.log(p1);
             }

@@ -10,6 +10,8 @@ import com.coderstory.Purify.utils.Adapter.Application.AppInfo;
 import java.io.File;
 import java.util.Vector;
 
+import static com.coderstory.Purify.utils.MyConfig.BackPath;
+
 /**
  * Created by cc on 2015/12/28.
  */
@@ -40,7 +42,7 @@ public class DirManager {
 
     public static PackageInfo loadAppInfo(String appPath, Activity content) {
         AppInfo app = new AppInfo();
-        app.setAppDir(Environment.getExternalStorageDirectory().getPath() + "/MIUI Purify/backupAPP/"+ appPath);
+        app.setAppDir(BackPath+ appPath);
        // Log.e("11",app.appdir);
         PackageManager pm = content.getPackageManager();
        // Log.e("22",app.appdir);

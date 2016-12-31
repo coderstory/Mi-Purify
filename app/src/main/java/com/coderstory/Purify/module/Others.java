@@ -12,6 +12,9 @@ import de.robv.android.xposed.XposedHelpers;
 import de.robv.android.xposed.callbacks.XC_InitPackageResources;
 import de.robv.android.xposed.callbacks.XC_LoadPackage;
 
+import static com.coderstory.Purify.utils.MyConfig.ApplicationName;
+import static com.coderstory.Purify.utils.MyConfig.SharedPreferencesName;
+
 
 public class Others implements IModule {
 
@@ -23,7 +26,7 @@ public class Others implements IModule {
 
     @Override
     public void handleLoadPackage(XC_LoadPackage.LoadPackageParam loadPackageParam) {
-        XSharedPreferences prefs = new XSharedPreferences("com.coderstory.Purify", "UserSettings");
+        XSharedPreferences prefs = new XSharedPreferences(ApplicationName, SharedPreferencesName);
         prefs.makeWorldReadable();
         prefs.reload();
 

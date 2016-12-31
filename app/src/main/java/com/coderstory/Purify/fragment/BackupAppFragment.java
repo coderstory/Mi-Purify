@@ -14,6 +14,7 @@ import android.os.Environment;
 import android.os.Looper;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -32,6 +33,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import ren.solid.library.fragment.base.BaseFragment;
+
+import static com.coderstory.Purify.utils.MyConfig.BackPath;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -55,13 +58,13 @@ public class BackupAppFragment extends BaseFragment {
     int mPosition = 0;
     View mView = null;
     com.yalantis.phoenix.PullToRefreshView mPullToRefreshView;
-  final   String  path_backup=Environment.getExternalStorageDirectory().getPath() + "/MIUI Purify/backupAPP/";
+
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         //创建备份目录
-        File file=new File(path_backup);
+        File file=new File(BackPath);
         if (!file.exists()){
             file.mkdirs();
         }
@@ -97,7 +100,7 @@ public class BackupAppFragment extends BaseFragment {
 
         appInfoList = new ArrayList<>();
         PackageManager pm = getActivity().getPackageManager();
-        DirManager.apkAll = DirManager.GetApkFileName(path_backup);
+        DirManager.apkAll = DirManager.GetApkFileName(BackPath);
         packages = new ArrayList<>();
 
         appInfoList2.clear();
@@ -107,8 +110,8 @@ public class BackupAppFragment extends BaseFragment {
             if (packageInfo != null) {
                 ApplicationInfo appInfo = packageInfo.applicationInfo;
                 //必须设置apk的路径 否则无法读取app的图标和名称
-                appInfo.sourceDir = path_backup + item;
-                appInfo.publicSourceDir = path_backup + item;
+                appInfo.sourceDir = BackPath + item;
+                appInfo.publicSourceDir = BackPath + item;
                 AppInfo appInfos = new AppInfo(pm.getApplicationLabel(appInfo).toString(), pm.getApplicationIcon(appInfo), packageInfo.packageName, false, packageInfo.applicationInfo.sourceDir, packageInfo.versionName,packageInfo.versionCode);
                 appInfoList2.add(appInfos);
             }
@@ -184,7 +187,7 @@ public class BackupAppFragment extends BaseFragment {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         DirManager.needReload=true;
-                        String commandText = "cp -f " + appInfo.getappdir() +" \""+path_backup + appInfo.getPackageName() + ".apk\"";
+                        String commandText = "cp -f " + appInfo.getappdir() +" \""+BackPath + appInfo.getPackageName() + ".apk\"";
                         Process process = null;
                         DataOutputStream os = null;
                         try {
@@ -199,7 +202,7 @@ public class BackupAppFragment extends BaseFragment {
                             appInfoList.remove(mPosition);
                             adapter.notifyDataSetChanged();
                         } catch (Exception e) {
-
+                            Log.e("", e.getMessage());
                         } finally {
                             try {
                                 if (os != null) {

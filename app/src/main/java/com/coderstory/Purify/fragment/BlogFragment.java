@@ -17,6 +17,7 @@ import ren.solid.library.fragment.WebViewFragment;
 import ren.solid.library.utils.SnackBarUtils;
 
 import static android.content.Context.CLIPBOARD_SERVICE;
+import static com.coderstory.Purify.utils.MyConfig.MyBlogUrl;
 
 /**
  * Created by _SOLID
@@ -32,7 +33,7 @@ public class BlogFragment extends WebViewFragment  {
 
     @Override
     public String getLoadUrl() {
-        return "http://blog.coderstory.cn";
+        return MyBlogUrl;
     }
 
 
@@ -46,9 +47,9 @@ public class BlogFragment extends WebViewFragment  {
           String text =mWebView.getUrl();
           myClip = ClipData.newPlainText("text", text);
           myClipboard.setPrimaryClip(myClip);
-          SnackBarUtils.makeLong(getView(), "已复制网址到粘贴板！").show();
+          SnackBarUtils.makeLong(getView(), getString(R.string.cp_url_success)).show();
       }else if (item.getItemId()==R.id.action_share){
-          shareMsg("网址分享",mWebView.getTitle(),mWebView.getUrl(),null);
+          shareMsg(getString(R.string.share_url),mWebView.getTitle(),mWebView.getUrl(),null);
       }
         return false;
     }
@@ -60,7 +61,7 @@ public class BlogFragment extends WebViewFragment  {
             intent.setType("text/plain"); // 纯文本
         } else {
             File f = new File(imgPath);
-            if (f != null && f.exists() && f.isFile()) {
+            if ( f.exists() && f.isFile()) {
                 intent.setType("image/jpg");
                 Uri u = Uri.fromFile(f);
                 intent.putExtra(Intent.EXTRA_STREAM, u);

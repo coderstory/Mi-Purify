@@ -48,7 +48,7 @@ public class SettingsFragment extends BaseFragment {
         $(R.id.miuiMusicCustomization).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getEditor().putBoolean("miuiMusicCustomization",((Switch)v).isChecked());
+                getEditor().putBoolean("MiuiMusicCustomization",((Switch)v).isChecked());
                 getEditor().apply();
             }
         });
@@ -101,7 +101,7 @@ public class SettingsFragment extends BaseFragment {
     protected void setUpData() {
         ((Switch) $(R.id.enableCheck)).setChecked(getPrefs().getBoolean("enableCheck",true));
         ((Switch) $(R.id.RemoveSearchBar)).setChecked(getPrefs().getBoolean("RemoveSearchBar",false));
-        ((Switch) $(R.id.miuiMusicCustomization)).setChecked(getPrefs().getBoolean("miuiMusicCustomization",false));
+        ((Switch) $(R.id.miuiMusicCustomization)).setChecked(getPrefs().getBoolean("MiuiMusicCustomization",false));
         ((Switch) $(R.id.fixpcb)).setChecked(getPrefs().getBoolean("fixpcb",false));
         ((Switch) $(R.id.hideicon)).setChecked(getPrefs().getBoolean("hideicon",false));
         ((Switch) $(R.id.installType)).setChecked(getPrefs().getBoolean("installType",false));

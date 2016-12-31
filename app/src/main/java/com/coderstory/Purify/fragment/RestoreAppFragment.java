@@ -38,6 +38,8 @@ import java.util.List;
 
 import ren.solid.library.fragment.base.BaseFragment;
 
+import static com.coderstory.Purify.utils.MyConfig.BackPath;
+
 
 public class RestoreAppFragment extends BaseFragment {
 
@@ -57,7 +59,7 @@ public class RestoreAppFragment extends BaseFragment {
     View mView = null;
     private Context context;
     PullToRefreshView mPullToRefreshView;
-    final String path_backup = Environment.getExternalStorageDirectory().getPath() + "/MIUI Purify/backupAPP/";
+
 
     @Nullable
     @Override
@@ -94,7 +96,7 @@ public class RestoreAppFragment extends BaseFragment {
     private void initData() {
         appInfoList = new ArrayList<>();
         PackageManager pm = getActivity().getPackageManager();
-        DirManager.apkAll = DirManager.GetApkFileName(path_backup);
+        DirManager.apkAll = DirManager.GetApkFileName(BackPath);
         packages = new ArrayList<>();
 
         for (String item : DirManager.apkAll
@@ -103,8 +105,8 @@ public class RestoreAppFragment extends BaseFragment {
             if (packageInfo != null) {
                 ApplicationInfo appInfo = packageInfo.applicationInfo;
                 //必须设置apk的路径 否则无法读取app的图标和名称
-                appInfo.sourceDir = path_backup + item;
-                appInfo.publicSourceDir = path_backup + item;
+                appInfo.sourceDir = BackPath + item;
+                appInfo.publicSourceDir = BackPath + item;
                 AppInfo appInfos = new AppInfo(pm.getApplicationLabel(appInfo).toString(), pm.getApplicationIcon(appInfo), packageInfo.packageName, false, packageInfo.applicationInfo.sourceDir, packageInfo.versionName, packageInfo.versionCode);
                 appInfoList.add(appInfos);
             }
@@ -134,7 +136,7 @@ public class RestoreAppFragment extends BaseFragment {
                     public void onClick(DialogInterface dialog, int which) {
 
                         if (getPrefs().getBoolean("installType", false)) {
-                            String commandText = "pm install  \"" + path_backup + appInfo.getPackageName() + ".apk\"";
+                            String commandText = "pm install  \"" + BackPath + appInfo.getPackageName() + ".apk\"";
                             Log.e("cc", commandText);
                             Process process = null;
                             DataOutputStream os = null;
@@ -164,7 +166,7 @@ public class RestoreAppFragment extends BaseFragment {
 //                            intent.setAction(Intent.ACTION_VIEW);
 //                            intent.setDataAndType(Uri.fromFile(new File(path_backup + appInfo.getPackageName() + ".apk")), "application/vnd.android.package-archive");
 //                            startActivity(intent);
-                            installApkFile(path_backup + appInfo.getPackageName() + ".apk");
+                            installApkFile(BackPath + appInfo.getPackageName() + ".apk");
                         }
 
 

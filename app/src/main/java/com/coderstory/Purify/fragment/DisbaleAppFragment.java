@@ -41,6 +41,7 @@ import java.util.List;
 import ren.solid.library.fragment.base.BaseFragment;
 import ren.solid.library.utils.SnackBarUtils;
 
+import static com.coderstory.Purify.utils.MyConfig.BackUpFileName;
 import static ren.solid.library.utils.FileUtils.readFile;
 
 /**
@@ -260,8 +261,8 @@ public class DisbaleAppFragment extends BaseFragment {
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.action_backupList) {
             AlertDialog.Builder dialog = new AlertDialog.Builder(getContext());
-            dialog.setTitle("备份列表");
-            String tipsText = "你确定要备份当前系统应用的冻结列表吗?";
+            dialog.setTitle(R.string.backup_list);
+            String tipsText = getString(R.string.tips_sure_backuplist);
             dialog.setMessage(tipsText);
             dialog.setPositiveButton(getString(R.string.Btn_Sure), new DialogInterface.OnClickListener() {
                 @Override
@@ -282,8 +283,8 @@ public class DisbaleAppFragment extends BaseFragment {
 
         } else if (item.getItemId() == R.id.action_restoreList) {
             AlertDialog.Builder dialog = new AlertDialog.Builder(getContext());
-            dialog.setTitle("还原设置");
-            String tipsText = "你确定要还原当前系统应用的冻结状态吗?";
+            dialog.setTitle(R.string.tips_sure_restore_settings);
+            String tipsText = getString(R.string.restore_set);
             dialog.setMessage(tipsText);
             dialog.setPositiveButton(getString(R.string.Btn_Sure), new DialogInterface.OnClickListener() {
                 @Override
@@ -308,29 +309,29 @@ public class DisbaleAppFragment extends BaseFragment {
 
     private void restoreList() {
         FileInputStream fos = null;
-        String CrashFilePath = Environment.getExternalStorageDirectory().getPath() + "/MIUI Purify/backup/";
-        File dir = new File(CrashFilePath);
+
+        File dir = new File(BackUpFileName);
         String fileName = "userList";
         String content = "";
         if (!dir.exists()) {
-            SnackBarUtils.makeShort($(R.id.listView), "未找到备份列表！").danger();
+            SnackBarUtils.makeShort($(R.id.listView), getString(R.string.not_fond_backup_list_file)).danger();
             return;
         }
         try {
-            content = readFile(CrashFilePath + fileName, null);
+            content = readFile(BackUpFileName + fileName, null);
         } catch (Exception e) {
             e.printStackTrace();
         }
 
         if (content.isEmpty()) {
-            SnackBarUtils.makeShort($(R.id.listView), "未找到备份列表！").danger();
+            SnackBarUtils.makeShort($(R.id.listView), getString(R.string.not_fond_backup_list)).danger();
             return;
         }
 
         final String[] list = content.split("\n");
 
 
-        dialog = ProgressDialog.show(getContext(), "提示", "OK,正在恢复配置！");
+        dialog = ProgressDialog.show(getContext(), getString(R.string.tips), getString(R.string.restoreing));
         dialog.show();
 
 
@@ -347,7 +348,7 @@ public class DisbaleAppFragment extends BaseFragment {
 
     Handler myHandler = new Handler() {
         public void handleMessage(Message msg) {
-            ((ProgressDialog) dialog).setMessage("OK,正在刷新列表");
+            ((ProgressDialog) dialog).setMessage(getString(R.string.refreshing_list));
             initData();
             adapter.notifyDataSetChanged();
             dialog.cancel();
@@ -385,16 +386,19 @@ public class DisbaleAppFragment extends BaseFragment {
                 SB.append(info.getPackageName() + "\n");
             }
         }
-        String CrashFilePath = Environment.getExternalStorageDirectory().getPath() + "/MIUI Purify/backup/";
-        File dir = new File(CrashFilePath);
+
+        File dir = new File(BackUpFileName);
         String fileName = "userList";
         if (!dir.exists()) {
-            dir.mkdirs();
+          if (!dir.mkdirs())  {
+              SnackBarUtils.makeShort($(R.id.listView), getString(R.string.tips_backup_error)).show();
+              return;
+          }
         }
         FileOutputStream fos = null;
         String result = "";
         try {
-            fos = new FileOutputStream(CrashFilePath + fileName);
+            fos = new FileOutputStream(BackUpFileName + fileName);
             fos.write(SB.toString().getBytes());
             fos.close();
         } catch (IOException e) {
@@ -402,9 +406,9 @@ public class DisbaleAppFragment extends BaseFragment {
             result = e.getMessage();
         }
         if (result.equals("")) {
-            SnackBarUtils.makeShort($(R.id.listView), "OK,列表备份完成！").show();
+            SnackBarUtils.makeShort($(R.id.listView), getString(R.string.tips_backup_success)).show();
         } else {
-            SnackBarUtils.makeShort($(R.id.listView), "备份失败,一般是因为APP没读写存储权限导致的" + result).show();
+            SnackBarUtils.makeShort($(R.id.listView), getString(R.string.tips_backup_error) + result).show();
         }
     }
 }

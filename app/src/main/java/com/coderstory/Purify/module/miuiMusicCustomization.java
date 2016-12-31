@@ -9,11 +9,13 @@ import de.robv.android.xposed.XposedHelpers;
 import de.robv.android.xposed.callbacks.XC_InitPackageResources;
 import de.robv.android.xposed.callbacks.XC_LoadPackage;
 
+import static com.coderstory.Purify.utils.packageNameEntries.music_packageName;
+
 /**
  * Created by Baby Song on 2016/8/29.
  */
 
-public class miuiMusic implements IModule {
+public class MiuiMusicCustomization implements IModule {
     @Override
     public void handleInitPackageResources(XC_InitPackageResources.InitPackageResourcesParam resparam) {
 
@@ -22,7 +24,7 @@ public class miuiMusic implements IModule {
     @Override
     public void handleLoadPackage(XC_LoadPackage.LoadPackageParam loadPackageParam) {
         //音乐
-        if (loadPackageParam.packageName.equals("com.miui.player")) {
+        if (loadPackageParam.packageName.equals(music_packageName)) {
                 findAndHookMethod("com.miui.player.util.Configuration", loadPackageParam.classLoader, "isCmCustomization", XC_MethodReplacement.returnConstant(true));
         }
     }
