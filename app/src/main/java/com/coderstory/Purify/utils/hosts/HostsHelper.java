@@ -13,6 +13,9 @@ import java.io.OutputStreamWriter;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 
+import static com.coderstory.Purify.utils.MyConfig.HostFileTmpName;
+
+
 /**
  * 和hosts相关的操作
  * Created by cc on 2016/6/7.
@@ -37,7 +40,7 @@ public class HostsHelper extends SuHelper {
         ArrayList<String> list = new ArrayList<>();
         list.add("mount -o rw,remount /system");
 
-        String path="/data/data/com.coderstory.Purify/files/hosts";
+        String path= mcontext.getFilesDir().getPath()+ HostFileTmpName;
 
         FileOutputStream out=null;
         BufferedWriter writer;

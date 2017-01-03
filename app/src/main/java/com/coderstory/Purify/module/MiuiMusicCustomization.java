@@ -4,11 +4,13 @@ import com.coderstory.Purify.plugins.IModule;
 
 import de.robv.android.xposed.IXposedHookZygoteInit;
 import de.robv.android.xposed.XC_MethodReplacement;
+import de.robv.android.xposed.XSharedPreferences;
 import de.robv.android.xposed.XposedBridge;
 import de.robv.android.xposed.XposedHelpers;
 import de.robv.android.xposed.callbacks.XC_InitPackageResources;
 import de.robv.android.xposed.callbacks.XC_LoadPackage;
 
+import static com.coderstory.Purify.utils.FunctionModule.MusicCustomization;
 import static com.coderstory.Purify.utils.packageNameEntries.music_packageName;
 
 /**
@@ -20,13 +22,19 @@ public class MiuiMusicCustomization implements IModule {
     public void handleInitPackageResources(XC_InitPackageResources.InitPackageResourcesParam resparam) {
 
     }
+
     @Override
     public void handleLoadPackage(XC_LoadPackage.LoadPackageParam loadPackageParam) {
-        //音乐
-        if (loadPackageParam.packageName.equals(music_packageName)) {
-                findAndHookMethod("com.miui.player.util.Configuration", loadPackageParam.classLoader, "isCmCustomization", XC_MethodReplacement.returnConstant(true));
+        XSharedPreferences prefs = new XSharedPreferences("com.coderstory.Purify", "UserSettings");
+        prefs.makeWorldReadable();
+        prefs.reload();
+
+
+        if (loadPackageParam.packageName.equals(music_packageName) && prefs.getBoolean(MusicCustomization, false)) {
+            findAndHookMethod("com.miui.player.util.Configuration", loadPackageParam.classLoader, "isCmCustomization", XC_MethodReplacement.returnConstant(true));
         }
     }
+
 
     private static void findAndHookMethod(String p1, ClassLoader lpparam, String p2, Object... parameterTypesAndCallback) {
         try {
