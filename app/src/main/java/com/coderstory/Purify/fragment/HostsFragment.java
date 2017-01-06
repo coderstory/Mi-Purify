@@ -13,6 +13,8 @@ import com.coderstory.Purify.utils.hosts.HostsHelper;
 
 import ren.solid.library.fragment.base.BaseFragment;
 
+import static com.coderstory.Purify.utils.FunctionModule.*;
+
 
 public class HostsFragment extends BaseFragment {
 
@@ -28,7 +30,7 @@ public class HostsFragment extends BaseFragment {
         $(R.id.enableHosts).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getEditor().putBoolean("enableHosts", ((Switch) v).isChecked());
+                getEditor().putBoolean(enableHosts, ((Switch) v).isChecked());
                 getEditor().apply();
                 setCheck(((Switch) v).isChecked());
                 new MyTask().execute();
@@ -38,7 +40,7 @@ public class HostsFragment extends BaseFragment {
         $(R.id.enableMIUIHosts).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getEditor().putBoolean("enableMIUIHosts", ((Switch) v).isChecked());
+                getEditor().putBoolean(enableMIUIHosts, ((Switch) v).isChecked());
                 getEditor().apply();
                 new MyTask().execute();
             }
@@ -47,7 +49,7 @@ public class HostsFragment extends BaseFragment {
         $(R.id.enableBlockAdsHosts).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getEditor().putBoolean("enableBlockAdsHosts", ((Switch) v).isChecked());
+                getEditor().putBoolean(enableBlockAdsHosts, ((Switch) v).isChecked());
                 getEditor().apply();
                 new MyTask().execute();
             }
@@ -55,7 +57,7 @@ public class HostsFragment extends BaseFragment {
         $(R.id.enableGoogleHosts).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getEditor().putBoolean("enableGoogleHosts", ((Switch) v).isChecked());
+                getEditor().putBoolean(enableGoogleHosts, ((Switch) v).isChecked());
                 getEditor().apply();
                 new MyTask().execute();
             }
@@ -64,7 +66,7 @@ public class HostsFragment extends BaseFragment {
         $(R.id.enableStore).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getEditor().putBoolean("enableStore", ((Switch) v).isChecked());
+                getEditor().putBoolean(enableStore, ((Switch) v).isChecked());
                 getEditor().apply();
                 new MyTask().execute();
             }
@@ -81,47 +83,47 @@ public class HostsFragment extends BaseFragment {
 
     @Override
     protected void setUpData() {
-        ((Switch) $(R.id.enableHosts)).setChecked(getPrefs().getBoolean("enableHosts", false));
-        ((Switch) $(R.id.enableMIUIHosts)).setChecked(getPrefs().getBoolean("enableMIUIHosts", false));
-        ((Switch) $(R.id.enableBlockAdsHosts)).setChecked(getPrefs().getBoolean("enableBlockAdsHosts", false));
-        ((Switch) $(R.id.enableGoogleHosts)).setChecked(getPrefs().getBoolean("enableGoogleHosts", false));
-        ((Switch) $(R.id.enableStore)).setChecked(getPrefs().getBoolean("enableStore", false));
-        ((Switch) $(R.id.enableupdater)).setChecked(getPrefs().getBoolean("enableupdater", false));
-        setCheck(getPrefs().getBoolean("enableHosts", false));
+        ((Switch) $(R.id.enableHosts)).setChecked(getPrefs().getBoolean(enableHosts, false));
+        ((Switch) $(R.id.enableMIUIHosts)).setChecked(getPrefs().getBoolean(enableMIUIHosts, false));
+        ((Switch) $(R.id.enableBlockAdsHosts)).setChecked(getPrefs().getBoolean(enableBlockAdsHosts, false));
+        ((Switch) $(R.id.enableGoogleHosts)).setChecked(getPrefs().getBoolean(enableGoogleHosts, false));
+        ((Switch) $(R.id.enableStore)).setChecked(getPrefs().getBoolean(enableStore, false));
+        ((Switch) $(R.id.enableupdater)).setChecked(getPrefs().getBoolean(enableupdater, false));
+        setCheck(getPrefs().getBoolean(enableHosts, false));
     }
 
 
 
     //更新hosts操作
     private boolean UpdateHosts() {
-        boolean enableHosts = getPrefs().getBoolean("enableHosts", false); //1
-        boolean enableMIUIHosts = getPrefs().getBoolean("enableMIUIHosts", false); //4
-        boolean enableBlockAdsHosts = getPrefs().getBoolean("enableBlockAdsHosts", false); //4
-        boolean enableGoogleHosts = getPrefs().getBoolean("enableGoogleHosts", false); //4
-        boolean enableStore = getPrefs().getBoolean("enableStore", false); //4
-        boolean enableupdater = getPrefs().getBoolean("enableupdater", false); //4
+        boolean enableHostsSet = getPrefs().getBoolean(enableHosts, false); //1
+        boolean enableMIUIHostsSet = getPrefs().getBoolean(enableMIUIHosts, false); //4
+        boolean enableBlockAdsHostsSet = getPrefs().getBoolean(enableBlockAdsHosts, false); //4
+        boolean enableGoogleHostsSet = getPrefs().getBoolean(enableGoogleHosts, false); //4
+        boolean enableStoreSet = getPrefs().getBoolean(enableStore, false); //4
+        boolean enableupdaterSet = getPrefs().getBoolean(enableupdater, false); //4
 
 
-        if (enableHosts) {
+        if (enableHostsSet) {
             FileHelper fh = new FileHelper();
             String HostsContext = fh.getFromAssets("none", getMContext());
 
             if (getPrefs().getBoolean("enableHosts", false)) { //如果未启用hosts
-                if (enableBlockAdsHosts) {
+                if (enableBlockAdsHostsSet) {
                     HostsContext += fh.getFromAssets("hosts_noad", getMContext());
                 }
-                if (enableGoogleHosts) {
+                if (enableGoogleHostsSet) {
                     HostsContext += fh.getFromAssets("hosts_Foreign", getMContext());
                         HostsContext += fh.getFromAssets("hosts_google", getMContext());
                 }
 
-                if (enableupdater) {
+                if (enableupdaterSet) {
                     HostsContext += fh.getFromAssets("hosts_noup", getMContext());
                 }
-                if (enableStore) {
+                if (enableStoreSet) {
                     HostsContext += fh.getFromAssets("hosts_nostore", getMContext());
                 }
-                if (enableMIUIHosts) {
+                if (enableMIUIHostsSet) {
                     HostsContext += fh.getFromAssets("hosts_miui", getMContext());
                 }
             }

@@ -12,6 +12,7 @@ import de.robv.android.xposed.XposedHelpers;
 import de.robv.android.xposed.callbacks.XC_InitPackageResources;
 import de.robv.android.xposed.callbacks.XC_LoadPackage;
 
+import static com.coderstory.Purify.utils.FunctionModule.fixpcb;
 import static com.coderstory.Purify.utils.MyConfig.ApplicationName;
 import static com.coderstory.Purify.utils.MyConfig.SharedPreferencesName;
 
@@ -33,7 +34,7 @@ public class Others implements IModule {
         //窗口权限 miui 8
         if (loadPackageParam.packageName.equals("android")) {
 
-            if (prefs.getBoolean("fixpcb", false)) {
+            if (prefs.getBoolean(fixpcb, false)) {
                findAndHookMethod("com.android.server.policy.PhoneWindowManager", loadPackageParam.classLoader, "checkAddPermission", WindowManager.LayoutParams.class, int[].class, new XC_MethodHook() {
                     protected void afterHookedMethod(XC_MethodHook.MethodHookParam paramAnonymousMethodHookParam) {
                         if ((Integer) paramAnonymousMethodHookParam.getResult() < 0) {

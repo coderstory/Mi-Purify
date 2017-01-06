@@ -38,6 +38,7 @@ import java.util.List;
 
 import ren.solid.library.fragment.base.BaseFragment;
 
+import static com.coderstory.Purify.utils.FunctionModule.installType;
 import static com.coderstory.Purify.utils.MyConfig.BackPath;
 
 
@@ -135,7 +136,7 @@ public class RestoreAppFragment extends BaseFragment {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
 
-                        if (getPrefs().getBoolean("installType", false)) {
+                        if (getPrefs().getBoolean(installType, false)) {
                             String commandText = "pm install  \"" + BackPath + appInfo.getPackageName() + ".apk\"";
                             Log.e("cc", commandText);
                             Process process = null;

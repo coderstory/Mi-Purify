@@ -13,4 +13,5 @@ public class MyConfig {
     public  static  final String BackUpFileName = Environment.getExternalStorageDirectory().getPath() + "/MIUI Purify/backup/";
     public static final String ApplicationName="com.coderstory.Purify";
     public static final String SharedPreferencesName="UserSettings";
+    public static final String HostFileTmpName=   "/hosts";
 }

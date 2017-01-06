@@ -7,7 +7,6 @@ import android.content.Loader;
 import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -46,6 +45,9 @@ import static com.coderstory.Purify.utils.packageNameEntries.music_packageName;
 import static com.coderstory.Purify.utils.packageNameEntries.thememanager_packageName;
 import static com.coderstory.Purify.utils.packageNameEntries.video_packageName;
 import static com.coderstory.Purify.utils.packageNameEntries.weather2_packageName;
+import static com.coderstory.Purify.utils.FunctionModule.*;
+import static com.coderstory.Purify.utils.MyConfig.*;
+import static com.coderstory.Purify.utils.packageNameEntries.*;
 
 
 public class RemoveAds implements IModule {
@@ -58,7 +60,8 @@ public class RemoveAds implements IModule {
         prefs.reload();
 
         if (resparam.packageName.equals(cleanmaster_packageName)) {
-            if (prefs.getBoolean("enableSafeCenter", false)) {
+
+            if (prefs.getBoolean(enableSafeCenter, false)) {
                 resparam.res.setReplacement(resparam.packageName, "string", "no_network", "");
             }
         }
@@ -71,10 +74,14 @@ public class RemoveAds implements IModule {
     @Override
     public void handleLoadPackage(XC_LoadPackage.LoadPackageParam loadPackageParam) {
 
+
+
         XSharedPreferences prefs = new XSharedPreferences("com.coderstory.Purify", "UserSettings");
         prefs.makeWorldReadable();
         prefs.reload();
-
+        if (!prefs.getBoolean(enableBlockAD, false)) {
+            return ;
+        }
         //核心模块
         if (loadPackageParam.packageName.equals(core_packageName)) {
             findAndHookMethod("miui.os.SystemProperties", loadPackageParam.classLoader, "get", String.class, String.class, new XC_MethodHook() {
@@ -99,7 +106,7 @@ public class RemoveAds implements IModule {
         //垃圾清理
         if (loadPackageParam.packageName.equals("com.miui.cleanmaster")) {
 
-            if (prefs.getBoolean("enableSafeCenter", false)) {
+            if (prefs.getBoolean(enableSafeCenter, false)) {
                 findAndHookMethod("com.miui.optimizecenter.result.DataModel", loadPackageParam.classLoader, "post", Map.class, new XC_MethodHook() {
                     protected void beforeHookedMethod(MethodHookParam paramAnonymousMethodHookParam)
                             throws Throwable {
@@ -177,7 +184,7 @@ public class RemoveAds implements IModule {
 
         //视频
         if (loadPackageParam.packageName.equals(video_packageName)) {
-            if (prefs.getBoolean("enablemiuividio", false)) {
+            if (prefs.getBoolean(enablemiuividio, false)) {
 
                 findAndHookMethod("com.miui.videoplayer.ads.DynamicAd", loadPackageParam.classLoader, "replaceList", List.class, String.class, new XC_MethodHook() {
                     @Override
@@ -353,7 +360,7 @@ public class RemoveAds implements IModule {
 
         //文件管理器
         if (loadPackageParam.packageName.equals(fileexplorer_packageName)) {
-            if (prefs.getBoolean("enableFileManager", false)) {
+            if (prefs.getBoolean(enableFileManager, false)) {
                 findAndHookMethod("com.android.fileexplorer.model.ConfigHelper", loadPackageParam.classLoader, "isAdEnable", Context.class, String.class, XC_MethodReplacement.returnConstant(false));
                 findAndHookMethod("com.android.fileexplorer.model.ConfigHelper", loadPackageParam.classLoader, "supportAd", XC_MethodReplacement.returnConstant(false));
                 findAndHookMethod("com.android.fileexplorer.model.ConfigHelper", loadPackageParam.classLoader, "ifAdShowByCloudForNetwork", Context.class, String.class, XC_MethodReplacement.returnConstant(false));
@@ -393,7 +400,7 @@ public class RemoveAds implements IModule {
 
         //音乐
         if (loadPackageParam.packageName.equals(music_packageName)) {
-            if (prefs.getBoolean("enableMusic", false)) {
+            if (prefs.getBoolean(enableMusic, false)) {
                 Class<?> clsListener = XposedHelpers.findClass("com.android.volley.Respons$Listener", loadPackageParam.classLoader);
                 Class<?> clsErrorListener = XposedHelpers.findClass("com.android.volley.Response$ErrorListener", loadPackageParam.classLoader);
                 Class<?> clsAdInfo = XposedHelpers.findClass("com.miui.player.util.AdUtils$AdInfo", loadPackageParam.classLoader);
@@ -511,7 +518,7 @@ public class RemoveAds implements IModule {
 
         //下载管理
         if (loadPackageParam.packageName.equals(downloads_packageName)) {
-            if (prefs.getBoolean("enableDownload", false)) {
+            if (prefs.getBoolean(enableDownload, false)) {
                 findAndHookConstructor("com.android.providers.downloads.ui.recommend.HomePageRecommendApi", loadPackageParam.classLoader, "getAdNumlnRecommendAppList", List.class, XC_MethodReplacement.returnConstant(0));
                 findAndHookConstructor("com.android.providers.downloads.ui.recommend.HomePageRecommendApi", loadPackageParam.classLoader, "getBannerAdList", long.class, String.class, String.class, XC_MethodReplacement.returnConstant(null));
                 findAndHookConstructor("com.android.providers.downloads.ui.recommend.HomePageRecommendApi", loadPackageParam.classLoader, "getDatailPageRecommend", String.class, String.class, XC_MethodReplacement.returnConstant(null));
@@ -532,7 +539,7 @@ public class RemoveAds implements IModule {
         //天气
         if (loadPackageParam.packageName.equals(weather2_packageName)) {
 
-            if (prefs.getBoolean("enableWeather", false)) {
+            if (prefs.getBoolean(enableWeather, false)) {
                 findAndHookMethod("com.miui.weather2.tools.ToolUtils", loadPackageParam.classLoader, "checkCommericalStatue", Context.class, new XC_MethodHook() {
                     protected void beforeHookedMethod(MethodHookParam paramAnonymousMethodHookParam)
                             throws Throwable {
@@ -567,7 +574,7 @@ public class RemoveAds implements IModule {
 
         //个性主题
         if (loadPackageParam.packageName.equals(thememanager_packageName)) {
-            if (prefs.getBoolean("enabletheme", false)) {
+            if (prefs.getBoolean(enabletheme, false)) {
                 findAndHookMethod("com.android.thememanager.model.AdInfo", loadPackageParam.classLoader, "parseAdInfo", String.class, XC_MethodReplacement.returnConstant(null));
                 findAndHookMethod("com.android.thememanager.model.AdInfo", loadPackageParam.classLoader, "isSupported", "com.android.thememanager.model.AdInfo", XC_MethodReplacement.returnConstant(false));
                 findAndHookMethod("com.android.thememanager.view.AdBannerView", loadPackageParam.classLoader, "showAdMark", new XC_MethodHook() {
@@ -603,7 +610,7 @@ public class RemoveAds implements IModule {
 
         // 短信
         if (loadPackageParam.packageName.equals(mms_packageName)) {
-            if (prefs.getBoolean("enableMMS", false)) {
+            if (prefs.getBoolean(enableMMS, false)) {
                 findAndHookMethod("com.android.mms.ui.MessageUtils", loadPackageParam.classLoader, "isMessagingTemplateAllowed", Context.class, new XC_MethodHook() {
                     @Override
                     protected void beforeHookedMethod(XC_MethodHook.MethodHookParam paramAnonymousMethodHookParam) {
