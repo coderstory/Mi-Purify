@@ -7,6 +7,7 @@ import android.content.Loader;
 import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -33,6 +34,15 @@ import de.robv.android.xposed.XposedHelpers;
 import de.robv.android.xposed.callbacks.XC_InitPackageResources;
 import de.robv.android.xposed.callbacks.XC_LoadPackage;
 
+import static com.coderstory.Purify.utils.FunctionModule.enableBlockAD;
+import static com.coderstory.Purify.utils.FunctionModule.enableDownload;
+import static com.coderstory.Purify.utils.FunctionModule.enableFileManager;
+import static com.coderstory.Purify.utils.FunctionModule.enableMMS;
+import static com.coderstory.Purify.utils.FunctionModule.enableMusic;
+import static com.coderstory.Purify.utils.FunctionModule.enableSafeCenter;
+import static com.coderstory.Purify.utils.FunctionModule.enableWeather;
+import static com.coderstory.Purify.utils.FunctionModule.enablemiuividio;
+import static com.coderstory.Purify.utils.FunctionModule.enabletheme;
 import static com.coderstory.Purify.utils.MyConfig.ApplicationName;
 import static com.coderstory.Purify.utils.MyConfig.SharedPreferencesName;
 import static com.coderstory.Purify.utils.packageNameEntries.calendar_packageName;
@@ -45,9 +55,6 @@ import static com.coderstory.Purify.utils.packageNameEntries.music_packageName;
 import static com.coderstory.Purify.utils.packageNameEntries.thememanager_packageName;
 import static com.coderstory.Purify.utils.packageNameEntries.video_packageName;
 import static com.coderstory.Purify.utils.packageNameEntries.weather2_packageName;
-import static com.coderstory.Purify.utils.FunctionModule.*;
-import static com.coderstory.Purify.utils.MyConfig.*;
-import static com.coderstory.Purify.utils.packageNameEntries.*;
 
 
 public class RemoveAds implements IModule {
