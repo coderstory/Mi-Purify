@@ -119,7 +119,7 @@
     <string name="share_url">网址分享</string>
     <string name="starting_clean">开始清理</string>
     <string name="clean_success">应用清理完成！</string>
-    <string name="cleaning">正在清理中...</string>
+    <string name="cleaning">正在清理中…</string>
     <string name="tips_backup_success">OK,列表备份完成！</string>
     <string name="tips_backup_error">备份失败,一般是因为APP没读写存储权限导致的</string>
     <string name="backup_list">备份列表</string>

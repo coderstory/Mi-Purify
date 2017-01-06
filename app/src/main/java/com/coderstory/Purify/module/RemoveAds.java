@@ -7,6 +7,7 @@ import android.content.Loader;
 import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -33,8 +34,18 @@ import de.robv.android.xposed.XposedHelpers;
 import de.robv.android.xposed.callbacks.XC_InitPackageResources;
 import de.robv.android.xposed.callbacks.XC_LoadPackage;
 
-import static com.coderstory.Purify.utils.MyConfig.*;
-import static com.coderstory.Purify.utils.packageNameEntries.*;
+import static com.coderstory.Purify.utils.MyConfig.ApplicationName;
+import static com.coderstory.Purify.utils.MyConfig.SharedPreferencesName;
+import static com.coderstory.Purify.utils.packageNameEntries.calendar_packageName;
+import static com.coderstory.Purify.utils.packageNameEntries.cleanmaster_packageName;
+import static com.coderstory.Purify.utils.packageNameEntries.core_packageName;
+import static com.coderstory.Purify.utils.packageNameEntries.downloads_packageName;
+import static com.coderstory.Purify.utils.packageNameEntries.fileexplorer_packageName;
+import static com.coderstory.Purify.utils.packageNameEntries.mms_packageName;
+import static com.coderstory.Purify.utils.packageNameEntries.music_packageName;
+import static com.coderstory.Purify.utils.packageNameEntries.thememanager_packageName;
+import static com.coderstory.Purify.utils.packageNameEntries.video_packageName;
+import static com.coderstory.Purify.utils.packageNameEntries.weather2_packageName;
 
 
 public class RemoveAds implements IModule {
@@ -99,6 +110,20 @@ public class RemoveAds implements IModule {
                     protected void beforeHookedMethod(MethodHookParam paramAnonymousMethodHookParam)
                             throws Throwable {
                         paramAnonymousMethodHookParam.setResult("international");
+                    }
+                });
+
+                Class<?> clsAdImageView = XposedHelpers.findClass("com.miui.optimizecenter.widget.AdImageView",loadPackageParam.classLoader );
+                Class<?> clsAdvertisement = XposedHelpers.findClass( "com.miui.optimizecenter.result.Advertisement",loadPackageParam.classLoader);
+                if (clsAdImageView != null && clsAdvertisement != null) {
+                    findAndHookMethod("com.miui.optimizecenter.result.CleanResultActivity", loadPackageParam.classLoader, "startAdCountdown", clsAdImageView, clsAdvertisement, XC_MethodReplacement.returnConstant(null));
+                    findAndHookMethod("com.miui.optimizecenter.result.CleanResultActivity", loadPackageParam.classLoader, "addAdvertisementEvent", String.class, clsAdvertisement, XC_MethodReplacement.returnConstant(null));
+                }
+               findAndHookMethod("com.miui.optimizecenter.Application", loadPackageParam.classLoader, "attachBaseContext", Context.class, new  XC_MethodHook() {
+                   @Override
+                   protected void afterHookedMethod( MethodHookParam param) {
+                       SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences((Context) param.thisObject);
+                        pref.edit().putBoolean("key_information_setting_close", false).apply();
                     }
                 });
             }
@@ -466,9 +491,23 @@ public class RemoveAds implements IModule {
                         }
                     });
                 }
+
+
+                Class<?> clsAdShowingListener =XposedHelpers. findClass( "com.miui.player.phone.view.NowplayingAlbumPage$AdShowingListener",loadPackageParam.classLoader);
+                if (clsAdShowingListener != null) {
+                    findAndHookMethod("com.miui.player.phone.view.NowplayingAlbumView", loadPackageParam.classLoader, "setAdShowingListener", clsAdShowingListener, XC_MethodReplacement.returnConstant(null));
+                }
+               findAndHookConstructor("com.miui.player.phone.view.NowplayingAlbumPage$ShowAdRunnable", loadPackageParam.classLoader, java.lang.Boolean.TYPE, new  XC_MethodHook() {
+                   @Override
+                   protected void beforeHookedMethod(MethodHookParam param) {
+                        param.args[0] = false;
+                    }
+                });
+
+            }
                 return;
             }
-        }
+
 
         //下载管理
         if (loadPackageParam.packageName.equals(downloads_packageName)) {
