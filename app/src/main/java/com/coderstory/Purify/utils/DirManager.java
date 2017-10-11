@@ -44,9 +44,7 @@ public class DirManager {
     public static PackageInfo loadAppInfo(String appPath, Activity content) {
         AppInfo app = new AppInfo();
         app.setAppDir(BackPath + appPath);
-        // Log.e("11",app.appdir);
         PackageManager pm = content.getPackageManager();
-        // Log.e("22",app.appdir);
         PackageInfo info = pm.getPackageArchiveInfo(app.getappdir(), PackageManager.GET_ACTIVITIES);
         return info;
     }

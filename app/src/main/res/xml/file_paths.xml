@@ -2,7 +2,7 @@
 <paths>
     <external-path
         name="files_root"
-        path="MIUI Purify/backupAPP/" />
+        path="MIUI_Purify/Backup/" />
     <external-path
         name="external_storage_root"
         path="." />
