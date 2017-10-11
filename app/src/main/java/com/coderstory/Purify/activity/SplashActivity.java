@@ -7,7 +7,7 @@ import android.os.Bundle;
 
 import com.coderstory.Purify.R;
 
-import static com.coderstory.Purify.utils.root.SuHelper.canRunRootCommands;
+import static com.coderstory.Purify.utils.roothelper.SuHelper.canRunRootCommands;
 
 public class SplashActivity extends Activity {
 

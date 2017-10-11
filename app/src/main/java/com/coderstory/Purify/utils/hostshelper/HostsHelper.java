@@ -1,9 +1,9 @@
-package com.coderstory.Purify.utils.hosts;
+package com.coderstory.Purify.utils.hostshelper;
 
 
 import android.content.Context;
 
-import com.coderstory.Purify.utils.root.SuHelper;
+import com.coderstory.Purify.utils.roothelper.SuHelper;
 
 import java.io.BufferedWriter;
 import java.io.FileNotFoundException;
@@ -13,7 +13,7 @@ import java.io.OutputStreamWriter;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 
-import static com.coderstory.Purify.utils.MyConfig.HostFileTmpName;
+import static com.coderstory.Purify.config.Misc.HostFileTmpName;
 
 
 /**

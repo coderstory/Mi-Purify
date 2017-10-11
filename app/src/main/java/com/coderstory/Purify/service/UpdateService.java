@@ -14,7 +14,7 @@ import android.os.IBinder;
 import android.os.Message;
 
 import com.coderstory.Purify.R;
-import com.coderstory.Purify.Update.UpdateConfig;
+import com.coderstory.Purify.utils.checkupdate.UpdateConfig;
 import com.coderstory.Purify.activity.MainActivity;
 
 import java.io.File;
@@ -216,11 +216,8 @@ public class UpdateService extends Service {
                     updateFile.delete();
                     // new ToastMessageTask().execute(getString(R.string.Delete_OldFile_Fail));
                 }
-
-
                 updateFile.createNewFile();
                 //  new ToastMessageTask().execute(getString(R.string.Create_DownlodFile_Fail));
-
 
                 // 下载函数
                 // 增加权限<USES-PERMISSION

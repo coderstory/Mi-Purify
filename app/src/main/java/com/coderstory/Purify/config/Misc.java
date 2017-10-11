@@ -1,4 +1,4 @@
-package com.coderstory.Purify.utils;
+package com.coderstory.Purify.config;
 
 import android.os.Environment;
 
@@ -6,7 +6,7 @@ import android.os.Environment;
  * Created by Baby Song on 2016/9/7.
  */
 
-public class MyConfig {
+public class Misc {
     public static final String BackPath = Environment.getExternalStorageDirectory().getPath() + "/MIUI_Purify/Backup/";
     public static final String MyBlogUrl = "http://blog.coderstory.cn";
     public static final String BackUpFileName = Environment.getExternalStorageDirectory().getPath() + "/MIUI_Purify/Backup/";

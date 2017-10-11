@@ -11,11 +11,9 @@ import ren.solid.library.fragment.base.BaseFragment;
  */
 public class MainFragment extends BaseFragment {
 
-
     @Override
     protected int setLayoutResourceID() {
         return R.layout.fragment_main;
     }
-
 
 }

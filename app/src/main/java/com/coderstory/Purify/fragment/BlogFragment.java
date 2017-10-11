@@ -17,7 +17,7 @@ import ren.solid.library.fragment.WebViewFragment;
 import ren.solid.library.utils.SnackBarUtils;
 
 import static android.content.Context.CLIPBOARD_SERVICE;
-import static com.coderstory.Purify.utils.MyConfig.MyBlogUrl;
+import static com.coderstory.Purify.config.Misc.MyBlogUrl;
 
 /**
  * Created by _SOLID
@@ -35,7 +35,6 @@ public class BlogFragment extends WebViewFragment {
     public String getLoadUrl() {
         return MyBlogUrl;
     }
-
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -71,6 +70,5 @@ public class BlogFragment extends WebViewFragment {
         intent.putExtra(Intent.EXTRA_TEXT, msgText);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(Intent.createChooser(intent, activityTitle));
-
     }
 }

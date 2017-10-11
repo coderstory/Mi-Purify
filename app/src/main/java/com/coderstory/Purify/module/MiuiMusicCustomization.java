@@ -10,8 +10,8 @@ import de.robv.android.xposed.XposedHelpers;
 import de.robv.android.xposed.callbacks.XC_InitPackageResources;
 import de.robv.android.xposed.callbacks.XC_LoadPackage;
 
-import static com.coderstory.Purify.utils.FunctionModule.MusicCustomization;
-import static com.coderstory.Purify.utils.packageNameEntries.music_packageName;
+import static com.coderstory.Purify.config.FunctionModule.MusicCustomization;
+import static com.coderstory.Purify.config.packageNameEntries.music_packageName;
 
 /**
  * Created by Baby Song on 2016/8/29.
@@ -36,7 +36,6 @@ public class MiuiMusicCustomization implements IModule {
         XSharedPreferences prefs = new XSharedPreferences("com.coderstory.Purify", "UserSettings");
         prefs.makeWorldReadable();
         prefs.reload();
-
 
         if (loadPackageParam.packageName.equals(music_packageName) && prefs.getBoolean(MusicCustomization, false)) {
             findAndHookMethod("com.miui.player.util.Configuration", loadPackageParam.classLoader, "isCmCustomization", XC_MethodReplacement.returnConstant(true));

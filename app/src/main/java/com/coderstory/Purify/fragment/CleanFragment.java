@@ -9,10 +9,10 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.coderstory.Purify.R;
-import com.coderstory.Purify.utils.MyConfig;
-import com.coderstory.Purify.utils.hosts.FileHelper;
-import com.coderstory.Purify.utils.root.CommandResult;
-import com.coderstory.Purify.utils.root.RootUtils;
+import com.coderstory.Purify.config.Misc;
+import com.coderstory.Purify.utils.hostshelper.FileHelper;
+import com.coderstory.Purify.utils.roothelper.CommandResult;
+import com.coderstory.Purify.utils.roothelper.RootUtils;
 
 import ren.solid.library.fragment.base.BaseFragment;
 import ren.solid.library.utils.SnackBarUtils;
@@ -26,10 +26,8 @@ public class CleanFragment extends BaseFragment {
     private Handler hInfo = new Handler() {
         @Override
         public void handleMessage(Message msg) {
-
             tvClean.append((String) msg.obj);
             super.handleMessage(msg);
-
         }
     };
     private Handler hComplete = new Handler() {
@@ -77,7 +75,7 @@ public class CleanFragment extends BaseFragment {
             @Override
             public void run() {
                 long totalSize = 0L; // K
-                MyConfig.isProcessing = true;
+                Misc.isProcessing = true;
                 // clean app cache
                 CommandResult ret = RootUtils.runCommand("find /data/data/ -type dir -name \"cache\"", true);
                 String[] items = ret.result.split("\n");
@@ -101,7 +99,7 @@ public class CleanFragment extends BaseFragment {
                 totalSize += deleteRemainArtCache();
                 sendMessageStr(getString(R.string.view_clean_complete, FileHelper.getReadableFileSize(totalSize)));
                 hComplete.sendEmptyMessage(0);
-                MyConfig.isProcessing = false;
+                Misc.isProcessing = false;
             }
         });
         th.start();

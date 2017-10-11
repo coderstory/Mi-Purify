@@ -25,9 +25,9 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.coderstory.Purify.R;
-import com.coderstory.Purify.utils.Adapter.Application.AppInfo;
-import com.coderstory.Purify.utils.Adapter.Application.AppInfoAdapter;
-import com.coderstory.Purify.utils.DirManager;
+import com.coderstory.Purify.adapter.AppInfo;
+import com.coderstory.Purify.adapter.AppInfoAdapter;
+import com.coderstory.Purify.utils.LoadApkInfo;
 import com.yalantis.phoenix.PullToRefreshView;
 
 import java.io.DataOutputStream;
@@ -37,8 +37,8 @@ import java.util.List;
 
 import ren.solid.library.fragment.base.BaseFragment;
 
-import static com.coderstory.Purify.utils.FunctionModule.installType;
-import static com.coderstory.Purify.utils.MyConfig.BackPath;
+import static com.coderstory.Purify.config.FunctionModule.installType;
+import static com.coderstory.Purify.config.Misc.BackPath;
 
 
 public class RestoreAppFragment extends BaseFragment {
@@ -74,7 +74,7 @@ public class RestoreAppFragment extends BaseFragment {
 
         super.onActivityCreated(savedInstanceState);
         new MyTask().execute();
-        mPullToRefreshView = (PullToRefreshView) getActivity().findViewById(R.id.pull_to_refresh1);
+        mPullToRefreshView = getActivity().findViewById(R.id.pull_to_refresh1);
         mPullToRefreshView.setOnRefreshListener(new PullToRefreshView.OnRefreshListener() {
             @Override
             public void onRefresh() {
@@ -94,12 +94,12 @@ public class RestoreAppFragment extends BaseFragment {
     private void initData() {
         appInfoList = new ArrayList<>();
         PackageManager pm = getActivity().getPackageManager();
-        DirManager.apkAll = DirManager.GetApkFileName(BackPath);
+        LoadApkInfo.apkAll = LoadApkInfo.GetApkFileName(BackPath);
         packages = new ArrayList<>();
 
-        for (String item : DirManager.apkAll
+        for (String item : LoadApkInfo.apkAll
                 ) {
-            PackageInfo packageInfo = DirManager.loadAppInfo(item, getActivity());
+            PackageInfo packageInfo = LoadApkInfo.loadAppInfo(item, getActivity());
             if (packageInfo != null) {
                 ApplicationInfo appInfo = packageInfo.applicationInfo;
                 //必须设置apk的路径 否则无法读取app的图标和名称
@@ -112,13 +112,12 @@ public class RestoreAppFragment extends BaseFragment {
     }
 
     private void showData() {
-        adapter = new AppInfoAdapter(getActivity(), R.layout.app_info_item, R.color.disableApp, appInfoList);
-        listView = (ListView) view.findViewById(R.id.listView);
+        adapter = new AppInfoAdapter(getActivity(), R.layout.app_info_item, appInfoList);
+        listView = view.findViewById(R.id.listView);
         listView.setAdapter(adapter);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
 
                 mPosition = position;
                 mView = view;

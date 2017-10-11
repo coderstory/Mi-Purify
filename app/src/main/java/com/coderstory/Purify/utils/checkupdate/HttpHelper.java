@@ -1,4 +1,4 @@
-package com.coderstory.Purify.Update;
+package com.coderstory.Purify.utils.checkupdate;
 
 
 import java.io.ByteArrayOutputStream;

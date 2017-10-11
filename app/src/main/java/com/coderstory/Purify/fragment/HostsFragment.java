@@ -8,17 +8,17 @@ import android.view.View;
 import android.widget.Switch;
 
 import com.coderstory.Purify.R;
-import com.coderstory.Purify.utils.hosts.FileHelper;
-import com.coderstory.Purify.utils.hosts.HostsHelper;
+import com.coderstory.Purify.utils.hostshelper.FileHelper;
+import com.coderstory.Purify.utils.hostshelper.HostsHelper;
 
 import ren.solid.library.fragment.base.BaseFragment;
 
-import static com.coderstory.Purify.utils.FunctionModule.enableBlockAdsHosts;
-import static com.coderstory.Purify.utils.FunctionModule.enableGoogleHosts;
-import static com.coderstory.Purify.utils.FunctionModule.enableHosts;
-import static com.coderstory.Purify.utils.FunctionModule.enableMIUIHosts;
-import static com.coderstory.Purify.utils.FunctionModule.enableStore;
-import static com.coderstory.Purify.utils.FunctionModule.enableupdater;
+import static com.coderstory.Purify.config.FunctionModule.enableBlockAdsHosts;
+import static com.coderstory.Purify.config.FunctionModule.enableGoogleHosts;
+import static com.coderstory.Purify.config.FunctionModule.enableHosts;
+import static com.coderstory.Purify.config.FunctionModule.enableMIUIHosts;
+import static com.coderstory.Purify.config.FunctionModule.enableStore;
+import static com.coderstory.Purify.config.FunctionModule.enableUpdater;
 
 
 public class HostsFragment extends BaseFragment {
@@ -80,7 +80,7 @@ public class HostsFragment extends BaseFragment {
         $(R.id.enableupdater).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getEditor().putBoolean("enableupdater", ((Switch) v).isChecked());
+                getEditor().putBoolean("enableUpdater", ((Switch) v).isChecked());
                 getEditor().apply();
                 new MyTask().execute();
             }
@@ -94,13 +94,11 @@ public class HostsFragment extends BaseFragment {
         ((Switch) $(R.id.enableBlockAdsHosts)).setChecked(getPrefs().getBoolean(enableBlockAdsHosts, false));
         ((Switch) $(R.id.enableGoogleHosts)).setChecked(getPrefs().getBoolean(enableGoogleHosts, false));
         ((Switch) $(R.id.enableStore)).setChecked(getPrefs().getBoolean(enableStore, false));
-        ((Switch) $(R.id.enableupdater)).setChecked(getPrefs().getBoolean(enableupdater, false));
+        ((Switch) $(R.id.enableupdater)).setChecked(getPrefs().getBoolean(enableUpdater, false));
         setCheck(getPrefs().getBoolean(enableHosts, false));
     }
 
-
     //因为hosts修改比较慢 所以改成异步的
-
     //更新hosts操作
     private boolean UpdateHosts() {
         boolean enableHostsSet = getPrefs().getBoolean(enableHosts, false); //1
@@ -108,8 +106,7 @@ public class HostsFragment extends BaseFragment {
         boolean enableBlockAdsHostsSet = getPrefs().getBoolean(enableBlockAdsHosts, false); //4
         boolean enableGoogleHostsSet = getPrefs().getBoolean(enableGoogleHosts, false); //4
         boolean enableStoreSet = getPrefs().getBoolean(enableStore, false); //4
-        boolean enableupdaterSet = getPrefs().getBoolean(enableupdater, false); //4
-
+        boolean enableupdaterSet = getPrefs().getBoolean(enableUpdater, false); //4
 
         if (enableHostsSet) {
             FileHelper fh = new FileHelper();

@@ -7,21 +7,21 @@ import com.coderstory.Purify.R;
 
 import ren.solid.library.fragment.base.BaseFragment;
 
-import static com.coderstory.Purify.utils.FunctionModule.enableBlockAD;
-import static com.coderstory.Purify.utils.FunctionModule.enableBlockADBasic;
-import static com.coderstory.Purify.utils.FunctionModule.enableDownload;
-import static com.coderstory.Purify.utils.FunctionModule.enableFileManager;
-import static com.coderstory.Purify.utils.FunctionModule.enableMMS;
-import static com.coderstory.Purify.utils.FunctionModule.enableMusic;
-import static com.coderstory.Purify.utils.FunctionModule.enableSafeCenter;
-import static com.coderstory.Purify.utils.FunctionModule.enableWeather;
-import static com.coderstory.Purify.utils.FunctionModule.enablemiuividio;
-import static com.coderstory.Purify.utils.FunctionModule.enabletheme;
-import static com.coderstory.Purify.utils.packageNameEntries.analytics_packageName;
-import static com.coderstory.Purify.utils.packageNameEntries.milink_packageName;
-import static com.coderstory.Purify.utils.packageNameEntries.seemp_packageName;
-import static com.coderstory.Purify.utils.packageNameEntries.systemAdSolution_packageName;
-import static com.coderstory.Purify.utils.root.ShellUtils.execCommand;
+import static com.coderstory.Purify.config.FunctionModule.enableBlockAD;
+import static com.coderstory.Purify.config.FunctionModule.enableBlockADBasic;
+import static com.coderstory.Purify.config.FunctionModule.enableDownload;
+import static com.coderstory.Purify.config.FunctionModule.enableFileManager;
+import static com.coderstory.Purify.config.FunctionModule.enableMMS;
+import static com.coderstory.Purify.config.FunctionModule.enableMusic;
+import static com.coderstory.Purify.config.FunctionModule.enableSafeCenter;
+import static com.coderstory.Purify.config.FunctionModule.enableWeather;
+import static com.coderstory.Purify.config.FunctionModule.enableMIUIVedio;
+import static com.coderstory.Purify.config.FunctionModule.enableTheme;
+import static com.coderstory.Purify.config.packageNameEntries.analytics_packageName;
+import static com.coderstory.Purify.config.packageNameEntries.miLink_packageName;
+import static com.coderstory.Purify.config.packageNameEntries.seemp_packageName;
+import static com.coderstory.Purify.config.packageNameEntries.systemAdSolution_packageName;
+import static com.coderstory.Purify.utils.roothelper.ShellUtils.execCommand;
 
 
 public class BlockADSFragment extends BaseFragment {
@@ -30,7 +30,6 @@ public class BlockADSFragment extends BaseFragment {
     protected int setLayoutResourceID() {
         return R.layout.fragment_block_ad;
     }
-
 
     @Override
     protected void setUpView() {
@@ -45,9 +44,7 @@ public class BlockADSFragment extends BaseFragment {
                 getEditor().putBoolean(enableBlockADBasic, ((Switch) v).isChecked());
                 getEditor().apply();
 
-
                 if (((Switch) v).isChecked()) {
-
                     new Thread() {
                         @Override
                         public void run() {
@@ -55,13 +52,10 @@ public class BlockADSFragment extends BaseFragment {
                             execCommand("pm disable " + systemAdSolution_packageName, true);
                             execCommand("pm disable " + analytics_packageName, true);
                             execCommand("pm disable " + seemp_packageName, true);
-                            execCommand("pm disable " + milink_packageName, true);
+                            execCommand("pm disable " + miLink_packageName, true);
                         }
                     }.start();
-
-
                 } else {
-
                     new Thread() {
                         @Override
                         public void run() {
@@ -69,10 +63,9 @@ public class BlockADSFragment extends BaseFragment {
                             execCommand("pm enable " + systemAdSolution_packageName, true);
                             execCommand("pm enable " + analytics_packageName, true);
                             execCommand("pm enable " + seemp_packageName, true);
-                            execCommand("pm enable " + milink_packageName, true);
+                            execCommand("pm enable " + miLink_packageName, true);
                         }
                     }.start();
-
                 }
             }
         });
@@ -134,7 +127,7 @@ public class BlockADSFragment extends BaseFragment {
         $(R.id.enablevideo).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getEditor().putBoolean(enablemiuividio, ((Switch) v).isChecked());
+                getEditor().putBoolean(enableMIUIVedio, ((Switch) v).isChecked());
                 getEditor().apply();
             }
         });
@@ -143,7 +136,7 @@ public class BlockADSFragment extends BaseFragment {
         $(R.id.enabletheme).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getEditor().putBoolean(enabletheme, ((Switch) v).isChecked());
+                getEditor().putBoolean(enableTheme, ((Switch) v).isChecked());
                 getEditor().apply();
             }
         });
@@ -152,7 +145,7 @@ public class BlockADSFragment extends BaseFragment {
 
     @Override
     protected void setUpData() {
-        ((Switch) $(R.id.enabletheme)).setChecked(getPrefs().getBoolean(enabletheme, false));
+        ((Switch) $(R.id.enabletheme)).setChecked(getPrefs().getBoolean(enableTheme, false));
         ((Switch) $(R.id.enableBlockAD)).setChecked(getPrefs().getBoolean(enableBlockAD, false));
         ((Switch) $(R.id.enableBlockADBasic)).setChecked(getPrefs().getBoolean(enableBlockADBasic, false));
         ((Switch) $(R.id.enableMMS)).setChecked(getPrefs().getBoolean(enableMMS, false));
@@ -161,12 +154,11 @@ public class BlockADSFragment extends BaseFragment {
         ((Switch) $(R.id.enableDownload)).setChecked(getPrefs().getBoolean(enableDownload, false));
         ((Switch) $(R.id.enableSafeCenter)).setChecked(getPrefs().getBoolean(enableSafeCenter, false));
         ((Switch) $(R.id.enableMusic)).setChecked(getPrefs().getBoolean(enableMusic, false));
-        ((Switch) $(R.id.enablevideo)).setChecked(getPrefs().getBoolean(enablemiuividio, false));
+        ((Switch) $(R.id.enablevideo)).setChecked(getPrefs().getBoolean(enableMIUIVedio, false));
         setCheck(getPrefs().getBoolean(enableBlockAD, false));
     }
 
     private void setCheck(boolean type) {
-
         if (type) {
             $(R.id.enableBlockADBasic).setEnabled(true);
             $(R.id.enableMMS).setEnabled(true);

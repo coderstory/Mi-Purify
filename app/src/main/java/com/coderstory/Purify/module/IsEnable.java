@@ -10,10 +10,10 @@ import de.robv.android.xposed.XposedHelpers;
 import de.robv.android.xposed.callbacks.XC_InitPackageResources;
 import de.robv.android.xposed.callbacks.XC_LoadPackage;
 
-import static com.coderstory.Purify.utils.MyConfig.ApplicationName;
+import static com.coderstory.Purify.config.Misc.ApplicationName;
 
 
-public class isEnable implements IModule {
+public class IsEnable implements IModule {
 
 
     @Override
@@ -24,8 +24,8 @@ public class isEnable implements IModule {
     public void handleLoadPackage(XC_LoadPackage.LoadPackageParam lpparam) {
         if (lpparam.packageName.equals(ApplicationName)) {
             try {
-                XposedBridge.log("小米净化 1.x 开始Patch");
-                XposedHelpers.findAndHookMethod(ApplicationName + ".activity.MainActivity", lpparam.classLoader, "isEnable", XC_MethodReplacement.returnConstant(true));
+                XposedBridge.log("小米净化 2.x 开始Patch");
+                XposedHelpers.findAndHookMethod(ApplicationName + ".activity.MainActivity", lpparam.classLoader, "IsEnable", XC_MethodReplacement.returnConstant(true));
             } catch (Throwable p1) {
                 XposedBridge.log(p1);
             }

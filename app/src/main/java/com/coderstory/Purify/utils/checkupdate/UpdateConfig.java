@@ -1,4 +1,4 @@
-package com.coderstory.Purify.Update;
+package com.coderstory.Purify.utils.checkupdate;
 
 /**
  * APP在线功能的检测配置信息

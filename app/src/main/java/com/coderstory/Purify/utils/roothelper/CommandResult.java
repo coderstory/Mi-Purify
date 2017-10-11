@@ -1,4 +1,4 @@
-package com.coderstory.Purify.utils.root;
+package com.coderstory.Purify.utils.roothelper;
 
 public class CommandResult {
 

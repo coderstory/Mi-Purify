@@ -25,8 +25,8 @@ import com.coderstory.Purify.fragment.DonationFragment;
 import com.coderstory.Purify.fragment.HostsFragment;
 import com.coderstory.Purify.fragment.ManagerAppFragment;
 import com.coderstory.Purify.fragment.SettingsFragment;
-import com.coderstory.Purify.utils.MyConfig;
-import com.coderstory.Purify.utils.root.SuHelper;
+import com.coderstory.Purify.config.Misc;
+import com.coderstory.Purify.utils.roothelper.SuHelper;
 
 import ren.solid.library.fragment.WebViewFragment;
 import ren.solid.library.utils.SnackBarUtils;
@@ -60,8 +60,6 @@ public class MainActivity extends BaseActivity {
     @Override
     protected void init() {
         mFragmentManager = getSupportFragmentManager();
-
-
     }
 
     private void requestCameraPermission() {
@@ -96,7 +94,6 @@ public class MainActivity extends BaseActivity {
             SnackBarUtils.makeLong(mNavigationView, "插件尚未激活,Xposed功能将不可用,请重启再试！").show();
         }
 
-
         mToolbar.setTitle("净化广告");
 
         //这句一定要在下面几句之前调用，不然就会出现点击无反应
@@ -108,7 +105,6 @@ public class MainActivity extends BaseActivity {
         mToolbar.setNavigationIcon(R.drawable.ic_drawer_home);
         initDefaultFragment();
 
-
         //取消滚动条
         NavigationView v = (NavigationView) findViewById(R.id.navigation_view);
         v.setEnabled(false);
@@ -119,8 +115,6 @@ public class MainActivity extends BaseActivity {
                 navigationMenuView.setVerticalScrollBarEnabled(false);
             }
         }
-
-
     }
 
     @Override
@@ -158,15 +152,13 @@ public class MainActivity extends BaseActivity {
                     mPreMenuItem.setChecked(false);
                 }
 
-                if (MyConfig.isProcessing) {
+                if (Misc.isProcessing) {
                     SnackBarUtils.makeShort(mDrawerLayout, getString(R.string.isWorkingTips)).danger();
                     return false;
                 }
 
                 switch (item.getItemId()) {
-
                     case R.id.navigation_item_blockads:
-
                         mToolbar.setTitle("净化广告");
                         switchFragment(BlockADSFragment.class);
                         break;
@@ -176,12 +168,10 @@ public class MainActivity extends BaseActivity {
                         switchFragment(HostsFragment.class);
                         break;
 
-
                     case R.id.navigation_item_settings:
                         mToolbar.setTitle("其他设置");
                         switchFragment(SettingsFragment.class);
                         break;
-
 
                     case R.id.navigation_item_Clean:
                         mToolbar.setTitle("应用清理");
@@ -204,7 +194,7 @@ public class MainActivity extends BaseActivity {
                         break;
                 }
                 item.setChecked(true);
-                mDrawerLayout.closeDrawer(Gravity.LEFT);
+                mDrawerLayout.closeDrawer(Gravity.START);
                 mPreMenuItem = item;
                 return false;
             }
@@ -215,12 +205,8 @@ public class MainActivity extends BaseActivity {
     private void switchFragment(Class<?> clazz) {
         Fragment to = ViewUtils.createFragment(clazz);
         if (to.isAdded()) {
-            Log.i(TAG, "Added");
-            //mFragmentManager.beginTransaction().hide(mCurrentFragment).show(to).commitAllowingStateLoss();
             mFragmentManager.beginTransaction().replace(mCurrentFragment.getId(), to).commit();
         } else {
-            Log.i(TAG, "Not Added");
-            //mFragmentManager.beginTransaction().hide(mCurrentFragment).add(R.id.frame_content, to).commitAllowingStateLoss();
             mFragmentManager.beginTransaction().replace(mCurrentFragment.getId(), to).commit();
         }
         mCurrentFragment = to;
@@ -254,8 +240,8 @@ public class MainActivity extends BaseActivity {
 
     @Override
     public void onBackPressed() {
-        if (mDrawerLayout.isDrawerOpen(Gravity.LEFT)) {//当前抽屉是打开的，则关闭
-            mDrawerLayout.closeDrawer(Gravity.LEFT);
+        if (mDrawerLayout.isDrawerOpen(Gravity.START)) {//当前抽屉是打开的，则关闭
+            mDrawerLayout.closeDrawer(Gravity.START);
             return;
         }
 

@@ -34,27 +34,27 @@ import de.robv.android.xposed.XposedHelpers;
 import de.robv.android.xposed.callbacks.XC_InitPackageResources;
 import de.robv.android.xposed.callbacks.XC_LoadPackage;
 
-import static com.coderstory.Purify.utils.FunctionModule.enableBlockAD;
-import static com.coderstory.Purify.utils.FunctionModule.enableDownload;
-import static com.coderstory.Purify.utils.FunctionModule.enableFileManager;
-import static com.coderstory.Purify.utils.FunctionModule.enableMMS;
-import static com.coderstory.Purify.utils.FunctionModule.enableMusic;
-import static com.coderstory.Purify.utils.FunctionModule.enableSafeCenter;
-import static com.coderstory.Purify.utils.FunctionModule.enableWeather;
-import static com.coderstory.Purify.utils.FunctionModule.enablemiuividio;
-import static com.coderstory.Purify.utils.FunctionModule.enabletheme;
-import static com.coderstory.Purify.utils.MyConfig.ApplicationName;
-import static com.coderstory.Purify.utils.MyConfig.SharedPreferencesName;
-import static com.coderstory.Purify.utils.packageNameEntries.calendar_packageName;
-import static com.coderstory.Purify.utils.packageNameEntries.cleanmaster_packageName;
-import static com.coderstory.Purify.utils.packageNameEntries.core_packageName;
-import static com.coderstory.Purify.utils.packageNameEntries.downloads_packageName;
-import static com.coderstory.Purify.utils.packageNameEntries.fileexplorer_packageName;
-import static com.coderstory.Purify.utils.packageNameEntries.mms_packageName;
-import static com.coderstory.Purify.utils.packageNameEntries.music_packageName;
-import static com.coderstory.Purify.utils.packageNameEntries.thememanager_packageName;
-import static com.coderstory.Purify.utils.packageNameEntries.video_packageName;
-import static com.coderstory.Purify.utils.packageNameEntries.weather2_packageName;
+import static com.coderstory.Purify.config.FunctionModule.enableBlockAD;
+import static com.coderstory.Purify.config.FunctionModule.enableDownload;
+import static com.coderstory.Purify.config.FunctionModule.enableFileManager;
+import static com.coderstory.Purify.config.FunctionModule.enableMMS;
+import static com.coderstory.Purify.config.FunctionModule.enableMusic;
+import static com.coderstory.Purify.config.FunctionModule.enableSafeCenter;
+import static com.coderstory.Purify.config.FunctionModule.enableWeather;
+import static com.coderstory.Purify.config.FunctionModule.enableMIUIVedio;
+import static com.coderstory.Purify.config.FunctionModule.enableTheme;
+import static com.coderstory.Purify.config.Misc.ApplicationName;
+import static com.coderstory.Purify.config.Misc.SharedPreferencesName;
+import static com.coderstory.Purify.config.packageNameEntries.calendar_packageName;
+import static com.coderstory.Purify.config.packageNameEntries.cleanMaster_packageName;
+import static com.coderstory.Purify.config.packageNameEntries.core_packageName;
+import static com.coderstory.Purify.config.packageNameEntries.downloads_packageName;
+import static com.coderstory.Purify.config.packageNameEntries.fileExplorer_packageName;
+import static com.coderstory.Purify.config.packageNameEntries.mms_packageName;
+import static com.coderstory.Purify.config.packageNameEntries.music_packageName;
+import static com.coderstory.Purify.config.packageNameEntries.themeManager_packageName;
+import static com.coderstory.Purify.config.packageNameEntries.video_packageName;
+import static com.coderstory.Purify.config.packageNameEntries.weather2_packageName;
 
 
 public class RemoveAds implements IModule {
@@ -84,7 +84,7 @@ public class RemoveAds implements IModule {
         prefs.makeWorldReadable();
         prefs.reload();
 
-        if (resparam.packageName.equals(cleanmaster_packageName)) {
+        if (resparam.packageName.equals(cleanMaster_packageName)) {
 
             if (prefs.getBoolean(enableSafeCenter, false)) {
                 resparam.res.setReplacement(resparam.packageName, "string", "no_network", "");
@@ -208,7 +208,7 @@ public class RemoveAds implements IModule {
 
         //视频
         if (loadPackageParam.packageName.equals(video_packageName)) {
-            if (prefs.getBoolean(enablemiuividio, false)) {
+            if (prefs.getBoolean(enableMIUIVedio, false)) {
 
                 findAndHookMethod("com.miui.videoplayer.ads.DynamicAd", loadPackageParam.classLoader, "replaceList", List.class, String.class, new XC_MethodHook() {
                     @Override
@@ -383,7 +383,7 @@ public class RemoveAds implements IModule {
 
 
         //文件管理器
-        if (loadPackageParam.packageName.equals(fileexplorer_packageName)) {
+        if (loadPackageParam.packageName.equals(fileExplorer_packageName)) {
             if (prefs.getBoolean(enableFileManager, false)) {
                 findAndHookMethod("com.android.fileexplorer.model.ConfigHelper", loadPackageParam.classLoader, "isAdEnable", Context.class, String.class, XC_MethodReplacement.returnConstant(false));
                 findAndHookMethod("com.android.fileexplorer.model.ConfigHelper", loadPackageParam.classLoader, "supportAd", XC_MethodReplacement.returnConstant(false));
@@ -597,8 +597,8 @@ public class RemoveAds implements IModule {
         }
 
         //个性主题
-        if (loadPackageParam.packageName.equals(thememanager_packageName)) {
-            if (prefs.getBoolean(enabletheme, false)) {
+        if (loadPackageParam.packageName.equals(themeManager_packageName)) {
+            if (prefs.getBoolean(enableTheme, false)) {
                 findAndHookMethod("com.android.thememanager.model.AdInfo", loadPackageParam.classLoader, "parseAdInfo", String.class, XC_MethodReplacement.returnConstant(null));
                 findAndHookMethod("com.android.thememanager.model.AdInfo", loadPackageParam.classLoader, "isSupported", "com.android.thememanager.model.AdInfo", XC_MethodReplacement.returnConstant(false));
                 findAndHookMethod("com.android.thememanager.view.AdBannerView", loadPackageParam.classLoader, "showAdMark", new XC_MethodHook() {

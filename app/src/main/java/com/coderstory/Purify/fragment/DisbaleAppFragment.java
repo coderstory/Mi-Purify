@@ -25,7 +25,7 @@ import android.widget.Toast;
 import com.coderstory.Purify.R;
 import com.coderstory.Purify.adapter.AppInfo;
 import com.coderstory.Purify.adapter.AppInfoAdapter;
-import com.coderstory.Purify.utils.root.SuHelper;
+import com.coderstory.Purify.utils.roothelper.SuHelper;
 import com.yalantis.phoenix.PullToRefreshView;
 
 import java.io.DataOutputStream;
@@ -40,7 +40,7 @@ import java.util.List;
 import ren.solid.library.fragment.base.BaseFragment;
 import ren.solid.library.utils.SnackBarUtils;
 
-import static com.coderstory.Purify.utils.MyConfig.BackUpFileName;
+import static com.coderstory.Purify.config.Misc.BackUpFileName;
 import static ren.solid.library.utils.FileUtils.readFile;
 
 /**
@@ -133,7 +133,6 @@ public class DisbaleAppFragment extends BaseFragment {
                         Process process = null;
                         DataOutputStream os = null;
                         try {
-
                             process = Runtime.getRuntime().exec("su"); //切换到root帐号
                             os = new DataOutputStream(process.getOutputStream());
                             os.writeBytes(commandText + "\n");
@@ -149,7 +148,6 @@ public class DisbaleAppFragment extends BaseFragment {
                                 appInfo.setDisable(true);
                                 appInfoList.set(mposition, appInfo);
                                 mview.setBackgroundColor(Color.parseColor("#d0d7d7d7")); //冻结的颜色
-
                             }
                         } catch (Exception ignored) {
 
@@ -296,10 +294,8 @@ public class DisbaleAppFragment extends BaseFragment {
 
         final String[] list = content.split("\n");
 
-
         dialog = ProgressDialog.show(getContext(), getString(R.string.tips), getString(R.string.restoreing));
         dialog.show();
-
 
         new Thread(new Runnable() {
             public void run() {
@@ -308,7 +304,6 @@ public class DisbaleAppFragment extends BaseFragment {
                 myHandler.sendMessage(new Message());
             }
         }).start();
-
 
     }
 

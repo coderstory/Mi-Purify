@@ -21,11 +21,9 @@ public class RemoveSearchBar implements IModule {
 
     @Override
     public void handleLoadPackage(XC_LoadPackage.LoadPackageParam lpparam) {
-
     }
 
     @Override
     public void initZygote(IXposedHookZygoteInit.StartupParam startupParam) {
-
     }
 }

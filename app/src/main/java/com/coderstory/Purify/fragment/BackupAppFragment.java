@@ -21,9 +21,9 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.coderstory.Purify.R;
-import com.coderstory.Purify.utils.Adapter.Application.AppInfo;
-import com.coderstory.Purify.utils.Adapter.Application.AppInfoAdapter;
-import com.coderstory.Purify.utils.DirManager;
+import com.coderstory.Purify.adapter.AppInfoAdapter;
+import com.coderstory.Purify.utils.LoadApkInfo;
+import com.coderstory.Purify.adapter.AppInfo;
 import com.yalantis.phoenix.PullToRefreshView;
 
 import java.io.DataOutputStream;
@@ -33,7 +33,7 @@ import java.util.List;
 
 import ren.solid.library.fragment.base.BaseFragment;
 
-import static com.coderstory.Purify.utils.MyConfig.BackPath;
+import static com.coderstory.Purify.config.Misc.BackPath;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -96,13 +96,13 @@ public class BackupAppFragment extends BaseFragment {
 
         appInfoList = new ArrayList<>();
         PackageManager pm = getActivity().getPackageManager();
-        DirManager.apkAll = DirManager.GetApkFileName(BackPath);
+        LoadApkInfo.apkAll = LoadApkInfo.GetApkFileName(BackPath);
         packages = new ArrayList<>();
 
         appInfoList2.clear();
-        for (String item : DirManager.apkAll
+        for (String item : LoadApkInfo.apkAll
                 ) {
-            PackageInfo packageInfo = DirManager.loadAppInfo(item, getActivity());
+            PackageInfo packageInfo = LoadApkInfo.loadAppInfo(item, getActivity());
             if (packageInfo != null) {
                 ApplicationInfo appInfo = packageInfo.applicationInfo;
                 //必须设置apk的路径 否则无法读取app的图标和名称
@@ -141,7 +141,7 @@ public class BackupAppFragment extends BaseFragment {
     //1 已备份  0未备份 2 有新的版本未备份
     private int isBackuped(PackageInfo packageInfo) {
         int result = 0;
-        if (DirManager.apkAll != null) {
+        if (LoadApkInfo.apkAll != null) {
             for (AppInfo element : appInfoList2) {
                 if ((packageInfo.packageName).equals(element.getPackageName())) {
                     if (packageInfo.versionCode > element.getVersionCode()) {
@@ -163,8 +163,8 @@ public class BackupAppFragment extends BaseFragment {
     }
 
     private void showData() {
-        adapter = new AppInfoAdapter(getActivity(), R.layout.app_info_item, R.color.disableApp, appInfoList);
-        listView = (ListView) view.findViewById(R.id.listView);
+        adapter = new AppInfoAdapter(getActivity(), R.layout.app_info_item, appInfoList);
+        listView = view.findViewById(R.id.listView);
         listView.setAdapter(adapter);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -173,7 +173,7 @@ public class BackupAppFragment extends BaseFragment {
                 mView = view;
                 AlertDialog.Builder dialog = new AlertDialog.Builder(getActivity());
                 dialog.setTitle(R.string.Tips_Title);
-                String tipsText = "";
+                String tipsText;
                 String BtnText = getString(R.string.Btn_Sure);
                 appInfo = appInfoList.get(mPosition);
                 tipsText = "你确定要备份" + appInfo.getName() + "吗？";
@@ -182,8 +182,8 @@ public class BackupAppFragment extends BaseFragment {
                 dialog.setPositiveButton(BtnText, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        DirManager.needReload = true;
-                        String commandText = "cp -f " + appInfo.getappdir() + " \"" + BackPath + appInfo.getPackageName() + ".apk\"";
+                        LoadApkInfo.needReload = true;
+                        String commandText = "cp -f " + appInfo.getAppDir() + " \"" + BackPath + appInfo.getPackageName() + ".apk\"";
                         Process process = null;
                         DataOutputStream os = null;
                         try {
@@ -194,7 +194,6 @@ public class BackupAppFragment extends BaseFragment {
                             os.writeBytes("exit\n");
                             os.flush();
                             process.waitFor();
-                            View rootView = LayoutInflater.from(getActivity()).inflate(R.layout.app_info_item, null);
                             appInfoList.remove(mPosition);
                             adapter.notifyDataSetChanged();
                         } catch (Exception e) {
@@ -204,11 +203,12 @@ public class BackupAppFragment extends BaseFragment {
                                 if (os != null) {
                                     os.close();
                                 }
+                                assert process != null;
                                 process.destroy();
                             } catch (Exception e) {
                             }
                         }
-                        DirManager.needReload = true;
+                        LoadApkInfo.needReload = true;
                     }
                 });
                 dialog.setCancelable(true);
@@ -230,23 +230,14 @@ public class BackupAppFragment extends BaseFragment {
         }
     }
 
-    //
     protected void closeProgress() {
-
         if (dialog != null) {
             dialog.cancel();
             dialog = null;
         }
     }
 
-    public boolean isShowing() {
-        if (dialog != null) {
-            return dialog.isShowing();
-        }
-        return false;
-    }
-
-    class MyTask extends AsyncTask<String, Integer, String> {
+    private class MyTask extends AsyncTask<String, Integer, String> {
 
         @Override
         protected void onPreExecute() {

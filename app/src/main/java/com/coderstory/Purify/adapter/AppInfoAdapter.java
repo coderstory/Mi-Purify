@@ -26,23 +26,20 @@ public class AppInfoAdapter extends ArrayAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         AppInfo appInfo = (AppInfo) getItem(position);
-
-
         View view;
         ViewHolder vh;
         if (convertView != null) { //查询布局是否已经缓存
             view = convertView;
             vh = (ViewHolder) view.getTag();//重新获取ViewHolder
-
         } else {
             view = LayoutInflater.from(getContext()).inflate(resourceId, null); //读取items.xml文件并实例化
             vh = new ViewHolder();
-            vh.myImage = (ImageView) view.findViewById(R.id.app_image);//查找items实例中的myimage
-            vh.myText = (TextView) view.findViewById(R.id.app_name);//查找items实例中的mytext
+            vh.myImage = view.findViewById(R.id.app_image);//查找items实例中的myimage
+            vh.myText = view.findViewById(R.id.app_name);//查找items实例中的mytext
             view.setTag(vh); //保存到view中
         }
 
-
+        assert appInfo != null;
         vh.myText.setTag(appInfo.getPackageName());
         vh.myImage.setImageDrawable(appInfo.getImageId());
         vh.myText.setText(" 应用名 : " + appInfo.getName() + "\r\n 版本号 : " + appInfo.getVersion());

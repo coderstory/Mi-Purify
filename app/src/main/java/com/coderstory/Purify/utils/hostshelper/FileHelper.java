@@ -1,4 +1,4 @@
-package com.coderstory.Purify.utils.hosts;
+package com.coderstory.Purify.utils.hostshelper;
 
 import android.content.Context;
 

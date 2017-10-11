@@ -1,4 +1,4 @@
-package com.coderstory.Purify.Update;
+package com.coderstory.Purify.utils.checkupdate;
 
 
 import android.app.Activity;
@@ -32,8 +32,6 @@ public class CheckUpdate {
             if (!UpdateConfig.errorMsg.equals("")) {
                 Toast.makeText(mcontext, UpdateConfig.errorMsg, Toast.LENGTH_LONG).show();
             } else {
-
-
                 try {
                     UpdateConfig.localVersion = mcontext.getPackageManager().getPackageInfo(
                             mcontext.getPackageName(), 0).versionCode; // 设置本地版本号

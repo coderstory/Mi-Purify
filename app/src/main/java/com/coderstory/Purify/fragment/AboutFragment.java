@@ -34,7 +34,6 @@ public class AboutFragment extends BaseFragment {
         tv_content.setMovementMethod(LinkMovementMethod
                 .getInstance());
 
-
         $(R.id.os).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

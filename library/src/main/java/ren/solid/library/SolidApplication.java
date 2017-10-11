@@ -26,5 +26,4 @@ public class SolidApplication extends Application {
         crashHandler.init(getApplicationContext());
     }
 
-
 }

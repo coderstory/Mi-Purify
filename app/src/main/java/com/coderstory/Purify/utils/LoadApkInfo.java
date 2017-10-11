@@ -4,28 +4,25 @@ import android.app.Activity;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 
-import com.coderstory.Purify.utils.Adapter.Application.AppInfo;
+import com.coderstory.Purify.adapter.AppInfo;
 
 import java.io.File;
 import java.util.Vector;
 
-import static com.coderstory.Purify.utils.MyConfig.BackPath;
+import static com.coderstory.Purify.config.Misc.BackPath;
 
-/**
- * Created by cc on 2015/12/28.
- */
-public class DirManager {
+
+public class LoadApkInfo {
     public static Vector<String> apkAll = null;
     public static boolean needReload = false;
 
-    // 获取当前目录下所有的mp4文件
+    // 获取当前目录下所有的apk文件
     public static Vector<String> GetApkFileName(String fileAbsolutePath) {
         Vector<String> vecFile = new Vector<String>();
         File file = new File(fileAbsolutePath);
         File[] subFile = file.listFiles();
 
         if (subFile != null) {
-
             for (int iFileLength = 0; iFileLength < subFile.length; iFileLength++) {
                 // 判断是否为文件夹
                 if (!subFile[iFileLength].isDirectory()) {
@@ -45,7 +42,7 @@ public class DirManager {
         AppInfo app = new AppInfo();
         app.setAppDir(BackPath + appPath);
         PackageManager pm = content.getPackageManager();
-        PackageInfo info = pm.getPackageArchiveInfo(app.getappdir(), PackageManager.GET_ACTIVITIES);
+        PackageInfo info = pm.getPackageArchiveInfo(app.getAppDir(), PackageManager.GET_ACTIVITIES);
         return info;
     }
 
