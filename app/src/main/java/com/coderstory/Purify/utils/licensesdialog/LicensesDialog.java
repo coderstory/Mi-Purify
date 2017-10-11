@@ -41,8 +41,8 @@ import java.util.List;
 
 public class LicensesDialog {
     public static final Notice LICENSES_DIALOG_NOTICE = new Notice("LicensesDialog", "http://psdev.de/LicensesDialog",
-        "Copyright 2013-2016 Philip Schiffer",
-        new ApacheSoftwareLicense20());
+            "Copyright 2013-2016 Philip Schiffer",
+            new ApacheSoftwareLicense20());
 
     private final Context mContext;
     private final String mTitleText;
@@ -70,111 +70,6 @@ public class LicensesDialog {
 
     // ==========================================================================================================================
     // Public API
-    // ==========================================================================================================================
-
-    public LicensesDialog setOnDismissListener(final DialogInterface.OnDismissListener onDismissListener) {
-        mOnDismissListener = onDismissListener;
-        return this;
-    }
-
-    public Dialog create() {
-        //Get resources
-        final WebView webView = createWebView(mContext);
-        webView.loadDataWithBaseURL(null, mLicensesText, "text/html", "utf-8", null);
-        final AlertDialog.Builder builder;
-        if (mThemeResourceId != 0) {
-            builder = new AlertDialog.Builder(new ContextThemeWrapper(mContext, mThemeResourceId));
-        } else {
-            builder = new AlertDialog.Builder(mContext);
-        }
-        builder.setTitle(mTitleText)
-            .setView(webView)
-            .setPositiveButton(mCloseText, new Dialog.OnClickListener() {
-                public void onClick(final DialogInterface dialogInterface, final int i) {
-                    dialogInterface.dismiss();
-                }
-            });
-        final AlertDialog dialog = builder.create();
-        dialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
-            @Override
-            public void onDismiss(final DialogInterface dialog) {
-                if (mOnDismissListener != null) {
-                    mOnDismissListener.onDismiss(dialog);
-                }
-            }
-        });
-        dialog.setOnShowListener(new DialogInterface.OnShowListener() {
-            @Override
-            public void onShow(final DialogInterface dialogInterface) {
-                if (mDividerColor != 0) {
-                    // Set title divider color
-                    final int titleDividerId = mContext.getResources().getIdentifier("titleDivider", "id", "android");
-                    final View titleDivider = dialog.findViewById(titleDividerId);
-                    if (titleDivider != null) {
-                        titleDivider.setBackgroundColor(mDividerColor);
-                    }
-                }
-            }
-        });
-        return dialog;
-    }
-
-    public Dialog createAppCompat() {
-        //Get resources
-        final WebView webView = new WebView(mContext);
-        webView.loadDataWithBaseURL(null, mLicensesText, "text/html", "utf-8", null);
-        final android.support.v7.app.AlertDialog.Builder builder;
-        if (mThemeResourceId != 0) {
-            builder = new android.support.v7.app.AlertDialog.Builder(new ContextThemeWrapper(mContext, mThemeResourceId));
-        } else {
-            builder = new android.support.v7.app.AlertDialog.Builder(mContext);
-        }
-        builder.setTitle(mTitleText)
-            .setView(webView)
-            .setPositiveButton(mCloseText, new Dialog.OnClickListener() {
-                public void onClick(final DialogInterface dialogInterface, final int i) {
-                    dialogInterface.dismiss();
-                }
-            });
-        final android.support.v7.app.AlertDialog dialog = builder.create();
-        dialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
-            @Override
-            public void onDismiss(final DialogInterface dialog) {
-                if (mOnDismissListener != null) {
-                    mOnDismissListener.onDismiss(dialog);
-                }
-            }
-        });
-        dialog.setOnShowListener(new DialogInterface.OnShowListener() {
-            @Override
-            public void onShow(final DialogInterface dialogInterface) {
-                if (mDividerColor != 0) {
-                    // Set title divider color
-                    final int titleDividerId = mContext.getResources().getIdentifier("titleDivider", "id", "android");
-                    final View titleDivider = dialog.findViewById(titleDividerId);
-                    if (titleDivider != null) {
-                        titleDivider.setBackgroundColor(mDividerColor);
-                    }
-                }
-            }
-        });
-        return dialog;
-    }
-
-    public Dialog show() {
-        final Dialog dialog = create();
-        dialog.show();
-        return dialog;
-    }
-
-    public Dialog showAppCompat() {
-        final Dialog dialog = createAppCompat();
-        dialog.show();
-        return dialog;
-    }
-
-    // ==========================================================================================================================
-    // Private API
     // ==========================================================================================================================
 
     private static WebView createWebView(final Context context) {
@@ -226,6 +121,111 @@ public class LicensesDialog {
         final Notices notices = new Notices();
         notices.addNotice(notice);
         return notices;
+    }
+
+    public LicensesDialog setOnDismissListener(final DialogInterface.OnDismissListener onDismissListener) {
+        mOnDismissListener = onDismissListener;
+        return this;
+    }
+
+    // ==========================================================================================================================
+    // Private API
+    // ==========================================================================================================================
+
+    public Dialog create() {
+        //Get resources
+        final WebView webView = createWebView(mContext);
+        webView.loadDataWithBaseURL(null, mLicensesText, "text/html", "utf-8", null);
+        final AlertDialog.Builder builder;
+        if (mThemeResourceId != 0) {
+            builder = new AlertDialog.Builder(new ContextThemeWrapper(mContext, mThemeResourceId));
+        } else {
+            builder = new AlertDialog.Builder(mContext);
+        }
+        builder.setTitle(mTitleText)
+                .setView(webView)
+                .setPositiveButton(mCloseText, new Dialog.OnClickListener() {
+                    public void onClick(final DialogInterface dialogInterface, final int i) {
+                        dialogInterface.dismiss();
+                    }
+                });
+        final AlertDialog dialog = builder.create();
+        dialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
+            @Override
+            public void onDismiss(final DialogInterface dialog) {
+                if (mOnDismissListener != null) {
+                    mOnDismissListener.onDismiss(dialog);
+                }
+            }
+        });
+        dialog.setOnShowListener(new DialogInterface.OnShowListener() {
+            @Override
+            public void onShow(final DialogInterface dialogInterface) {
+                if (mDividerColor != 0) {
+                    // Set title divider color
+                    final int titleDividerId = mContext.getResources().getIdentifier("titleDivider", "id", "android");
+                    final View titleDivider = dialog.findViewById(titleDividerId);
+                    if (titleDivider != null) {
+                        titleDivider.setBackgroundColor(mDividerColor);
+                    }
+                }
+            }
+        });
+        return dialog;
+    }
+
+    public Dialog createAppCompat() {
+        //Get resources
+        final WebView webView = new WebView(mContext);
+        webView.loadDataWithBaseURL(null, mLicensesText, "text/html", "utf-8", null);
+        final android.support.v7.app.AlertDialog.Builder builder;
+        if (mThemeResourceId != 0) {
+            builder = new android.support.v7.app.AlertDialog.Builder(new ContextThemeWrapper(mContext, mThemeResourceId));
+        } else {
+            builder = new android.support.v7.app.AlertDialog.Builder(mContext);
+        }
+        builder.setTitle(mTitleText)
+                .setView(webView)
+                .setPositiveButton(mCloseText, new Dialog.OnClickListener() {
+                    public void onClick(final DialogInterface dialogInterface, final int i) {
+                        dialogInterface.dismiss();
+                    }
+                });
+        final android.support.v7.app.AlertDialog dialog = builder.create();
+        dialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
+            @Override
+            public void onDismiss(final DialogInterface dialog) {
+                if (mOnDismissListener != null) {
+                    mOnDismissListener.onDismiss(dialog);
+                }
+            }
+        });
+        dialog.setOnShowListener(new DialogInterface.OnShowListener() {
+            @Override
+            public void onShow(final DialogInterface dialogInterface) {
+                if (mDividerColor != 0) {
+                    // Set title divider color
+                    final int titleDividerId = mContext.getResources().getIdentifier("titleDivider", "id", "android");
+                    final View titleDivider = dialog.findViewById(titleDividerId);
+                    if (titleDivider != null) {
+                        titleDivider.setBackgroundColor(mDividerColor);
+                    }
+                }
+            }
+        });
+        return dialog;
+    }
+
+    public Dialog show() {
+        final Dialog dialog = create();
+        dialog.show();
+        return dialog;
+    }
+
+    public Dialog showAppCompat() {
+        final Dialog dialog = createAppCompat();
+        dialog.show();
+        return dialog;
     }
 
     // ==========================================================================================================================
@@ -346,7 +346,7 @@ public class LicensesDialog {
                 licensesText = getLicensesText(mContext, mNotices, mShowFullLicenseText, mIncludeOwnLicense, mNoticesStyle);
             } else if (mRawNoticesId != null) {
                 licensesText = getLicensesText(mContext, getNotices(mContext, mRawNoticesId), mShowFullLicenseText, mIncludeOwnLicense,
-                    mNoticesStyle);
+                        mNoticesStyle);
             } else if (mNoticesText != null) {
                 licensesText = mNoticesText;
             } else {

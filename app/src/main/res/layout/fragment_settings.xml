@@ -25,8 +25,7 @@
                 android:paddingEnd="30dp"
                 android:paddingStart="30dp"
                 android:paddingTop="10dp"
-                android:text="@string/common"
-             />
+                android:text="@string/common" />
 
             <Switch
                 android:id="@+id/hideicon"
@@ -61,7 +60,6 @@
                 android:text="@string/enablexposed" />
 
 
-
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
@@ -69,9 +67,7 @@
                 android:paddingEnd="30dp"
                 android:paddingStart="30dp"
                 android:paddingTop="10dp"
-                android:text="@string/xposedmodule"
-                 />
-
+                android:text="@string/xposedmodule" />
 
 
             <Switch
@@ -103,10 +99,6 @@
                 android:paddingEnd="30dp"
                 android:paddingStart="30dp"
                 android:text="@string/fixpcb" />
-
-
-
-
 
 
         </LinearLayout>

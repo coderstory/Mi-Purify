@@ -33,16 +33,13 @@ import java.util.Map;
  */
 public class CrashHandler implements Thread.UncaughtExceptionHandler {
 
-    public static String CrashFilePath;
-
     public static final int LogFileLimit = 10;
-
     public static final String TAG = "CrashHandler";
-
-    //系统默认的UncaughtException处理类
-    private Thread.UncaughtExceptionHandler mDefaultHandler;
+    public static String CrashFilePath;
     //CrashHandler实例
     private static CrashHandler INSTANCE = new CrashHandler();
+    //系统默认的UncaughtException处理类
+    private Thread.UncaughtExceptionHandler mDefaultHandler;
     //程序的Context对象
     private Context mContext;
     //用来存储设备信息和异常信息
@@ -50,6 +47,17 @@ public class CrashHandler implements Thread.UncaughtExceptionHandler {
 
     //用于格式化日期,作为日志文件名的一部分
     private SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss", Locale.CHINESE);
+    private Comparator<File> newfileFinder = new Comparator<File>() {
+
+        @Override
+        public int compare(File x, File y) {
+            // TODO Auto-generated method stub
+            if (x.lastModified() > y.lastModified()) return 1;
+            if (x.lastModified() < y.lastModified()) return -1;
+            else return 0;
+        }
+
+    };
 
     /**
      * 保证只有一个CrashHandler实例
@@ -98,7 +106,6 @@ public class CrashHandler implements Thread.UncaughtExceptionHandler {
         }
     }
 
-
     /**
      * 收集设备参数信息
      *
@@ -110,7 +117,7 @@ public class CrashHandler implements Thread.UncaughtExceptionHandler {
             PackageInfo pi = pm.getPackageInfo(ctx.getPackageName(), PackageManager.GET_ACTIVITIES);
             if (pi != null) {
                 String versionName = pi.versionName == null ? "null" : pi.versionName.toString();
-                String versionCode =  pi.versionCode+"";
+                String versionCode = pi.versionCode + "";
                 infos.put("versionName", versionName);
                 infos.put("versionCode", versionCode);
             }
@@ -183,18 +190,6 @@ public class CrashHandler implements Thread.UncaughtExceptionHandler {
 
         return 1;
     }
-
-    private Comparator<File> newfileFinder = new Comparator<File>() {
-
-        @Override
-        public int compare(File x, File y) {
-            // TODO Auto-generated method stub
-            if (x.lastModified() > y.lastModified()) return 1;
-            if (x.lastModified() < y.lastModified()) return -1;
-            else return 0;
-        }
-
-    };
 
     private int cleanLogFileToN(String dirname) {
         File dir = new File(dirname);

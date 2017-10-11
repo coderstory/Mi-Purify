@@ -11,16 +11,10 @@ import java.util.Map;
  */
 public class HttpRequest {
 
-    public enum Method {
-        GET, POST
-    }
-
     private String url;
     private Method method;
     private Map<String, String> headers;
     private Map<String, String> params;
-
-
     private Map<String, File> files;
 
 
@@ -28,7 +22,6 @@ public class HttpRequest {
         this.url = builder.url;
         this.method = builder.method;
     }
-
 
     public String getUrl() {
         return url;
@@ -68,6 +61,10 @@ public class HttpRequest {
 
     public void setFiles(Map<String, File> files) {
         this.files = files;
+    }
+
+    public enum Method {
+        GET, POST
     }
 
     public static class Builder {

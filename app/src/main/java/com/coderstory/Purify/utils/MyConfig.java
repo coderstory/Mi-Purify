@@ -7,11 +7,11 @@ import android.os.Environment;
  */
 
 public class MyConfig {
-    public static boolean isProcessing=false;
-    public   static final String BackPath= Environment.getExternalStorageDirectory().getPath() + "/MIUI Purify/backupAPP/";
-    public static final String MyBlogUrl="http://blog.coderstory.cn";
-    public  static  final String BackUpFileName = Environment.getExternalStorageDirectory().getPath() + "/MIUI Purify/backup/";
-    public static final String ApplicationName="com.coderstory.Purify";
-    public static final String SharedPreferencesName="UserSettings";
-    public static final String HostFileTmpName=   "/hosts";
+    public static final String BackPath = Environment.getExternalStorageDirectory().getPath() + "/MIUI Purify/backupAPP/";
+    public static final String MyBlogUrl = "http://blog.coderstory.cn";
+    public static final String BackUpFileName = Environment.getExternalStorageDirectory().getPath() + "/MIUI Purify/backup/";
+    public static final String ApplicationName = "com.coderstory.Purify";
+    public static final String SharedPreferencesName = "UserSettings";
+    public static final String HostFileTmpName = "/hosts";
+    public static boolean isProcessing = false;
 }

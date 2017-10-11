@@ -23,15 +23,26 @@ import com.coderstory.Purify.utils.licensesdialog.licenses.License;
 
 public class Notice implements Parcelable {
 
+    public static Creator<Notice> CREATOR = new Creator<Notice>() {
+        public Notice createFromParcel(final Parcel source) {
+            return new Notice(source);
+        }
+
+        public Notice[] newArray(final int size) {
+            return new Notice[size];
+        }
+    };
     private String mName;
     private String mUrl;
     private String mCopyright;
-    private License mLicense;
 
     //
+    private License mLicense;
 
     public Notice() {
     }
+
+    // Setter / Getter
 
     public Notice(final String name, final String url, final String copyright, final License license) {
         mName = name;
@@ -40,41 +51,46 @@ public class Notice implements Parcelable {
         mLicense = license;
     }
 
-    // Setter / Getter
-
-    public void setName(final String name) {
-        mName = name;
-    }
-
-    public void setUrl(final String url) {
-        mUrl = url;
-    }
-
-    public void setCopyright(final String copyright) {
-        mCopyright = copyright;
-    }
-
-    public void setLicense(final License license) {
-        mLicense = license;
+    private Notice(final Parcel in) {
+        mName = in.readString();
+        mUrl = in.readString();
+        mCopyright = in.readString();
+        mLicense = (License) in.readSerializable();
     }
 
     public String getName() {
         return mName;
     }
 
+    public void setName(final String name) {
+        mName = name;
+    }
+
     public String getUrl() {
         return mUrl;
+    }
+
+    public void setUrl(final String url) {
+        mUrl = url;
     }
 
     public String getCopyright() {
         return mCopyright;
     }
 
+    public void setCopyright(final String copyright) {
+        mCopyright = copyright;
+    }
+
+    // Parcelable
+
     public License getLicense() {
         return mLicense;
     }
 
-    // Parcelable
+    public void setLicense(final License license) {
+        mLicense = license;
+    }
 
     @Override
     public int describeContents() {
@@ -88,21 +104,4 @@ public class Notice implements Parcelable {
         dest.writeString(mCopyright);
         dest.writeSerializable(mLicense);
     }
-
-    private Notice(final Parcel in) {
-        mName = in.readString();
-        mUrl = in.readString();
-        mCopyright = in.readString();
-        mLicense = (License) in.readSerializable();
-    }
-
-    public static Creator<Notice> CREATOR = new Creator<Notice>() {
-        public Notice createFromParcel(final Parcel source) {
-            return new Notice(source);
-        }
-
-        public Notice[] newArray(final int size) {
-            return new Notice[size];
-        }
-    };
 }

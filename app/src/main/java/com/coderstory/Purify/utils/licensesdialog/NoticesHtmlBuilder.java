@@ -36,14 +36,14 @@ public final class NoticesHtmlBuilder {
     private String mStyle;
     private boolean mShowFullLicenseText;
 
-    public static NoticesHtmlBuilder create(final Context context) {
-        return new NoticesHtmlBuilder(context);
-    }
-
     private NoticesHtmlBuilder(final Context context) {
         mContext = context;
         mStyle = context.getResources().getString(R.string.notices_default_style);
         mShowFullLicenseText = false;
+    }
+
+    public static NoticesHtmlBuilder create(final Context context) {
+        return new NoticesHtmlBuilder(context);
     }
 
     public NoticesHtmlBuilder setNotices(final Notices notices) {
@@ -88,8 +88,8 @@ public final class NoticesHtmlBuilder {
 
     private void appendNoticesContainerStart(final StringBuilder noticesHtmlBuilder) {
         noticesHtmlBuilder.append("<!DOCTYPE html><html><head>")
-            .append("<style type=\"text/css\">").append(mStyle).append("</style>")
-            .append("</head><body>");
+                .append("<style type=\"text/css\">").append(mStyle).append("</style>")
+                .append("</head><body>");
     }
 
     private void appendNoticeBlock(final StringBuilder noticesHtmlBuilder, final Notice notice) {
@@ -97,10 +97,10 @@ public final class NoticesHtmlBuilder {
         final String currentNoticeUrl = notice.getUrl();
         if (currentNoticeUrl != null && currentNoticeUrl.length() > 0) {
             noticesHtmlBuilder.append(" (<a href=\"")
-                .append(currentNoticeUrl)
-                .append("\" target=\"_blank\">")
-                .append(currentNoticeUrl)
-                .append("</a>)");
+                    .append(currentNoticeUrl)
+                    .append("\" target=\"_blank\">")
+                    .append(currentNoticeUrl)
+                    .append("</a>)");
         }
         noticesHtmlBuilder.append("</li></ul>");
         noticesHtmlBuilder.append("<pre>");

@@ -25,13 +25,11 @@ import java.security.InvalidParameterException;
 
 public class PullToRefreshView extends ViewGroup {
 
+    public static final int STYLE_SUN = 0;
+    public static final int MAX_OFFSET_ANIMATION_DURATION = 700;
     private static final int DRAG_MAX_DISTANCE = 120;
     private static final float DRAG_RATE = .5f;
     private static final float DECELERATE_INTERPOLATION_FACTOR = 2f;
-
-    public static final int STYLE_SUN = 0;
-    public static final int MAX_OFFSET_ANIMATION_DURATION = 700;
-
     private static final int INVALID_POINTER = -1;
 
     private View mTarget;
@@ -48,13 +46,47 @@ public class PullToRefreshView extends ViewGroup {
     private float mInitialMotionY;
     private int mFrom;
     private float mFromDragPercent;
+    private final Animation mAnimateToCorrectPosition = new Animation() {
+        @Override
+        public void applyTransformation(float interpolatedTime, Transformation t) {
+            int targetTop;
+            int endTarget = mTotalDragDistance;
+            targetTop = (mFrom + (int) ((endTarget - mFrom) * interpolatedTime));
+            int offset = targetTop - mTarget.getTop();
+
+            mCurrentDragPercent = mFromDragPercent - (mFromDragPercent - 1.0f) * interpolatedTime;
+            mBaseRefreshView.setPercent(mCurrentDragPercent, false);
+
+            setTargetOffsetTop(offset, false /* requires update */);
+        }
+    };
     private boolean mNotify;
     private OnRefreshListener mListener;
-
     private int mTargetPaddingTop;
     private int mTargetPaddingBottom;
     private int mTargetPaddingRight;
     private int mTargetPaddingLeft;
+    private final Animation mAnimateToStartPosition = new Animation() {
+        @Override
+        public void applyTransformation(float interpolatedTime, Transformation t) {
+            moveToStart(interpolatedTime);
+        }
+    };
+    private Animation.AnimationListener mToStartListener = new Animation.AnimationListener() {
+        @Override
+        public void onAnimationStart(Animation animation) {
+        }
+
+        @Override
+        public void onAnimationRepeat(Animation animation) {
+        }
+
+        @Override
+        public void onAnimationEnd(Animation animation) {
+            mBaseRefreshView.stop();
+            mCurrentOffsetTop = mTarget.getTop();
+        }
+    };
 
     public PullToRefreshView(Context context) {
         this(context, null);
@@ -285,28 +317,6 @@ public class PullToRefreshView extends ViewGroup {
         mTarget.setPadding(mTargetPaddingLeft, mTargetPaddingTop, mTargetPaddingRight, mTotalDragDistance);
     }
 
-    private final Animation mAnimateToStartPosition = new Animation() {
-        @Override
-        public void applyTransformation(float interpolatedTime, Transformation t) {
-            moveToStart(interpolatedTime);
-        }
-    };
-
-    private final Animation mAnimateToCorrectPosition = new Animation() {
-        @Override
-        public void applyTransformation(float interpolatedTime, Transformation t) {
-            int targetTop;
-            int endTarget = mTotalDragDistance;
-            targetTop = (mFrom + (int) ((endTarget - mFrom) * interpolatedTime));
-            int offset = targetTop - mTarget.getTop();
-
-            mCurrentDragPercent = mFromDragPercent - (mFromDragPercent - 1.0f) * interpolatedTime;
-            mBaseRefreshView.setPercent(mCurrentDragPercent, false);
-
-            setTargetOffsetTop(offset, false /* requires update */);
-        }
-    };
-
     private void moveToStart(float interpolatedTime) {
         int targetTop = mFrom - (int) (mFrom * interpolatedTime);
         float targetPercent = mFromDragPercent * (1.0f - interpolatedTime);
@@ -337,22 +347,6 @@ public class PullToRefreshView extends ViewGroup {
             }
         }
     }
-
-    private Animation.AnimationListener mToStartListener = new Animation.AnimationListener() {
-        @Override
-        public void onAnimationStart(Animation animation) {
-        }
-
-        @Override
-        public void onAnimationRepeat(Animation animation) {
-        }
-
-        @Override
-        public void onAnimationEnd(Animation animation) {
-            mBaseRefreshView.stop();
-            mCurrentOffsetTop = mTarget.getTop();
-        }
-    };
 
     private void onSecondaryPointerUp(MotionEvent ev) {
         final int pointerIndex = MotionEventCompat.getActionIndex(ev);

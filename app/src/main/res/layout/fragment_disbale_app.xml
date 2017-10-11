@@ -4,18 +4,20 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center">
+
     <com.yalantis.phoenix.PullToRefreshView
         android:id="@+id/pull_to_refresh"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
         <ListView
+            android:id="@+id/listView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/listView"
-            android:divider="#00000000"
-            android:dividerHeight="0dip"
-            android:layout_alignParentTop="false"
             android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true" />
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="false"
+            android:divider="#00000000"
+            android:dividerHeight="0dip" />
     </com.yalantis.phoenix.PullToRefreshView>
 </RelativeLayout>

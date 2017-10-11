@@ -36,16 +36,16 @@ import static com.coderstory.Purify.R.id.navigation_view;
 
 public class MainActivity extends BaseActivity {
 
+    public static final long MAX_DOUBLE_BACK_DURATION = 1500;
+    private static final int READ_EXTERNAL_STORAGE_CODE = 1;
     private static String TAG = "MainActivity";
-
     private DrawerLayout mDrawerLayout;//侧边菜单视图
     private Toolbar mToolbar;
     private NavigationView mNavigationView;//侧边菜单项
-
     private FragmentManager mFragmentManager;
     private Fragment mCurrentFragment;
     private MenuItem mPreMenuItem;
-
+    private long lastBackKeyDownTick = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,9 +63,6 @@ public class MainActivity extends BaseActivity {
 
 
     }
-
-
-    private static final int READ_EXTERNAL_STORAGE_CODE = 1;
 
     private void requestCameraPermission() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
@@ -95,9 +92,9 @@ public class MainActivity extends BaseActivity {
         mDrawerLayout = $(R.id.drawer_layout);
         mNavigationView = $(navigation_view);
 
-            if (getPrefs().getBoolean("enableCheck", true) && !isEnable()) {
-                SnackBarUtils.makeLong(mNavigationView, "插件尚未激活,Xposed功能将不可用,请重启再试！").show();
-            }
+        if (getPrefs().getBoolean("enableCheck", true) && !isEnable()) {
+            SnackBarUtils.makeLong(mNavigationView, "插件尚未激活,Xposed功能将不可用,请重启再试！").show();
+        }
 
 
         mToolbar.setTitle("净化广告");
@@ -132,6 +129,8 @@ public class MainActivity extends BaseActivity {
         Log.i(TAG, "onSaveInstanceState");
     }
 
+    //init the default checked fragment
+
     private void initDefaultFragment() {
         Log.i(TAG, "initDefaultFragment");
         mCurrentFragment = ViewUtils.createFragment(BlockADSFragment.class);
@@ -145,9 +144,6 @@ public class MainActivity extends BaseActivity {
         //super.onRestoreInstanceState(savedInstanceState);
         Log.i(TAG, "onRestoreInstanceState");
     }
-
-    //init the default checked fragment
-
 
     public boolean isEnable() {
         return false;
@@ -185,7 +181,6 @@ public class MainActivity extends BaseActivity {
                         mToolbar.setTitle("其他设置");
                         switchFragment(SettingsFragment.class);
                         break;
-
 
 
                     case R.id.navigation_item_Clean:
@@ -256,10 +251,6 @@ public class MainActivity extends BaseActivity {
 
         return super.onOptionsItemSelected(item);
     }
-
-
-    private long lastBackKeyDownTick = 0;
-    public static final long MAX_DOUBLE_BACK_DURATION = 1500;
 
     @Override
     public void onBackPressed() {

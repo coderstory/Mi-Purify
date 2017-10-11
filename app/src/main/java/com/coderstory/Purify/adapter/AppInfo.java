@@ -12,22 +12,29 @@ public class AppInfo {
     //private String AppDir;
     private boolean isDisable = true;
     private String packageName = "";
-    private  String Version="";
+    private String Version = "";
 
 
-    public void setDisable(boolean disable) {
-        this.isDisable = disable;
+    public AppInfo(String name, Drawable imageId, String packageName, boolean Disable, String version) {
+        this.name = name;
+        this.imageId = imageId;
+        this.packageName = packageName;
+        this.isDisable = Disable;
+        this.Version = version;
     }
 
     Drawable getImageId() {
         return this.imageId;
     }
+
     public String getVersion() {
         return this.Version;
     }
+
     public String getPackageName() {
         return packageName;
     }
+
     public String getName() {
         return this.name;
     }
@@ -36,11 +43,7 @@ public class AppInfo {
         return isDisable;
     }
 
-    public AppInfo(String name, Drawable imageId, String packageName, boolean Disable, String version) {
-        this.name = name;
-        this.imageId = imageId;
-        this.packageName = packageName;
-        this.isDisable = Disable;
-        this.Version=version;
+    public void setDisable(boolean disable) {
+        this.isDisable = disable;
     }
 }

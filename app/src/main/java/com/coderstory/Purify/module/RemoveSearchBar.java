@@ -4,7 +4,6 @@ import com.coderstory.Purify.plugins.IModule;
 
 import de.robv.android.xposed.IXposedHookZygoteInit;
 import de.robv.android.xposed.XSharedPreferences;
-import de.robv.android.xposed.XposedBridge;
 import de.robv.android.xposed.callbacks.XC_InitPackageResources;
 import de.robv.android.xposed.callbacks.XC_LoadPackage;
 
@@ -15,9 +14,9 @@ public class RemoveSearchBar implements IModule {
         XSharedPreferences prefs = new XSharedPreferences("com.coderstory.Purify", "UserSettings");
         prefs.makeWorldReadable();
         prefs.reload();
-            if (resparam.packageName.equals("com.android.systemui")  && prefs.getBoolean("RemoveSearchBar", false)) {
-                resparam.res.setReplacement(resparam.packageName, "bool", "config_show_statusbar_search", false);
-            }
+        if (resparam.packageName.equals("com.android.systemui") && prefs.getBoolean("RemoveSearchBar", false)) {
+            resparam.res.setReplacement(resparam.packageName, "bool", "config_show_statusbar_search", false);
+        }
     }
 
     @Override

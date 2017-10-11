@@ -13,5 +13,5 @@ public interface IHttpProvider {
 
     void loadString(HttpRequest request, HttpCallBack callBack);
 
-    void download(String downloadUrl,String savePath, FileHttpCallBack callBack);
+    void download(String downloadUrl, String savePath, FileHttpCallBack callBack);
 }

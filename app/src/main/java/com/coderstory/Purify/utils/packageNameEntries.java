@@ -12,14 +12,14 @@ public class packageNameEntries {
     public static final String milink_packageName = "com.milink_packageName.service";
     public static final String music_packageName = "com.miui.player";
     public static final String cleanmaster_packageName = "com.miui.cleanmaster";
-    public static final String core_packageName= "com.miui.core";
-    public static final String calendar_packageName= "com.miui.calendar";
-    public static final String video_packageName= "com.miui.video";
-    public static final String fileexplorer_packageName= "com.android.fileexplorer";
-    public static final String downloads_packageName= "com.android.providers.downloads.ui";
-    public static final String weather2_packageName= "com.miui.weather2";
-    public static final String thememanager_packageName= "com.android.thememanager";
-    public static final String mms_packageName= "com.android.mms";
+    public static final String core_packageName = "com.miui.core";
+    public static final String calendar_packageName = "com.miui.calendar";
+    public static final String video_packageName = "com.miui.video";
+    public static final String fileexplorer_packageName = "com.android.fileexplorer";
+    public static final String downloads_packageName = "com.android.providers.downloads.ui";
+    public static final String weather2_packageName = "com.miui.weather2";
+    public static final String thememanager_packageName = "com.android.thememanager";
+    public static final String mms_packageName = "com.android.mms";
 
 
 }

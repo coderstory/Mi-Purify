@@ -16,8 +16,6 @@ import ren.solid.library.http.callback.HttpCallBack;
  */
 public abstract class JsonHttpCallBack<T> extends HttpCallBack<T> {
 
-    public enum DataType {ARRAY, OBJECT}
-
     @Override
     public T parseData(String result) {
         T t = null;
@@ -59,4 +57,6 @@ public abstract class JsonHttpCallBack<T> extends HttpCallBack<T> {
      * @return 泛型 Type
      */
     public abstract Type getType();
+
+    public enum DataType {ARRAY, OBJECT}
 }

@@ -13,9 +13,6 @@ import android.os.Environment;
 import android.os.Vibrator;
 import android.view.inputmethod.InputMethodManager;
 
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
 import ren.solid.library.R;
 
 /**
@@ -45,7 +42,6 @@ public class CommonUtils {
             ex.printStackTrace();
         }
     }
-
 
 
     /*

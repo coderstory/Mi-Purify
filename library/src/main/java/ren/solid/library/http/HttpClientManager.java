@@ -1,7 +1,6 @@
 package ren.solid.library.http;
 
 
-
 import java.util.Map;
 
 import ren.solid.library.http.callback.HttpCallBack;
@@ -14,7 +13,6 @@ import ren.solid.library.http.request.HttpRequest;
  * Time:11:03
  */
 public class HttpClientManager {
-
 
 
     public static void getData(String url, HttpCallBack callBack) {

@@ -17,6 +17,7 @@
 package com.coderstory.Purify.utils.licensesdialog.licenses;
 
 import android.content.Context;
+
 import com.coderstory.Purify.R;
 
 public class GnuGeneralPublicLicense20 extends License {

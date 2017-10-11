@@ -22,17 +22,17 @@ import ren.solid.library.fragment.base.BaseFragment;
 public class ManagerAppFragment extends BaseFragment implements ViewPager.OnPageChangeListener,
         TabHost.OnTabChangeListener {
 
-    @Override
-    protected int setLayoutResourceID() {
-        return 0;
-    }
-
     public static final int TAB_LOGIN = 0;
     public static final int TAB_REG = 1;
     private TabHost tabHost;
     private int currentTab = TAB_LOGIN;
     private ViewPager viewPager;
     private List<Fragment> fragments;
+
+    @Override
+    protected int setLayoutResourceID() {
+        return 0;
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -93,6 +93,7 @@ public class ManagerAppFragment extends BaseFragment implements ViewPager.OnPage
     public void onPageScrolled(int position, float arg1, int arg2) {
 
     }
+
     //选择了某个标签
     @Override
     public void onPageSelected(int position) {
@@ -100,7 +101,7 @@ public class ManagerAppFragment extends BaseFragment implements ViewPager.OnPage
     }
 
     @Override
-    public void onTabChanged(String tabId){
+    public void onTabChanged(String tabId) {
         currentTab = tabHost.getCurrentTab();
         viewPager.setCurrentItem(currentTab);
         updateTab();
@@ -119,6 +120,12 @@ public class ManagerAppFragment extends BaseFragment implements ViewPager.OnPage
         }
     }
 
+    @Override
+    protected void setUpData() {
+        super.setUpData();
+
+    }
+
     class TabFactory implements TabHost.TabContentFactory {
 
         private final Context context;
@@ -134,12 +141,6 @@ public class ManagerAppFragment extends BaseFragment implements ViewPager.OnPage
             v.setMinimumWidth(0);
             return v;
         }
-
-    }
-
-    @Override
-    protected void setUpData() {
-        super.setUpData();
 
     }
 }

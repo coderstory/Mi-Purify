@@ -90,6 +90,27 @@ public abstract class WebViewFragment extends BaseFragment {
         }
     }
 
+    @Override
+    public void onPause() {
+        super.onPause();
+        if (mWebView != null)
+            mWebView.onPause();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        if (mWebView != null)
+            mWebView.onResume();
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if (mWebView != null)
+            mWebView.destroy();
+    }
+
     //WebViewClient就是帮助WebView处理各种通知、请求事件的。
     class MyWebViewClient extends WebViewClient {
         @Override
@@ -192,28 +213,6 @@ public abstract class WebViewFragment extends BaseFragment {
 //            //
 //            return true;
 //        }
-    }
-
-    @Override
-    public void onPause() {
-        super.onPause();
-        if (mWebView != null)
-            mWebView.onPause();
-    }
-
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        if (mWebView != null)
-            mWebView.onResume();
-    }
-
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        if (mWebView != null)
-            mWebView.destroy();
     }
 
 

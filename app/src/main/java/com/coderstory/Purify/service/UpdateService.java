@@ -1,40 +1,37 @@
 package com.coderstory.Purify.service;
 
 
+import android.annotation.SuppressLint;
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.app.Service;
+import android.content.Intent;
+import android.net.Uri;
+import android.os.Environment;
+import android.os.Handler;
+import android.os.IBinder;
+import android.os.Message;
 
-        import android.annotation.SuppressLint;
-        import android.app.Notification;
-        import android.app.NotificationManager;
-        import android.app.PendingIntent;
-        import android.app.Service;
-        import android.content.Intent;
-        import android.net.Uri;
-        import android.os.AsyncTask;
-        import android.os.Environment;
-        import android.os.Handler;
-        import android.os.IBinder;
-        import android.os.Message;
-        import android.widget.Toast;
+import com.coderstory.Purify.R;
+import com.coderstory.Purify.Update.UpdateConfig;
+import com.coderstory.Purify.activity.MainActivity;
 
-        import com.coderstory.Purify.activity.MainActivity;
-        import com.coderstory.Purify.R;
-        import com.coderstory.Purify.Update.UpdateConfig;
-
-        import java.io.File;
-        import java.io.FileOutputStream;
-        import java.io.InputStream;
-        import java.net.HttpURLConnection;
-        import java.net.URL;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
 
 
 public class UpdateService extends Service {
 
-    // 文件存储
-    private File updateDir = null;
-    private File updateFile = null;
     // 下载状态
     private final static int DOWNLOAD_COMPLETE = 0;
     private final static int DOWNLOAD_FAIL = 1;
+    // 文件存储
+    private File updateDir = null;
+    private File updateFile = null;
     // 通知栏
     private NotificationManager updateNotificationManager = null;
     private Notification updateNotification = null;
@@ -50,6 +47,47 @@ public class UpdateService extends Service {
     private int currentSize = 0;
     private long totalSize = 0;
     private int updateTotalSize = 0;
+    @SuppressLint("HandlerLeak")
+    private Handler updateHandler = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+            switch (msg.what) {
+                case DOWNLOAD_COMPLETE:
+                    // 点击安装PendingIntent
+                    Uri uri = Uri.fromFile(updateFile);
+                    Intent installIntent = new Intent(Intent.ACTION_VIEW);
+                    installIntent.setDataAndType(uri,
+                            "application/vnd.android.package-archive");
+                    updatePendingIntent = PendingIntent.getActivity(
+                            UpdateService.this, 0, installIntent, 0);
+                    updateNotification.defaults = Notification.DEFAULT_SOUND;// 铃声提醒
+                    // 设置通知栏显示内容
+                    updateNotification = new Notification.Builder(UpdateService.this)
+                            .setAutoCancel(true)
+                            .setContentTitle(getString(R.string.app_name))
+                            .setContentText(getString(R.string.Download_Success))
+                            .setContentIntent(updatePendingIntent)
+                            .setSmallIcon(R.mipmap.ic_launcher)
+                            .setWhen(System.currentTimeMillis())
+                            .build();
+                    updateNotificationManager.notify(0, updateNotification);
+                    break;
+                case DOWNLOAD_FAIL:
+                    // 下载失败
+                    updateNotification = new Notification.Builder(UpdateService.this)
+                            .setAutoCancel(true)
+                            .setContentTitle(getString(R.string.app_name))
+                            .setContentText(getString(R.string.Download_Fail))
+                            .setContentIntent(updatePendingIntent)
+                            .setSmallIcon(R.mipmap.ic_launcher)
+                            .setWhen(System.currentTimeMillis())
+                            .build();
+                    updateNotificationManager.notify(0, updateNotification);
+                    break;
+            }
+            stopService(updateIntent);
+        }
+    };
 
     // 在onStartCommand()方法中准备相关的下载工作：
     @SuppressWarnings("deprecation")
@@ -95,48 +133,6 @@ public class UpdateService extends Service {
         // TODO Auto-generated method stub
         return null;
     }
-
-    @SuppressLint("HandlerLeak")
-    private Handler updateHandler = new Handler() {
-        @Override
-        public void handleMessage(Message msg) {
-            switch (msg.what) {
-                case DOWNLOAD_COMPLETE:
-                    // 点击安装PendingIntent
-                    Uri uri = Uri.fromFile(updateFile);
-                    Intent installIntent = new Intent(Intent.ACTION_VIEW);
-                    installIntent.setDataAndType(uri,
-                            "application/vnd.android.package-archive");
-                    updatePendingIntent = PendingIntent.getActivity(
-                            UpdateService.this, 0, installIntent, 0);
-                    updateNotification.defaults = Notification.DEFAULT_SOUND;// 铃声提醒
-                    // 设置通知栏显示内容
-                    updateNotification = new Notification.Builder(UpdateService.this)
-                            .setAutoCancel(true)
-                            .setContentTitle(getString(R.string.app_name))
-                            .setContentText(getString(R.string.Download_Success))
-                            .setContentIntent(updatePendingIntent)
-                            .setSmallIcon(R.mipmap.ic_launcher)
-                            .setWhen(System.currentTimeMillis())
-                            .build();
-                    updateNotificationManager.notify(0, updateNotification);
-                    break;
-                case DOWNLOAD_FAIL:
-                    // 下载失败
-                    updateNotification = new Notification.Builder(UpdateService.this)
-                            .setAutoCancel(true)
-                            .setContentTitle(getString(R.string.app_name))
-                            .setContentText(getString(R.string.Download_Fail))
-                            .setContentIntent(updatePendingIntent)
-                            .setSmallIcon(R.mipmap.ic_launcher)
-                            .setWhen(System.currentTimeMillis())
-                            .build();
-                    updateNotificationManager.notify(0, updateNotification);
-                    break;
-            }
-            stopService(updateIntent);
-        }
-    };
 
     private long downloadUpdateFile(String downloadUrl, File saveFile)
             throws Exception {
@@ -204,7 +200,7 @@ public class UpdateService extends Service {
         return totalSize;
     }
 
-    private  class updateRunnable implements Runnable {
+    private class updateRunnable implements Runnable {
         Message message = updateHandler.obtainMessage();
 
         public void run() {

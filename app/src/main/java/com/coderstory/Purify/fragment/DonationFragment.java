@@ -16,7 +16,6 @@ import ren.solid.library.fragment.base.BaseFragment;
 public class DonationFragment extends BaseFragment {
 
 
-
     @Override
     protected int setLayoutResourceID() {
         return R.layout.fragment_donation;

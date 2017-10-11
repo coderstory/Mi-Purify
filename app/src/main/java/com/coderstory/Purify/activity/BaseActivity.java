@@ -9,7 +9,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
 
-
 /**
  * Created by Baby Song on 2016/10/18.
  */
@@ -70,9 +69,9 @@ public abstract class BaseActivity extends AppCompatActivity {
     protected SharedPreferences getPrefs() {
 
 
-        if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.N) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
             prefs = getBaseContext().getSharedPreferences("UserSettings", Context.MODE_PRIVATE);
-        }else{
+        } else {
             prefs = getBaseContext().getSharedPreferences("UserSettings", Context.MODE_WORLD_READABLE);
         }
 

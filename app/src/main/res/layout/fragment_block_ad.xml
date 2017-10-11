@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
     xmlns:skin="http://schemas.android.com/android/skin"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
-    skin:enable="true"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    skin:enable="true">
 
     <ScrollView
         android:id="@+id/scrollView2"
@@ -12,140 +12,132 @@
         android:layout_height="match_parent">
 
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
 
-    android:orientation="vertical">
-
-
-
-    <Switch
-        android:text="@string/enableBlockADS"
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:layout_marginTop="10dp"
-        android:background="@color/switchBtn"
-        android:paddingStart="30dp"
-        android:paddingEnd="30dp"
-        android:maxLines="10"
-        android:id="@+id/enableBlockAD" />
+            android:orientation="vertical">
 
 
-    <Switch
-        android:text="@string/blockadsbasic"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:layout_marginTop="10dp"
-        android:background="@color/switchBtn"
-        android:paddingStart="30dp"
-        android:paddingEnd="30dp"
-        android:id="@+id/enableBlockADBasic" />
+            <Switch
+                android:id="@+id/enableBlockAD"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginTop="10dp"
+                android:background="@color/switchBtn"
+                android:maxLines="10"
+                android:paddingEnd="30dp"
+                android:paddingStart="30dp"
+                android:text="@string/enableBlockADS" />
 
 
-    <Switch
-        android:text="@string/mms"
-        android:layout_width="match_parent"
-        android:layout_height="70dp"
-        android:layout_marginTop="10dp"
-        android:background="@color/switchBtn"
-        android:paddingStart="30dp"
-        android:paddingEnd="30dp"
-
-        android:id="@+id/enableMMS" />
-
+            <Switch
+                android:id="@+id/enableBlockADBasic"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_marginTop="10dp"
+                android:background="@color/switchBtn"
+                android:paddingEnd="30dp"
+                android:paddingStart="30dp"
+                android:text="@string/blockadsbasic" />
 
 
-    <Switch
-        android:text="@string/weather"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:layout_marginTop="10dp"
-        android:background="@color/switchBtn"
-        android:paddingStart="30dp"
-        android:paddingEnd="30dp"
-        android:id="@+id/enableWeather" />
+            <Switch
+                android:id="@+id/enableMMS"
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:layout_marginTop="10dp"
+                android:background="@color/switchBtn"
+                android:paddingEnd="30dp"
+                android:paddingStart="30dp"
 
-    <Switch
-        android:text="@string/filemanager"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:layout_marginTop="10dp"
-        android:background="@color/switchBtn"
-        android:paddingStart="30dp"
-        android:paddingEnd="30dp"
-        android:id="@+id/enableFileManager" />
-
-    <Switch
-        android:text="@string/downloadexplorer"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:layout_marginTop="10dp"
-        android:background="@color/switchBtn"
-        android:paddingStart="30dp"
-        android:paddingEnd="30dp"
-
-        android:id="@+id/enableDownload" />
+                android:text="@string/mms" />
 
 
+            <Switch
+                android:id="@+id/enableWeather"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_marginTop="10dp"
+                android:background="@color/switchBtn"
+                android:paddingEnd="30dp"
+                android:paddingStart="30dp"
+                android:text="@string/weather" />
 
-    <Switch
-        android:text="@string/enableSafeCenter"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:layout_marginTop="10dp"
-        android:background="@color/switchBtn"
-        android:paddingStart="30dp"
-        android:paddingEnd="30dp"
-        android:id="@+id/enableSafeCenter" />
+            <Switch
+                android:id="@+id/enableFileManager"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_marginTop="10dp"
+                android:background="@color/switchBtn"
+                android:paddingEnd="30dp"
+                android:paddingStart="30dp"
+                android:text="@string/filemanager" />
 
+            <Switch
+                android:id="@+id/enableDownload"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_marginTop="10dp"
+                android:background="@color/switchBtn"
+                android:paddingEnd="30dp"
+                android:paddingStart="30dp"
 
-    <Switch
-        android:text="@string/music"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:layout_marginTop="10dp"
-        android:background="@color/switchBtn"
-        android:paddingStart="30dp"
-        android:paddingEnd="30dp"
-        android:id="@+id/enableMusic" />
-
-
-
-
-
-    <Switch
-        android:text="@string/enablevideo"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:layout_marginTop="10dp"
-        android:background="@color/switchBtn"
-        android:paddingStart="30dp"
-        android:paddingEnd="30dp"
-        android:id="@+id/enablevideo" />
-
-    <Switch
-        android:text="@string/enablethemenoad"
-        android:layout_width="match_parent"
-        android:layout_height="90dp"
-        android:layout_marginTop="10dp"
-        android:background="@color/switchBtn"
-        android:paddingStart="30dp"
-        android:paddingEnd="30dp"
-        android:id="@+id/enabletheme" />
+                android:text="@string/downloadexplorer" />
 
 
-    <TextView
-        android:layout_width="match_parent"
-        android:text="@string/mvadnote"
-        android:paddingStart="30dp"
-        android:paddingEnd="30dp"
-        android:layout_marginTop="20dp"
-        android:layout_height="match_parent" />
+            <Switch
+                android:id="@+id/enableSafeCenter"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_marginTop="10dp"
+                android:background="@color/switchBtn"
+                android:paddingEnd="30dp"
+                android:paddingStart="30dp"
+                android:text="@string/enableSafeCenter" />
 
 
+            <Switch
+                android:id="@+id/enableMusic"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_marginTop="10dp"
+                android:background="@color/switchBtn"
+                android:paddingEnd="30dp"
+                android:paddingStart="30dp"
+                android:text="@string/music" />
 
 
-</LinearLayout>
+            <Switch
+                android:id="@+id/enablevideo"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_marginTop="10dp"
+                android:background="@color/switchBtn"
+                android:paddingEnd="30dp"
+                android:paddingStart="30dp"
+                android:text="@string/enablevideo" />
+
+            <Switch
+                android:id="@+id/enabletheme"
+                android:layout_width="match_parent"
+                android:layout_height="90dp"
+                android:layout_marginTop="10dp"
+                android:background="@color/switchBtn"
+                android:paddingEnd="30dp"
+                android:paddingStart="30dp"
+                android:text="@string/enablethemenoad" />
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="20dp"
+                android:paddingEnd="30dp"
+                android:paddingStart="30dp"
+                android:text="@string/mvadnote" />
+
+
+        </LinearLayout>
     </ScrollView>
 </LinearLayout>

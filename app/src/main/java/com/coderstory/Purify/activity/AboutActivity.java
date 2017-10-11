@@ -9,8 +9,6 @@ import ren.solid.library.activity.ToolbarActivity;
 public class AboutActivity extends ToolbarActivity {
 
 
-
-
     @Override
     protected Fragment setFragment() {
         return new AboutFragment();

@@ -38,6 +38,24 @@ public class NetworkUtils {
     }
 
     /**
+     * 判断当前wifi是否可用
+     *
+     * @return
+     */
+    public static boolean isWifiConnected(Context context) {
+        if (context != null) {
+            ConnectivityManager mConnectivityManager = (ConnectivityManager) context
+                    .getSystemService(Context.CONNECTIVITY_SERVICE);
+            NetworkInfo mWiFiNetworkInfo = mConnectivityManager
+                    .getNetworkInfo(ConnectivityManager.TYPE_WIFI);
+            if (mWiFiNetworkInfo != null) {
+                return mWiFiNetworkInfo.isAvailable();
+            }
+        }
+        return false;
+    }
+
+    /**
      * 获取当前网络连接的类型信息 1 wifi 2 移动网络 -1 无网络
      *
      * @return
@@ -54,24 +72,6 @@ public class NetworkUtils {
             }
         }
         return -1;
-    }
-
-    /**
-     * 判断当前wifi是否可用
-     *
-     * @return
-     */
-    public static boolean isWifiConnected(Context context) {
-        if (context != null) {
-            ConnectivityManager mConnectivityManager = (ConnectivityManager) context
-                    .getSystemService(Context.CONNECTIVITY_SERVICE);
-            NetworkInfo mWiFiNetworkInfo = mConnectivityManager
-                    .getNetworkInfo(ConnectivityManager.TYPE_WIFI);
-            if (mWiFiNetworkInfo != null) {
-                return mWiFiNetworkInfo.isAvailable();
-            }
-        }
-        return false;
     }
 
     /**

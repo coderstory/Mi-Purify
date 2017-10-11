@@ -7,8 +7,20 @@ import com.coderstory.Purify.R;
 
 import ren.solid.library.fragment.base.BaseFragment;
 
-import static com.coderstory.Purify.utils.FunctionModule.*;
-import static com.coderstory.Purify.utils.packageNameEntries.*;
+import static com.coderstory.Purify.utils.FunctionModule.enableBlockAD;
+import static com.coderstory.Purify.utils.FunctionModule.enableBlockADBasic;
+import static com.coderstory.Purify.utils.FunctionModule.enableDownload;
+import static com.coderstory.Purify.utils.FunctionModule.enableFileManager;
+import static com.coderstory.Purify.utils.FunctionModule.enableMMS;
+import static com.coderstory.Purify.utils.FunctionModule.enableMusic;
+import static com.coderstory.Purify.utils.FunctionModule.enableSafeCenter;
+import static com.coderstory.Purify.utils.FunctionModule.enableWeather;
+import static com.coderstory.Purify.utils.FunctionModule.enablemiuividio;
+import static com.coderstory.Purify.utils.FunctionModule.enabletheme;
+import static com.coderstory.Purify.utils.packageNameEntries.analytics_packageName;
+import static com.coderstory.Purify.utils.packageNameEntries.milink_packageName;
+import static com.coderstory.Purify.utils.packageNameEntries.seemp_packageName;
+import static com.coderstory.Purify.utils.packageNameEntries.systemAdSolution_packageName;
 import static com.coderstory.Purify.utils.root.ShellUtils.execCommand;
 
 
@@ -40,10 +52,10 @@ public class BlockADSFragment extends BaseFragment {
                         @Override
                         public void run() {
                             super.run();
-                            execCommand("pm disable "+ systemAdSolution_packageName, true);
-                            execCommand("pm disable "+ analytics_packageName, true);
-                            execCommand("pm disable "+ seemp_packageName, true);
-                            execCommand("pm disable "+ milink_packageName, true);
+                            execCommand("pm disable " + systemAdSolution_packageName, true);
+                            execCommand("pm disable " + analytics_packageName, true);
+                            execCommand("pm disable " + seemp_packageName, true);
+                            execCommand("pm disable " + milink_packageName, true);
                         }
                     }.start();
 
@@ -54,10 +66,10 @@ public class BlockADSFragment extends BaseFragment {
                         @Override
                         public void run() {
                             super.run();
-                            execCommand("pm enable "+ systemAdSolution_packageName, true);
-                            execCommand("pm enable "+ analytics_packageName, true);
-                            execCommand("pm enable "+ seemp_packageName, true);
-                            execCommand("pm enable "+ milink_packageName, true);
+                            execCommand("pm enable " + systemAdSolution_packageName, true);
+                            execCommand("pm enable " + analytics_packageName, true);
+                            execCommand("pm enable " + seemp_packageName, true);
+                            execCommand("pm enable " + milink_packageName, true);
                         }
                     }.start();
 

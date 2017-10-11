@@ -33,6 +33,9 @@ public final class LicenseResolver {
         registerDefaultLicenses();
     }
 
+    private LicenseResolver() {
+    }
+
     static void registerDefaultLicenses() {
         sLicenses.clear();
         registerLicense(new ApacheSoftwareLicense20());
@@ -62,8 +65,5 @@ public final class LicenseResolver {
         } else {
             throw new IllegalStateException(String.format("no such license available: %s, did you forget to register it?", trimmedLicense));
         }
-    }
-
-    private LicenseResolver() {
     }
 }

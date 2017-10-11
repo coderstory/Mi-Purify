@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:skin="http://schemas.android.com/android/skin"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    skin:enable="true"
-    xmlns:skin="http://schemas.android.com/android/skin"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    skin:enable="true">
 
     <ScrollView
         android:id="@+id/scrollView2"
@@ -16,7 +16,7 @@
             xmlns:skin="http://schemas.android.com/android/skin"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical" >
+            android:orientation="vertical">
 
             <Switch
                 android:id="@+id/enableHosts"
@@ -51,7 +51,6 @@
                 android:text="@string/blockads" />
 
 
-
             <Switch
                 android:id="@+id/enableStore"
                 android:layout_width="match_parent"
@@ -82,7 +81,6 @@
                 android:paddingEnd="30dp"
                 android:paddingStart="30dp"
                 android:text="@string/googlehosts" />
-
 
 
             <TextView

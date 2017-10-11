@@ -20,6 +20,15 @@ import static com.coderstory.Purify.utils.MyConfig.SharedPreferencesName;
 public class Others implements IModule {
 
 
+    private static void findAndHookMethod(String p1, ClassLoader lpparam, String p2, Object... parameterTypesAndCallback) {
+        try {
+            XposedHelpers.findAndHookMethod(p1, lpparam, p2, parameterTypesAndCallback);
+
+        } catch (Throwable localString3) {
+            XposedBridge.log(localString3);
+        }
+    }
+
     @Override
     public void handleInitPackageResources(XC_InitPackageResources.InitPackageResourcesParam resparam) {
 
@@ -35,12 +44,12 @@ public class Others implements IModule {
         if (loadPackageParam.packageName.equals("android")) {
 
             if (prefs.getBoolean(fixpcb, false)) {
-               findAndHookMethod("com.android.server.policy.PhoneWindowManager", loadPackageParam.classLoader, "checkAddPermission", WindowManager.LayoutParams.class, int[].class, new XC_MethodHook() {
+                findAndHookMethod("com.android.server.policy.PhoneWindowManager", loadPackageParam.classLoader, "checkAddPermission", WindowManager.LayoutParams.class, int[].class, new XC_MethodHook() {
                     protected void afterHookedMethod(XC_MethodHook.MethodHookParam paramAnonymousMethodHookParam) {
                         if ((Integer) paramAnonymousMethodHookParam.getResult() < 0) {
                             paramAnonymousMethodHookParam.setResult(0);
                         }
-                       }
+                    }
                 });
             }
         }
@@ -50,15 +59,6 @@ public class Others implements IModule {
 
     @Override
     public void initZygote(IXposedHookZygoteInit.StartupParam startupParam) {
-    }
-
-    private static void findAndHookMethod(String p1, ClassLoader lpparam, String p2, Object... parameterTypesAndCallback) {
-        try {
-            XposedHelpers.findAndHookMethod(p1, lpparam, p2, parameterTypesAndCallback);
-
-        } catch (Throwable localString3) {
-            XposedBridge.log(localString3);
-        }
     }
 
 }

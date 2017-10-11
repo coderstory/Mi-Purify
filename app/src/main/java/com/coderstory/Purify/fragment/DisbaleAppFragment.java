@@ -9,7 +9,6 @@ import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageInfo;
 import android.graphics.Color;
 import android.os.AsyncTask;
-import android.os.Environment;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
@@ -50,8 +49,6 @@ import static ren.solid.library.utils.FileUtils.readFile;
 public class DisbaleAppFragment extends BaseFragment {
 
 
-    private List<AppInfo> appInfoList = new ArrayList<>();
-    private List<AppInfo> appInfoList2 = new ArrayList<>();
     // private Context mContext=null;
     List<PackageInfo> packages = new ArrayList<>();
     AppInfoAdapter adapter = null;
@@ -60,7 +57,20 @@ public class DisbaleAppFragment extends BaseFragment {
     int mposition = 0;
     View mview = null;
     com.yalantis.phoenix.PullToRefreshView mPullToRefreshView;
-
+    AlertDialog mydialog;
+    private List<AppInfo> appInfoList = new ArrayList<>();
+    private List<AppInfo> appInfoList2 = new ArrayList<>();
+    private Dialog dialog;
+    Handler myHandler = new Handler() {
+        public void handleMessage(Message msg) {
+            ((ProgressDialog) dialog).setMessage(getString(R.string.refreshing_list));
+            initData();
+            adapter.notifyDataSetChanged();
+            dialog.cancel();
+            dialog = null;
+            super.handleMessage(msg);
+        }
+    };
 
     private void initData() {
         packages = new ArrayList<>();
@@ -92,7 +102,6 @@ public class DisbaleAppFragment extends BaseFragment {
         }
         appInfoList.addAll(appInfoList2);
     }
-
 
     private void showData() {
         adapter = new AppInfoAdapter(getContext(), R.layout.app_info_item, appInfoList);
@@ -198,47 +207,6 @@ public class DisbaleAppFragment extends BaseFragment {
         });
     }
 
-    class MyTask extends AsyncTask<String, Integer, String> {
-
-        @Override
-        protected void onPreExecute() {
-
-            showProgress();
-        }
-
-        @Override
-        protected void onPostExecute(String param) {
-            showData();
-
-            adapter.notifyDataSetChanged();
-            closeProgress();
-        }
-
-        @Override
-        protected void onCancelled() {
-            // TODO Auto-generated method stub
-            super.onCancelled();
-        }
-
-        @Override
-        protected void onProgressUpdate(Integer... values) {
-            // TODO Auto-generated method stub
-            super.onProgressUpdate(values);
-        }
-
-        @Override
-        protected String doInBackground(String... params) {
-
-            if (Looper.myLooper() == null) {
-                Looper.prepare();
-            }
-            initData();
-            return null;
-        }
-    }
-
-    private Dialog dialog;
-
     protected void showProgress() {
         if (dialog == null) {
             dialog = ProgressDialog.show(getContext(), getString(R.string.Tips_Title), getString(R.string.loadappinfo));
@@ -254,8 +222,6 @@ public class DisbaleAppFragment extends BaseFragment {
             dialog = null;
         }
     }
-
-    AlertDialog mydialog;
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -346,37 +312,6 @@ public class DisbaleAppFragment extends BaseFragment {
 
     }
 
-    Handler myHandler = new Handler() {
-        public void handleMessage(Message msg) {
-            ((ProgressDialog) dialog).setMessage(getString(R.string.refreshing_list));
-            initData();
-            adapter.notifyDataSetChanged();
-            dialog.cancel();
-            dialog = null;
-            super.handleMessage(msg);
-        }
-    };
-
-    class disableHelp extends SuHelper {
-        String[] list;
-
-        @Override
-        protected ArrayList<String> getCommandsToExecute() throws UnsupportedEncodingException {
-            ArrayList<String> mylist = new ArrayList<>();
-
-            for (String item : list) {
-                mylist.add("pm disable " + item);
-            }
-            return mylist;
-        }
-
-        disableHelp(String[] list) {
-            this.list = list;
-        }
-
-    }
-
-
     private void satrtBackuop() {
         StringBuilder SB = new StringBuilder("#已备份的系统APP冻结列表#\n");
 
@@ -390,10 +325,10 @@ public class DisbaleAppFragment extends BaseFragment {
         File dir = new File(BackUpFileName);
         String fileName = "userList";
         if (!dir.exists()) {
-          if (!dir.mkdirs())  {
-              SnackBarUtils.makeShort($(R.id.listView), getString(R.string.tips_backup_error)).show();
-              return;
-          }
+            if (!dir.mkdirs()) {
+                SnackBarUtils.makeShort($(R.id.listView), getString(R.string.tips_backup_error)).show();
+                return;
+            }
         }
         FileOutputStream fos = null;
         String result = "";
@@ -410,6 +345,64 @@ public class DisbaleAppFragment extends BaseFragment {
         } else {
             SnackBarUtils.makeShort($(R.id.listView), getString(R.string.tips_backup_error) + result).show();
         }
+    }
+
+    class MyTask extends AsyncTask<String, Integer, String> {
+
+        @Override
+        protected void onPreExecute() {
+
+            showProgress();
+        }
+
+        @Override
+        protected void onPostExecute(String param) {
+            showData();
+
+            adapter.notifyDataSetChanged();
+            closeProgress();
+        }
+
+        @Override
+        protected void onCancelled() {
+            // TODO Auto-generated method stub
+            super.onCancelled();
+        }
+
+        @Override
+        protected void onProgressUpdate(Integer... values) {
+            // TODO Auto-generated method stub
+            super.onProgressUpdate(values);
+        }
+
+        @Override
+        protected String doInBackground(String... params) {
+
+            if (Looper.myLooper() == null) {
+                Looper.prepare();
+            }
+            initData();
+            return null;
+        }
+    }
+
+    class disableHelp extends SuHelper {
+        String[] list;
+
+        disableHelp(String[] list) {
+            this.list = list;
+        }
+
+        @Override
+        protected ArrayList<String> getCommandsToExecute() throws UnsupportedEncodingException {
+            ArrayList<String> mylist = new ArrayList<>();
+
+            for (String item : list) {
+                mylist.add("pm disable " + item);
+            }
+            return mylist;
+        }
+
     }
 }
 

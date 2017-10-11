@@ -24,6 +24,7 @@
         android:gravity="center"
         android:text="INFO"
         android:textColor="#ffffff" />
+
     <Button
         android:id="@+id/btn_warning"
         android:layout_width="match_parent"
@@ -33,6 +34,7 @@
         android:gravity="center"
         android:text="WARNING"
         android:textColor="#ffffff" />
+
     <Button
         android:id="@+id/btn_confirm"
         android:layout_width="match_parent"
@@ -42,6 +44,7 @@
         android:gravity="center"
         android:text="CONFIRM"
         android:textColor="#ffffff" />
+
     <Button
         android:id="@+id/btn_danger"
         android:layout_width="match_parent"

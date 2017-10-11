@@ -13,6 +13,10 @@ import ren.solid.library.utils.ToastUtils;
 public class SolidApplication extends Application {
     private static SolidApplication mInstance;
 
+    public static SolidApplication getInstance() {
+        return mInstance;
+    }
+
     @Override
     public void onCreate() {
         super.onCreate();
@@ -20,10 +24,6 @@ public class SolidApplication extends Application {
         ToastUtils.init(mInstance);
         CrashHandler crashHandler = CrashHandler.getInstance();
         crashHandler.init(getApplicationContext());
-    }
-
-    public static SolidApplication getInstance() {
-        return mInstance;
     }
 
 

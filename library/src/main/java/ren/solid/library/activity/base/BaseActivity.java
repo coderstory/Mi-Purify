@@ -6,14 +6,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
 
-
 /**
  * Created by _SOLID
  * Date:2016/3/30
  * Time:9:40
  */
 public abstract class BaseActivity extends AppCompatActivity {
-    
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

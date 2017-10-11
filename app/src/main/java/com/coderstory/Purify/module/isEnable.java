@@ -25,7 +25,7 @@ public class isEnable implements IModule {
         if (lpparam.packageName.equals(ApplicationName)) {
             try {
                 XposedBridge.log("小米净化 1.x 开始Patch");
-                XposedHelpers.findAndHookMethod(ApplicationName+".activity.MainActivity", lpparam.classLoader, "isEnable", XC_MethodReplacement.returnConstant(true));
+                XposedHelpers.findAndHookMethod(ApplicationName + ".activity.MainActivity", lpparam.classLoader, "isEnable", XC_MethodReplacement.returnConstant(true));
             } catch (Throwable p1) {
                 XposedBridge.log(p1);
             }

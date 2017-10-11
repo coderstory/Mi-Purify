@@ -1,28 +1,5 @@
 package ren.solid.library.utils;
 
-import android.net.Uri;
-import android.os.Handler;
-import android.os.Looper;
-import android.widget.ImageView;
-
-
-import com.thin.downloadmanager.DefaultRetryPolicy;
-import com.thin.downloadmanager.DownloadRequest;
-import com.thin.downloadmanager.DownloadStatusListenerV1;
-import com.thin.downloadmanager.ThinDownloadManager;
-
-import java.io.IOException;
-import java.util.concurrent.TimeUnit;
-
-import okhttp3.MediaType;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.RequestBody;
-import okhttp3.Response;
-import ren.solid.library.R;
-import ren.solid.library.SolidApplication;
-import ren.solid.library.http.callback.HttpCallBack;
-
 /**
  * Created by _SOLID
  * Date:2016/3/30
@@ -200,7 +177,6 @@ public class HttpUtils {
 //        ThinDownloadManager thinDownloadManager = new ThinDownloadManager();
 //        thinDownloadManager.add(downloadRequest);
 //    }
-
 
 
 }

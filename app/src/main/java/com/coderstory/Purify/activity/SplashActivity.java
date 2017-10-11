@@ -12,11 +12,12 @@ import static com.coderstory.Purify.utils.root.SuHelper.canRunRootCommands;
 public class SplashActivity extends Activity {
 
     private static final int SHOW_TIME_MIN = 1200;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
-        new Thread(){
+        new Thread() {
             @Override
             public void run() {
                 super.run();
@@ -27,10 +28,11 @@ public class SplashActivity extends Activity {
         new AsyncTask<Void, Void, Integer>() {
             @Override
             protected void onPostExecute(Integer result) {
-                Intent intent = new Intent(SplashActivity.this,MainActivity.class);
+                Intent intent = new Intent(SplashActivity.this, MainActivity.class);
                 startActivity(intent);
                 finish();
             }
+
             @Override
             protected Integer doInBackground(Void... params) {
                 long startTime = System.currentTimeMillis();

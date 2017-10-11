@@ -13,16 +13,22 @@ import com.coderstory.Purify.utils.hosts.HostsHelper;
 
 import ren.solid.library.fragment.base.BaseFragment;
 
-import static com.coderstory.Purify.utils.FunctionModule.*;
+import static com.coderstory.Purify.utils.FunctionModule.enableBlockAdsHosts;
+import static com.coderstory.Purify.utils.FunctionModule.enableGoogleHosts;
+import static com.coderstory.Purify.utils.FunctionModule.enableHosts;
+import static com.coderstory.Purify.utils.FunctionModule.enableMIUIHosts;
+import static com.coderstory.Purify.utils.FunctionModule.enableStore;
+import static com.coderstory.Purify.utils.FunctionModule.enableupdater;
 
 
 public class HostsFragment extends BaseFragment {
+
+    private Dialog dialog;
 
     @Override
     protected int setLayoutResourceID() {
         return R.layout.fragment_hosts;
     }
-
 
     @Override
     protected void setUpView() {
@@ -93,6 +99,7 @@ public class HostsFragment extends BaseFragment {
     }
 
 
+    //因为hosts修改比较慢 所以改成异步的
 
     //更新hosts操作
     private boolean UpdateHosts() {
@@ -114,7 +121,7 @@ public class HostsFragment extends BaseFragment {
                 }
                 if (enableGoogleHostsSet) {
                     HostsContext += fh.getFromAssets("hosts_Foreign", getMContext());
-                        HostsContext += fh.getFromAssets("hosts_google", getMContext());
+                    HostsContext += fh.getFromAssets("hosts_google", getMContext());
                 }
 
                 if (enableupdaterSet) {
@@ -128,39 +135,13 @@ public class HostsFragment extends BaseFragment {
                 }
             }
 
-            HostsHelper h = new HostsHelper(HostsContext,getMContext());
+            HostsHelper h = new HostsHelper(HostsContext, getMContext());
             return h.execute();
 
-        }else{
+        } else {
             return true;
         }
     }
-
-
-        //因为hosts修改比较慢 所以改成异步的
-
-        private class MyTask extends AsyncTask<String, Integer, String> {
-            @Override
-            protected void onPreExecute() {showProgress();}
-            @Override
-            protected void onPostExecute(String param) {
-                closeProgress();
-            }
-            @Override
-            protected void onCancelled() {super.onCancelled();}
-            @Override
-            protected void onProgressUpdate(Integer... values) {
-                super.onProgressUpdate(values);
-            }
-            @Override
-            protected String doInBackground(String... params) {
-                if (Looper.myLooper() == null) {Looper.prepare();}
-                UpdateHosts();
-                return null;
-            }
-        }
-
-        private Dialog dialog;
 
     private void showProgress() {
         if (dialog == null || !dialog.isShowing()) { //dialog未实例化 或者实例化了但没显示
@@ -168,9 +149,13 @@ public class HostsFragment extends BaseFragment {
             dialog.show();
         }
     }
+
     private void closeProgress() {
-        if (!getActivity().isFinishing()) {dialog.cancel();}
+        if (!getActivity().isFinishing()) {
+            dialog.cancel();
+        }
     }
+
     private void setCheck(boolean type) {
 
         if (type) {
@@ -185,6 +170,37 @@ public class HostsFragment extends BaseFragment {
             $(R.id.enableGoogleHosts).setEnabled(false);
             $(R.id.enableStore).setEnabled(false);
             $(R.id.enableupdater).setEnabled(false);
+        }
+    }
+
+    private class MyTask extends AsyncTask<String, Integer, String> {
+        @Override
+        protected void onPreExecute() {
+            showProgress();
+        }
+
+        @Override
+        protected void onPostExecute(String param) {
+            closeProgress();
+        }
+
+        @Override
+        protected void onCancelled() {
+            super.onCancelled();
+        }
+
+        @Override
+        protected void onProgressUpdate(Integer... values) {
+            super.onProgressUpdate(values);
+        }
+
+        @Override
+        protected String doInBackground(String... params) {
+            if (Looper.myLooper() == null) {
+                Looper.prepare();
+            }
+            UpdateHosts();
+            return null;
         }
     }
 

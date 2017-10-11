@@ -31,8 +31,8 @@
         android:text="@string/app_name"
 
 
-        android:textColor="#ffffff"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:textColor="#ffffff"
         android:textSize="23sp" />
 
 </LinearLayout>

@@ -2,9 +2,10 @@ package com.coderstory.Purify.fragment;
 
 import android.view.View;
 
+import com.coderstory.Purify.R;
+
 import ren.solid.library.fragment.base.BaseFragment;
 import ren.solid.library.utils.SnackBarUtils;
-import com.coderstory.Purify.R;
 
 /**
  * Created by _SOLID

@@ -61,6 +61,9 @@ public class LicensesDialogFragment extends DialogFragment {
     // Factory
     // ==========================================================================================================================
 
+    public LicensesDialogFragment() {
+    }
+
     private static LicensesDialogFragment newInstance(final Notices notices,
                                                       final boolean showFullLicenseText,
                                                       final boolean includeOwnLicense,
@@ -79,6 +82,10 @@ public class LicensesDialogFragment extends DialogFragment {
         return licensesDialogFragment;
     }
 
+    // ==========================================================================================================================
+    // Constructor
+    // ==========================================================================================================================
+
     private static LicensesDialogFragment newInstance(final int rawNoticesResourceId,
                                                       final boolean showFullLicenseText,
                                                       final boolean includeOwnLicense,
@@ -95,13 +102,6 @@ public class LicensesDialogFragment extends DialogFragment {
         args.putBoolean(ARGUMENT_USE_APPCOMPAT, useAppCompat);
         licensesDialogFragment.setArguments(args);
         return licensesDialogFragment;
-    }
-
-    // ==========================================================================================================================
-    // Constructor
-    // ==========================================================================================================================
-
-    public LicensesDialogFragment() {
     }
 
     // ==========================================================================================================================
@@ -182,9 +182,9 @@ public class LicensesDialogFragment extends DialogFragment {
     @Override
     public Dialog onCreateDialog(final Bundle savedInstanceState) {
         final LicensesDialog.Builder builder = new LicensesDialog.Builder(getActivity())
-            .setNotices(mLicensesText)
-            .setTitle(mTitleText).setCloseText(mCloseButtonText)
-            .setThemeResourceId(mThemeResourceId).setDividerColor(mDividerColor);
+                .setNotices(mLicensesText)
+                .setTitle(mTitleText).setCloseText(mCloseButtonText)
+                .setThemeResourceId(mThemeResourceId).setDividerColor(mDividerColor);
         final LicensesDialog licensesDialog = builder.build();
         if (getArguments().getBoolean(ARGUMENT_USE_APPCOMPAT, false)) {
             return licensesDialog.createAppCompat();

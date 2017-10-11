@@ -1,14 +1,14 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 25
-    buildToolsVersion '25.0.2'
+    compileSdkVersion 26
+    buildToolsVersion '26.0.2'
     defaultConfig {
         applicationId "com.coderstory.Purify"
         minSdkVersion 19
-        targetSdkVersion 25
-        versionCode 95
-        versionName "1.6.0"
+        targetSdkVersion 26
+        versionCode 100
+        versionName "2.0.0 preview"
         resConfigs "cn"
     }
     repositories {
@@ -33,10 +33,13 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             applicationVariants.all { variant ->
                 if (variant.buildType.name.equals('release')) {  //如果是release版本
-                    variant.outputs.each { output -> def outputFile = output.outputFile
+                    variant.outputs.each { output ->
+                        def outputFile = output.outputFile
                         if (outputFile != null && outputFile.name.endsWith('.apk')) {  //查找所有的apk
-                            def fileName = "MIUI_Purify-${releaseTime()}-${defaultConfig.versionName}.apk"  //重新定义apk的名称
-                            output.outputFile = new File(outputFile.parent, fileName)  //outputFile.parent参数可以改成你你想要的发布路径
+                            def fileName = "MIUI_Purify-${releaseTime()}-${defaultConfig.versionName}.apk"
+                            //重新定义apk的名称
+                            output.outputFile = new File(outputFile.parent, fileName)
+                            //outputFile.parent参数可以改成你你想要的发布路径
                         }
                     }
                 }
@@ -44,11 +47,10 @@ android {
         }
 
 
-
     }
     productFlavors {
     }
-     lintOptions {
+    lintOptions {
         abortOnError false
     }
 
@@ -59,15 +61,15 @@ dependencies {
     provided fileTree(include: ['*.jar'], dir: 'libs')
     compile project(':library')
     compile project(':pull')
-    compile 'com.android.support:support-v4:25.1.0'
-    compile 'com.android.support:appcompat-v7:25.1.0'
-    compile 'com.android.support:design:25.1.0'
+    compile 'com.android.support:support-v4:26.+'
+    compile 'com.android.support:appcompat-v7:26.+'
+    compile 'com.android.support:design:26.+'
     testCompile 'junit:junit:4.12'
     provided 'de.robv.android.xposed:api:82'
 }
 
 def releaseTime() {
-   // return new Date().format("yyyyMMdd", TimeZone.getTimeZone("UTC")) //年月日
+    // return new Date().format("yyyyMMdd", TimeZone.getTimeZone("UTC")) //年月日
     return new Date().format("yyyyMMdd-HH-mm-ss", TimeZone.getTimeZone("GMT+8:00")) //年月日时分秒
 }
 

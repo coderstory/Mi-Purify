@@ -65,7 +65,7 @@ public final class NoticesXmlParser {
     }
 
     private static Notice readNotice(final XmlPullParser parser) throws IOException,
-        XmlPullParserException {
+            XmlPullParserException {
         parser.require(XmlPullParser.START_TAG, null, "notice");
         String name = null;
         String url = null;

@@ -13,7 +13,6 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Environment;
 import android.os.Looper;
 import android.support.annotation.Nullable;
 import android.support.v4.content.FileProvider;
@@ -44,23 +43,22 @@ import static com.coderstory.Purify.utils.MyConfig.BackPath;
 
 public class RestoreAppFragment extends BaseFragment {
 
-    @Override
-    protected int setLayoutResourceID() {
-        return R.layout.fragment_restoreapp;
-    }
-
-    private View view;
-    private List<AppInfo> appInfoList = new ArrayList<>();
-
     List<PackageInfo> packages = new ArrayList<>();
     AppInfoAdapter adapter = null;
     ListView listView = null;
     AppInfo appInfo = null;
     int mPosition = 0;
     View mView = null;
-    private Context context;
     PullToRefreshView mPullToRefreshView;
+    private View view;
+    private List<AppInfo> appInfoList = new ArrayList<>();
+    private Context context;
+    private Dialog dialog;
 
+    @Override
+    protected int setLayoutResourceID() {
+        return R.layout.fragment_restoreapp;
+    }
 
     @Nullable
     @Override
@@ -70,7 +68,6 @@ public class RestoreAppFragment extends BaseFragment {
         context = getActivity();
         return view;
     }
-
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
@@ -186,6 +183,34 @@ public class RestoreAppFragment extends BaseFragment {
 
     }
 
+    protected void showProgress() {
+        if (dialog == null) {
+            dialog = ProgressDialog.show(getActivity(), getString(R.string.Tips_Title), getString(R.string.loadappinfo));
+            dialog.show();
+        }
+    }
+
+    //
+    protected void closeProgress() {
+
+        if (dialog != null) {
+            dialog.cancel();
+            dialog = null;
+        }
+    }
+
+    public void installApkFile(String filePath) {
+        Intent intent = new Intent(Intent.ACTION_VIEW);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            intent.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+            Uri contentUri = FileProvider.getUriForFile(context, "com.coderstory.Purify.fileprovider", new File(filePath));
+            intent.setDataAndType(contentUri, "application/vnd.android.package-archive");
+        } else {
+            intent.setDataAndType(Uri.fromFile(new File(filePath)), "application/vnd.android.package-archive");
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        }
+        startActivity(intent);
+    }
 
     public class MyTask extends AsyncTask<String, Integer, String> {
 
@@ -223,37 +248,6 @@ public class RestoreAppFragment extends BaseFragment {
             return null;
         }
 
-    }
-
-    private Dialog dialog;
-
-    protected void showProgress() {
-        if (dialog == null) {
-            dialog = ProgressDialog.show(getActivity(), getString(R.string.Tips_Title), getString(R.string.loadappinfo));
-            dialog.show();
-        }
-    }
-
-    //
-    protected void closeProgress() {
-
-        if (dialog != null) {
-            dialog.cancel();
-            dialog = null;
-        }
-    }
-
-    public  void installApkFile(String filePath) {
-        Intent intent = new Intent(Intent.ACTION_VIEW);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            intent.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-            Uri contentUri = FileProvider.getUriForFile(context, "com.coderstory.Purify.fileprovider", new File(filePath));
-            intent.setDataAndType(contentUri, "application/vnd.android.package-archive");
-        } else {
-            intent.setDataAndType(Uri.fromFile(new File(filePath)), "application/vnd.android.package-archive");
-            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        }
-        startActivity(intent);
     }
 
 }

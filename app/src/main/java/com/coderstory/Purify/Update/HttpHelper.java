@@ -1,25 +1,24 @@
 package com.coderstory.Purify.Update;
 
 
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
 
-
-
-        import java.io.ByteArrayOutputStream;
-        import java.io.IOException;
-        import java.io.InputStream;
-        import java.net.HttpURLConnection;
-        import java.net.URL;
 /**
  * app更新
  */
 class HttpHelper {
     /**
      * 调用接口
+     *
      * @param UpdateUrl 更新url地址
      * @return
      */
 
-    public  String RequestUrl(String UpdateUrl) {
+    public String RequestUrl(String UpdateUrl) {
         String rvalue = "";
         try {
             //声明URL
@@ -42,14 +41,13 @@ class HttpHelper {
 
     /**
      * 把流对象转换成字符串对象
-
      */
     private String streamToStr(InputStream is) {
         try {
             // 定义字节数组输出流对象
             ByteArrayOutputStream os = new ByteArrayOutputStream();
             // 定义读取的长度
-            int len ;
+            int len;
             // 定义读取的缓冲区
             byte buffer[] = new byte[1024];
             // 按照定义的缓冲区进行循环读取，直到读取完毕为止

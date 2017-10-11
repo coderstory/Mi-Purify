@@ -1,59 +1,27 @@
 package com.coderstory.Purify.Update;
 
 
+import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
+import android.util.Log;
+import android.widget.Toast;
 
+import com.coderstory.Purify.R;
+import com.coderstory.Purify.service.UpdateService;
 
-
-        import android.app.Activity;
-        import android.app.AlertDialog;
-        import android.content.Context;
-        import android.content.DialogInterface;
-        import android.content.Intent;
-        import android.os.Bundle;
-        import android.os.Handler;
-        import android.os.Message;
-        import android.util.Log;
-        import android.widget.Toast;
-
-        import com.coderstory.Purify.R;
-        import com.coderstory.Purify.service.UpdateService;
-
-        import org.json.JSONException;
-        import org.json.JSONObject;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 
 public class CheckUpdate {
 
     private Context mcontext = null;
-
-    public CheckUpdate(Context context) {
-        this.mcontext = context;
-    }
-
-
-    /**
-     * 检测app的更新信息并保存到UpdateConfig中
-     *
-     */
-    private static void initUpdateInfo() {
-        HttpHelper HH = new HttpHelper();
-        String result = HH.RequestUrl(UpdateConfig.UpdateServer);
-
-        if (!result.equals("")) {
-
-            JSONObject JsonString ;//转换为JSONObject
-            try {
-                JsonString = new JSONObject(result);
-                UpdateConfig.URL = JsonString.getString("URL");
-                UpdateConfig.Version = JsonString.getString("Version");
-                UpdateConfig.Info = JsonString.getString("info");
-            } catch (JSONException e) {
-                UpdateConfig.errorMsg = "Oops...软件更新服务器请求数据异常..";
-            }
-        }
-    }
-
-
     private Handler handler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
@@ -110,7 +78,6 @@ public class CheckUpdate {
         }
 
     };
-
     /**
      * 网络操作相关的子线程
      */
@@ -132,5 +99,31 @@ public class CheckUpdate {
             handler.sendMessage(msg);
         }
     };
+
+
+    public CheckUpdate(Context context) {
+        this.mcontext = context;
+    }
+
+    /**
+     * 检测app的更新信息并保存到UpdateConfig中
+     */
+    private static void initUpdateInfo() {
+        HttpHelper HH = new HttpHelper();
+        String result = HH.RequestUrl(UpdateConfig.UpdateServer);
+
+        if (!result.equals("")) {
+
+            JSONObject JsonString;//转换为JSONObject
+            try {
+                JsonString = new JSONObject(result);
+                UpdateConfig.URL = JsonString.getString("URL");
+                UpdateConfig.Version = JsonString.getString("Version");
+                UpdateConfig.Info = JsonString.getString("info");
+            } catch (JSONException e) {
+                UpdateConfig.errorMsg = "Oops...软件更新服务器请求数据异常..";
+            }
+        }
+    }
 
 }

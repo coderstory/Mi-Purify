@@ -18,6 +18,14 @@ import static com.coderstory.Purify.utils.packageNameEntries.music_packageName;
  */
 
 public class MiuiMusicCustomization implements IModule {
+    private static void findAndHookMethod(String p1, ClassLoader lpparam, String p2, Object... parameterTypesAndCallback) {
+        try {
+            XposedHelpers.findAndHookMethod(p1, lpparam, p2, parameterTypesAndCallback);
+        } catch (Throwable localString3) {
+            XposedBridge.log(localString3);
+        }
+    }
+
     @Override
     public void handleInitPackageResources(XC_InitPackageResources.InitPackageResourcesParam resparam) {
 
@@ -32,15 +40,6 @@ public class MiuiMusicCustomization implements IModule {
 
         if (loadPackageParam.packageName.equals(music_packageName) && prefs.getBoolean(MusicCustomization, false)) {
             findAndHookMethod("com.miui.player.util.Configuration", loadPackageParam.classLoader, "isCmCustomization", XC_MethodReplacement.returnConstant(true));
-        }
-    }
-
-
-    private static void findAndHookMethod(String p1, ClassLoader lpparam, String p2, Object... parameterTypesAndCallback) {
-        try {
-            XposedHelpers.findAndHookMethod(p1, lpparam, p2, parameterTypesAndCallback);
-        } catch (Throwable localString3) {
-            XposedBridge.log(localString3);
         }
     }
 

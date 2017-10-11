@@ -60,6 +60,24 @@ import static com.coderstory.Purify.utils.packageNameEntries.weather2_packageNam
 public class RemoveAds implements IModule {
 
 
+    private static void findAndHookMethod(String p1, ClassLoader lpparam, String p2, Object... parameterTypesAndCallback) {
+        try {
+            XposedHelpers.findAndHookMethod(p1, lpparam, p2, parameterTypesAndCallback);
+
+        } catch (Throwable localString3) {
+            XposedBridge.log(localString3);
+        }
+    }
+
+    private static void findAndHookConstructor(String p1, ClassLoader lpparam, Object... parameterTypesAndCallback) {
+        try {
+            XposedHelpers.findAndHookConstructor(p1, lpparam, lpparam, parameterTypesAndCallback);
+
+        } catch (Throwable localString3) {
+            XposedBridge.log(localString3);
+        }
+    }
+
     @Override
     public void handleInitPackageResources(XC_InitPackageResources.InitPackageResourcesParam resparam) {
         XSharedPreferences prefs = new XSharedPreferences(ApplicationName, SharedPreferencesName);
@@ -82,12 +100,11 @@ public class RemoveAds implements IModule {
     public void handleLoadPackage(XC_LoadPackage.LoadPackageParam loadPackageParam) {
 
 
-
         XSharedPreferences prefs = new XSharedPreferences("com.coderstory.Purify", "UserSettings");
         prefs.makeWorldReadable();
         prefs.reload();
         if (!prefs.getBoolean(enableBlockAD, false)) {
-            return ;
+            return;
         }
         //核心模块
         if (loadPackageParam.packageName.equals(core_packageName)) {
@@ -127,16 +144,16 @@ public class RemoveAds implements IModule {
                     }
                 });
 
-                Class<?> clsAdImageView = XposedHelpers.findClass("com.miui.optimizecenter.widget.AdImageView",loadPackageParam.classLoader );
-                Class<?> clsAdvertisement = XposedHelpers.findClass( "com.miui.optimizecenter.result.Advertisement",loadPackageParam.classLoader);
+                Class<?> clsAdImageView = XposedHelpers.findClass("com.miui.optimizecenter.widget.AdImageView", loadPackageParam.classLoader);
+                Class<?> clsAdvertisement = XposedHelpers.findClass("com.miui.optimizecenter.result.Advertisement", loadPackageParam.classLoader);
                 if (clsAdImageView != null && clsAdvertisement != null) {
                     findAndHookMethod("com.miui.optimizecenter.result.CleanResultActivity", loadPackageParam.classLoader, "startAdCountdown", clsAdImageView, clsAdvertisement, XC_MethodReplacement.returnConstant(null));
                     findAndHookMethod("com.miui.optimizecenter.result.CleanResultActivity", loadPackageParam.classLoader, "addAdvertisementEvent", String.class, clsAdvertisement, XC_MethodReplacement.returnConstant(null));
                 }
-               findAndHookMethod("com.miui.optimizecenter.Application", loadPackageParam.classLoader, "attachBaseContext", Context.class, new  XC_MethodHook() {
-                   @Override
-                   protected void afterHookedMethod( MethodHookParam param) {
-                       SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences((Context) param.thisObject);
+                findAndHookMethod("com.miui.optimizecenter.Application", loadPackageParam.classLoader, "attachBaseContext", Context.class, new XC_MethodHook() {
+                    @Override
+                    protected void afterHookedMethod(MethodHookParam param) {
+                        SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences((Context) param.thisObject);
                         pref.edit().putBoolean("key_information_setting_close", false).apply();
                     }
                 });
@@ -507,20 +524,20 @@ public class RemoveAds implements IModule {
                 }
 
 
-                Class<?> clsAdShowingListener =XposedHelpers. findClass( "com.miui.player.phone.view.NowplayingAlbumPage$AdShowingListener",loadPackageParam.classLoader);
+                Class<?> clsAdShowingListener = XposedHelpers.findClass("com.miui.player.phone.view.NowplayingAlbumPage$AdShowingListener", loadPackageParam.classLoader);
                 if (clsAdShowingListener != null) {
                     findAndHookMethod("com.miui.player.phone.view.NowplayingAlbumView", loadPackageParam.classLoader, "setAdShowingListener", clsAdShowingListener, XC_MethodReplacement.returnConstant(null));
                 }
-               findAndHookConstructor("com.miui.player.phone.view.NowplayingAlbumPage$ShowAdRunnable", loadPackageParam.classLoader, java.lang.Boolean.TYPE, new  XC_MethodHook() {
-                   @Override
-                   protected void beforeHookedMethod(MethodHookParam param) {
+                findAndHookConstructor("com.miui.player.phone.view.NowplayingAlbumPage$ShowAdRunnable", loadPackageParam.classLoader, java.lang.Boolean.TYPE, new XC_MethodHook() {
+                    @Override
+                    protected void beforeHookedMethod(MethodHookParam param) {
                         param.args[0] = false;
                     }
                 });
 
             }
-                return;
-            }
+            return;
+        }
 
 
         //下载管理
@@ -628,25 +645,6 @@ public class RemoveAds implements IModule {
                 findAndHookMethod("com.android.mms.ui.SingleRecipientConversationActivity", loadPackageParam.classLoader, "showMenuMode", XC_MethodReplacement.returnConstant(null));
                 findAndHookMethod("com.android.mms.util.MiStatSdkHelper", loadPackageParam.classLoader, "recordBottomMenuShown", String.class, XC_MethodReplacement.returnConstant(null));
             }
-        }
-    }
-
-
-    private static void findAndHookMethod(String p1, ClassLoader lpparam, String p2, Object... parameterTypesAndCallback) {
-        try {
-            XposedHelpers.findAndHookMethod(p1, lpparam, p2, parameterTypesAndCallback);
-
-        } catch (Throwable localString3) {
-            XposedBridge.log(localString3);
-        }
-    }
-
-    private static void findAndHookConstructor(String p1, ClassLoader lpparam, Object... parameterTypesAndCallback) {
-        try {
-            XposedHelpers.findAndHookConstructor(p1, lpparam, lpparam, parameterTypesAndCallback);
-
-        } catch (Throwable localString3) {
-            XposedBridge.log(localString3);
         }
     }
 

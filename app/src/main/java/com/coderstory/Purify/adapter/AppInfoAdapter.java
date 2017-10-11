@@ -18,6 +18,11 @@ public class AppInfoAdapter extends ArrayAdapter {
     private int resourceId;
 
 
+    public AppInfoAdapter(Context context, int textViewResourceId, List<AppInfo> objects) {
+        super(context, textViewResourceId, objects);
+        resourceId = textViewResourceId;
+    }
+
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         AppInfo appInfo = (AppInfo) getItem(position);
@@ -44,14 +49,9 @@ public class AppInfoAdapter extends ArrayAdapter {
         if (appInfo.getDisable()) {
             view.setBackgroundColor(Color.parseColor("#d0d7d7d7")); //冻结的颜色
         } else {
-            view.setBackgroundColor(ContextCompat.getColor( getContext(), R.color.colorPrimary)); //正常的的颜色
+            view.setBackgroundColor(ContextCompat.getColor(getContext(), R.color.colorPrimary)); //正常的的颜色
         }
         return view;
-    }
-
-    public AppInfoAdapter(Context context, int textViewResourceId,  List<AppInfo> objects) {
-        super(context, textViewResourceId, objects);
-        resourceId = textViewResourceId;
     }
 
     private class ViewHolder {

@@ -9,47 +9,47 @@
         android:id="@+id/imageView2"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:scaleType="center"
-        android:src="@drawable/background"
-
+        android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true" />
+
+        android:scaleType="center"
+        android:src="@drawable/background" />
 
     <TextView
         android:id="@+id/ccd"
-        android:text="1.6.0"
-        android:textColor="#fff"
-        android:fontFamily="sans-serif-condensed"
-        android:textSize="25sp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_alignStart="@+id/ccdd"
         android:layout_below="@+id/cc"
-        android:layout_alignStart="@+id/ccdd" />
+        android:layout_marginTop="10dp"
+        android:fontFamily="sans-serif-condensed"
+        android:text="1.6.0"
+        android:textColor="#fff"
+        android:textSize="25sp" />
 
     <TextView
         android:id="@+id/ccdd"
-        android:text="还你一个干净的世界"
-        android:textColor="#fff"
-        android:fontFamily="sans-serif-condensed"
-        android:textSize="30sp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="13dp"
-        android:layout_below="@+id/ccd"
         android:layout_alignParentStart="true"
-        android:layout_marginStart="30dp" />
+        android:layout_below="@+id/ccd"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="13dp"
+        android:fontFamily="sans-serif-condensed"
+        android:text="还你一个干净的世界"
+        android:textColor="#fff"
+        android:textSize="30sp" />
 
     <TextView
         android:id="@+id/cc"
-        android:text="小米净化"
-        android:textColor="#fff"
-        android:fontFamily="sans-serif-condensed"
-        android:textSize="35sp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="38dp"
         android:layout_alignParentTop="true"
-        android:layout_alignStart="@+id/ccd" />
+        android:layout_alignStart="@+id/ccd"
+        android:layout_marginTop="38dp"
+        android:fontFamily="sans-serif-condensed"
+        android:text="小米净化"
+        android:textColor="#fff"
+        android:textSize="35sp" />
 
 </RelativeLayout>

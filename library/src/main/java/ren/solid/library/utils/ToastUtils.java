@@ -14,16 +14,16 @@ public class ToastUtils {
     private static ToastUtils mInstance;
     private Toast mToast;
 
+    private ToastUtils(Context ctx) {
+        mContext = ctx;
+    }
+
     public static ToastUtils getInstance() {
         return mInstance;
     }
 
     public static void init(Context ctx) {
         mInstance = new ToastUtils(ctx);
-    }
-
-    private ToastUtils(Context ctx) {
-        mContext = ctx;
     }
 
     public void showToast(String text) {

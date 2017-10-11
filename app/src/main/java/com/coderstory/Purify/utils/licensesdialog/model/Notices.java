@@ -24,13 +24,29 @@ import java.util.List;
 
 public class Notices implements Parcelable {
 
+    public static Creator<Notices> CREATOR = new Creator<Notices>() {
+        public Notices createFromParcel(final Parcel source) {
+            return new Notices(source);
+        }
+
+        public Notices[] newArray(final int size) {
+            return new Notices[size];
+        }
+    };
     private final List<Notice> mNotices;
+
+    // Setter / Getter
 
     public Notices() {
         mNotices = new ArrayList<Notice>();
     }
 
-    // Setter / Getter
+    protected Notices(final Parcel in) {
+        mNotices = new ArrayList<Notice>();
+        in.readList(this.mNotices, Notice.class.getClassLoader());
+    }
+
+    // Parcelable
 
     public void addNotice(final Notice notice) {
         mNotices.add(notice);
@@ -39,8 +55,6 @@ public class Notices implements Parcelable {
     public List<Notice> getNotices() {
         return mNotices;
     }
-
-    // Parcelable
 
     @Override
     public int describeContents() {
@@ -51,19 +65,4 @@ public class Notices implements Parcelable {
     public void writeToParcel(final Parcel dest, final int flags) {
         dest.writeList(this.mNotices);
     }
-
-    protected Notices(final Parcel in) {
-        mNotices = new ArrayList<Notice>();
-        in.readList(this.mNotices, Notice.class.getClassLoader());
-    }
-
-    public static Creator<Notices> CREATOR = new Creator<Notices>() {
-        public Notices createFromParcel(final Parcel source) {
-            return new Notices(source);
-        }
-
-        public Notices[] newArray(final int size) {
-            return new Notices[size];
-        }
-    };
 }
