@@ -9,7 +9,6 @@
     <ScrollView
         android:id="@+id/scrollView2"
         android:layout_width="match_parent"
-
         android:layout_height="match_parent">
 
         <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -28,7 +27,6 @@
                 android:paddingEnd="30dp"
                 android:paddingStart="30dp"
                 android:text="@string/enableHosts" />
-
 
             <Switch
                 android:id="@+id/enableMIUIHosts"
@@ -50,7 +48,6 @@
                 android:paddingStart="30dp"
                 android:text="@string/blockads" />
 
-
             <Switch
                 android:id="@+id/enableStore"
                 android:layout_width="match_parent"
@@ -60,7 +57,6 @@
                 android:paddingEnd="30dp"
                 android:paddingStart="30dp"
                 android:text="@string/nostore" />
-
 
             <Switch
                 android:id="@+id/enableupdater"
@@ -81,7 +77,6 @@
                 android:paddingEnd="30dp"
                 android:paddingStart="30dp"
                 android:text="@string/googlehosts" />
-
 
             <TextView
                 android:id="@+id/textView"

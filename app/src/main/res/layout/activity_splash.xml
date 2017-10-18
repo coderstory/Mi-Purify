@@ -38,7 +38,7 @@
         android:fontFamily="sans-serif-condensed"
         android:text="还你一个干净的世界"
         android:textColor="#fff"
-        android:textSize="30sp" />
+        android:textSize="25sp" />
 
     <TextView
         android:id="@+id/cc"
@@ -50,6 +50,6 @@
         android:fontFamily="sans-serif-condensed"
         android:text="小米净化"
         android:textColor="#fff"
-        android:textSize="35sp" />
+        android:textSize="30sp" />
 
 </RelativeLayout>

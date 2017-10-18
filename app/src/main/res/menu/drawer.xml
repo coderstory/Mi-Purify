@@ -5,7 +5,6 @@
     tools:context=".MainActivity">
     <group android:checkableBehavior="single">
 
-
         <item
             android:id="@+id/navigation_item_blockads"
             android:checked="true"
@@ -32,18 +31,14 @@
 
         <item android:title="@string/other">
             <menu>
-
                 <item
                     android:id="@+id/navigation_item_donation"
                     android:icon="@drawable/iconfont_custom_view"
                     android:title="捐赠" />
-
                 <item
                     android:id="@+id/navigation_item_settings"
                     android:icon="@drawable/iconfont_custom_view"
                     android:title="@string/othersettings" />
-
-
             </menu>
         </item>
     </group>

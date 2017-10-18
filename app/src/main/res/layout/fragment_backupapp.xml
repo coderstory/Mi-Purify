@@ -16,7 +16,7 @@
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
             android:divider="@color/divider"
-            android:dividerHeight="13px"
+            android:dividerHeight="13dp"
             android:footerDividersEnabled="false"
             android:headerDividersEnabled="false" />
     </com.yalantis.phoenix.PullToRefreshView>

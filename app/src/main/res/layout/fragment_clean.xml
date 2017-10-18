@@ -5,7 +5,6 @@
     android:orientation="vertical"
     skin:enable="true">
 
-
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -20,7 +19,6 @@
             android:layout_height="wrap_content"
             android:gravity="start|top"
             android:text="@string/view_ready" />
-
     </ScrollView>
 
     <Button
@@ -32,7 +30,6 @@
         android:layout_marginBottom="14dp"
         android:gravity="center"
         android:paddingBottom="10dp"
-
         android:paddingTop="10dp"
         android:text="@string/startclean" />
 </RelativeLayout>

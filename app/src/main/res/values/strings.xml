@@ -2,7 +2,7 @@
     <string name="app_name">小米净化</string>
     <string name="drawer_open">Open</string>
     <string name="drawer_close">Close</string>
-    <string name="about_msg">\n小米净化适配于MIUI8系统，主要用于去除系统自带的一些广告和其他一些修改.功能需要Xposed模块和ROOT支持
+    <string name="about_msg">\n小米净化适配于MIUI9系统，主要用于去除系统自带的一些广告和其他一些修改.功能需要Xposed模块和ROOT支持
     \n\n作者:CoderStory
     \n博客主页: blog.coderstory.cn
     </string>
@@ -28,8 +28,8 @@
     <string name="blockads"><b>开启常规去广告</b>\nGithub上的hosts合集,用于屏蔽国内广告.</string>
     <string name="googlehosts"><b>开启常见国外网站访问支持</b>\nGithub上随意找的Hosts,包含了一些常见的国外网站,有时效性</string>
     <string name="hostsnote"><b>注意事项:</b>\n本功能需要ROOT权限,所有修改重启后才能生效.hosts的更新需要重新启用一次开关才能生效.国外网站请使用https访问.</string>
-    <string name="miui7crack"><b>旧版本的MIUI模式</b>\nMIUI8之前的用户请勾选</string>
-    <string name="miui8crack"><b>MIUI8模式</b>\nMIUI8用户请勾选</string>
+    <string name="miui7crack"><b>旧版本的MIUI模式</b>\nMIUI9之前的用户请勾选</string>
+    <string name="miui9crack"><b>MIUI9模式</b>\nMIUI9用户请勾选</string>
     <string name="cracknote"><b>注意事项</b>\n此为Xposed插件功能,必须在启用插件的情况下才能使用,且所有选项修改重启生效。</string>
     <string name="enableupdater"><b>开启更新检测</b>\n启用后每次打开应用都会检测一次新版本</string>
     <string name="enablexposed"><b>开启Xposed启用检测</b>\n开启后,如果未在Xposed中激活则弹出相应提示</string>
@@ -38,7 +38,6 @@
     <string name="enableSafeCenter"><b>去除安全中心的推广信息</b>\n去除安全中心中显示的推广信息</string>
     <string name="mvadnote"><b>注意事项</b>\n部分应用需要清空应用数据才能去除广告,并且有些广告是可以在应用中直接关闭的，并不需要本插件去修改.</string>
     <string name="music"><b>屏蔽音乐广告</b>\n屏蔽系统自带的音乐APP中的广告内容</string>
-
     <string name="wifi"><b>修复wifi自动连接</b>\n修复系统提示wifi热点未检测网络连接而不会自动连接的问题,需ROOT</string>
     <string name="enablethemenoad"><b>去除miui主题广告</b>\n去除miui个性主题的主题详情页的图片广告</string>
     <string name="hideicon"><b>隐藏应用图标</b>\n隐藏小米净化在桌上面的图标，隐藏图标后可在Xposed安装器中打开</string>
@@ -66,7 +65,6 @@
     <string name="other">其他</string>
     <string name="myblog">我的博客</string>
     <string name="changeskin">主题换肤</string>
-
 
     <string name="Working">正在处理</string>
     <string name="Waiting">请耐心等待。。</string>
@@ -99,7 +97,6 @@
     <string name="tab_1">备份应用</string>
     <string name="tab_2">还原应用</string>
 
-
     <string name="notices_title">开放源代码许可</string>
     <string name="notices_close">关闭</string>
 
@@ -129,6 +126,5 @@
     <string name="restoreing">OK,正在恢复配置！</string>
     <string name="not_fond_backup_list">未找到备份列表！</string>
     <string name="not_fond_backup_list_file">未找到备份列表！</string>
-
 
 </resources>

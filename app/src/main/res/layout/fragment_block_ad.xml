@@ -11,13 +11,10 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-
         <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-
             android:orientation="vertical">
-
 
             <Switch
                 android:id="@+id/enableBlockAD"
@@ -30,7 +27,6 @@
                 android:paddingStart="30dp"
                 android:text="@string/enableBlockADS" />
 
-
             <Switch
                 android:id="@+id/enableBlockADBasic"
                 android:layout_width="match_parent"
@@ -41,7 +37,6 @@
                 android:paddingStart="30dp"
                 android:text="@string/blockadsbasic" />
 
-
             <Switch
                 android:id="@+id/enableMMS"
                 android:layout_width="match_parent"
@@ -50,9 +45,7 @@
                 android:background="@color/switchBtn"
                 android:paddingEnd="30dp"
                 android:paddingStart="30dp"
-
                 android:text="@string/mms" />
-
 
             <Switch
                 android:id="@+id/enableWeather"
@@ -82,9 +75,7 @@
                 android:background="@color/switchBtn"
                 android:paddingEnd="30dp"
                 android:paddingStart="30dp"
-
                 android:text="@string/downloadexplorer" />
-
 
             <Switch
                 android:id="@+id/enableSafeCenter"
@@ -96,7 +87,6 @@
                 android:paddingStart="30dp"
                 android:text="@string/enableSafeCenter" />
 
-
             <Switch
                 android:id="@+id/enableMusic"
                 android:layout_width="match_parent"
@@ -106,7 +96,6 @@
                 android:paddingEnd="30dp"
                 android:paddingStart="30dp"
                 android:text="@string/music" />
-
 
             <Switch
                 android:id="@+id/enabletheme"
@@ -118,7 +107,6 @@
                 android:paddingStart="30dp"
                 android:text="@string/enablethemenoad" />
 
-
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -126,7 +114,6 @@
                 android:paddingEnd="30dp"
                 android:paddingStart="30dp"
                 android:text="@string/mvadnote" />
-
 
         </LinearLayout>
     </ScrollView>

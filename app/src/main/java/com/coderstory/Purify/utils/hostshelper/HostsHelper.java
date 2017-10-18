@@ -57,11 +57,8 @@ public class HostsHelper extends SuHelper {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
         list.add(String.format("mv %s %s", path, "/etc/hosts"));
         list.add(String.format("chmod 755 %s", "/etc/hosts"));
-
-
         return list;
     }
 }
