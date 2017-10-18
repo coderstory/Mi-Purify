@@ -8,20 +8,7 @@ import com.coderstory.Purify.R;
 
 import ren.solid.library.fragment.base.BaseFragment;
 
-import static com.coderstory.Purify.config.FunctionModule.enableBlockAD;
-import static com.coderstory.Purify.config.FunctionModule.enableBlockADBasic;
-import static com.coderstory.Purify.config.FunctionModule.enableDownload;
-import static com.coderstory.Purify.config.FunctionModule.enableFileManager;
-import static com.coderstory.Purify.config.FunctionModule.enableMMS;
-import static com.coderstory.Purify.config.FunctionModule.enableMusic;
-import static com.coderstory.Purify.config.FunctionModule.enableSafeCenter;
-import static com.coderstory.Purify.config.FunctionModule.enableTheme;
-import static com.coderstory.Purify.config.FunctionModule.enableWeather;
-import static com.coderstory.Purify.config.packageNameEntries.ab_packageName;
-import static com.coderstory.Purify.config.packageNameEntries.analytics_packageName;
-import static com.coderstory.Purify.config.packageNameEntries.miLink_packageName;
-import static com.coderstory.Purify.config.packageNameEntries.seemp_packageName;
-import static com.coderstory.Purify.config.packageNameEntries.systemAdSolution_packageName;
+
 import static com.coderstory.Purify.utils.roothelper.ShellUtils.execCommand;
 
 
@@ -35,11 +22,11 @@ public class BlockADSFragment extends BaseFragment {
     @Override
     protected void setUpView() {
 
-        execCommand("pm disable " + systemAdSolution_packageName, true);
-        execCommand("pm disable " + analytics_packageName, true);
-        execCommand("pm disable " + seemp_packageName, true);
-        execCommand("pm disable " + miLink_packageName, true);
-        execCommand("pm disable " + ab_packageName, true);
+        execCommand("pm disable com.miui.systemAdSolution", true);
+        execCommand("pm disable com.miui.analytics", true);
+        execCommand("pm disable com.qualcomm.qti.seemp", true);
+        execCommand("pm disable com.xiaomi.ab", true);
+        execCommand("pm disable com.miLink", true);
 
         $(R.id.enableBlockAD).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -162,16 +149,16 @@ public class BlockADSFragment extends BaseFragment {
 
     @Override
     protected void setUpData() {
-        ((Switch) $(R.id.enabletheme)).setChecked(getPrefs().getBoolean(enableTheme, true));
-        ((Switch) $(R.id.enableBlockAD)).setChecked(getPrefs().getBoolean(enableBlockAD, true));
-        ((Switch) $(R.id.enableBlockADBasic)).setChecked(getPrefs().getBoolean(enableBlockADBasic, true));
-        ((Switch) $(R.id.enableMMS)).setChecked(getPrefs().getBoolean(enableMMS, true));
-        ((Switch) $(R.id.enableWeather)).setChecked(getPrefs().getBoolean(enableWeather, true));
-        ((Switch) $(R.id.enableFileManager)).setChecked(getPrefs().getBoolean(enableFileManager, true));
-        ((Switch) $(R.id.enableDownload)).setChecked(getPrefs().getBoolean(enableDownload, true));
-        ((Switch) $(R.id.enableSafeCenter)).setChecked(getPrefs().getBoolean(enableSafeCenter, true));
-        ((Switch) $(R.id.enableMusic)).setChecked(getPrefs().getBoolean(enableMusic, true));
-        setCheck(getPrefs().getBoolean(enableBlockAD, true));
+        ((Switch) $(R.id.enabletheme)).setChecked(getPrefs().getBoolean("enableTheme", true));
+        ((Switch) $(R.id.enableBlockAD)).setChecked(getPrefs().getBoolean("EnableBlockAD", true));
+        ((Switch) $(R.id.enableBlockADBasic)).setChecked(getPrefs().getBoolean("EnableBlockADBasic", true));
+        ((Switch) $(R.id.enableMMS)).setChecked(getPrefs().getBoolean("EnableMMS", true));
+        ((Switch) $(R.id.enableWeather)).setChecked(getPrefs().getBoolean("EnableWeather", true));
+        ((Switch) $(R.id.enableFileManager)).setChecked(getPrefs().getBoolean("enableFileManager", true));
+        ((Switch) $(R.id.enableDownload)).setChecked(getPrefs().getBoolean("enableDownload", true));
+        ((Switch) $(R.id.enableSafeCenter)).setChecked(getPrefs().getBoolean("enableSafeCenter", true));
+        ((Switch) $(R.id.enableMusic)).setChecked(getPrefs().getBoolean("enableMusic", true));
+        setCheck(getPrefs().getBoolean("EnableBlockAD", true));
 
        /* $(R.id.enableBlockAD).setClickable(false);
         $(R.id.enableBlockADBasic).setClickable(false);

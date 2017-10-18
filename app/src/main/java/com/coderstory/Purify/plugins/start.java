@@ -22,7 +22,6 @@ public class start implements IXposedHookZygoteInit, IXposedHookLoadPackage, IXp
 
     @Override
     public void handleLoadPackage(XC_LoadPackage.LoadPackageParam lpparam) throws Throwable {
-
         new IsEnable().handleLoadPackage(lpparam);
         new RemoveAds().handleLoadPackage(lpparam);
         new ThemePather8().handleLoadPackage(lpparam);

@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:skin="http://schemas.android.com/android/skin"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    skin:enable="true">
+
+    <ScrollView
+        android:id="@+id/scrollView2"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:skin="http://schemas.android.com/android/skin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+
+                android:paddingEnd="30dp"
+                android:paddingStart="30dp"
+                android:paddingTop="10dp"
+                android:text="@string/common"
+             />
+
+            <Switch
+                android:id="@+id/hideicon"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_marginTop="10dp"
+                android:background="@color/switchBtn"
+                android:paddingEnd="30dp"
+                android:paddingStart="30dp"
+                android:text="@string/hideicon" />
+
+            <Switch
+                android:id="@+id/installType"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="10dp"
+                android:background="@color/switchBtn"
+                android:paddingEnd="30dp"
+                android:paddingStart="30dp"
+                android:text="@string/installapk" />
+
+            <Switch
+                android:id="@+id/enableCheck"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_marginTop="10dp"
+                android:background="@color/switchBtn"
+                android:checked="true"
+                android:paddingEnd="30dp"
+                android:paddingStart="30dp"
+                android:text="@string/enablexposed" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+
+                android:paddingEnd="30dp"
+                android:paddingStart="30dp"
+                android:paddingTop="10dp"
+                android:text="@string/xposedmodule"
+                 />
+
+            <Switch
+                android:id="@+id/RemoveSearchBar"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_marginTop="10dp"
+                android:background="@color/switchBtn"
+                android:paddingEnd="30dp"
+                android:paddingStart="30dp"
+                android:text="@string/RemoveSearchBar" />
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

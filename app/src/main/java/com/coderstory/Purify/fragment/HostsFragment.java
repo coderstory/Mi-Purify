@@ -10,15 +10,8 @@ import android.widget.Switch;
 import com.coderstory.Purify.R;
 import com.coderstory.Purify.utils.hostshelper.FileHelper;
 import com.coderstory.Purify.utils.hostshelper.HostsHelper;
-
 import ren.solid.library.fragment.base.BaseFragment;
 
-import static com.coderstory.Purify.config.FunctionModule.enableBlockAdsHosts;
-import static com.coderstory.Purify.config.FunctionModule.enableGoogleHosts;
-import static com.coderstory.Purify.config.FunctionModule.enableHosts;
-import static com.coderstory.Purify.config.FunctionModule.enableMIUIHosts;
-import static com.coderstory.Purify.config.FunctionModule.enableStore;
-import static com.coderstory.Purify.config.FunctionModule.enableUpdater;
 
 
 public class HostsFragment extends BaseFragment {
@@ -36,7 +29,7 @@ public class HostsFragment extends BaseFragment {
         $(R.id.enableHosts).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getEditor().putBoolean(enableHosts, ((Switch) v).isChecked());
+                getEditor().putBoolean("enableHosts", ((Switch) v).isChecked());
                 getEditor().apply();
                 setCheck(((Switch) v).isChecked());
                 new MyTask().execute();
@@ -46,7 +39,7 @@ public class HostsFragment extends BaseFragment {
         $(R.id.enableMIUIHosts).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getEditor().putBoolean(enableMIUIHosts, ((Switch) v).isChecked());
+                getEditor().putBoolean("enableMIUIHosts", ((Switch) v).isChecked());
                 getEditor().apply();
                 new MyTask().execute();
             }
@@ -55,7 +48,7 @@ public class HostsFragment extends BaseFragment {
         $(R.id.enableBlockAdsHosts).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getEditor().putBoolean(enableBlockAdsHosts, ((Switch) v).isChecked());
+                getEditor().putBoolean("enableBlockAdsHosts", ((Switch) v).isChecked());
                 getEditor().apply();
                 new MyTask().execute();
             }
@@ -63,7 +56,7 @@ public class HostsFragment extends BaseFragment {
         $(R.id.enableGoogleHosts).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getEditor().putBoolean(enableGoogleHosts, ((Switch) v).isChecked());
+                getEditor().putBoolean("enableGoogleHosts", ((Switch) v).isChecked());
                 getEditor().apply();
                 new MyTask().execute();
             }
@@ -72,7 +65,7 @@ public class HostsFragment extends BaseFragment {
         $(R.id.enableStore).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getEditor().putBoolean(enableStore, ((Switch) v).isChecked());
+                getEditor().putBoolean("enableStore", ((Switch) v).isChecked());
                 getEditor().apply();
                 new MyTask().execute();
             }
@@ -89,24 +82,24 @@ public class HostsFragment extends BaseFragment {
 
     @Override
     protected void setUpData() {
-        ((Switch) $(R.id.enableHosts)).setChecked(getPrefs().getBoolean(enableHosts, false));
-        ((Switch) $(R.id.enableMIUIHosts)).setChecked(getPrefs().getBoolean(enableMIUIHosts, false));
-        ((Switch) $(R.id.enableBlockAdsHosts)).setChecked(getPrefs().getBoolean(enableBlockAdsHosts, false));
-        ((Switch) $(R.id.enableGoogleHosts)).setChecked(getPrefs().getBoolean(enableGoogleHosts, false));
-        ((Switch) $(R.id.enableStore)).setChecked(getPrefs().getBoolean(enableStore, false));
-        ((Switch) $(R.id.enableupdater)).setChecked(getPrefs().getBoolean(enableUpdater, false));
-        setCheck(getPrefs().getBoolean(enableHosts, false));
+        ((Switch) $(R.id.enableHosts)).setChecked(getPrefs().getBoolean("enableHosts", false));
+        ((Switch) $(R.id.enableMIUIHosts)).setChecked(getPrefs().getBoolean("enableMIUIHosts", false));
+        ((Switch) $(R.id.enableBlockAdsHosts)).setChecked(getPrefs().getBoolean("enableBlockAdsHosts", false));
+        ((Switch) $(R.id.enableGoogleHosts)).setChecked(getPrefs().getBoolean("enableGoogleHosts", false));
+        ((Switch) $(R.id.enableStore)).setChecked(getPrefs().getBoolean("enableStore", false));
+        ((Switch) $(R.id.enableupdater)).setChecked(getPrefs().getBoolean("enableUpdater", false));
+        setCheck(getPrefs().getBoolean("enableHosts", false));
     }
 
     //因为hosts修改比较慢 所以改成异步的
     //更新hosts操作
     private boolean UpdateHosts() {
-        boolean enableHostsSet = getPrefs().getBoolean(enableHosts, false); //1
-        boolean enableMIUIHostsSet = getPrefs().getBoolean(enableMIUIHosts, false); //4
-        boolean enableBlockAdsHostsSet = getPrefs().getBoolean(enableBlockAdsHosts, false); //4
-        boolean enableGoogleHostsSet = getPrefs().getBoolean(enableGoogleHosts, false); //4
-        boolean enableStoreSet = getPrefs().getBoolean(enableStore, false); //4
-        boolean enableupdaterSet = getPrefs().getBoolean(enableUpdater, false); //4
+        boolean enableHostsSet = getPrefs().getBoolean("enableHosts", false); //1
+        boolean enableMIUIHostsSet = getPrefs().getBoolean("enableMIUIHosts", false); //4
+        boolean enableBlockAdsHostsSet = getPrefs().getBoolean("enableBlockAdsHosts", false); //4
+        boolean enableGoogleHostsSet = getPrefs().getBoolean("enableGoogleHosts", false); //4
+        boolean enableStoreSet = getPrefs().getBoolean("enableStore", false); //4
+        boolean enableupdaterSet = getPrefs().getBoolean("enableUpdater", false); //4
 
         if (enableHostsSet) {
             FileHelper fh = new FileHelper();
