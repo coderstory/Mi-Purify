@@ -2,10 +2,6 @@ package com.coderstory.Purify.config;
 
 import android.os.Environment;
 
-/**
- * Created by Baby Song on 2016/9/7.
- */
-
 public class Misc {
     public static final String BackPath = Environment.getExternalStorageDirectory().getPath() + "/MIUI_Purify/Backup/";
     public static final String MyBlogUrl = "http://blog.coderstory.cn";

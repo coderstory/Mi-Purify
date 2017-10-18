@@ -76,7 +76,7 @@ public class SettingsFragment extends BaseFragment {
 
     @Override
     protected int setLayoutResourceID() {
-        return 0;
+        return R.layout.fragment_settings;
     }
 
     @Override
