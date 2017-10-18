@@ -117,8 +117,7 @@ public class HostsFragment extends BaseFragment {
                     HostsContext += fh.getFromAssets("hosts_noad", getMContext());
                 }
                 if (enableGoogleHostsSet) {
-                    HostsContext += fh.getFromAssets("hosts_Foreign", getMContext());
-                    HostsContext += fh.getFromAssets("hosts_google", getMContext());
+                    HostsContext += fh.getFromAssets("hosts_foreign", getMContext());
                 }
 
                 if (enableupdaterSet) {
