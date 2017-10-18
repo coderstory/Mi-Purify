@@ -14,7 +14,7 @@ public class RemoveSearchBar implements IModule {
         XSharedPreferences prefs = new XSharedPreferences("com.coderstory.Purify", "UserSettings");
         prefs.makeWorldReadable();
         prefs.reload();
-        if (resparam.packageName.equals("com.android.systemui") && prefs.getBoolean("RemoveSearchBar", false)) {
+        if (resparam.packageName.equals("com.android.systemui") && prefs.getBoolean("RemoveSearchBar", true)) {
             resparam.res.setReplacement(resparam.packageName, "bool", "config_show_statusbar_search", false);
         }
     }

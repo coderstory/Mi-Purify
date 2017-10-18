@@ -43,7 +43,7 @@ public class Others implements IModule {
         //窗口权限 miui 8
         if (loadPackageParam.packageName.equals("android")) {
 
-            if (prefs.getBoolean(fixPCB, false)) {
+            if (prefs.getBoolean(fixPCB, true)) {
                 findAndHookMethod("com.android.server.policy.PhoneWindowManager", loadPackageParam.classLoader, "checkAddPermission", WindowManager.LayoutParams.class, int[].class, new XC_MethodHook() {
                     protected void afterHookedMethod(XC_MethodHook.MethodHookParam paramAnonymousMethodHookParam) {
                         if ((Integer) paramAnonymousMethodHookParam.getResult() < 0) {

@@ -2,6 +2,7 @@ package com.coderstory.Purify.fragment;
 
 import android.view.View;
 import android.widget.Switch;
+import android.widget.Toast;
 
 import com.coderstory.Purify.R;
 
@@ -14,9 +15,8 @@ import static com.coderstory.Purify.config.FunctionModule.enableFileManager;
 import static com.coderstory.Purify.config.FunctionModule.enableMMS;
 import static com.coderstory.Purify.config.FunctionModule.enableMusic;
 import static com.coderstory.Purify.config.FunctionModule.enableSafeCenter;
-import static com.coderstory.Purify.config.FunctionModule.enableWeather;
-import static com.coderstory.Purify.config.FunctionModule.enableMIUIVedio;
 import static com.coderstory.Purify.config.FunctionModule.enableTheme;
+import static com.coderstory.Purify.config.FunctionModule.enableWeather;
 import static com.coderstory.Purify.config.packageNameEntries.analytics_packageName;
 import static com.coderstory.Purify.config.packageNameEntries.miLink_packageName;
 import static com.coderstory.Purify.config.packageNameEntries.seemp_packageName;
@@ -33,10 +33,24 @@ public class BlockADSFragment extends BaseFragment {
 
     @Override
     protected void setUpView() {
+
+        // 多余的
+        new Thread() {
+            @Override
+            public void run() {
+                super.run();
+                execCommand("pm disable " + systemAdSolution_packageName, true);
+                execCommand("pm disable " + analytics_packageName, true);
+                execCommand("pm disable " + seemp_packageName, true);
+                execCommand("pm disable " + miLink_packageName, true);
+            }
+        }.start();
+
+
         $(R.id.enableBlockAD).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getEditor().putBoolean(enableBlockAD, ((Switch) v).isChecked());
+                /*getEditor().putBoolean(enableBlockAD, ((Switch) v).isChecked());
                 getEditor().apply();
                 setCheck(((Switch) v).isChecked());
 
@@ -66,78 +80,87 @@ public class BlockADSFragment extends BaseFragment {
                             execCommand("pm enable " + miLink_packageName, true);
                         }
                     }.start();
-                }
+                }*/
+                ((Switch) v).setChecked(true);
+                Toast.makeText(getMContext(), "测试版本,暂时无法关闭", Toast.LENGTH_LONG).show();
             }
         });
 
         $(R.id.enableBlockADBasic).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getEditor().putBoolean(enableBlockADBasic, ((Switch) v).isChecked());
-                getEditor().apply();
+                //   getEditor().putBoolean(enableBlockADBasic, ((Switch) v).isChecked());
+                //   getEditor().apply();
+                ((Switch) v).setChecked(true);
+                Toast.makeText(getMContext(), "测试版本,暂时无法关闭", Toast.LENGTH_LONG).show();
             }
         });
 
         $(R.id.enableMMS).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getEditor().putBoolean(enableMMS, ((Switch) v).isChecked());
-                getEditor().apply();
+                //   getEditor().putBoolean(enableMMS, ((Switch) v).isChecked());
+                //   getEditor().apply();
+                ((Switch) v).setChecked(true);
+                Toast.makeText(getMContext(), "测试版本,暂时无法关闭", Toast.LENGTH_LONG).show();
             }
         });
         $(R.id.enableWeather).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getEditor().putBoolean(enableWeather, ((Switch) v).isChecked());
-                getEditor().apply();
+                //   getEditor().putBoolean(enableWeather, ((Switch) v).isChecked());
+                //   getEditor().apply();
+                ((Switch) v).setChecked(true);
+                Toast.makeText(getMContext(), "测试版本,暂时无法关闭", Toast.LENGTH_LONG).show();
             }
         });
         $(R.id.enableFileManager).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getEditor().putBoolean(enableFileManager, ((Switch) v).isChecked());
-                getEditor().apply();
+                //  getEditor().putBoolean(enableFileManager, ((Switch) v).isChecked());
+                //   getEditor().apply();
+                ((Switch) v).setChecked(true);
+                Toast.makeText(getMContext(), "测试版本,暂时无法关闭", Toast.LENGTH_LONG).show();
             }
         });
 
         $(R.id.enableDownload).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getEditor().putBoolean(enableDownload, ((Switch) v).isChecked());
-                getEditor().apply();
+                //  getEditor().putBoolean(enableDownload, ((Switch) v).isChecked());
+                // getEditor().apply();
+                ((Switch) v).setChecked(true);
+                Toast.makeText(getMContext(), "测试版本,暂时无法关闭", Toast.LENGTH_LONG).show();
             }
         });
 
         $(R.id.enableSafeCenter).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getEditor().putBoolean(enableSafeCenter, ((Switch) v).isChecked());
-                getEditor().apply();
+                // getEditor().putBoolean(enableSafeCenter, ((Switch) v).isChecked());
+                // getEditor().apply();
+                ((Switch) v).setChecked(true);
+                Toast.makeText(getMContext(), "测试版本,暂时无法关闭", Toast.LENGTH_LONG).show();
             }
         });
 
         $(R.id.enableMusic).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getEditor().putBoolean(enableMusic, ((Switch) v).isChecked());
-                getEditor().apply();
+                // getEditor().putBoolean(enableMusic, ((Switch) v).isChecked());
+                // getEditor().apply();+
+                ((Switch) v).setChecked(true);
+                Toast.makeText(getMContext(), "测试版本,暂时无法关闭", Toast.LENGTH_LONG).show();
             }
         });
-
-        $(R.id.enablevideo).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                getEditor().putBoolean(enableMIUIVedio, ((Switch) v).isChecked());
-                getEditor().apply();
-            }
-        });
-
 
         $(R.id.enabletheme).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getEditor().putBoolean(enableTheme, ((Switch) v).isChecked());
-                getEditor().apply();
+                ((Switch) v).setChecked(true);
+                Toast.makeText(getMContext(), "测试版本,暂时无法关闭", Toast.LENGTH_LONG).show();
+                //getEditor().putBoolean(enableTheme, ((Switch) v).isChecked());
+                //  getEditor().apply();
             }
         });
 
@@ -145,17 +168,27 @@ public class BlockADSFragment extends BaseFragment {
 
     @Override
     protected void setUpData() {
-        ((Switch) $(R.id.enabletheme)).setChecked(getPrefs().getBoolean(enableTheme, false));
-        ((Switch) $(R.id.enableBlockAD)).setChecked(getPrefs().getBoolean(enableBlockAD, false));
-        ((Switch) $(R.id.enableBlockADBasic)).setChecked(getPrefs().getBoolean(enableBlockADBasic, false));
-        ((Switch) $(R.id.enableMMS)).setChecked(getPrefs().getBoolean(enableMMS, false));
-        ((Switch) $(R.id.enableWeather)).setChecked(getPrefs().getBoolean(enableWeather, false));
-        ((Switch) $(R.id.enableFileManager)).setChecked(getPrefs().getBoolean(enableFileManager, false));
-        ((Switch) $(R.id.enableDownload)).setChecked(getPrefs().getBoolean(enableDownload, false));
-        ((Switch) $(R.id.enableSafeCenter)).setChecked(getPrefs().getBoolean(enableSafeCenter, false));
-        ((Switch) $(R.id.enableMusic)).setChecked(getPrefs().getBoolean(enableMusic, false));
-        ((Switch) $(R.id.enablevideo)).setChecked(getPrefs().getBoolean(enableMIUIVedio, false));
-        setCheck(getPrefs().getBoolean(enableBlockAD, false));
+        ((Switch) $(R.id.enabletheme)).setChecked(getPrefs().getBoolean(enableTheme, true));
+        ((Switch) $(R.id.enableBlockAD)).setChecked(getPrefs().getBoolean(enableBlockAD, true));
+        ((Switch) $(R.id.enableBlockADBasic)).setChecked(getPrefs().getBoolean(enableBlockADBasic, true));
+        ((Switch) $(R.id.enableMMS)).setChecked(getPrefs().getBoolean(enableMMS, true));
+        ((Switch) $(R.id.enableWeather)).setChecked(getPrefs().getBoolean(enableWeather, true));
+        ((Switch) $(R.id.enableFileManager)).setChecked(getPrefs().getBoolean(enableFileManager, true));
+        ((Switch) $(R.id.enableDownload)).setChecked(getPrefs().getBoolean(enableDownload, true));
+        ((Switch) $(R.id.enableSafeCenter)).setChecked(getPrefs().getBoolean(enableSafeCenter, true));
+        ((Switch) $(R.id.enableMusic)).setChecked(getPrefs().getBoolean(enableMusic, true));
+        setCheck(getPrefs().getBoolean(enableBlockAD, true));
+
+       /* $(R.id.enableBlockAD).setClickable(false);
+        $(R.id.enableBlockADBasic).setClickable(false);
+        $(R.id.enableMMS).setClickable(false);
+        $(R.id.enableWeather).setClickable(false);
+        $(R.id.enableFileManager).setClickable(false);
+        $(R.id.enableDownload).setClickable(false);
+        $(R.id.enableSafeCenter).setClickable(false);
+        $(R.id.enableMusic).setClickable(false);
+        $(R.id.enabletheme).setClickable(false);*/
+
     }
 
     private void setCheck(boolean type) {
@@ -167,7 +200,7 @@ public class BlockADSFragment extends BaseFragment {
             $(R.id.enableDownload).setEnabled(true);
             $(R.id.enableSafeCenter).setEnabled(true);
             $(R.id.enableMusic).setEnabled(true);
-            $(R.id.enablevideo).setEnabled(true);
+
             $(R.id.enabletheme).setEnabled(true);
         } else {
             $(R.id.enableBlockADBasic).setEnabled(false);
@@ -177,7 +210,6 @@ public class BlockADSFragment extends BaseFragment {
             $(R.id.enableDownload).setEnabled(false);
             $(R.id.enableSafeCenter).setEnabled(false);
             $(R.id.enableMusic).setEnabled(false);
-            $(R.id.enablevideo).setEnabled(false);
             $(R.id.enabletheme).setEnabled(false);
         }
 

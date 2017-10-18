@@ -37,7 +37,7 @@ public class MiuiMusicCustomization implements IModule {
         prefs.makeWorldReadable();
         prefs.reload();
 
-        if (loadPackageParam.packageName.equals(music_packageName) && prefs.getBoolean(MusicCustomization, false)) {
+        if (loadPackageParam.packageName.equals(music_packageName) && prefs.getBoolean(MusicCustomization, true)) {
             findAndHookMethod("com.miui.player.util.Configuration", loadPackageParam.classLoader, "isCmCustomization", XC_MethodReplacement.returnConstant(true));
         }
     }

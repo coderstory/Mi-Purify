@@ -85,7 +85,6 @@ public class MainActivity extends BaseActivity {
                 requestCameraPermission();
             }
         }
-
         mToolbar = $(R.id.toolbar);
         mDrawerLayout = $(R.id.drawer_layout);
         mNavigationView = $(navigation_view);
