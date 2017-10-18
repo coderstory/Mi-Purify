@@ -472,29 +472,6 @@ public class RemoveAds implements IModule {
         }
     }
 
-    private void fuckParam(XC_MethodHook.MethodHookParam param, String param1) {
-
-        try {
-            Class clsThis = param.thisObject.getClass();
-            Field fBlockRootArrayList = clsThis.getDeclaredField("mBlockRootArrayList");
-            fBlockRootArrayList.isAccessible();
-            ArrayList<?> mBlockRootArrayList = (ArrayList<?>) fBlockRootArrayList.get(param.thisObject);
-            for (Object b : mBlockRootArrayList) {
-                Field fUI = b.getClass().getSuperclass().getDeclaredField(param1);
-                fUI.isAccessible();
-                Class<?> oUI = (Class<?>) fUI.get(b);
-                Method mId = oUI.getClass().getMethod("id");
-                int id = (int) mId.invoke(oUI);
-                if (id == 101 || id == 10001 || id == 282 || id == 257 || id == 221 ||
-                        id == 501 || id == 502 || id == 503 || (id == 601) || (id == 602) || id == 603 || id == 604) {
-                    mBlockRootArrayList.remove(b);
-                }
-            }
-        } catch (Exception e) {
-            XposedBridge.log(e.fillInStackTrace());
-        }
-    }
-
 }
 
 
