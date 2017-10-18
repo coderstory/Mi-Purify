@@ -3,23 +3,16 @@ package com.coderstory.Purify.module;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.content.Loader;
 import android.content.SharedPreferences;
 import android.net.Uri;
-import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.FrameLayout;
 
 import com.coderstory.Purify.plugins.IModule;
 
 import org.json.JSONObject;
 
-import java.lang.reflect.Field;
-import java.lang.reflect.Method;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -40,9 +33,8 @@ import static com.coderstory.Purify.config.FunctionModule.enableFileManager;
 import static com.coderstory.Purify.config.FunctionModule.enableMMS;
 import static com.coderstory.Purify.config.FunctionModule.enableMusic;
 import static com.coderstory.Purify.config.FunctionModule.enableSafeCenter;
-import static com.coderstory.Purify.config.FunctionModule.enableWeather;
-import static com.coderstory.Purify.config.FunctionModule.enableMIUIVedio;
 import static com.coderstory.Purify.config.FunctionModule.enableTheme;
+import static com.coderstory.Purify.config.FunctionModule.enableWeather;
 import static com.coderstory.Purify.config.Misc.ApplicationName;
 import static com.coderstory.Purify.config.Misc.SharedPreferencesName;
 import static com.coderstory.Purify.config.packageNameEntries.calendar_packageName;
@@ -53,7 +45,6 @@ import static com.coderstory.Purify.config.packageNameEntries.fileExplorer_packa
 import static com.coderstory.Purify.config.packageNameEntries.mms_packageName;
 import static com.coderstory.Purify.config.packageNameEntries.music_packageName;
 import static com.coderstory.Purify.config.packageNameEntries.themeManager_packageName;
-import static com.coderstory.Purify.config.packageNameEntries.video_packageName;
 import static com.coderstory.Purify.config.packageNameEntries.weather2_packageName;
 
 
@@ -147,9 +138,9 @@ public class RemoveAds implements IModule {
                 Class<?> clsAdImageView = XposedHelpers.findClass("com.miui.optimizecenter.widget.AdImageView", loadPackageParam.classLoader);
                 Class<?> clsAdvertisement = XposedHelpers.findClass("com.miui.optimizecenter.result.Advertisement", loadPackageParam.classLoader);
                 //if (clsAdImageView != null && clsAdvertisement != null) {
-                    //findAndHookMethod("com.miui.optimizecenter.result.CleanResultActivity", loadPackageParam.classLoader, "startAdCountdown", clsAdImageView, clsAdvertisement, XC_MethodReplacement.returnConstant(null));
-                    //findAndHookMethod("com.miui.optimizecenter.result.CleanResultActivity", loadPackageParam.classLoader, "addAdvertisementEvent", String.class, clsAdvertisement, XC_MethodReplacement.returnConstant(null));
-               // }
+                //findAndHookMethod("com.miui.optimizecenter.result.CleanResultActivity", loadPackageParam.classLoader, "startAdCountdown", clsAdImageView, clsAdvertisement, XC_MethodReplacement.returnConstant(null));
+                //findAndHookMethod("com.miui.optimizecenter.result.CleanResultActivity", loadPackageParam.classLoader, "addAdvertisementEvent", String.class, clsAdvertisement, XC_MethodReplacement.returnConstant(null));
+                // }
                 findAndHookMethod("com.miui.optimizecenter.Application", loadPackageParam.classLoader, "attachBaseContext", Context.class, new XC_MethodHook() {
                     @Override
                     protected void afterHookedMethod(MethodHookParam param) {
@@ -212,12 +203,12 @@ public class RemoveAds implements IModule {
                 //findAndHookMethod("com.android.fileexplorer.model.ConfigHelper", loadPackageParam.classLoader, "isAdEnable", Context.class, String.class, XC_MethodReplacement.returnConstant(false));
                 findAndHookMethod("com.android.fileexplorer.model.ConfigHelper", loadPackageParam.classLoader, "supportAd", XC_MethodReplacement.returnConstant(false));
                 //findAndHookMethod("com.android.fileexplorer.model.ConfigHelper", loadPackageParam.classLoader, "ifAdShowByCloudForNetwork", Context.class, String.class, XC_MethodReplacement.returnConstant(false));
-               // findAndHookMethod("com.android.fileexplorer.model.ConfigHelper", loadPackageParam.classLoader, "getHomePageHotVideoTipSwitch", Context.class, XC_MethodReplacement.returnConstant(false));
+                // findAndHookMethod("com.android.fileexplorer.model.ConfigHelper", loadPackageParam.classLoader, "getHomePageHotVideoTipSwitch", Context.class, XC_MethodReplacement.returnConstant(false));
                 //findAndHookMethod("com.android.fileexplorer.model.ConfigHelper", loadPackageParam.classLoader, "getHomePageHotVideoTopicUri", Context.class, XC_MethodReplacement.returnConstant(""));
                 //findAndHookMethod("com.android.fileexplorer.model.ConfigHelper", loadPackageParam.classLoader, "getAdStyleName", Context.class, String.class, XC_MethodReplacement.returnConstant(""));
-               // findAndHookMethod("com.android.fileexplorer.model.ConfigHelper", loadPackageParam.classLoader, "tryInit", Context.class, XC_MethodReplacement.returnConstant(false));
-               // findAndHookMethod("com.android.fileexplorer.model.ConfigHelper", loadPackageParam.classLoader, "isVideoEnable", Context.class, XC_MethodReplacement.returnConstant(false));
-               // findAndHookMethod("com.android.fileexplorer.model.ConfigHelper", loadPackageParam.classLoader, "isStickerEnable", Context.class, XC_MethodReplacement.returnConstant(false));
+                // findAndHookMethod("com.android.fileexplorer.model.ConfigHelper", loadPackageParam.classLoader, "tryInit", Context.class, XC_MethodReplacement.returnConstant(false));
+                // findAndHookMethod("com.android.fileexplorer.model.ConfigHelper", loadPackageParam.classLoader, "isVideoEnable", Context.class, XC_MethodReplacement.returnConstant(false));
+                // findAndHookMethod("com.android.fileexplorer.model.ConfigHelper", loadPackageParam.classLoader, "isStickerEnable", Context.class, XC_MethodReplacement.returnConstant(false));
                /* findAndHookMethod("com.xunlei.adlibrary.XunleiADSdk", loadPackageParam.classLoader, "setup", Context.class, new XC_MethodReplacement() {
                     @Override
                     protected Object replaceHookedMethod(MethodHookParam methodHookParam) throws Throwable {
@@ -236,10 +227,10 @@ public class RemoveAds implements IModule {
                         return null;
                     }
                 });
-               // findAndHookMethod("com.android.fileexplorer.model.Config", loadPackageParam.classLoader, "isCloudVideoEnabled", Context.class, XC_MethodReplacement.returnConstant(false));
+                // findAndHookMethod("com.android.fileexplorer.model.Config", loadPackageParam.classLoader, "isCloudVideoEnabled", Context.class, XC_MethodReplacement.returnConstant(false));
                 //findAndHookMethod("com.android.fileexplorer.model.Config", loadPackageParam.classLoader, "isRecentAdShow", Context.class, XC_MethodReplacement.returnConstant(false));
                 findAndHookMethod("com.android.fileexplorer.model.Config", loadPackageParam.classLoader, "isStickerEnabled", XC_MethodReplacement.returnConstant(false));
-               // findAndHookMethod("com.android.fileexplorer.model.Config", loadPackageParam.classLoader, "isSystemHotAppEnable", Context.class, XC_MethodReplacement.returnConstant(false));
+                // findAndHookMethod("com.android.fileexplorer.model.Config", loadPackageParam.classLoader, "isSystemHotAppEnable", Context.class, XC_MethodReplacement.returnConstant(false));
                 //findAndHookMethod("com.android.fileexplorer.model.Config", loadPackageParam.classLoader, "isSystemOnlyWifiEnable", Context.class, XC_MethodReplacement.returnConstant(true));
                 //findAndHookMethod("com.android.fileexplorer.model.Config", loadPackageParam.classLoader, "isVideoAdShow", Context.class, XC_MethodReplacement.returnConstant(false));
                 findAndHookMethod("com.android.fileexplorer.model.Config", loadPackageParam.classLoader, "isVideoEnabled", XC_MethodReplacement.returnConstant(false));
@@ -249,7 +240,7 @@ public class RemoveAds implements IModule {
         //音乐
         if (loadPackageParam.packageName.equals(music_packageName)) {
             if (prefs.getBoolean(enableMusic, true)) {
-              //  Class<?> clsListener = XposedHelpers.findClass("com.android.volley.Respons$Listener", loadPackageParam.classLoader);
+                //  Class<?> clsListener = XposedHelpers.findClass("com.android.volley.Respons$Listener", loadPackageParam.classLoader);
                 Class<?> clsErrorListener = XposedHelpers.findClass("com.android.volley.Response$ErrorListener", loadPackageParam.classLoader);
                 Class<?> clsAdInfo = XposedHelpers.findClass("com.miui.player.util.AdUtils$AdInfo", loadPackageParam.classLoader);
                 XposedHelpers.findAndHookMethod("com.miui.player.util.AdUtils", loadPackageParam.classLoader, "isAdEnable", XC_MethodReplacement.returnConstant(false));
@@ -399,8 +390,8 @@ public class RemoveAds implements IModule {
 
                 //findAndHookMethod("com.miui.weather2.ActivityDailyForecastDetail", loadPackageParam.classLoader, "ep", XC_MethodReplacement.returnConstant(null));
                 //findAndHookMethod("com.miui.weather2.ActivityDailyForecastDetail", loadPackageParam.classLoader, "eq", XC_MethodReplacement.returnConstant(null));
-               // findAndHookMethod("com.miui.weather2.ActivityDailyForecastDetail", loadPackageParam.classLoader, "er", XC_MethodReplacement.returnConstant(null));
-               // findAndHookMethod("com.miui.weather2.ActivityDailyForecastDetail", loadPackageParam.classLoader, "eo", XC_MethodReplacement.returnConstant(null));
+                // findAndHookMethod("com.miui.weather2.ActivityDailyForecastDetail", loadPackageParam.classLoader, "er", XC_MethodReplacement.returnConstant(null));
+                // findAndHookMethod("com.miui.weather2.ActivityDailyForecastDetail", loadPackageParam.classLoader, "eo", XC_MethodReplacement.returnConstant(null));
                 findAndHookMethod("com.miui.weather2.structures.DailyForecastAdData", loadPackageParam.classLoader, "isAdInfosExistence", XC_MethodReplacement.returnConstant(false));
                 findAndHookMethod("com.miui.weather2.structures.DailyForecastAdData", loadPackageParam.classLoader, "isAdTitleExistence", XC_MethodReplacement.returnConstant(false));
                 findAndHookMethod("com.miui.weather2.structures.DailyForecastAdData", loadPackageParam.classLoader, "isLandingPageUrlExistence", XC_MethodReplacement.returnConstant(false));
@@ -451,7 +442,7 @@ public class RemoveAds implements IModule {
                 }
                 findAndHookMethod("com.android.thememanager.util.ApplicationHelper", loadPackageParam.classLoader, "isFreshMan", XC_MethodReplacement.returnConstant(false));
                 findAndHookMethod("com.android.thememanager.util.ApplicationHelper", loadPackageParam.classLoader, "hasFreshManMarkRecord", Context.class, XC_MethodReplacement.returnConstant(false));
-               // findAndHookMethod("com.miui.systemAdSolution.landingPage.LandingPageService", loadPackageParam.classLoader, "init", Context.class, XC_MethodReplacement.returnConstant(null));
+                // findAndHookMethod("com.miui.systemAdSolution.landingPage.LandingPageService", loadPackageParam.classLoader, "init", Context.class, XC_MethodReplacement.returnConstant(null));
                 return;
             }
         }

@@ -14,8 +14,8 @@ import android.os.IBinder;
 import android.os.Message;
 
 import com.coderstory.Purify.R;
-import com.coderstory.Purify.utils.checkupdate.UpdateConfig;
 import com.coderstory.Purify.activity.MainActivity;
+import com.coderstory.Purify.utils.checkupdate.UpdateConfig;
 
 import java.io.File;
 import java.io.FileOutputStream;

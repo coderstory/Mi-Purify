@@ -81,10 +81,6 @@
                 android:text="@string/RemoveSearchBar" />
 
 
-
-
-
-
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

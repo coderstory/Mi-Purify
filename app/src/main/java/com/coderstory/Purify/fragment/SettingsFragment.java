@@ -47,7 +47,6 @@ public class SettingsFragment extends BaseFragment {
         });
 
 
-
         $(R.id.installType).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -55,8 +54,6 @@ public class SettingsFragment extends BaseFragment {
                 getEditor().apply();
             }
         });
-
-
 
 
         $(R.id.hideicon).setOnClickListener(new View.OnClickListener() {

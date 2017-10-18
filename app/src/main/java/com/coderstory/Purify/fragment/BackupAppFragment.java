@@ -21,9 +21,9 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.coderstory.Purify.R;
+import com.coderstory.Purify.adapter.AppInfo;
 import com.coderstory.Purify.adapter.AppInfoAdapter;
 import com.coderstory.Purify.utils.LoadApkInfo;
-import com.coderstory.Purify.adapter.AppInfo;
 import com.yalantis.phoenix.PullToRefreshView;
 
 import java.io.DataOutputStream;

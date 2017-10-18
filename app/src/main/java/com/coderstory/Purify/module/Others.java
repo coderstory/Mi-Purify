@@ -1,17 +1,13 @@
 package com.coderstory.Purify.module;
 
-import android.view.WindowManager;
-
 import com.coderstory.Purify.plugins.IModule;
 
 import de.robv.android.xposed.IXposedHookZygoteInit;
-import de.robv.android.xposed.XC_MethodHook;
 import de.robv.android.xposed.XSharedPreferences;
 import de.robv.android.xposed.XposedBridge;
 import de.robv.android.xposed.XposedHelpers;
 import de.robv.android.xposed.callbacks.XC_InitPackageResources;
 import de.robv.android.xposed.callbacks.XC_LoadPackage;
-
 
 import static com.coderstory.Purify.config.Misc.ApplicationName;
 import static com.coderstory.Purify.config.Misc.SharedPreferencesName;

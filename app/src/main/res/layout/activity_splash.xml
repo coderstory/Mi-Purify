@@ -10,10 +10,10 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
 
-        android:scaleType="fitXY"
-        android:src="@drawable/background"
+        android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true" />
+        android:scaleType="fitXY"
+        android:src="@drawable/background" />
 
     <TextView
         android:id="@+id/ccd"

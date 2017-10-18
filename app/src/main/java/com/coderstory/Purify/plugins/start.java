@@ -1,11 +1,11 @@
 package com.coderstory.Purify.plugins;
 
 
+import com.coderstory.Purify.module.IsEnable;
 import com.coderstory.Purify.module.Others;
 import com.coderstory.Purify.module.RemoveAds;
 import com.coderstory.Purify.module.RemoveSearchBar;
 import com.coderstory.Purify.module.ThemePather8;
-import com.coderstory.Purify.module.IsEnable;
 
 import de.robv.android.xposed.IXposedHookInitPackageResources;
 import de.robv.android.xposed.IXposedHookLoadPackage;

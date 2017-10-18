@@ -15,7 +15,8 @@ public class AppInfo {
     private String Version = "";
     private String AppDir;
     private int VersionCode = 0;
-   public  AppInfo(){
+
+    public AppInfo() {
 
     }
 

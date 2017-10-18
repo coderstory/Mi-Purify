@@ -17,6 +17,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.coderstory.Purify.R;
+import com.coderstory.Purify.config.Misc;
 import com.coderstory.Purify.fragment.BlockADSFragment;
 import com.coderstory.Purify.fragment.BlogFragment;
 import com.coderstory.Purify.fragment.CleanFragment;
@@ -25,7 +26,6 @@ import com.coderstory.Purify.fragment.DonationFragment;
 import com.coderstory.Purify.fragment.HostsFragment;
 import com.coderstory.Purify.fragment.ManagerAppFragment;
 import com.coderstory.Purify.fragment.SettingsFragment;
-import com.coderstory.Purify.config.Misc;
 import com.coderstory.Purify.utils.roothelper.SuHelper;
 
 import ren.solid.library.fragment.WebViewFragment;
