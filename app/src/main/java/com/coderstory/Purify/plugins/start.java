@@ -1,7 +1,6 @@
 package com.coderstory.Purify.plugins;
 
 
-import com.coderstory.Purify.module.MiuiMusicCustomization;
 import com.coderstory.Purify.module.Others;
 import com.coderstory.Purify.module.RemoveAds;
 import com.coderstory.Purify.module.RemoveSearchBar;
@@ -27,7 +26,6 @@ public class start implements IXposedHookZygoteInit, IXposedHookLoadPackage, IXp
         new IsEnable().handleLoadPackage(lpparam);
         new RemoveAds().handleLoadPackage(lpparam);
         new ThemePather8().handleLoadPackage(lpparam);
-        new MiuiMusicCustomization().handleLoadPackage(lpparam);
         new Others().handleLoadPackage(lpparam);
     }
 

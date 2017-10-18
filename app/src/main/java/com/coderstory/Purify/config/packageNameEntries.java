@@ -6,10 +6,12 @@ package com.coderstory.Purify.config;
 
 public class packageNameEntries {
 
-    public static final String systemAdSolution_packageName = "com.miui.systemAdSolution_packageName";
-    public static final String analytics_packageName = "com.miui.analytics_packageName";
-    public static final String seemp_packageName = "com.qualcomm.qti.seemp_packageName.service";
-    public static final String miLink_packageName = "com.miLink_packageName.service";
+    public static final String systemAdSolution_packageName = "com.miui.systemAdSolution";
+    public static final String analytics_packageName = "com.miui.analytics";
+    public static final String seemp_packageName = "com.qualcomm.qti.seemp";
+    public static final String ab_packageName = "com.xiaomi.ab";
+
+    public static final String miLink_packageName = "com.miLink";
     public static final String music_packageName = "com.miui.player";
     public static final String cleanMaster_packageName = "com.miui.cleanmaster";
     public static final String core_packageName = "com.miui.core";

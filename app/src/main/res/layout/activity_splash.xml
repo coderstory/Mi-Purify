@@ -9,11 +9,11 @@
         android:id="@+id/imageView2"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
 
-        android:scaleType="center"
-        android:src="@drawable/background" />
+        android:scaleType="fitXY"
+        android:src="@drawable/background"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true" />
 
     <TextView
         android:id="@+id/ccd"
@@ -23,7 +23,7 @@
         android:layout_below="@+id/cc"
         android:layout_marginTop="10dp"
         android:fontFamily="sans-serif-condensed"
-        android:text="1.6.0"
+        android:text="2.0.0"
         android:textColor="#fff"
         android:textSize="25sp" />
 

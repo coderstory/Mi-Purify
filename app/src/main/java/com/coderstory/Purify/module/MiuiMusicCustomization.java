@@ -10,8 +10,8 @@ import de.robv.android.xposed.XposedHelpers;
 import de.robv.android.xposed.callbacks.XC_InitPackageResources;
 import de.robv.android.xposed.callbacks.XC_LoadPackage;
 
-import static com.coderstory.Purify.config.FunctionModule.MusicCustomization;
-import static com.coderstory.Purify.config.packageNameEntries.music_packageName;
+
+
 
 /**
  * Created by Baby Song on 2016/8/29.
@@ -37,9 +37,7 @@ public class MiuiMusicCustomization implements IModule {
         prefs.makeWorldReadable();
         prefs.reload();
 
-        if (loadPackageParam.packageName.equals(music_packageName) && prefs.getBoolean(MusicCustomization, true)) {
-            findAndHookMethod("com.miui.player.util.Configuration", loadPackageParam.classLoader, "isCmCustomization", XC_MethodReplacement.returnConstant(true));
-        }
+
     }
 
     @Override

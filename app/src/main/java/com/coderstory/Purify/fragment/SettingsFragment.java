@@ -10,10 +10,8 @@ import com.coderstory.Purify.R;
 
 import ren.solid.library.fragment.base.BaseFragment;
 
-import static com.coderstory.Purify.config.FunctionModule.MusicCustomization;
 import static com.coderstory.Purify.config.FunctionModule.RemoveSearchBar;
 import static com.coderstory.Purify.config.FunctionModule.enableCheck;
-import static com.coderstory.Purify.config.FunctionModule.fixPCB;
 import static com.coderstory.Purify.config.FunctionModule.hideIcon;
 import static com.coderstory.Purify.config.FunctionModule.installType;
 
@@ -48,13 +46,6 @@ public class SettingsFragment extends BaseFragment {
             }
         });
 
-        $(R.id.miuiMusicCustomization).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                getEditor().putBoolean(MusicCustomization, ((Switch) v).isChecked());
-                getEditor().apply();
-            }
-        });
 
 
         $(R.id.installType).setOnClickListener(new View.OnClickListener() {
@@ -66,13 +57,7 @@ public class SettingsFragment extends BaseFragment {
         });
 
 
-        $(R.id.fixpcb).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                getEditor().putBoolean(fixPCB, ((Switch) v).isChecked());
-                getEditor().apply();
-            }
-        });
+
 
         $(R.id.hideicon).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -100,8 +85,6 @@ public class SettingsFragment extends BaseFragment {
     protected void setUpData() {
         ((Switch) $(R.id.enableCheck)).setChecked(getPrefs().getBoolean(enableCheck, true));
         ((Switch) $(R.id.RemoveSearchBar)).setChecked(getPrefs().getBoolean(RemoveSearchBar, false));
-        ((Switch) $(R.id.miuiMusicCustomization)).setChecked(getPrefs().getBoolean(MusicCustomization, false));
-        ((Switch) $(R.id.fixpcb)).setChecked(getPrefs().getBoolean(fixPCB, false));
         ((Switch) $(R.id.hideicon)).setChecked(getPrefs().getBoolean(hideIcon, false));
         ((Switch) $(R.id.installType)).setChecked(getPrefs().getBoolean(installType, false));
     }

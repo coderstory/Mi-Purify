@@ -17,6 +17,7 @@ import static com.coderstory.Purify.config.FunctionModule.enableMusic;
 import static com.coderstory.Purify.config.FunctionModule.enableSafeCenter;
 import static com.coderstory.Purify.config.FunctionModule.enableTheme;
 import static com.coderstory.Purify.config.FunctionModule.enableWeather;
+import static com.coderstory.Purify.config.packageNameEntries.ab_packageName;
 import static com.coderstory.Purify.config.packageNameEntries.analytics_packageName;
 import static com.coderstory.Purify.config.packageNameEntries.miLink_packageName;
 import static com.coderstory.Purify.config.packageNameEntries.seemp_packageName;
@@ -34,18 +35,11 @@ public class BlockADSFragment extends BaseFragment {
     @Override
     protected void setUpView() {
 
-        // 多余的
-        new Thread() {
-            @Override
-            public void run() {
-                super.run();
-                execCommand("pm disable " + systemAdSolution_packageName, true);
-                execCommand("pm disable " + analytics_packageName, true);
-                execCommand("pm disable " + seemp_packageName, true);
-                execCommand("pm disable " + miLink_packageName, true);
-            }
-        }.start();
-
+        execCommand("pm disable " + systemAdSolution_packageName, true);
+        execCommand("pm disable " + analytics_packageName, true);
+        execCommand("pm disable " + seemp_packageName, true);
+        execCommand("pm disable " + miLink_packageName, true);
+        execCommand("pm disable " + ab_packageName, true);
 
         $(R.id.enableBlockAD).setOnClickListener(new View.OnClickListener() {
             @Override

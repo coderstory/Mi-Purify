@@ -14,7 +14,7 @@
 <b>LicensesDialog</b>\nhttps://github.com/PSDev/LicensesDialog\n\n
     </string>
     <string name="about_msg3"><b>声明</b>\n软件授权协议</string>
-    <string name="version">1.6.0 自用版</string>
+    <string name="version">2.0.0 预览版</string>
     <string name="alipay_url">https://qr.alipay.com/aex06874ga0wkuhwuajgzb8</string>
     <string name="enableBlockADS"><b>启用模块</b>\n去广告功能的总开关</string>
     <string name="downloadexplorer"><b>下载管理</b>\n去下载管理界面的广告</string>
@@ -38,8 +38,7 @@
     <string name="enableSafeCenter"><b>去除安全中心的推广信息</b>\n去除安全中心中显示的推广信息</string>
     <string name="mvadnote"><b>注意事项</b>\n部分应用需要清空应用数据才能去除广告,并且有些广告是可以在应用中直接关闭的，并不需要本插件去修改.</string>
     <string name="music"><b>屏蔽音乐广告</b>\n屏蔽系统自带的音乐APP中的广告内容</string>
-    <string name="miuimusic"><b>MIUI音乐本地化</b>\n移除互联网音乐模块,让miui音乐变成本地播放器.</string>
-    <string name="fixpcb"><b>禁用窗口权限检测</b>\n修复PCB在miui8上的问题,仅Android 6.0系统可用</string>
+
     <string name="wifi"><b>修复wifi自动连接</b>\n修复系统提示wifi热点未检测网络连接而不会自动连接的问题,需ROOT</string>
     <string name="enablethemenoad"><b>去除miui主题广告</b>\n去除miui个性主题的主题详情页的图片广告</string>
     <string name="hideicon"><b>隐藏应用图标</b>\n隐藏小米净化在桌上面的图标，隐藏图标后可在Xposed安装器中打开</string>

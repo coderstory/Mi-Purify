@@ -26,8 +26,6 @@ public class FunctionModule {
     public static final String enableCheck = "enableCheck";
 
     public static final String RemoveSearchBar = "RemoveSearchBar";
-    public static final String MusicCustomization = "MusicCustomization";
-    public static final String fixPCB = "fixPCB";
 
     public static final String hideIcon = "hideIcon";
 }

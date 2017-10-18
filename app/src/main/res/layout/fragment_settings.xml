@@ -80,25 +80,9 @@
                 android:paddingStart="30dp"
                 android:text="@string/RemoveSearchBar" />
 
-            <Switch
-                android:id="@+id/miuiMusicCustomization"
-                android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:layout_marginTop="10dp"
-                android:background="@color/switchBtn"
-                android:paddingEnd="30dp"
-                android:paddingStart="30dp"
-                android:text="@string/miuimusic" />
 
-            <Switch
-                android:id="@+id/fixpcb"
-                android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:layout_marginTop="10dp"
-                android:background="@color/switchBtn"
-                android:paddingEnd="30dp"
-                android:paddingStart="30dp"
-                android:text="@string/fixpcb" />
+
+
 
 
         </LinearLayout>
