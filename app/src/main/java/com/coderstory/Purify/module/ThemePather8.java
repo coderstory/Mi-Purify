@@ -71,8 +71,6 @@ public class ThemePather8 implements IModule {
 
     @Override
     public void initZygote(IXposedHookZygoteInit.StartupParam startupParam) {
-
-        //XposedBridge.log("start DRM Patch");
         MIUI_DRM();
     }
 

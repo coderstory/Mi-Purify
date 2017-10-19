@@ -25,7 +25,6 @@ public class MiuiMusicCustomization implements IModule {
 
     @Override
     public void handleInitPackageResources(XC_InitPackageResources.InitPackageResourcesParam resparam) {
-
     }
 
     @Override
@@ -33,12 +32,9 @@ public class MiuiMusicCustomization implements IModule {
         XSharedPreferences prefs = new XSharedPreferences("com.coderstory.Purify", "UserSettings");
         prefs.makeWorldReadable();
         prefs.reload();
-
-
     }
 
     @Override
     public void initZygote(IXposedHookZygoteInit.StartupParam startupParam) {
-
     }
 }
