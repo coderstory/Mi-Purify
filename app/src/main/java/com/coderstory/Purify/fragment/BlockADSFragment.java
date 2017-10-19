@@ -1,18 +1,30 @@
 package com.coderstory.Purify.fragment;
 
+import android.os.AsyncTask;
+import android.util.Log;
 import android.view.View;
 import android.widget.Switch;
-import android.widget.Toast;
 
 import com.coderstory.Purify.R;
 
+import java.io.File;
+
+import eu.chainfire.libsuperuser.Shell;
 import ren.solid.library.fragment.base.BaseFragment;
 
-
+import static com.coderstory.Purify.config.Misc.ApplicationName;
+import static com.coderstory.Purify.config.Misc.SharedPreferencesName;
 import static com.coderstory.Purify.utils.roothelper.ShellUtils.execCommand;
 
-
 public class BlockADSFragment extends BaseFragment {
+    public static final String PREFS_FOLDER = " /data/data/" + ApplicationName + "/shared_prefs\n";
+    public static final String PREFS_FILE = " /data/data/" + ApplicationName + "/shared_prefs/c" + SharedPreferencesName + ".xml\n";
+    private static final String TAG = "AA";
+
+    @Override
+    protected void init() {
+        super.init();
+    }
 
     @Override
     protected int setLayoutResourceID() {
@@ -21,22 +33,15 @@ public class BlockADSFragment extends BaseFragment {
 
     @Override
     protected void setUpView() {
-
-        execCommand("pm disable com.miui.systemAdSolution", true);
-        execCommand("pm disable com.miui.analytics", true);
-        execCommand("pm disable com.qualcomm.qti.seemp", true);
-        execCommand("pm disable com.xiaomi.ab", true);
-        execCommand("pm disable com.miLink", true);
-
         $(R.id.enableBlockAD).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                /*getEditor().putBoolean(enableBlockAD, ((Switch) v).isChecked());
+                getEditor().putBoolean("EnableBlockAD", ((Switch) v).isChecked());
                 getEditor().apply();
                 setCheck(((Switch) v).isChecked());
 
                 ((Switch) $(R.id.enableBlockADBasic)).setChecked(((Switch) v).isChecked());
-                getEditor().putBoolean(enableBlockADBasic, ((Switch) v).isChecked());
+                getEditor().putBoolean("EnableBlockADBasic", ((Switch) v).isChecked());
                 getEditor().apply();
 
                 if (((Switch) v).isChecked()) {
@@ -44,10 +49,11 @@ public class BlockADSFragment extends BaseFragment {
                         @Override
                         public void run() {
                             super.run();
-                            execCommand("pm disable " + systemAdSolution_packageName, true);
-                            execCommand("pm disable " + analytics_packageName, true);
-                            execCommand("pm disable " + seemp_packageName, true);
-                            execCommand("pm disable " + miLink_packageName, true);
+                            execCommand("pm disable com.miui.systemAdSolution", true);
+                            execCommand("pm disable com.miui.analytics", true);
+                            execCommand("pm disable com.qualcomm.qti.seemp", true);
+                            execCommand("pm disable com.xiaomi.ab", true);
+                            execCommand("pm disable com.miLink", true);
                         }
                     }.start();
                 } else {
@@ -55,93 +61,93 @@ public class BlockADSFragment extends BaseFragment {
                         @Override
                         public void run() {
                             super.run();
-                            execCommand("pm enable " + systemAdSolution_packageName, true);
-                            execCommand("pm enable " + analytics_packageName, true);
-                            execCommand("pm enable " + seemp_packageName, true);
-                            execCommand("pm enable " + miLink_packageName, true);
+                            execCommand("pm enable com.miui.systemAdSolution", true);
+                            execCommand("pm enable com.miui.analytics", true);
+                            execCommand("pm enable com.qualcomm.qti.seemp", true);
+                            execCommand("pm enable com.xiaomi.ab", true);
+                            execCommand("pm enable com.miLink", true);
                         }
                     }.start();
-                }*/
-                ((Switch) v).setChecked(true);
-                Toast.makeText(getMContext(), "测试版本,暂时无法关闭", Toast.LENGTH_LONG).show();
+                }
+                sudoFixPermissions();
             }
         });
 
         $(R.id.enableBlockADBasic).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //   getEditor().putBoolean(enableBlockADBasic, ((Switch) v).isChecked());
-                //   getEditor().apply();
-                ((Switch) v).setChecked(true);
-                Toast.makeText(getMContext(), "测试版本,暂时无法关闭", Toast.LENGTH_LONG).show();
+                getEditor().putBoolean("EnableBlockADBasic", ((Switch) v).isChecked());
+                getEditor().apply();
+                sudoFixPermissions();
+
             }
         });
 
         $(R.id.enableMMS).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //   getEditor().putBoolean(enableMMS, ((Switch) v).isChecked());
-                //   getEditor().apply();
-                ((Switch) v).setChecked(true);
-                Toast.makeText(getMContext(), "测试版本,暂时无法关闭", Toast.LENGTH_LONG).show();
+                getEditor().putBoolean("EnableMMS", ((Switch) v).isChecked());
+                getEditor().apply();
+                sudoFixPermissions();
+
             }
         });
         $(R.id.enableWeather).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //   getEditor().putBoolean(enableWeather, ((Switch) v).isChecked());
-                //   getEditor().apply();
-                ((Switch) v).setChecked(true);
-                Toast.makeText(getMContext(), "测试版本,暂时无法关闭", Toast.LENGTH_LONG).show();
+                getEditor().putBoolean("EnableWeather", ((Switch) v).isChecked());
+                getEditor().apply();
+                sudoFixPermissions();
+
             }
         });
         $(R.id.enableFileManager).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //  getEditor().putBoolean(enableFileManager, ((Switch) v).isChecked());
-                //   getEditor().apply();
-                ((Switch) v).setChecked(true);
-                Toast.makeText(getMContext(), "测试版本,暂时无法关闭", Toast.LENGTH_LONG).show();
+                getEditor().putBoolean("EnableFileManager", ((Switch) v).isChecked());
+                getEditor().apply();
+                sudoFixPermissions();
+
             }
         });
 
         $(R.id.enableDownload).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //  getEditor().putBoolean(enableDownload, ((Switch) v).isChecked());
-                // getEditor().apply();
-                ((Switch) v).setChecked(true);
-                Toast.makeText(getMContext(), "测试版本,暂时无法关闭", Toast.LENGTH_LONG).show();
+                getEditor().putBoolean("EnableDownload", ((Switch) v).isChecked());
+                getEditor().apply();
+                sudoFixPermissions();
+
             }
         });
 
         $(R.id.enableSafeCenter).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // getEditor().putBoolean(enableSafeCenter, ((Switch) v).isChecked());
-                // getEditor().apply();
-                ((Switch) v).setChecked(true);
-                Toast.makeText(getMContext(), "测试版本,暂时无法关闭", Toast.LENGTH_LONG).show();
+                getEditor().putBoolean("EnableSafeCenter", ((Switch) v).isChecked());
+                getEditor().apply();
+                sudoFixPermissions();
+
             }
         });
 
         $(R.id.enableMusic).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // getEditor().putBoolean(enableMusic, ((Switch) v).isChecked());
-                // getEditor().apply();+
-                ((Switch) v).setChecked(true);
-                Toast.makeText(getMContext(), "测试版本,暂时无法关闭", Toast.LENGTH_LONG).show();
+                getEditor().putBoolean("EnableMusic", ((Switch) v).isChecked());
+                getEditor().apply();
+                sudoFixPermissions();
+
             }
         });
 
         $(R.id.enabletheme).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ((Switch) v).setChecked(true);
-                Toast.makeText(getMContext(), "测试版本,暂时无法关闭", Toast.LENGTH_LONG).show();
-                //getEditor().putBoolean(enableTheme, ((Switch) v).isChecked());
-                //  getEditor().apply();
+
+                getEditor().putBoolean("EnableTheme", ((Switch) v).isChecked());
+                getEditor().apply();
+                sudoFixPermissions();
             }
         });
 
@@ -159,16 +165,6 @@ public class BlockADSFragment extends BaseFragment {
         ((Switch) $(R.id.enableSafeCenter)).setChecked(getPrefs().getBoolean("enableSafeCenter", true));
         ((Switch) $(R.id.enableMusic)).setChecked(getPrefs().getBoolean("enableMusic", true));
         setCheck(getPrefs().getBoolean("EnableBlockAD", true));
-
-       /* $(R.id.enableBlockAD).setClickable(false);
-        $(R.id.enableBlockADBasic).setClickable(false);
-        $(R.id.enableMMS).setClickable(false);
-        $(R.id.enableWeather).setClickable(false);
-        $(R.id.enableFileManager).setClickable(false);
-        $(R.id.enableDownload).setClickable(false);
-        $(R.id.enableSafeCenter).setClickable(false);
-        $(R.id.enableMusic).setClickable(false);
-        $(R.id.enabletheme).setClickable(false);*/
 
     }
 
@@ -196,4 +192,22 @@ public class BlockADSFragment extends BaseFragment {
 
     }
 
+    private void sudoFixPermissions() {
+        new Thread() {
+            @Override
+            public void run() {
+                File pkgFolder = new File("/data/data/" + ApplicationName);
+                if (pkgFolder.exists()) {
+                    pkgFolder.setExecutable(true, false);
+                    pkgFolder.setReadable(true, false);
+                }
+                Shell.SU.run("chmod  755 " + PREFS_FOLDER);
+                // Set preferences file permissions to be world readable
+                Shell.SU.run("chmod  644 " + PREFS_FILE);
+                Log.d(TAG, "Saved Preferences Successfully.");
+            }
+        }.start();
+    }
+
 }
+

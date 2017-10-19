@@ -54,7 +54,8 @@ android {
         abortOnError false
     }
 
-
+    dexOptions {
+    }
 }
 
 dependencies {
@@ -66,6 +67,7 @@ dependencies {
     compile 'com.android.support:design:26.+'
     testCompile 'junit:junit:4.12'
     provided 'de.robv.android.xposed:api:82'
+    compile 'eu.chainfire:libsuperuser:1.0.0.+'
 }
 
 def releaseTime() {

@@ -2,6 +2,7 @@ package com.coderstory.Purify.module;
 
 
 import com.coderstory.Purify.plugins.IModule;
+import com.coderstory.Purify.utils.XposedHelper;
 
 import de.robv.android.xposed.IXposedHookZygoteInit;
 import de.robv.android.xposed.XC_MethodReplacement;
@@ -13,7 +14,7 @@ import de.robv.android.xposed.callbacks.XC_LoadPackage;
 import static com.coderstory.Purify.config.Misc.ApplicationName;
 
 
-public class IsEnable implements IModule {
+public class IsEnable extends XposedHelper implements IModule {
 
 
     @Override

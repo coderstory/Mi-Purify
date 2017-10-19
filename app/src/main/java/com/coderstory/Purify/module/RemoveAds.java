@@ -9,6 +9,8 @@ import android.preference.PreferenceManager;
 import android.view.View;
 import android.view.ViewGroup;
 import com.coderstory.Purify.plugins.IModule;
+import com.coderstory.Purify.utils.XposedHelper;
+
 import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.List;
@@ -26,25 +28,7 @@ import static com.coderstory.Purify.config.Misc.ApplicationName;
 import static com.coderstory.Purify.config.Misc.SharedPreferencesName;
 
 
-public class RemoveAds implements IModule {
-
-    private static void findAndHookMethod(String p1, ClassLoader lpparam, String p2, Object... parameterTypesAndCallback) {
-        try {
-            XposedHelpers.findAndHookMethod(p1, lpparam, p2, parameterTypesAndCallback);
-
-        } catch (Throwable localString3) {
-            XposedBridge.log(localString3);
-        }
-    }
-
-    private static void findAndHookConstructor(String p1, ClassLoader lpparam, Object... parameterTypesAndCallback) {
-        try {
-            XposedHelpers.findAndHookConstructor(p1, lpparam, lpparam, parameterTypesAndCallback);
-
-        } catch (Throwable localString3) {
-            XposedBridge.log(localString3);
-        }
-    }
+public class RemoveAds extends XposedHelper implements IModule  {
 
     @Override
     public void handleInitPackageResources(XC_InitPackageResources.InitPackageResourcesParam resparam) {

@@ -17,13 +17,6 @@ public class SplashActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
-        new Thread() {
-            @Override
-            public void run() {
-                super.run();
-                canRunRootCommands();
-            }
-        }.start();
         //倒计时返回主界面
         new AsyncTask<Void, Void, Integer>() {
             @Override

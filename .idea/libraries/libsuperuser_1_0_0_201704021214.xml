@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="libsuperuser-1.0.0.201704021214">
+    <CLASSES>
+      <root url="jar://C:/Android/.android/build-cache/91c954885cbc3e0d5da08325239ff40633cbc0f8/output/jars/classes.jar!/" />
+      <root url="file://C:/Android/.android/build-cache/91c954885cbc3e0d5da08325239ff40633cbc0f8/output/res" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/eu.chainfire/libsuperuser/1.0.0.201704021214/277d2fc33ab168c170e22402ad6d55f4b1807860/libsuperuser-1.0.0.201704021214-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

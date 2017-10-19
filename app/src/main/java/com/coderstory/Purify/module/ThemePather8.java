@@ -3,6 +3,7 @@ package com.coderstory.Purify.module;
 import android.content.Context;
 
 import com.coderstory.Purify.plugins.IModule;
+import com.coderstory.Purify.utils.XposedHelper;
 
 import java.io.File;
 
@@ -17,35 +18,8 @@ import de.robv.android.xposed.callbacks.XC_LoadPackage;
  * Created by Baby Song on 2016/8/17.
  */
 
-public class ThemePather8 implements IModule {
-    public static Object getDrmResultSUCCESS() {
-        try {
-            Class<Enum> drmSuccess = (Class<Enum>) Class.forName("miui.drm.DrmManager$DrmResult");
-            if (drmSuccess != null) {
-                return Enum.valueOf(drmSuccess, "DRM_SUCCESS");
-            }
-        } catch (Throwable localString4) {
-            XposedBridge.log(localString4);
+public class ThemePather8 extends XposedHelper implements IModule {
 
-        }
-        return null;
-    }
-
-    private static void findAndHookMethod(String p1, ClassLoader lpparam, String p2, Object... parameterTypesAndCallback) {
-        try {
-            XposedHelpers.findAndHookMethod(p1, lpparam, p2, parameterTypesAndCallback);
-        } catch (Throwable localString3) {
-            XposedBridge.log(localString3);
-        }
-    }
-
-    private static void findAndHookMethod(String p1, String p2, Object[] p3) {
-        try {
-            XposedHelpers.findAndHookMethod(Class.forName(p1), p2, p3);
-        } catch (Throwable localString3) {
-            XposedBridge.log(localString3);
-        }
-    }
 
     @Override
     public void handleInitPackageResources(XC_InitPackageResources.InitPackageResourcesParam resparam) {

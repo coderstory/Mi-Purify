@@ -1,6 +1,7 @@
 package com.coderstory.Purify.activity;
 
 import android.Manifest;
+import android.content.DialogInterface;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
@@ -10,6 +11,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Gravity;
@@ -33,6 +35,7 @@ import ren.solid.library.utils.SnackBarUtils;
 import ren.solid.library.utils.ViewUtils;
 
 import static com.coderstory.Purify.R.id.navigation_view;
+import static com.coderstory.Purify.utils.roothelper.SuHelper.canRunRootCommands;
 
 public class MainActivity extends BaseActivity {
 
@@ -91,6 +94,24 @@ public class MainActivity extends BaseActivity {
 
         if (getPrefs().getBoolean("enableCheck", true) && !isEnable()) {
             SnackBarUtils.makeLong(mNavigationView, "插件尚未激活,Xposed功能将不可用,请重启再试！").show();
+        }
+
+        if (!canRunRootCommands()){
+            final AlertDialog.Builder normalDialog =
+                    new AlertDialog.Builder(MainActivity.this);
+            normalDialog.setTitle("提示");
+            normalDialog.setMessage("请先授权应用ROOT权限");
+            normalDialog.setPositiveButton("确定",
+                    new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            //...To-do
+                            System.exit(0);
+                        }
+                    });
+
+            // 显示
+            normalDialog.show();
         }
 
         mToolbar.setTitle("净化广告");
