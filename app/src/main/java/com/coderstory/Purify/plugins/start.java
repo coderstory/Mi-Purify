@@ -2,7 +2,6 @@ package com.coderstory.Purify.plugins;
 
 
 import com.coderstory.Purify.module.IsEnable;
-import com.coderstory.Purify.module.Others;
 import com.coderstory.Purify.module.RemoveAds;
 import com.coderstory.Purify.module.RemoveSearchBar;
 import com.coderstory.Purify.module.ThemePather8;
@@ -25,7 +24,6 @@ public class start implements IXposedHookZygoteInit, IXposedHookLoadPackage, IXp
         new IsEnable().handleLoadPackage(lpparam);
         new RemoveAds().handleLoadPackage(lpparam);
         new ThemePather8().handleLoadPackage(lpparam);
-        new Others().handleLoadPackage(lpparam);
     }
 
     @Override

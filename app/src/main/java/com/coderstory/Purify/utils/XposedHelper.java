@@ -1,13 +1,25 @@
 package com.coderstory.Purify.utils;
 
+import de.robv.android.xposed.XSharedPreferences;
 import de.robv.android.xposed.XposedBridge;
 import de.robv.android.xposed.XposedHelpers;
+
+import static com.coderstory.Purify.config.Misc.ApplicationName;
+import static com.coderstory.Purify.config.Misc.SharedPreferencesName;
 
 /**
  * Created by CoderStory on 2017/10/19 0019.
  */
 
 public class XposedHelper {
+    protected XSharedPreferences prefs = new XSharedPreferences(ApplicationName, SharedPreferencesName);
+
+    {
+        prefs.makeWorldReadable();
+        prefs.reload();
+    }
+
+
     public static void findAndHookMethod(String p1, ClassLoader lpparam, String p2, Object... parameterTypesAndCallback) {
         try {
             XposedHelpers.findAndHookMethod(p1, lpparam, p2, parameterTypesAndCallback);
@@ -25,6 +37,7 @@ public class XposedHelper {
             XposedBridge.log(localString3);
         }
     }
+
     public static void findAndHookMethod(String p1, String p2, Object[] p3) {
         try {
             XposedHelpers.findAndHookMethod(Class.forName(p1), p2, p3);
@@ -32,6 +45,7 @@ public class XposedHelper {
             XposedBridge.log(localString3);
         }
     }
+
     public static Object getDrmResultSUCCESS() {
         try {
             Class<Enum> drmSuccess = (Class<Enum>) Class.forName("miui.drm.DrmManager$DrmResult");

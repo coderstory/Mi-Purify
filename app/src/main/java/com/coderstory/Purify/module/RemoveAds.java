@@ -32,9 +32,6 @@ public class RemoveAds extends XposedHelper implements IModule  {
 
     @Override
     public void handleInitPackageResources(XC_InitPackageResources.InitPackageResourcesParam resparam) {
-        XSharedPreferences prefs = new XSharedPreferences(ApplicationName, SharedPreferencesName);
-        prefs.makeWorldReadable();
-        prefs.reload();
 
         if (resparam.packageName.equals("com.miui.cleanmaster")) {
 
@@ -51,10 +48,6 @@ public class RemoveAds extends XposedHelper implements IModule  {
     @Override
     public void handleLoadPackage(XC_LoadPackage.LoadPackageParam loadPackageParam) {
 
-
-        XSharedPreferences prefs = new XSharedPreferences("com.coderstory.Purify", "UserSettings");
-        prefs.makeWorldReadable();
-        prefs.reload();
         if (!prefs.getBoolean("EnableBlockAD", true)) {
             return;
         }
