@@ -11,12 +11,10 @@
         android:id="@+id/action_blog"
         android:orderInCategory="100"
         android:title="我的博客"
-        app:showAsAction="never"
-        />
+        app:showAsAction="never" />
     <item
         android:id="@+id/action_settings"
         android:orderInCategory="100"
         android:title="@string/about"
-        app:showAsAction="never"
-        />
+        app:showAsAction="never" />
 </menu>

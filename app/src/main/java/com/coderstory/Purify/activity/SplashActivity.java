@@ -7,8 +7,6 @@ import android.os.Bundle;
 
 import com.coderstory.Purify.R;
 
-import static com.coderstory.Purify.utils.roothelper.SuHelper.canRunRootCommands;
-
 public class SplashActivity extends Activity {
 
     private static final int SHOW_TIME_MIN = 1200;

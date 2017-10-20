@@ -8,9 +8,10 @@ import android.view.View;
 import android.widget.Switch;
 
 import com.coderstory.Purify.R;
-import eu.chainfire.libsuperuser.Shell;
+
 import java.io.File;
 
+import eu.chainfire.libsuperuser.Shell;
 import ren.solid.library.fragment.base.BaseFragment;
 
 import static com.coderstory.Purify.config.Misc.ApplicationName;
@@ -21,6 +22,7 @@ public class SettingsFragment extends BaseFragment {
     public static final String PREFS_FOLDER = " /data/data/" + ApplicationName + "/shared_prefs\n";
     public static final String PREFS_FILE = " /data/data/" + ApplicationName + "/shared_prefs/c" + SharedPreferencesName + ".xml\n";
     private static final String TAG = "AA";
+
     public SettingsFragment() {
         // Required empty public constructor
     }

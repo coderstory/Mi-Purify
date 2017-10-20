@@ -8,27 +8,27 @@ import android.net.Uri;
 import android.preference.PreferenceManager;
 import android.view.View;
 import android.view.ViewGroup;
+
 import com.coderstory.Purify.plugins.IModule;
 import com.coderstory.Purify.utils.XposedHelper;
 
 import org.json.JSONObject;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+
 import de.robv.android.xposed.IXposedHookZygoteInit;
 import de.robv.android.xposed.XC_MethodHook;
 import de.robv.android.xposed.XC_MethodReplacement;
-import de.robv.android.xposed.XSharedPreferences;
 import de.robv.android.xposed.XposedBridge;
 import de.robv.android.xposed.XposedHelpers;
 import de.robv.android.xposed.callbacks.XC_InitPackageResources;
 import de.robv.android.xposed.callbacks.XC_LoadPackage;
-import static com.coderstory.Purify.config.Misc.ApplicationName;
-import static com.coderstory.Purify.config.Misc.SharedPreferencesName;
 
 
-public class RemoveAds extends XposedHelper implements IModule  {
+public class RemoveAds extends XposedHelper implements IModule {
 
     @Override
     public void handleInitPackageResources(XC_InitPackageResources.InitPackageResourcesParam resparam) {

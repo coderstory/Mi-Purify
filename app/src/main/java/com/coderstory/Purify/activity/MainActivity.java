@@ -96,7 +96,7 @@ public class MainActivity extends BaseActivity {
             SnackBarUtils.makeLong(mNavigationView, "插件尚未激活,Xposed功能将不可用,请重启再试！").show();
         }
 
-        if (!canRunRootCommands()){
+        if (!canRunRootCommands()) {
             final AlertDialog.Builder normalDialog =
                     new AlertDialog.Builder(MainActivity.this);
             normalDialog.setTitle("提示");
