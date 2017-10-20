@@ -41,9 +41,9 @@ public class SettingsFragment extends BaseFragment {
         $(R.id.RemoveSearchBar).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                sudoFixPermissions();
                 getEditor().putBoolean("RemoveSearchBar", ((Switch) v).isChecked());
                 getEditor().apply();
+                sudoFixPermissions();
             }
         });
 

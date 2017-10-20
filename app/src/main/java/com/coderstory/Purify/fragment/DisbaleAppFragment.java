@@ -47,8 +47,6 @@ import static ren.solid.library.utils.FileUtils.readFile;
  * A simple {@link Fragment} subclass.
  */
 public class DisbaleAppFragment extends BaseFragment {
-
-
     // private Context mContext=null;
     List<PackageInfo> packages = new ArrayList<>();
     AppInfoAdapter adapter = null;
@@ -139,7 +137,6 @@ public class DisbaleAppFragment extends BaseFragment {
                             os.writeBytes("exit\n");
                             os.flush();
                             process.waitFor();
-                            // View rootView = LayoutInflater.from(mContext).inflate(R.layout.app_info_item, null);
                             if (appInfo.getDisable()) {
                                 appInfo.setDisable(false);
                                 appInfoList.set(mposition, appInfo);
@@ -187,7 +184,7 @@ public class DisbaleAppFragment extends BaseFragment {
 
         new MyTask().execute();
 
-        mPullToRefreshView = (PullToRefreshView) getContentView().findViewById(R.id.pull_to_refresh);
+        mPullToRefreshView =getContentView().findViewById(R.id.pull_to_refresh);
 
         mPullToRefreshView.setOnRefreshListener(new PullToRefreshView.OnRefreshListener() {
             @Override
@@ -272,8 +269,6 @@ public class DisbaleAppFragment extends BaseFragment {
 
 
     private void restoreList() {
-        FileInputStream fos = null;
-
         File dir = new File(BackUpFileName);
         String fileName = "userList";
         String content = "";
@@ -325,7 +320,7 @@ public class DisbaleAppFragment extends BaseFragment {
                 return;
             }
         }
-        FileOutputStream fos = null;
+        FileOutputStream fos ;
         String result = "";
         try {
             fos = new FileOutputStream(BackUpFileName + fileName);
