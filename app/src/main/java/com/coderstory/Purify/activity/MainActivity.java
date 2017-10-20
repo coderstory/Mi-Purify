@@ -25,6 +25,7 @@ import com.coderstory.Purify.fragment.BlogFragment;
 import com.coderstory.Purify.fragment.CleanFragment;
 import com.coderstory.Purify.fragment.DisbaleAppFragment;
 import com.coderstory.Purify.fragment.DonationFragment;
+import com.coderstory.Purify.fragment.HideAppFragment;
 import com.coderstory.Purify.fragment.HostsFragment;
 import com.coderstory.Purify.fragment.ManagerAppFragment;
 import com.coderstory.Purify.fragment.SettingsFragment;
@@ -105,7 +106,6 @@ public class MainActivity extends BaseActivity {
                     new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
-                            //...To-do
                             System.exit(0);
                         }
                     });
@@ -179,36 +179,40 @@ public class MainActivity extends BaseActivity {
 
                 switch (item.getItemId()) {
                     case R.id.navigation_item_blockads:
-                        mToolbar.setTitle("净化广告");
+                        mToolbar.setTitle(R.string.MIUI_Purify);
                         switchFragment(BlockADSFragment.class);
                         break;
 
                     case R.id.navigation_item_hosts:
-                        mToolbar.setTitle("Hosts设置");
+                        mToolbar.setTitle(R.string.hosts);
                         switchFragment(HostsFragment.class);
                         break;
 
                     case R.id.navigation_item_settings:
-                        mToolbar.setTitle("其他设置");
+                        mToolbar.setTitle(R.string.othersettings);
                         switchFragment(SettingsFragment.class);
                         break;
 
                     case R.id.navigation_item_Clean:
-                        mToolbar.setTitle("应用清理");
+                        mToolbar.setTitle(R.string.appclean);
                         switchFragment(CleanFragment.class);
                         break;
 
                     case R.id.navigation_item_disableapps:
-                        mToolbar.setTitle("冻结应用");
+                        mToolbar.setTitle(R.string.disableapp);
                         switchFragment(DisbaleAppFragment.class);
                         break;
                     case R.id.navigation_item_donation:
-                        mToolbar.setTitle("捐赠");
+                        mToolbar.setTitle(R.string.navigation_item_donation);
                         switchFragment(DonationFragment.class);
                         break;
                     case R.id.navigation_item_ManagerApp:
-                        mToolbar.setTitle("应用管理");
+                        mToolbar.setTitle(R.string.navigation_item_ManagerApp);
                         switchFragment(ManagerAppFragment.class);
+                        break;
+                    case R.id.navigation_item_hide_app:
+                        mToolbar.setTitle(R.string.hide_app_icon);
+                        switchFragment(HideAppFragment.class);
                         break;
                     default:
                         break;
@@ -250,10 +254,9 @@ public class MainActivity extends BaseActivity {
         } else if (id == R.id.action_reboot) {
             SuHelper.showTips("busybox killall system_server", getString(R.string.Tips_HotBoot), this);
         } else if (id == R.id.action_blog) {
-            mToolbar.setTitle("我的博客");
+            mToolbar.setTitle(R.string.myblog);
             switchFragment(BlogFragment.class);
         }
-
 
         return super.onOptionsItemSelected(item);
     }

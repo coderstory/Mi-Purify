@@ -30,7 +30,6 @@ import com.yalantis.phoenix.PullToRefreshView;
 
 import java.io.DataOutputStream;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
@@ -184,7 +183,7 @@ public class DisbaleAppFragment extends BaseFragment {
 
         new MyTask().execute();
 
-        mPullToRefreshView =getContentView().findViewById(R.id.pull_to_refresh);
+        mPullToRefreshView = getContentView().findViewById(R.id.pull_to_refresh);
 
         mPullToRefreshView.setOnRefreshListener(new PullToRefreshView.OnRefreshListener() {
             @Override
@@ -320,7 +319,7 @@ public class DisbaleAppFragment extends BaseFragment {
                 return;
             }
         }
-        FileOutputStream fos ;
+        FileOutputStream fos;
         String result = "";
         try {
             fos = new FileOutputStream(BackUpFileName + fileName);

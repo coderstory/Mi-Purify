@@ -19,6 +19,12 @@
             android:id="@+id/navigation_item_Clean"
             android:icon="@drawable/clean"
             android:title="@string/appclean" />
+
+        <item
+            android:id="@+id/navigation_item_hide_app"
+            android:icon="@drawable/hosts"
+            android:title="@string/hide_app_icon" />
+
         <item
             android:id="@+id/navigation_item_hosts"
             android:icon="@drawable/hosts"
@@ -27,14 +33,14 @@
         <item
             android:id="@+id/navigation_item_ManagerApp"
             android:icon="@drawable/hosts"
-            android:title="应用管理" />
+            android:title="@string/navigation_item_ManagerApp" />
 
         <item android:title="@string/other">
             <menu>
                 <item
                     android:id="@+id/navigation_item_donation"
                     android:icon="@drawable/iconfont_custom_view"
-                    android:title="捐赠" />
+                    android:title="@string/navigation_item_donation" />
                 <item
                     android:id="@+id/navigation_item_settings"
                     android:icon="@drawable/iconfont_custom_view"

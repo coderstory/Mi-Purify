@@ -50,7 +50,7 @@
     <string name="Downloading">正在下载。。。</string>
     <string name="Download_Success">下载完毕</string>
     <string name="Download_Fail">下载错误</string>
-    <string name="Tips_HotBoot">你确定要快速重启吗？</string>
+    <string name="Tips_HotBoot">你确定要快速重启系统吗？</string>
     <string name="copy_url">复制链接</string>
     <string name="save">保存</string>
     <string name="share">分享</string>
@@ -126,5 +126,8 @@
     <string name="restoreing">OK,正在恢复配置！</string>
     <string name="not_fond_backup_list">未找到备份列表！</string>
     <string name="not_fond_backup_list_file">未找到备份列表！</string>
+    <string name="hide_app_icon">隐藏图标</string>
+    <string name="navigation_item_ManagerApp">应用管理</string>
+    <string name="navigation_item_donation">捐赠</string>
 
 </resources>

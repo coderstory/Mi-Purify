@@ -17,7 +17,7 @@ import static com.coderstory.Purify.utils.roothelper.ShellUtils.execCommand;
 
 public class BlockADSFragment extends BaseFragment {
     public static final String PREFS_FOLDER = " /data/data/" + ApplicationName + "/shared_prefs\n";
-    public static final String PREFS_FILE = " /data/data/" + ApplicationName + "/shared_prefs/c" + SharedPreferencesName + ".xml\n";
+    public static final String PREFS_FILE = " /data/data/" + ApplicationName + "/shared_prefs/" + SharedPreferencesName + ".xml\n";
     private static final String TAG = "AA";
 
     @Override

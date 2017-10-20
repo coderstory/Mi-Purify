@@ -5,7 +5,7 @@ import android.content.ComponentName;
 import com.coderstory.Purify.plugins.IModule;
 import com.coderstory.Purify.utils.XposedHelper;
 
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import de.robv.android.xposed.IXposedHookZygoteInit;
@@ -25,22 +25,24 @@ public class HideApp extends XposedHelper implements IModule {
     }
 
     @Override
-    public void handleLoadPackage(XC_LoadPackage.LoadPackageParam lpparam) {
-
-        if (lpparam.packageName.equals("com.miui.home")) {
-            findAndHookMethod("com.miui.home.launcher.LauncherProvider", lpparam.classLoader, "isSkippedItem", ComponentName.class, new XC_MethodHook() {
-                @Override
-                protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
-                    ComponentName componentName = (ComponentName) param.args[0];
-                    List<String> list = new ArrayList<>();
-                    list.add("com.android.chrome");
-                    list.add("org.adaway");
-                    if (list.contains(componentName.getPackageName())) {
-                        param.setResult(true);
+    public void handleLoadPackage(XC_LoadPackage.LoadPackageParam loadPackageParam) {
+        final String value = prefs.getString("Hide_App_List", "");
+        if (!value.equals("")) {
+            final List<String> hideAppList = Arrays.asList(value.split(":"));
+            if (loadPackageParam.packageName.equals("com.miui.home")) {
+                XposedBridge.log("load config" + value);
+                findAndHookMethod("com.miui.home.launcher.LauncherProvider", loadPackageParam.classLoader, "isSkippedItem", ComponentName.class, new XC_MethodHook() {
+                    @Override
+                    protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
+                        ComponentName componentName = (ComponentName) param.args[0];
+                        if (hideAppList.contains(componentName.getPackageName())) {
+                            XposedBridge.log("hide app " + componentName.getPackageName());
+                            param.setResult(true);
+                        }
                     }
-                }
-            });
-        };
+                });
+            }
+        }
     }
 
     @Override
