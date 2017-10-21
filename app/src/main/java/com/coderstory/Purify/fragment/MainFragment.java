@@ -2,7 +2,7 @@ package com.coderstory.Purify.fragment;
 
 import com.coderstory.Purify.R;
 
-import ren.solid.library.fragment.base.BaseFragment;
+import com.coderstory.Purify.fragment.base.BaseFragment;
 
 /**
  * Created by _SOLID

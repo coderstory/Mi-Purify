@@ -12,7 +12,7 @@ import com.coderstory.Purify.R;
 import java.io.File;
 
 import eu.chainfire.libsuperuser.Shell;
-import ren.solid.library.fragment.base.BaseFragment;
+import com.coderstory.Purify.fragment.base.BaseFragment;
 
 import static com.coderstory.Purify.config.Misc.ApplicationName;
 import static com.coderstory.Purify.config.Misc.SharedPreferencesName;

@@ -13,8 +13,7 @@ import com.coderstory.Purify.R;
 
 import java.io.File;
 
-import ren.solid.library.fragment.WebViewFragment;
-import ren.solid.library.utils.SnackBarUtils;
+import com.coderstory.Purify.utils.SnackBarUtils;
 
 import static android.content.Context.CLIPBOARD_SERVICE;
 import static com.coderstory.Purify.config.Misc.MyBlogUrl;

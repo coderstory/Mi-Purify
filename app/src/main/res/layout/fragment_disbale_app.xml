@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:gravity="center">
 
-    <com.yalantis.phoenix.PullToRefreshView
+    <com.coderstory.Purify.view.PullToRefreshView
         android:id="@+id/pull_to_refresh"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -19,5 +19,5 @@
             android:layout_alignParentTop="false"
             android:divider="#00000000"
             android:dividerHeight="0dip" />
-    </com.yalantis.phoenix.PullToRefreshView>
+    </com.coderstory.Purify.view.PullToRefreshView>
 </RelativeLayout>

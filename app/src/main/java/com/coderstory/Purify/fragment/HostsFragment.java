@@ -11,7 +11,7 @@ import com.coderstory.Purify.R;
 import com.coderstory.Purify.utils.hostshelper.FileHelper;
 import com.coderstory.Purify.utils.hostshelper.HostsHelper;
 
-import ren.solid.library.fragment.base.BaseFragment;
+import com.coderstory.Purify.fragment.base.BaseFragment;
 
 
 public class HostsFragment extends BaseFragment {

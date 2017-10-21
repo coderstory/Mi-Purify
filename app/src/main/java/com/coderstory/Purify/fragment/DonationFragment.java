@@ -8,7 +8,7 @@ import android.view.View;
 
 import com.coderstory.Purify.R;
 
-import ren.solid.library.fragment.base.BaseFragment;
+import com.coderstory.Purify.fragment.base.BaseFragment;
 
 /**
  * A simple {@link Fragment} subclass.

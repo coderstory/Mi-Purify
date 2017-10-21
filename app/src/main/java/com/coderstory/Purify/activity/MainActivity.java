@@ -31,9 +31,9 @@ import com.coderstory.Purify.fragment.ManagerAppFragment;
 import com.coderstory.Purify.fragment.SettingsFragment;
 import com.coderstory.Purify.utils.roothelper.SuHelper;
 
-import ren.solid.library.fragment.WebViewFragment;
-import ren.solid.library.utils.SnackBarUtils;
-import ren.solid.library.utils.ViewUtils;
+import com.coderstory.Purify.fragment.WebViewFragment;
+import com.coderstory.Purify.utils.SnackBarUtils;
+import com.coderstory.Purify.utils.ViewUtils;
 
 import static com.coderstory.Purify.R.id.navigation_view;
 import static com.coderstory.Purify.utils.roothelper.SuHelper.canRunRootCommands;

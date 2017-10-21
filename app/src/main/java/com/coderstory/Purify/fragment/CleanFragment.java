@@ -14,8 +14,8 @@ import com.coderstory.Purify.utils.hostshelper.FileHelper;
 import com.coderstory.Purify.utils.roothelper.CommandResult;
 import com.coderstory.Purify.utils.roothelper.RootUtils;
 
-import ren.solid.library.fragment.base.BaseFragment;
-import ren.solid.library.utils.SnackBarUtils;
+import com.coderstory.Purify.fragment.base.BaseFragment;
+import com.coderstory.Purify.utils.SnackBarUtils;
 
 /**
  * A simple {@link Fragment} subclass.

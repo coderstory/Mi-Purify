@@ -16,7 +16,7 @@ import com.coderstory.Purify.R;
 import java.util.ArrayList;
 import java.util.List;
 
-import ren.solid.library.fragment.base.BaseFragment;
+import com.coderstory.Purify.fragment.base.BaseFragment;
 
 
 public class ManagerAppFragment extends BaseFragment implements ViewPager.OnPageChangeListener,

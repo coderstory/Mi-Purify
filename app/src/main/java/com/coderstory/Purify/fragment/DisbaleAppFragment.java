@@ -26,7 +26,7 @@ import com.coderstory.Purify.R;
 import com.coderstory.Purify.adapter.AppInfo;
 import com.coderstory.Purify.adapter.AppInfoAdapter;
 import com.coderstory.Purify.utils.roothelper.SuHelper;
-import com.yalantis.phoenix.PullToRefreshView;
+import com.coderstory.Purify.view.PullToRefreshView;
 
 import java.io.DataOutputStream;
 import java.io.File;
@@ -36,11 +36,11 @@ import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
 
-import ren.solid.library.fragment.base.BaseFragment;
-import ren.solid.library.utils.SnackBarUtils;
+import com.coderstory.Purify.fragment.base.BaseFragment;
+import com.coderstory.Purify.utils.SnackBarUtils;
 
 import static com.coderstory.Purify.config.Misc.BackUpFileName;
-import static ren.solid.library.utils.FileUtils.readFile;
+import static com.coderstory.Purify.utils.FileUtils.readFile;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -53,7 +53,7 @@ public class DisbaleAppFragment extends BaseFragment {
     AppInfo appInfo = null;
     int mposition = 0;
     View mview = null;
-    com.yalantis.phoenix.PullToRefreshView mPullToRefreshView;
+    PullToRefreshView mPullToRefreshView;
     AlertDialog mydialog;
     private List<AppInfo> appInfoList = new ArrayList<>();
     private List<AppInfo> appInfoList2 = new ArrayList<>();

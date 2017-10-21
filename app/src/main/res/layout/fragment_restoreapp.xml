@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <com.yalantis.phoenix.PullToRefreshView
+    <com.coderstory.Purify.view.PullToRefreshView
         android:id="@+id/pull_to_refresh1"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -19,6 +19,6 @@
             android:dividerHeight="13px"
             android:footerDividersEnabled="false"
             android:headerDividersEnabled="false" />
-    </com.yalantis.phoenix.PullToRefreshView>
+    </com.coderstory.Purify.view.PullToRefreshView>
 
 </RelativeLayout>

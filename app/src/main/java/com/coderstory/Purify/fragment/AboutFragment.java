@@ -12,7 +12,7 @@ import com.coderstory.Purify.utils.licensesdialog.licenses.GnuGeneralPublicLicen
 import com.coderstory.Purify.utils.licensesdialog.model.Notice;
 import com.coderstory.Purify.utils.licensesdialog.model.Notices;
 
-import ren.solid.library.fragment.base.BaseFragment;
+import com.coderstory.Purify.fragment.base.BaseFragment;
 
 /**
  * Created by _SOLID
