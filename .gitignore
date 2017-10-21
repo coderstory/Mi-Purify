@@ -27,3 +27,11 @@ proguard/
 *.log
 
 .idea/
+
+gradlew
+gradlew.bat
+
+
+
+
+
