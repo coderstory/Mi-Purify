@@ -7,7 +7,6 @@ import android.support.v4.app.Fragment;
 import android.view.View;
 
 import com.coderstory.Purify.R;
-
 import com.coderstory.Purify.fragment.base.BaseFragment;
 
 /**

@@ -6,13 +6,12 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.coderstory.Purify.R;
+import com.coderstory.Purify.fragment.base.BaseFragment;
 import com.coderstory.Purify.utils.licensesdialog.LicensesDialog;
 import com.coderstory.Purify.utils.licensesdialog.licenses.ApacheSoftwareLicense20;
 import com.coderstory.Purify.utils.licensesdialog.licenses.GnuGeneralPublicLicense20;
 import com.coderstory.Purify.utils.licensesdialog.model.Notice;
 import com.coderstory.Purify.utils.licensesdialog.model.Notices;
-
-import com.coderstory.Purify.fragment.base.BaseFragment;
 
 /**
  * Created by _SOLID

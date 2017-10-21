@@ -7,12 +7,19 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import java.io.File;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+
+import eu.chainfire.libsuperuser.Shell;
+
+import static com.coderstory.Purify.config.Misc.ApplicationName;
+import static com.coderstory.Purify.config.Misc.SharedPreferencesName;
 
 
 /**
@@ -22,6 +29,9 @@ import java.security.NoSuchAlgorithmException;
  */
 public abstract class BaseFragment extends Fragment {
 
+    public static final String PREFS_FOLDER = " /data/data/" + ApplicationName + "/shared_prefs\n";
+    public static final String PREFS_FILE = " /data/data/" + ApplicationName + "/shared_prefs/" + SharedPreferencesName + ".xml\n";
+    private static final String TAG = "AA";
     private static SharedPreferences prefs;
     private static SharedPreferences.Editor editor;
     private View mContentView;
@@ -121,5 +131,22 @@ public abstract class BaseFragment extends Fragment {
 
     protected ProgressDialog getProgressDialog() {
         return mProgressDialog;
+    }
+
+    protected void sudoFixPermissions() {
+        new Thread() {
+            @Override
+            public void run() {
+                File pkgFolder = new File("/data/data/" + ApplicationName);
+                if (pkgFolder.exists()) {
+                    pkgFolder.setExecutable(true, false);
+                    pkgFolder.setReadable(true, false);
+                }
+                Shell.SU.run("chmod  755 " + PREFS_FOLDER);
+                // Set preferences file permissions to be world readable
+                Shell.SU.run("chmod  644 " + PREFS_FILE);
+                Log.d(TAG, "Saved Preferences Successfully.");
+            }
+        }.start();
     }
 }

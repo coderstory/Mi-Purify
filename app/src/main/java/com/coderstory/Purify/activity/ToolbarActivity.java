@@ -8,7 +8,6 @@ import android.view.View;
 import android.view.animation.DecelerateInterpolator;
 
 import com.coderstory.Purify.R;
-
 import com.coderstory.Purify.activity.base.BaseActivity;
 
 

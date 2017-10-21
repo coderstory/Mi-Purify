@@ -8,10 +8,9 @@ import android.view.View;
 import android.widget.Switch;
 
 import com.coderstory.Purify.R;
+import com.coderstory.Purify.fragment.base.BaseFragment;
 import com.coderstory.Purify.utils.hostshelper.FileHelper;
 import com.coderstory.Purify.utils.hostshelper.HostsHelper;
-
-import com.coderstory.Purify.fragment.base.BaseFragment;
 
 
 public class HostsFragment extends BaseFragment {

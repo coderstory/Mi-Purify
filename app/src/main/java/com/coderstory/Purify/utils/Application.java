@@ -1,17 +1,15 @@
 package com.coderstory.Purify.utils;
 
-import android.app.Application;
-
 
 /**
  * Created by _SOLID
  * Date:2016/3/30
  * Time:20:59
  */
-public class SolidApplication extends Application {
-    private static SolidApplication mInstance;
+public class Application extends android.app.Application {
+    private static Application mInstance;
 
-    public static SolidApplication getInstance() {
+    public static Application getInstance() {
         return mInstance;
     }
 

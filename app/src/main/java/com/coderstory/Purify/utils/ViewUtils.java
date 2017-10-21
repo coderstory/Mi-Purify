@@ -5,10 +5,10 @@ import android.content.res.TypedArray;
 import android.util.DisplayMetrics;
 import android.util.TypedValue;
 
+import com.coderstory.Purify.fragment.base.BaseFragment;
+
 import java.util.HashMap;
 import java.util.Map;
-
-import com.coderstory.Purify.fragment.base.BaseFragment;
 
 /**
  * Created by _SOLID

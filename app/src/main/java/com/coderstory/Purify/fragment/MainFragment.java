@@ -1,7 +1,6 @@
 package com.coderstory.Purify.fragment;
 
 import com.coderstory.Purify.R;
-
 import com.coderstory.Purify.fragment.base.BaseFragment;
 
 /**

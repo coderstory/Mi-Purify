@@ -13,8 +13,8 @@ import android.view.animation.LinearInterpolator;
 import android.view.animation.Transformation;
 
 import com.coderstory.Purify.R;
-import com.coderstory.Purify.view.PullToRefreshView;
 import com.coderstory.Purify.utils.Utils;
+import com.coderstory.Purify.view.PullToRefreshView;
 
 /**
  * Created by Oleksii Shliama on 22/12/2014.

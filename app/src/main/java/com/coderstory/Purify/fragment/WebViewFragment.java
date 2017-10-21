@@ -9,7 +9,6 @@ import android.webkit.WebViewClient;
 import android.widget.ProgressBar;
 
 import com.coderstory.Purify.R;
-
 import com.coderstory.Purify.fragment.base.BaseFragment;
 
 

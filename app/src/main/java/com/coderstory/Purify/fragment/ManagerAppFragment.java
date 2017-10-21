@@ -12,11 +12,10 @@ import android.widget.TabHost;
 import android.widget.TextView;
 
 import com.coderstory.Purify.R;
+import com.coderstory.Purify.fragment.base.BaseFragment;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import com.coderstory.Purify.fragment.base.BaseFragment;
 
 
 public class ManagerAppFragment extends BaseFragment implements ViewPager.OnPageChangeListener,

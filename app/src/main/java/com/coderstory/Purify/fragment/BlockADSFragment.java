@@ -1,24 +1,14 @@
 package com.coderstory.Purify.fragment;
 
-import android.util.Log;
 import android.view.View;
 import android.widget.Switch;
 
 import com.coderstory.Purify.R;
-
-import java.io.File;
-
-import eu.chainfire.libsuperuser.Shell;
 import com.coderstory.Purify.fragment.base.BaseFragment;
 
-import static com.coderstory.Purify.config.Misc.ApplicationName;
-import static com.coderstory.Purify.config.Misc.SharedPreferencesName;
 import static com.coderstory.Purify.utils.roothelper.ShellUtils.execCommand;
 
 public class BlockADSFragment extends BaseFragment {
-    public static final String PREFS_FOLDER = " /data/data/" + ApplicationName + "/shared_prefs\n";
-    public static final String PREFS_FILE = " /data/data/" + ApplicationName + "/shared_prefs/" + SharedPreferencesName + ".xml\n";
-    private static final String TAG = "AA";
 
     @Override
     protected void init() {
@@ -189,23 +179,6 @@ public class BlockADSFragment extends BaseFragment {
             $(R.id.enabletheme).setEnabled(false);
         }
 
-    }
-
-    private void sudoFixPermissions() {
-        new Thread() {
-            @Override
-            public void run() {
-                File pkgFolder = new File("/data/data/" + ApplicationName);
-                if (pkgFolder.exists()) {
-                    pkgFolder.setExecutable(true, false);
-                    pkgFolder.setReadable(true, false);
-                }
-                Shell.SU.run("chmod  755 " + PREFS_FOLDER);
-                // Set preferences file permissions to be world readable
-                Shell.SU.run("chmod  644 " + PREFS_FILE);
-                Log.d(TAG, "Saved Preferences Successfully.");
-            }
-        }.start();
     }
 
 }

@@ -10,10 +10,9 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 
 import com.coderstory.Purify.R;
+import com.coderstory.Purify.utils.SnackBarUtils;
 
 import java.io.File;
-
-import com.coderstory.Purify.utils.SnackBarUtils;
 
 import static android.content.Context.CLIPBOARD_SERVICE;
 import static com.coderstory.Purify.config.Misc.MyBlogUrl;

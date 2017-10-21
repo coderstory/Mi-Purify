@@ -25,6 +25,8 @@ import android.widget.Toast;
 import com.coderstory.Purify.R;
 import com.coderstory.Purify.adapter.AppInfo;
 import com.coderstory.Purify.adapter.AppInfoAdapter;
+import com.coderstory.Purify.fragment.base.BaseFragment;
+import com.coderstory.Purify.utils.SnackBarUtils;
 import com.coderstory.Purify.utils.roothelper.SuHelper;
 import com.coderstory.Purify.view.PullToRefreshView;
 
@@ -35,9 +37,6 @@ import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
-
-import com.coderstory.Purify.fragment.base.BaseFragment;
-import com.coderstory.Purify.utils.SnackBarUtils;
 
 import static com.coderstory.Purify.config.Misc.BackUpFileName;
 import static com.coderstory.Purify.utils.FileUtils.readFile;

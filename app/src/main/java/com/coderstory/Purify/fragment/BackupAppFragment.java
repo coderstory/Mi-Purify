@@ -23,6 +23,7 @@ import android.widget.ListView;
 import com.coderstory.Purify.R;
 import com.coderstory.Purify.adapter.AppInfo;
 import com.coderstory.Purify.adapter.AppInfoAdapter;
+import com.coderstory.Purify.fragment.base.BaseFragment;
 import com.coderstory.Purify.utils.LoadApkInfo;
 import com.coderstory.Purify.view.PullToRefreshView;
 
@@ -30,8 +31,6 @@ import java.io.DataOutputStream;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
-
-import com.coderstory.Purify.fragment.base.BaseFragment;
 
 import static com.coderstory.Purify.config.Misc.BackPath;
 

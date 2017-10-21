@@ -10,12 +10,11 @@ import android.widget.TextView;
 
 import com.coderstory.Purify.R;
 import com.coderstory.Purify.config.Misc;
+import com.coderstory.Purify.fragment.base.BaseFragment;
+import com.coderstory.Purify.utils.SnackBarUtils;
 import com.coderstory.Purify.utils.hostshelper.FileHelper;
 import com.coderstory.Purify.utils.roothelper.CommandResult;
 import com.coderstory.Purify.utils.roothelper.RootUtils;
-
-import com.coderstory.Purify.fragment.base.BaseFragment;
-import com.coderstory.Purify.utils.SnackBarUtils;
 
 /**
  * A simple {@link Fragment} subclass.
