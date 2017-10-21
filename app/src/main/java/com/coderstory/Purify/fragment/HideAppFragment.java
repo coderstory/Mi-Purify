@@ -179,7 +179,7 @@ public class HideAppFragment extends BaseFragment {
     @Override
     protected void init() {
         super.init();
-        Toast.makeText(getActivity(), "点击应用切换 隐藏/显示 状态 \n              【重启桌面生效】", Toast.LENGTH_LONG).show();
+        Toast.makeText(getActivity(), "点击应用切换 隐藏/显示 状态 \n          【重启桌面生效】", Toast.LENGTH_LONG).show();
 
         new MyTask().execute();
 
@@ -234,6 +234,38 @@ public class HideAppFragment extends BaseFragment {
         }.start();
     }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == R.id.action_restrathome) {
+            AlertDialog.Builder dialog = new AlertDialog.Builder(getContext());
+            dialog.setTitle("提示");
+            String tipsText = "是否重启MIUI桌面刷新设置";
+            dialog.setMessage(tipsText);
+            dialog.setPositiveButton(getString(R.string.Btn_Sure), new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    new Thread() {
+                        @Override
+                        public void run() {
+                            Shell.SU.run("am force-stop com.miui.home");
+                        }
+                    }.start();
+                }
+            });
+            dialog.setCancelable(true);
+            dialog.setNegativeButton(R.string.Btn_Cancel, new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    dialog.cancel();
+                }
+            });
+            AlertDialog mydialog = dialog.create();
+            mydialog.show();
+        }
+
+        return false;
+    }
+
     class MyTask extends AsyncTask<String, Integer, String> {
 
         @Override
@@ -260,38 +292,6 @@ public class HideAppFragment extends BaseFragment {
             initData();
             return null;
         }
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() == R.id.action_restrathome) {
-            AlertDialog.Builder dialog = new AlertDialog.Builder(getContext());
-            dialog.setTitle("提示");
-            String tipsText = "是否应用当前设置，桌面会重启刷新";
-            dialog.setMessage(tipsText);
-            dialog.setPositiveButton(getString(R.string.Btn_Sure), new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    new Thread() {
-                        @Override
-                        public void run() {
-                            Shell.SU.run("am force-stop com.miui.home");
-                        }
-                    }.start();
-                }
-            });
-            dialog.setCancelable(true);
-            dialog.setNegativeButton(R.string.Btn_Cancel, new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    dialog.cancel();
-                }
-            });
-            AlertDialog mydialog = dialog.create();
-            mydialog.show();
-        }
-
-        return false;
     }
 
 }

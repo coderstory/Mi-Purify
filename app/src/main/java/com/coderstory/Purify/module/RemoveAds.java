@@ -35,7 +35,7 @@ public class RemoveAds extends XposedHelper implements IModule {
 
         if (resparam.packageName.equals("com.miui.cleanmaster")) {
 
-            if (prefs.getBoolean("enableSafeCenter", true)) {
+            if (prefs.getBoolean("enableSafeCenter", false)) {
                 resparam.res.setReplacement(resparam.packageName, "string", "no_network", "");
             }
         }
@@ -48,7 +48,7 @@ public class RemoveAds extends XposedHelper implements IModule {
     @Override
     public void handleLoadPackage(XC_LoadPackage.LoadPackageParam loadPackageParam) {
 
-        if (!prefs.getBoolean("EnableBlockAD", true)) {
+        if (!prefs.getBoolean("EnableBlockAD", false)) {
             return;
         }
         //核心模块
@@ -75,7 +75,7 @@ public class RemoveAds extends XposedHelper implements IModule {
         //垃圾清理
         if (loadPackageParam.packageName.equals("com.miui.cleanmaster")) {
 
-            if (prefs.getBoolean("enableSafeCenter", true)) {
+            if (prefs.getBoolean("enableSafeCenter", false)) {
                 findAndHookMethod("com.miui.optimizecenter.result.DataModel", loadPackageParam.classLoader, "post", Map.class, new XC_MethodHook() {
                     protected void beforeHookedMethod(MethodHookParam paramAnonymousMethodHookParam)
                             throws Throwable {
@@ -141,7 +141,7 @@ public class RemoveAds extends XposedHelper implements IModule {
 
         //文件管理器
         if (loadPackageParam.packageName.equals("com.android.fileexplorer")) {
-            if (prefs.getBoolean("enableFileManager", true)) {
+            if (prefs.getBoolean("enableFileManager", false)) {
 
                 findAndHookMethod("com.android.fileexplorer.model.ConfigHelper", loadPackageParam.classLoader, "supportAd", XC_MethodReplacement.returnConstant(false));
                 findAndHookMethod("com.android.fileexplorer.video.upload.VideoItemManager", loadPackageParam.classLoader, "initLoad", new XC_MethodReplacement() {
@@ -157,7 +157,7 @@ public class RemoveAds extends XposedHelper implements IModule {
 
         //音乐
         if (loadPackageParam.packageName.equals("com.miui.player")) {
-            if (prefs.getBoolean("enableMusic", true)) {
+            if (prefs.getBoolean("enableMusic", false)) {
                 Class<?> clsAdInfo = XposedHelpers.findClass("com.miui.player.util.AdUtils$AdInfo", loadPackageParam.classLoader);
                 XposedHelpers.findAndHookMethod("com.miui.player.util.AdUtils", loadPackageParam.classLoader, "isAdEnable", XC_MethodReplacement.returnConstant(false));
                 findAndHookMethod("com.miui.player.util.ExperimentsHelper", loadPackageParam.classLoader, "isAdEnabled", XC_MethodReplacement.returnConstant(false));
@@ -265,7 +265,7 @@ public class RemoveAds extends XposedHelper implements IModule {
 
         //下载管理
         if (loadPackageParam.packageName.equals("com.android.providers.downloads.ui")) {
-            if (prefs.getBoolean("enableDownload", true)) {
+            if (prefs.getBoolean("enableDownload", false)) {
                 findAndHookConstructor("com.android.providers.downloads.ui.recommend.HomePageRecommendApi", loadPackageParam.classLoader, "getAdNumlnRecommendAppList", List.class, XC_MethodReplacement.returnConstant(0));
                 findAndHookConstructor("com.android.providers.downloads.ui.recommend.HomePageRecommendApi", loadPackageParam.classLoader, "getBannerAdList", long.class, String.class, String.class, XC_MethodReplacement.returnConstant(null));
                 findAndHookConstructor("com.android.providers.downloads.ui.recommend.HomePageRecommendApi", loadPackageParam.classLoader, "getDatailPageRecommend", String.class, String.class, XC_MethodReplacement.returnConstant(null));
@@ -284,7 +284,7 @@ public class RemoveAds extends XposedHelper implements IModule {
 
         //天气
         if (loadPackageParam.packageName.equals("com.miui.weather2")) {
-            if (prefs.getBoolean("EnableWeather", true)) {
+            if (prefs.getBoolean("EnableWeather", false)) {
                 findAndHookMethod("com.miui.weather2.tools.ToolUtils", loadPackageParam.classLoader, "canRequestCommercialInfo", Context.class, XC_MethodReplacement.returnConstant(false));
                 findAndHookMethod("com.miui.weather2.structures.DailyForecastAdData", loadPackageParam.classLoader, "isAdInfosExistence", XC_MethodReplacement.returnConstant(false));
                 findAndHookMethod("com.miui.weather2.structures.DailyForecastAdData", loadPackageParam.classLoader, "isAdTitleExistence", XC_MethodReplacement.returnConstant(false));
@@ -305,7 +305,7 @@ public class RemoveAds extends XposedHelper implements IModule {
 
         //个性主题
         if (loadPackageParam.packageName.equals("com.android.thememanager")) {
-            if (prefs.getBoolean("enableTheme", true)) {
+            if (prefs.getBoolean("enableTheme", false)) {
                 findAndHookMethod("com.android.thememanager.model.AdInfo", loadPackageParam.classLoader, "parseAdInfo", String.class, XC_MethodReplacement.returnConstant(null));
                 findAndHookMethod("com.android.thememanager.model.AdInfo", loadPackageParam.classLoader, "isSupported", "com.android.thememanager.model.AdInfo", XC_MethodReplacement.returnConstant(false));
                 findAndHookMethod("com.android.thememanager.view.AdBannerView", loadPackageParam.classLoader, "showAdMark", new XC_MethodHook() {
@@ -340,7 +340,7 @@ public class RemoveAds extends XposedHelper implements IModule {
 
         // 短信
         if (loadPackageParam.packageName.equals("com.android.mms")) {
-            if (prefs.getBoolean("EnableMMS", true)) {
+            if (prefs.getBoolean("EnableMMS", false)) {
                 findAndHookMethod("com.android.mms.util.MiStatSdkHelper", loadPackageParam.classLoader, "recordBottomMenuShown", String.class, XC_MethodReplacement.returnConstant(null));
             }
         }
