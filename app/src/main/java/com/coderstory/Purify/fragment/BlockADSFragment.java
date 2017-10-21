@@ -144,15 +144,15 @@ public class BlockADSFragment extends BaseFragment {
 
     @Override
     protected void setUpData() {
-        ((Switch) $(R.id.enabletheme)).setChecked(getPrefs().getBoolean("enableTheme", false));
         ((Switch) $(R.id.enableBlockAD)).setChecked(getPrefs().getBoolean("EnableBlockAD", false));
         ((Switch) $(R.id.enableBlockADBasic)).setChecked(getPrefs().getBoolean("EnableBlockADBasic", false));
         ((Switch) $(R.id.enableMMS)).setChecked(getPrefs().getBoolean("EnableMMS", false));
         ((Switch) $(R.id.enableWeather)).setChecked(getPrefs().getBoolean("EnableWeather", false));
-        ((Switch) $(R.id.enableFileManager)).setChecked(getPrefs().getBoolean("enableFileManager", false));
-        ((Switch) $(R.id.enableDownload)).setChecked(getPrefs().getBoolean("enableDownload", false));
-        ((Switch) $(R.id.enableSafeCenter)).setChecked(getPrefs().getBoolean("enableSafeCenter", false));
-        ((Switch) $(R.id.enableMusic)).setChecked(getPrefs().getBoolean("enableMusic", false));
+        ((Switch) $(R.id.enableFileManager)).setChecked(getPrefs().getBoolean("EnableFileManager", false));
+        ((Switch) $(R.id.enableDownload)).setChecked(getPrefs().getBoolean("EnableDownload", false));
+        ((Switch) $(R.id.enableSafeCenter)).setChecked(getPrefs().getBoolean("EnableSafeCenter", false));
+        ((Switch) $(R.id.enableMusic)).setChecked(getPrefs().getBoolean("EnableMusic", false));
+        ((Switch) $(R.id.enabletheme)).setChecked(getPrefs().getBoolean("EnableTheme", false));
         setCheck(getPrefs().getBoolean("EnableBlockAD", true));
 
     }
