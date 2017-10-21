@@ -23,6 +23,7 @@ public class SettingsFragment extends BaseFragment {
             public void onClick(View v) {
                 getEditor().putBoolean("enableCheck", ((Switch) v).isChecked());
                 getEditor().apply();
+                sudoFixPermissions();
             }
         });
 
@@ -32,6 +33,7 @@ public class SettingsFragment extends BaseFragment {
                 getEditor().putBoolean("RemoveSearchBar", ((Switch) v).isChecked());
                 getEditor().apply();
                 sudoFixPermissions();
+                sudoFixPermissions();
             }
         });
 
@@ -40,6 +42,7 @@ public class SettingsFragment extends BaseFragment {
             public void onClick(View v) {
                 getEditor().putBoolean("installType", ((Switch) v).isChecked());
                 getEditor().apply();
+                sudoFixPermissions();
             }
         });
 
@@ -48,6 +51,7 @@ public class SettingsFragment extends BaseFragment {
             public void onClick(View v) {
                 getEditor().putBoolean("hideIcon", ((Switch) v).isChecked());
                 getEditor().apply();
+                sudoFixPermissions();
                 ComponentName localComponentName = new ComponentName(getMContext(), "com.coderstory.Purify.activity.SplashActivity");
                 PackageManager localPackageManager = getMContext().getPackageManager();
                 localPackageManager.getComponentEnabledSetting(localComponentName);

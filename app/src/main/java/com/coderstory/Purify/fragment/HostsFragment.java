@@ -30,6 +30,7 @@ public class HostsFragment extends BaseFragment {
             public void onClick(View v) {
                 getEditor().putBoolean("enableHosts", ((Switch) v).isChecked());
                 getEditor().apply();
+                sudoFixPermissions();
                 setCheck(((Switch) v).isChecked());
                 new MyTask().execute();
             }
@@ -40,6 +41,7 @@ public class HostsFragment extends BaseFragment {
             public void onClick(View v) {
                 getEditor().putBoolean("enableMIUIHosts", ((Switch) v).isChecked());
                 getEditor().apply();
+                sudoFixPermissions();
                 new MyTask().execute();
             }
         });
@@ -49,6 +51,7 @@ public class HostsFragment extends BaseFragment {
             public void onClick(View v) {
                 getEditor().putBoolean("enableBlockAdsHosts", ((Switch) v).isChecked());
                 getEditor().apply();
+                sudoFixPermissions();
                 new MyTask().execute();
             }
         });
@@ -57,6 +60,7 @@ public class HostsFragment extends BaseFragment {
             public void onClick(View v) {
                 getEditor().putBoolean("enableGoogleHosts", ((Switch) v).isChecked());
                 getEditor().apply();
+                sudoFixPermissions();
                 new MyTask().execute();
             }
         });
@@ -66,6 +70,7 @@ public class HostsFragment extends BaseFragment {
             public void onClick(View v) {
                 getEditor().putBoolean("enableStore", ((Switch) v).isChecked());
                 getEditor().apply();
+                sudoFixPermissions();
                 new MyTask().execute();
             }
         });
@@ -74,6 +79,7 @@ public class HostsFragment extends BaseFragment {
             public void onClick(View v) {
                 getEditor().putBoolean("enableUpdater", ((Switch) v).isChecked());
                 getEditor().apply();
+                sudoFixPermissions();
                 new MyTask().execute();
             }
         });
