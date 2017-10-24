@@ -34,7 +34,7 @@
     <string name="enableupdater"><b>开启更新检测</b>\n启用后每次打开应用都会检测一次新版本</string>
     <string name="enablexposed"><b>开启Xposed启用检测</b>\n开启后,如果未在Xposed中激活则弹出相应提示</string>
     <string name="miui_root_25"><b>去除MIUI Root的25秒等待</b>\n开启后使用MIUI自带的ROOT授权无需等待25秒的倒计时</string>
-    <string name="RemoveSearchBar"><b>移除通知栏下拉菜单的搜索</b>\n移除通知栏下拉菜单中的搜索框</string>
+    <string name="RemoveSearchBar"><b>移除通知栏下拉菜单的搜索</b>\n移除通知栏下拉菜单中的搜索框\nXposed目前不兼容FBE,7.x的机型可能无法开启本功能</string>
     <string name="enableSafeCenter"><b>去除安全中心的推广信息</b>\n去除安全中心中显示的推广信息</string>
     <string name="mvadnote"><b>注意事项</b>\n部分应用需要清空应用数据才能去除广告,并且有些广告是可以在应用中直接关闭的，并不需要本插件去修改.</string>
     <string name="music"><b>屏蔽音乐广告</b>\n屏蔽系统自带的音乐APP中的广告内容</string>
