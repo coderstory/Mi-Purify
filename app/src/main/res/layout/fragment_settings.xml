@@ -59,11 +59,11 @@
 
             <TextView
                 android:layout_width="match_parent"
-                android:layout_height="60dp"
+                android:layout_height="40dp"
 
                 android:paddingEnd="30dp"
                 android:paddingStart="30dp"
-                android:paddingTop="10dp"
+                android:paddingTop="0dp"
                 android:text="@string/xposedmodule" />
 
             <Switch
@@ -76,12 +76,14 @@
                 android:paddingStart="30dp"
                 android:text="@string/RemoveSearchBar" />
 
+
             <TextView
                 android:layout_width="match_parent"
-                android:layout_height="60dp"
+                android:layout_height="40dp"
+
                 android:paddingEnd="30dp"
                 android:paddingStart="30dp"
-                android:paddingTop="10dp"
+                android:paddingTop="20dp"
                 android:text="@string/historyFunctions" />
 
             <Switch
