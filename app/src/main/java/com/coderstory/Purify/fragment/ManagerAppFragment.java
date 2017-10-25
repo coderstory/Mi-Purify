@@ -65,7 +65,7 @@ public class ManagerAppFragment extends BaseFragment implements ViewPager.OnPage
         for (int i = 0; i < tabHost.getTabWidget().getChildCount(); i++) {
             final View view = tabHost.getTabWidget().getChildTabViewAt(i);
             final View textView = view.findViewById(android.R.id.title);
-            ((TextView) textView).setTextColor(getResources().getColor(R.color.white));
+            ((TextView) textView).setTextColor(getResources().getColor(R.color.windowBackground));
             ((TextView) textView).setHeight(100);
             ((TextView) textView).setTextSize(20);
             ((TextView) textView).setTextSize(20);

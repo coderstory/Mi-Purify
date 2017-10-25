@@ -54,7 +54,7 @@ public class BackupAppFragment extends BaseFragment {
 
     @Override
     protected int setLayoutResourceID() {
-        return R.layout.fragment_backupapp;
+        return R.layout.fragment_app_list;
     }
 
     @Nullable
@@ -65,7 +65,7 @@ public class BackupAppFragment extends BaseFragment {
         if (!file.exists()) {
             file.mkdirs();
         }
-        view = inflater.inflate(R.layout.fragment_backupapp, container, false);
+        view = inflater.inflate(R.layout.fragment_app_list, container, false);
         return view;
     }
 

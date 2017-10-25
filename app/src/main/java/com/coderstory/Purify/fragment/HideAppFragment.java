@@ -12,7 +12,6 @@ import android.os.AsyncTask;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -27,7 +26,6 @@ import com.coderstory.Purify.adapter.AppInfoAdapter;
 import com.coderstory.Purify.fragment.base.BaseFragment;
 import com.coderstory.Purify.view.PullToRefreshView;
 
-import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -173,7 +171,7 @@ public class HideAppFragment extends BaseFragment {
 
     @Override
     protected int setLayoutResourceID() {
-        return R.layout.fragment_disbale_app;
+        return R.layout.fragment_app_list;
     }
 
     @Override
@@ -222,7 +220,7 @@ public class HideAppFragment extends BaseFragment {
         if (item.getItemId() == R.id.action_restrathome) {
             AlertDialog.Builder dialog = new AlertDialog.Builder(getContext());
             dialog.setTitle("提示");
-            String tipsText = "是否重启MIUI桌面刷新设置";
+            String tipsText = "是否重启MIUI桌面应用当前设置?";
             dialog.setMessage(tipsText);
             dialog.setPositiveButton(getString(R.string.Btn_Sure), new DialogInterface.OnClickListener() {
                 @Override
