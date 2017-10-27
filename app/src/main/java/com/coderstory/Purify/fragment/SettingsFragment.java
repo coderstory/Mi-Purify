@@ -46,6 +46,25 @@ public class SettingsFragment extends BaseFragment {
             }
         });
 
+        $(R.id.fixpcb).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getEditor().putBoolean("fixpcb",((Switch)v).isChecked());
+                getEditor().apply();
+                sudoFixPermissions();
+            }
+        });
+
+
+        $(R.id.root25).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getEditor().putBoolean("root25",((Switch)v).isChecked());
+                getEditor().apply();
+                sudoFixPermissions();
+            }
+        });
+
         $(R.id.hideicon).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -80,6 +99,7 @@ public class SettingsFragment extends BaseFragment {
         ((Switch) $(R.id.RemoveSearchBar)).setChecked(getPrefs().getBoolean("RemoveSearchBar", false));
         ((Switch) $(R.id.hideicon)).setChecked(getPrefs().getBoolean("hideIcon", false));
         ((Switch) $(R.id.installType)).setChecked(getPrefs().getBoolean("installType", false));
+        ((Switch) $(R.id.fixpcb)).setChecked(getPrefs().getBoolean("fixpcb",false));
+        ((Switch) $(R.id.root25)).setChecked(getPrefs().getBoolean("root25",false));
     }
-
 }

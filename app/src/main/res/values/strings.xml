@@ -1,20 +1,20 @@
 <resources>
-    <string name="app_name">小米净化</string>
+    <string name="app_name">小米净化器</string>
     <string name="drawer_open">Open</string>
     <string name="drawer_close">Close</string>
     <string name="about_msg">\n小米净化适配于MIUI9系统，主要用于去除系统自带的一些广告和其他一些修改.功能需要Xposed模块和ROOT支持
-    \n\n作者:CoderStory
-    \n博客主页: blog.coderstory.cn
+            \n\n作者:CoderStory
+            \n博客主页: blog.coderstory.cn
     </string>
     <string name="G1">
-<b>致谢如下开源项目</b>\n\n
-<b>MaterialDesignDemo</b>\nhttps://github.com/burgessjp/MaterialDesignDemo\n\n
-<b>PullToRefresh</b>\nhttps://github.com/Yalantis\n\n
-<b>root-tools</b>\nhttps://github.com/rarnu/root-tools\n\n
-<b>LicensesDialog</b>\nhttps://github.com/PSDev/LicensesDialog\n\n
+            <b>致谢如下开源项目</b>\n\n
+            <b>MaterialDesignDemo</b>\nhttps://github.com/burgessjp/MaterialDesignDemo\n\n
+            <b>PullToRefresh</b>\nhttps://github.com/Yalantis\n\n
+            <b>root-tools</b>\nhttps://github.com/rarnu/root-tools\n\n
+            <b>LicensesDialog</b>\nhttps://github.com/PSDev/LicensesDialog\n\n
     </string>
     <string name="about_msg3"><b>声明</b>\n软件授权协议</string>
-    <string name="version">2.0.0</string>
+    <string name="version">2.0.1</string>
     <string name="alipay_url">https://qr.alipay.com/aex06874ga0wkuhwuajgzb8</string>
     <string name="enableBlockADS"><b>启用模块</b>\n去广告功能的总开关</string>
     <string name="downloadexplorer"><b>下载管理</b>\n去下载管理界面的广告</string>
@@ -34,7 +34,7 @@
     <string name="enableupdater"><b>开启更新检测</b>\n启用后每次打开应用都会检测一次新版本</string>
     <string name="enablexposed"><b>开启Xposed启用检测</b>\n开启后,如果未在Xposed中激活则弹出相应提示</string>
     <string name="miui_root_25"><b>去除MIUI Root的25秒等待</b>\n开启后使用MIUI自带的ROOT授权无需等待25秒的倒计时</string>
-    <string name="RemoveSearchBar"><b>移除通知栏下拉菜单的搜索</b>\n移除通知栏下拉菜单中的搜索框</string>
+    <string name="RemoveSearchBar"><b>移除通知栏下拉菜单的搜索</b>\n移除通知栏下拉菜单中的搜索框\nXposed目前不兼容FBE,7.x的机型可能无法开启本功能</string>
     <string name="enableSafeCenter"><b>去除安全中心的推广信息</b>\n去除安全中心中显示的推广信息</string>
     <string name="mvadnote"><b>注意事项</b>\n部分应用需要清空应用数据才能去除广告,并且有些广告是可以在应用中直接关闭的，并不需要本插件去修改.</string>
     <string name="music"><b>屏蔽音乐广告</b>\n屏蔽系统自带的音乐APP中的广告内容</string>
@@ -129,5 +129,7 @@
     <string name="hide_app_icon">隐藏图标</string>
     <string name="navigation_item_ManagerApp">应用管理</string>
     <string name="navigation_item_donation">捐赠</string>
+    <string name="fixpcb"><b>禁用窗口权限检测</b>\n修复PCB在miui8上的问题,仅Android 6.0系统可用</string>
+    <string name="historyFunctions">历史功能</string>
 
 </resources>

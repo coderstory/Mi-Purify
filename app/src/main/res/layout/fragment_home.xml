@@ -13,7 +13,7 @@
             android:id="@android:id/tabs"
             android:layout_width="match_parent"
             android:layout_height="40dp"
-            android:background="@color/colorPrimary" />
+            android:background="@color/enableApp" />
 
         <FrameLayout
             android:id="@android:id/tabcontent"

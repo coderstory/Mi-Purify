@@ -55,14 +55,14 @@ public class RestoreAppFragment extends BaseFragment {
 
     @Override
     protected int setLayoutResourceID() {
-        return R.layout.fragment_restoreapp;
+        return R.layout.fragment_app_list;
     }
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-        view = inflater.inflate(R.layout.fragment_restoreapp, container, false);
+        view = inflater.inflate(R.layout.fragment_app_list, container, false);
         context = getActivity();
         return view;
     }
@@ -72,7 +72,7 @@ public class RestoreAppFragment extends BaseFragment {
 
         super.onActivityCreated(savedInstanceState);
         new MyTask().execute();
-        mPullToRefreshView = getActivity().findViewById(R.id.pull_to_refresh1);
+        mPullToRefreshView = getActivity().findViewById(R.id.pull_to_refresh);
         mPullToRefreshView.setOnRefreshListener(new PullToRefreshView.OnRefreshListener() {
             @Override
             public void onRefresh() {

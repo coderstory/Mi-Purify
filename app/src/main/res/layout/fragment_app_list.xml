@@ -4,7 +4,7 @@
     android:layout_height="match_parent">
 
     <com.coderstory.Purify.view.PullToRefreshView
-        android:id="@+id/pull_to_refresh1"
+        android:id="@+id/pull_to_refresh"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -14,11 +14,8 @@
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
+            android:layout_alignParentTop="false"
             android:divider="@color/divider"
-            android:dividerHeight="13px"
-            android:footerDividersEnabled="false"
-            android:headerDividersEnabled="false" />
+            android:dividerHeight="1px" />
     </com.coderstory.Purify.view.PullToRefreshView>
-
 </RelativeLayout>
