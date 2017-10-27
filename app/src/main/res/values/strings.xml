@@ -1,17 +1,17 @@
 <resources>
-    <string name="app_name">小米净化</string>
+    <string name="app_name">小米净化器</string>
     <string name="drawer_open">Open</string>
     <string name="drawer_close">Close</string>
     <string name="about_msg">\n小米净化适配于MIUI9系统，主要用于去除系统自带的一些广告和其他一些修改.功能需要Xposed模块和ROOT支持
-    \n\n作者:CoderStory
-    \n博客主页: blog.coderstory.cn
+            \n\n作者:CoderStory
+            \n博客主页: blog.coderstory.cn
     </string>
     <string name="G1">
-<b>致谢如下开源项目</b>\n\n
-<b>MaterialDesignDemo</b>\nhttps://github.com/burgessjp/MaterialDesignDemo\n\n
-<b>PullToRefresh</b>\nhttps://github.com/Yalantis\n\n
-<b>root-tools</b>\nhttps://github.com/rarnu/root-tools\n\n
-<b>LicensesDialog</b>\nhttps://github.com/PSDev/LicensesDialog\n\n
+            <b>致谢如下开源项目</b>\n\n
+            <b>MaterialDesignDemo</b>\nhttps://github.com/burgessjp/MaterialDesignDemo\n\n
+            <b>PullToRefresh</b>\nhttps://github.com/Yalantis\n\n
+            <b>root-tools</b>\nhttps://github.com/rarnu/root-tools\n\n
+            <b>LicensesDialog</b>\nhttps://github.com/PSDev/LicensesDialog\n\n
     </string>
     <string name="about_msg3"><b>声明</b>\n软件授权协议</string>
     <string name="version">2.0.1</string>
