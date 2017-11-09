@@ -8,7 +8,7 @@ android {
         minSdkVersion 19
         targetSdkVersion 27
         versionCode 10002
-        versionName "2.0.1"
+        versionName "2.0.2"
         resConfigs "cn"
     }
     repositories {
