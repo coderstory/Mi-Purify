@@ -15,7 +15,7 @@ android {
         mavenCentral()
     }
 
-    signingConfigs {//签名的配置
+    signingConfigs {
         release {
         }
     }
@@ -40,6 +40,9 @@ android {
 dependencies {
     provided fileTree(include: ['*.jar'], dir: 'libs')
     compile 'com.android.support:support-v4:27.+'
+
+
+
     compile 'com.android.support:appcompat-v7:27.+'
     compile 'com.android.support:design:27.+'
     provided 'de.robv.android.xposed:api:82'
