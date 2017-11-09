@@ -7,16 +7,11 @@ import com.coderstory.Purify.utils.XposedHelper;
 
 import de.robv.android.xposed.IXposedHookZygoteInit;
 import de.robv.android.xposed.XC_MethodHook;
-import de.robv.android.xposed.XSharedPreferences;
-import de.robv.android.xposed.XposedBridge;
-import de.robv.android.xposed.XposedHelpers;
 import de.robv.android.xposed.callbacks.XC_InitPackageResources;
 import de.robv.android.xposed.callbacks.XC_LoadPackage;
 
 
-
-
-public class Others  extends XposedHelper implements IModule {
+public class Others extends XposedHelper implements IModule {
 
 
     @Override
@@ -31,12 +26,12 @@ public class Others  extends XposedHelper implements IModule {
         if (loadPackageParam.packageName.equals("android")) {
 
             if (prefs.getBoolean("fixpcb", false)) {
-               findAndHookMethod("com.android.server.policy.PhoneWindowManager", loadPackageParam.classLoader, "checkAddPermission", WindowManager.LayoutParams.class, int[].class, new XC_MethodHook() {
+                findAndHookMethod("com.android.server.policy.PhoneWindowManager", loadPackageParam.classLoader, "checkAddPermission", WindowManager.LayoutParams.class, int[].class, new XC_MethodHook() {
                     protected void afterHookedMethod(XC_MethodHook.MethodHookParam paramAnonymousMethodHookParam) {
                         if ((Integer) paramAnonymousMethodHookParam.getResult() < 0) {
                             paramAnonymousMethodHookParam.setResult(0);
                         }
-                       }
+                    }
                 });
             }
         }

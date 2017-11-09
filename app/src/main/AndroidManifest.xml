@@ -16,7 +16,6 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
         <provider
             android:name="android.support.v4.content.FileProvider"
             android:authorities="com.coderstory.Purify.fileprovider"
@@ -41,9 +40,7 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".activity.SplashActivity"
-
             android:theme="@style/fulscreen_theme">
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -59,9 +56,5 @@
         <meta-data
             android:name="xposedminversion"
             android:value="54" />
-
-
     </application>
-
-
 </manifest>

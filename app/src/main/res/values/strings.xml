@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">小米净化器</string>
+    <string name="app_name">小米净化</string>
     <string name="drawer_open">Open</string>
     <string name="drawer_close">Close</string>
     <string name="about_msg">\n小米净化适配于MIUI9系统，主要用于去除系统自带的一些广告和其他一些修改.功能需要Xposed模块和ROOT支持
