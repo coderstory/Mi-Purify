@@ -12,9 +12,6 @@ import de.robv.android.xposed.XC_MethodReplacement;
 import de.robv.android.xposed.callbacks.XC_InitPackageResources;
 import de.robv.android.xposed.callbacks.XC_LoadPackage;
 
-/**
- * Created by Baby Song on 2016/8/17.
- */
 
 public class ThemePather8 extends XposedHelper implements IModule {
 

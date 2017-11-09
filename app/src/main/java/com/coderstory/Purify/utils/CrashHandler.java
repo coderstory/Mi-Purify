@@ -1,6 +1,7 @@
 package com.coderstory.Purify.utils;
 
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
@@ -37,6 +38,7 @@ public class CrashHandler implements Thread.UncaughtExceptionHandler {
     public static final String TAG = "CrashHandler";
     public static String CrashFilePath;
     //CrashHandler实例
+    @SuppressLint("StaticFieldLeak")
     private static CrashHandler INSTANCE = new CrashHandler();
     //系统默认的UncaughtException处理类
     private Thread.UncaughtExceptionHandler mDefaultHandler;
@@ -116,7 +118,7 @@ public class CrashHandler implements Thread.UncaughtExceptionHandler {
             PackageManager pm = ctx.getPackageManager();
             PackageInfo pi = pm.getPackageInfo(ctx.getPackageName(), PackageManager.GET_ACTIVITIES);
             if (pi != null) {
-                String versionName = pi.versionName == null ? "null" : pi.versionName.toString();
+                String versionName = pi.versionName == null ? "null" : pi.versionName;
                 String versionCode = pi.versionCode + "";
                 infos.put("versionName", versionName);
                 infos.put("versionCode", versionCode);
@@ -209,8 +211,7 @@ public class CrashHandler implements Thread.UncaughtExceptionHandler {
 
     /**
      * 自定义错误处理,收集错误信息 发送错误报告等操作均在此完成.
-     *
-     * @param ex
+
      * @return true:如果处理了该异常信息;否则返回false.
      */
     private boolean handleException(Throwable ex) {

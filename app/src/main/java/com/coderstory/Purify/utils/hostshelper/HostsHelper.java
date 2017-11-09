@@ -33,7 +33,6 @@ public class HostsHelper extends SuHelper {
      * 构造需要root下执行的命令组
      *
      * @return 构造好的命令组
-     * @throws UnsupportedEncodingException
      */
     @Override
     protected ArrayList<String> getCommandsToExecute() throws UnsupportedEncodingException {
@@ -49,13 +48,14 @@ public class HostsHelper extends SuHelper {
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
-
-        writer = new BufferedWriter(new OutputStreamWriter(out));
-        try {
-            writer.write(mcontent);
-            writer.close();
-        } catch (IOException e) {
-            e.printStackTrace();
+        if (out != null) {
+            writer = new BufferedWriter(new OutputStreamWriter(out));
+            try {
+                writer.write(mcontent);
+                writer.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
         list.add(String.format("mv %s %s", path, "/etc/hosts"));
         list.add(String.format("chmod 755 %s", "/etc/hosts"));

@@ -12,9 +12,8 @@ import com.coderstory.Purify.view.PullToRefreshView;
 public abstract class BaseRefreshView extends Drawable implements Drawable.Callback, Animatable {
 
     private PullToRefreshView mRefreshLayout;
-    private boolean mEndOfRefreshing;
 
-    public BaseRefreshView(Context context, PullToRefreshView layout) {
+    BaseRefreshView(PullToRefreshView layout) {
         mRefreshLayout = layout;
     }
 
@@ -22,9 +21,6 @@ public abstract class BaseRefreshView extends Drawable implements Drawable.Callb
         return mRefreshLayout != null ? mRefreshLayout.getContext() : null;
     }
 
-    public PullToRefreshView getRefreshLayout() {
-        return mRefreshLayout;
-    }
 
     public abstract void setPercent(float percent, boolean invalidate);
 
@@ -39,7 +35,7 @@ public abstract class BaseRefreshView extends Drawable implements Drawable.Callb
     }
 
     @Override
-    public void scheduleDrawable(Drawable who, Runnable what, long when) {
+    public void scheduleDrawable(@NonNull Drawable who,@NonNull  Runnable what, long when) {
         final Callback callback = getCallback();
         if (callback != null) {
             callback.scheduleDrawable(this, what, when);
@@ -47,7 +43,7 @@ public abstract class BaseRefreshView extends Drawable implements Drawable.Callb
     }
 
     @Override
-    public void unscheduleDrawable(Drawable who, Runnable what) {
+    public void unscheduleDrawable(@NonNull  Drawable who,@NonNull  Runnable what) {
         final Callback callback = getCallback();
         if (callback != null) {
             callback.unscheduleDrawable(this, what);
@@ -69,13 +65,4 @@ public abstract class BaseRefreshView extends Drawable implements Drawable.Callb
 
     }
 
-    /**
-     * Our animation depend on type of current work of refreshing.
-     * We should to do different things when it's end of refreshing
-     *
-     * @param endOfRefreshing - we will check current state of refresh with this
-     */
-    public void setEndOfRefreshing(boolean endOfRefreshing) {
-        mEndOfRefreshing = endOfRefreshing;
-    }
 }

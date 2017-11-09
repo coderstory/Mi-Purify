@@ -131,5 +131,5 @@
     <string name="navigation_item_donation">捐赠</string>
     <string name="fixpcb"><b>禁用窗口权限检测</b>\n修复PCB在miui8上的问题,仅Android 6.0系统可用</string>
     <string name="historyFunctions">历史功能</string>
-
+    <string name="appname">应用名: %1$s \n版本号 :%2$s</string>
 </resources>

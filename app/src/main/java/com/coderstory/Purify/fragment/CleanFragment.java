@@ -1,9 +1,11 @@
 package com.coderstory.Purify.fragment;
 
 
+import android.annotation.SuppressLint;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -22,6 +24,7 @@ import com.coderstory.Purify.utils.roothelper.RootUtils;
 public class CleanFragment extends BaseFragment {
     Thread th;
     private TextView tvClean = null;
+    @SuppressLint("HandlerLeak")
     private Handler hInfo = new Handler() {
         @Override
         public void handleMessage(Message msg) {
@@ -29,6 +32,7 @@ public class CleanFragment extends BaseFragment {
             super.handleMessage(msg);
         }
     };
+    @SuppressLint("HandlerLeak")
     private Handler hComplete = new Handler() {
         @Override
         public void handleMessage(Message msg) {
@@ -40,18 +44,12 @@ public class CleanFragment extends BaseFragment {
     };
 
     public CleanFragment() {
-        // Required empty public constructor
     }
 
     @Override
     protected void setUpView() {
         super.setUpView();
-        $(R.id.button).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                threadClean();
-            }
-        });
+        $(R.id.button).setOnClickListener(view -> threadClean());
     }
 
     @Override
@@ -70,36 +68,32 @@ public class CleanFragment extends BaseFragment {
         ((Button) $(R.id.button)).setText(R.string.cleaning);
         tvClean.append(getString(R.string.view_start_clean));
         $(R.id.button).setEnabled(false);
-        th = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                long totalSize = 0L; // K
-                Misc.isProcessing = true;
-                // clean app cache
-                CommandResult ret = RootUtils.runCommand("find /data/data/ -type dir -name \"cache\"", true);
-                String[] items = ret.result.split("\n");
-                CacheSize cs;
-                for (String s : items) {
-                    cs = getSize(s);
-                    if (cs != null && cs.size > 16) { // clean only above 16K
-                        if (deleteCache(s)) {
-                            sendMessageStr(getString(R.string.view_clean_cache, s, cs.sizeReadable));
-                            totalSize += cs.size;
-                        }
+        th = new Thread(() -> {
+            long totalSize = 0L; // K
+            Misc.isProcessing = true;
+            CommandResult ret = RootUtils.runCommand("find /data/data/ -type dir -name \"cache\"", true);
+            String[] items = ret.result.split("\n");
+            CacheSize cs;
+            for (String s : items) {
+                cs = getSize(s);
+                if (cs.size > 16) { // clean only above 16K
+                    if (deleteCache(s)) {
+                        sendMessageStr(getString(R.string.view_clean_cache, s, cs.sizeReadable));
+                        totalSize += cs.size;
                     }
                 }
-                // clean anr log
-                CacheSize anrSize = getSize("/data/anr/");
-                if (deleteAnrLog()) {
-                    sendMessageStr(getString(R.string.view_clean_anr, anrSize.sizeReadable));
-                    totalSize += anrSize.size;
-                }
-                // clean art
-                totalSize += deleteRemainArtCache();
-                sendMessageStr(getString(R.string.view_clean_complete, FileHelper.getReadableFileSize(totalSize)));
-                hComplete.sendEmptyMessage(0);
-                Misc.isProcessing = false;
             }
+            // clean anr log
+            CacheSize anrSize = getSize("/data/anr/");
+            if (deleteAnrLog()) {
+                sendMessageStr(getString(R.string.view_clean_anr, anrSize.sizeReadable));
+                totalSize += anrSize.size;
+            }
+            // clean art
+            totalSize += deleteRemainArtCache();
+            sendMessageStr(getString(R.string.view_clean_complete, FileHelper.getReadableFileSize(totalSize)));
+            hComplete.sendEmptyMessage(0);
+            Misc.isProcessing = false;
         });
         th.start();
     }
@@ -110,11 +104,11 @@ public class CleanFragment extends BaseFragment {
         try {
             CommandResult ret = RootUtils.runCommand(String.format("du -s -k \"%s\"", path), true);
             String sizeStr = ret.result.substring(0, ret.result.indexOf('\t')).trim();
-            long size = 0L;
+            long size ;
             size = Long.parseLong(sizeStr);
             return new CacheSize(sizeStr + "K", size);
         } catch (Exception e) {
-            return null;
+            return new CacheSize(0 + "K", 0);
         }
 
     }
@@ -187,13 +181,13 @@ public class CleanFragment extends BaseFragment {
 
     private boolean isCachedAppInstalled(String[] oriList, String app) {
         if (app.startsWith("system") || app.startsWith("data@dalvik-cache")) {
-            // do not delete anything about system
             return true;
         }
         String newAppPath = app.replace("data@app@", "");
         try {
             newAppPath = newAppPath.substring(0, newAppPath.indexOf("@"));
         } catch (Exception e) {
+            Log.e("MIUI", "isCachedAppInstalled: "+e.getMessage() );
         }
 
         boolean ret = false;

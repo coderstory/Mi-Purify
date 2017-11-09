@@ -7,10 +7,6 @@ import de.robv.android.xposed.XposedHelpers;
 import static com.coderstory.Purify.config.Misc.ApplicationName;
 import static com.coderstory.Purify.config.Misc.SharedPreferencesName;
 
-/**
- * Created by CoderStory on 2017/10/19 0019.
- */
-
 public class XposedHelper {
     protected XSharedPreferences prefs = new XSharedPreferences(ApplicationName, SharedPreferencesName);
 
@@ -38,7 +34,7 @@ public class XposedHelper {
         }
     }
 
-    public static void findAndHookMethod(String p1, String p2, Object[] p3) {
+    protected static void findAndHookMethod(String p1, String p2, Object[] p3) {
         try {
             XposedHelpers.findAndHookMethod(Class.forName(p1), p2, p3);
         } catch (Throwable localString3) {
@@ -46,7 +42,7 @@ public class XposedHelper {
         }
     }
 
-    public static Object getDrmResultSUCCESS() {
+    protected static Object getDrmResultSUCCESS() {
         try {
             Class<Enum> drmSuccess = (Class<Enum>) Class.forName("miui.drm.DrmManager$DrmResult");
             if (drmSuccess != null) {

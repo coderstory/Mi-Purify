@@ -1,10 +1,10 @@
 package com.coderstory.Purify.fragment;
 
+import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.os.AsyncTask;
 import android.os.Looper;
-import android.view.View;
 import android.widget.Switch;
 
 import com.coderstory.Purify.R;
@@ -25,63 +25,45 @@ public class HostsFragment extends BaseFragment {
     @Override
     protected void setUpView() {
 
-        $(R.id.enableHosts).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                getEditor().putBoolean("enableHosts", ((Switch) v).isChecked());
-                getEditor().apply();
-                sudoFixPermissions();
-                setCheck(((Switch) v).isChecked());
-                new MyTask().execute();
-            }
+        $(R.id.enableHosts).setOnClickListener(v -> {
+            getEditor().putBoolean("enableHosts", ((Switch) v).isChecked());
+            getEditor().apply();
+            sudoFixPermissions();
+            setCheck(((Switch) v).isChecked());
+            new MyTask().execute();
         });
 
-        $(R.id.enableMIUIHosts).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                getEditor().putBoolean("enableMIUIHosts", ((Switch) v).isChecked());
-                getEditor().apply();
-                sudoFixPermissions();
-                new MyTask().execute();
-            }
+        $(R.id.enableMIUIHosts).setOnClickListener(v -> {
+            getEditor().putBoolean("enableMIUIHosts", ((Switch) v).isChecked());
+            getEditor().apply();
+            sudoFixPermissions();
+            new MyTask().execute();
         });
 
-        $(R.id.enableBlockAdsHosts).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                getEditor().putBoolean("enableBlockAdsHosts", ((Switch) v).isChecked());
-                getEditor().apply();
-                sudoFixPermissions();
-                new MyTask().execute();
-            }
+        $(R.id.enableBlockAdsHosts).setOnClickListener(v -> {
+            getEditor().putBoolean("enableBlockAdsHosts", ((Switch) v).isChecked());
+            getEditor().apply();
+            sudoFixPermissions();
+            new MyTask().execute();
         });
-        $(R.id.enableGoogleHosts).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                getEditor().putBoolean("enableGoogleHosts", ((Switch) v).isChecked());
-                getEditor().apply();
-                sudoFixPermissions();
-                new MyTask().execute();
-            }
+        $(R.id.enableGoogleHosts).setOnClickListener(v -> {
+            getEditor().putBoolean("enableGoogleHosts", ((Switch) v).isChecked());
+            getEditor().apply();
+            sudoFixPermissions();
+            new MyTask().execute();
         });
 
-        $(R.id.enableStore).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                getEditor().putBoolean("enableStore", ((Switch) v).isChecked());
-                getEditor().apply();
-                sudoFixPermissions();
-                new MyTask().execute();
-            }
+        $(R.id.enableStore).setOnClickListener(v -> {
+            getEditor().putBoolean("enableStore", ((Switch) v).isChecked());
+            getEditor().apply();
+            sudoFixPermissions();
+            new MyTask().execute();
         });
-        $(R.id.enableupdater).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                getEditor().putBoolean("enableUpdater", ((Switch) v).isChecked());
-                getEditor().apply();
-                sudoFixPermissions();
-                new MyTask().execute();
-            }
+        $(R.id.enableupdater).setOnClickListener(v -> {
+            getEditor().putBoolean("enableUpdater", ((Switch) v).isChecked());
+            getEditor().apply();
+            sudoFixPermissions();
+            new MyTask().execute();
         });
     }
 
@@ -98,7 +80,7 @@ public class HostsFragment extends BaseFragment {
 
     //因为hosts修改比较慢 所以改成异步的
     //更新hosts操作
-    private boolean UpdateHosts() {
+    private void UpdateHosts() {
         boolean enableHostsSet = getPrefs().getBoolean("enableHosts", false); //1
         boolean enableMIUIHostsSet = getPrefs().getBoolean("enableMIUIHosts", false); //4
         boolean enableBlockAdsHostsSet = getPrefs().getBoolean("enableBlockAdsHosts", false); //4
@@ -130,10 +112,8 @@ public class HostsFragment extends BaseFragment {
             }
 
             HostsHelper h = new HostsHelper(HostsContext, getMContext());
-            return h.execute();
+            h.execute();
 
-        } else {
-            return true;
         }
     }
 
@@ -145,7 +125,7 @@ public class HostsFragment extends BaseFragment {
     }
 
     private void closeProgress() {
-        if (!getActivity().isFinishing()) {
+        if (getActivity() != null && !getActivity().isFinishing()) {
             dialog.cancel();
         }
     }
@@ -167,6 +147,7 @@ public class HostsFragment extends BaseFragment {
         }
     }
 
+    @SuppressLint("StaticFieldLeak")
     private class MyTask extends AsyncTask<String, Integer, String> {
         @Override
         protected void onPreExecute() {

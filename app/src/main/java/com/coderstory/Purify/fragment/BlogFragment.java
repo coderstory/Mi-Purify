@@ -17,11 +17,6 @@ import java.io.File;
 import static android.content.Context.CLIPBOARD_SERVICE;
 import static com.coderstory.Purify.config.Misc.MyBlogUrl;
 
-/**
- * Created by _SOLID
- * Date:2016/3/30
- * Time:17:46
- */
 public class BlogFragment extends WebViewFragment {
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
@@ -38,32 +33,25 @@ public class BlogFragment extends WebViewFragment {
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.action_copy) {
             ClipboardManager myClipboard;
-            myClipboard = (ClipboardManager) getActivity().getSystemService(CLIPBOARD_SERVICE);
-            ClipData myClip;
-            String text = mWebView.getUrl();
-            myClip = ClipData.newPlainText("text", text);
-            myClipboard.setPrimaryClip(myClip);
-            SnackBarUtils.makeLong(getView(), getString(R.string.cp_url_success)).show();
+            if (getActivity() != null) {
+                myClipboard = (ClipboardManager) getActivity().getSystemService(CLIPBOARD_SERVICE);
+                ClipData myClip;
+                String text = mWebView.getUrl();
+                myClip = ClipData.newPlainText("text", text);
+                if (myClipboard!=null) {
+                    myClipboard.setPrimaryClip(myClip);
+                    SnackBarUtils.makeLong(getView(), getString(R.string.cp_url_success)).show();
+                }
+            }
         } else if (item.getItemId() == R.id.action_share) {
-            shareMsg(getString(R.string.share_url), mWebView.getTitle(), mWebView.getUrl(), null);
+            shareMsg(getString(R.string.share_url), mWebView.getTitle(), mWebView.getUrl());
         }
         return false;
     }
 
-    public void shareMsg(String activityTitle, String msgTitle, String msgText,
-                         String imgPath) {
+    public void shareMsg(String activityTitle, String msgTitle, String msgText) {
         Intent intent = new Intent(Intent.ACTION_SEND);
-        if (imgPath == null || imgPath.equals("")) {
-            intent.setType("text/plain"); // 纯文本
-        } else {
-            File f = new File(imgPath);
-            if (f.exists() && f.isFile()) {
-                intent.setType("image/jpg");
-                Uri u = Uri.fromFile(f);
-                intent.putExtra(Intent.EXTRA_STREAM, u);
-
-            }
-        }
+        intent.setType("text/plain"); // 纯文本
         intent.putExtra(Intent.EXTRA_SUBJECT, msgTitle);
         intent.putExtra(Intent.EXTRA_TEXT, msgText);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);

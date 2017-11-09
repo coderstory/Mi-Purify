@@ -1,5 +1,6 @@
 package com.coderstory.Purify.module;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.os.Message;
 import android.widget.Button;
@@ -21,8 +22,10 @@ import de.robv.android.xposed.callbacks.XC_LoadPackage;
  * Created by cc on 2016/6/17.
  */
 public class MiuiRoot extends XposedHelper implements IModule {
-    public static TextView WarningText;
-    public static Button accept;
+    @SuppressLint("StaticFieldLeak")
+    private static TextView WarningText;
+    @SuppressLint("StaticFieldLeak")
+    private static Button accept;
 
     @Override
     public void handleLoadPackage(XC_LoadPackage.LoadPackageParam loadPackageParam) {

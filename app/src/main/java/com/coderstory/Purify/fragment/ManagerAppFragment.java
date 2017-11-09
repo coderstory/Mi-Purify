@@ -1,6 +1,7 @@
 package com.coderstory.Purify.fragment;
 
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -34,12 +35,11 @@ public class ManagerAppFragment extends BaseFragment implements ViewPager.OnPage
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_home, null);
-        tabHost = (TabHost) rootView.findViewById(android.R.id.tabhost);
-        viewPager = (ViewPager) rootView.findViewById(R.id.viewpager);
-        viewPager.setOnPageChangeListener(this);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        @SuppressLint("InflateParams") View rootView = inflater.inflate(R.layout.fragment_home, null);
+        tabHost = rootView.findViewById(android.R.id.tabhost);
+        viewPager = rootView.findViewById(R.id.viewpager);
+        viewPager.addOnPageChangeListener(this);
         fragments = new ArrayList<>();
         fragments.add(new BackupAppFragment());
         fragments.add(new RestoreAppFragment());
@@ -129,7 +129,7 @@ public class ManagerAppFragment extends BaseFragment implements ViewPager.OnPage
 
         private final Context context;
 
-        public TabFactory(Context context) {
+        TabFactory(Context context) {
             this.context = context;
         }
 

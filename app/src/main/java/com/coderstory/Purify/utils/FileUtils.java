@@ -22,10 +22,6 @@ import java.io.InputStreamReader;
  */
 public class FileUtils {
 
-    private static String TAG = "FileUtils";
-    private static String FILE_WRITING_ENCODING = "UTF-8";
-    private static String FILE_READING_ENCODING = "UTF-8";
-
     public static String readFile(String _sFileName, String _sEncoding) throws Exception {
         StringBuffer buffContent = null;
         String sLine;
@@ -33,7 +29,7 @@ public class FileUtils {
         FileInputStream fis = null;
         BufferedReader buffReader = null;
         if (_sEncoding == null || "".equals(_sEncoding)) {
-            _sEncoding = FILE_READING_ENCODING;
+            _sEncoding = "UTF-8";
         }
 
         try {
@@ -73,7 +69,7 @@ public class FileUtils {
 
     public static File writeFile(String path, String content, String encoding, boolean isOverride) throws Exception {
         if (TextUtils.isEmpty(encoding)) {
-            encoding = FILE_WRITING_ENCODING;
+            encoding = "UTF-8";
         }
         InputStream is = new ByteArrayInputStream(content.getBytes(encoding));
         return writeFile(is, path, isOverride);
@@ -207,6 +203,7 @@ public class FileUtils {
             writeFile(context.getAssets().open(rawName), dir, true);
         } catch (Exception e) {
             e.printStackTrace();
+            String TAG = "FileUtils";
             Log.e(TAG, e.getMessage());
         }
     }
