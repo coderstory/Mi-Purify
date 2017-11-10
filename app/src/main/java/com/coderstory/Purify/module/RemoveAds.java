@@ -125,7 +125,6 @@ public class RemoveAds extends XposedHelper implements IModule {
                         param.setResult("true");
                     }
                 }
-
                 @Override
                 protected void afterHookedMethod(MethodHookParam param) throws Throwable {
                     String key = (String) param.args[1];
@@ -295,8 +294,7 @@ public class RemoveAds extends XposedHelper implements IModule {
                         }
                     }
                 });
-                // findAndHookMethod("com.android.mms.ui.SingleRecipientConversationActivity", loadPackageParam.classLoader, "showMenuMode",boolean.class,  XC_MethodReplacement.returnConstant(null));
-
+                findAndHookMethod("com.android.mms.ui.SingleRecipientConversationActivity", loadPackageParam.classLoader, "showMenuMode",boolean.class,  XC_MethodReplacement.returnConstant(null));
                 findAndHookMethod("com.android.mms.util.MiStatSdkHelper", loadPackageParam.classLoader, "recordBottomMenuShown", String.class, XC_MethodReplacement.returnConstant(null));
             }
         }
