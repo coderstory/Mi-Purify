@@ -1,9 +1,12 @@
 package com.coderstory.Purify.activity;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.annotation.NonNull;
 import android.support.design.internal.NavigationMenuView;
 import android.support.design.widget.NavigationView;
@@ -45,6 +48,7 @@ public class MainActivity extends BaseActivity {
     private MenuItem mPreMenuItem;
     private long lastBackKeyDownTick = 0;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -67,7 +71,7 @@ public class MainActivity extends BaseActivity {
     }
 
     @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,@NonNull  int[] grantResults) {
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         if (requestCode == READ_EXTERNAL_STORAGE_CODE) {
             int grantResult = grantResults[0];
@@ -75,6 +79,21 @@ public class MainActivity extends BaseActivity {
             Log.i("MainActivity", "onRequestPermissionsResult granted=" + granted);
         }
     }
+
+    @SuppressLint("HandlerLeak")
+    Handler myHandler = new Handler() {
+        public void handleMessage(Message msg) {
+            final AlertDialog.Builder normalDialog =
+                    new AlertDialog.Builder(MainActivity.this);
+            normalDialog.setTitle("提示");
+            normalDialog.setMessage("请先授权应用ROOT权限");
+            normalDialog.setPositiveButton("确定",
+                    (dialog, which) -> System.exit(0));
+            // 显示
+            normalDialog.show();
+            super.handleMessage(msg);
+        }
+    };
 
     @Override
     protected void setUpView() {
@@ -91,17 +110,13 @@ public class MainActivity extends BaseActivity {
             SnackBarUtils.makeLong(mNavigationView, "插件尚未激活,Xposed功能将不可用,请重启再试！").show();
         }
 
-        if (!canRunRootCommands()) {
-            final AlertDialog.Builder normalDialog =
-                    new AlertDialog.Builder(MainActivity.this);
-            normalDialog.setTitle("提示");
-            normalDialog.setMessage("请先授权应用ROOT权限");
-            normalDialog.setPositiveButton("确定",
-                    (dialog, which) -> System.exit(0));
 
-            // 显示
-            normalDialog.show();
-        }
+        new Thread(() -> {
+            if (!canRunRootCommands()) {
+                myHandler.sendMessage(new Message());
+            }
+        }).start();
+
 
         mToolbar.setTitle("净化广告");
 
