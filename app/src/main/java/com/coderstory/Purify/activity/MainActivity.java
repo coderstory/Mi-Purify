@@ -172,9 +172,8 @@ public class MainActivity extends BaseActivity {
                     mToolbar.setTitle(R.string.disableapp);
                     switchFragment(DisbaleAppFragment.class);
                     break;
-                case R.id.navigation_item_donation:
-                    mToolbar.setTitle(R.string.navigation_item_donation);
-                    switchFragment(DonationFragment.class);
+                case R.id.navigation_item_about:
+                    startActivityWithoutExtras(AboutActivity.class);
                     break;
                 case R.id.navigation_item_ManagerApp:
                     mToolbar.setTitle(R.string.navigation_item_ManagerApp);
@@ -192,29 +191,6 @@ public class MainActivity extends BaseActivity {
             mDrawerLayout.closeDrawer(Gravity.START);
             mPreMenuItem = item;
             return false;
-                    case R.id.navigation_item_disableapps:
-                        mToolbar.setTitle(R.string.disableapp);
-                        switchFragment(DisbaleAppFragment.class);
-                        break;
-                    case R.id.navigation_item_about:
-                        startActivityWithoutExtras(AboutActivity.class);
-                        break;
-                    case R.id.navigation_item_ManagerApp:
-                        mToolbar.setTitle(R.string.navigation_item_ManagerApp);
-                        switchFragment(ManagerAppFragment.class);
-                        break;
-                    case R.id.navigation_item_hide_app:
-                        mToolbar.setTitle(R.string.hide_app_icon);
-                        switchFragment(HideAppFragment.class);
-                        break;
-                    default:
-                        break;
-                }
-                item.setChecked(true);
-                mDrawerLayout.closeDrawer(Gravity.START);
-                mPreMenuItem = item;
-                return false;
-            }
         });
     }
 
@@ -227,27 +203,6 @@ public class MainActivity extends BaseActivity {
             mFragmentManager.beginTransaction().replace(mCurrentFragment.getId(), to).commit();
         }
         mCurrentFragment = to;
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_main_toolbar, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-        if (id == R.id.action_settings) {
-            startActivityWithoutExtras(AboutActivity.class);
-        } else if (id == R.id.action_reboot) {
-            SuHelper.showTips("busybox killall system_server", getString(R.string.Tips_HotBoot), this);
-        } else if (id == R.id.action_blog) {
-            mToolbar.setTitle(R.string.myblog);
-            switchFragment(BlogFragment.class);
-        }
-
-        return super.onOptionsItemSelected(item);
     }
 
     @Override
