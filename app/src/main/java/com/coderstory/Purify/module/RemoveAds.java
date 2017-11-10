@@ -280,6 +280,23 @@ public class RemoveAds extends XposedHelper implements IModule {
         // 短信
         if (loadPackageParam.packageName.equals("com.android.mms")) {
             if (prefs.getBoolean("EnableMMS", false)) {
+
+                findAndHookMethod("com.android.mms.util.SmartMessageUtils", loadPackageParam.classLoader, "isMessagingTemplateAllowed", Context.class, new XC_MethodHook() {
+                    protected void beforeHookedMethod(MethodHookParam paramAnonymousMethodHookParam)
+                            throws Throwable {
+                        Context mc = (Context) paramAnonymousMethodHookParam.args[0];
+                        XposedBridge.log("短信 当前类：" + mc.getClass().getName().toLowerCase());
+                        if (mc.getClass().getName().toLowerCase().contains("app")) {
+                            paramAnonymousMethodHookParam.setResult(false);
+                            XposedBridge.log("返回false");
+                        } else {
+                            paramAnonymousMethodHookParam.setResult(true);
+                            XposedBridge.log("返回true");
+                        }
+                    }
+                });
+                // findAndHookMethod("com.android.mms.ui.SingleRecipientConversationActivity", loadPackageParam.classLoader, "showMenuMode",boolean.class,  XC_MethodReplacement.returnConstant(null));
+
                 findAndHookMethod("com.android.mms.util.MiStatSdkHelper", loadPackageParam.classLoader, "recordBottomMenuShown", String.class, XC_MethodReplacement.returnConstant(null));
             }
         }
