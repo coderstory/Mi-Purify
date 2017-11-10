@@ -1,5 +1,9 @@
 package com.coderstory.Purify.fragment;
 
+import android.didikee.donate.AlipayDonate;
+import android.didikee.donate.WeiXinDonate;
+import android.graphics.BitmapFactory;
+import android.os.Environment;
 import android.text.method.LinkMovementMethod;
 import android.text.util.Linkify;
 import android.view.View;
@@ -12,6 +16,9 @@ import com.coderstory.Purify.utils.licensesdialog.licenses.ApacheSoftwareLicense
 import com.coderstory.Purify.utils.licensesdialog.licenses.GnuGeneralPublicLicense20;
 import com.coderstory.Purify.utils.licensesdialog.model.Notice;
 import com.coderstory.Purify.utils.licensesdialog.model.Notices;
+
+import java.io.File;
+import java.io.InputStream;
 
 /**
  * Created by _SOLID
@@ -47,5 +54,28 @@ public class AboutFragment extends BaseFragment {
                         .show();
             }
         });
+    }
+
+    /* 支付宝支付
+     * @param payCode 收款码后面的字符串；例如：收款二维码里面的字符串为 https://qr.alipay.com/stx00187oxldjvyo3ofaw60 ，则
+     *payCode = stx00187oxldjvyo3ofaw60
+     *注：不区分大小写 aex087445gnaa6gawjaohe8
+     */
+    private void donateAlipay(String payCode) {
+        boolean hasInstalledAlipayClient = AlipayDonate.hasInstalledAlipayClient(getMContext());
+        if (hasInstalledAlipayClient) {
+            AlipayDonate.startAlipayClient(getActivity(), payCode);
+        }
+    }
+
+    /**
+     * 需要提前准备好 微信收款码 照片，可通过微信客户端生成
+     */
+    private void donateWeixin() {
+        InputStream weixinQrIs = getResources().openRawResource(R.raw.wecha);
+        String qrPath = Environment.getExternalStorageDirectory().getAbsolutePath() + File.separator + "AndroidDonateSample" + File.separator +
+                "didikee_weixin.png";
+        WeiXinDonate.saveDonateQrImage2SDCard(qrPath, BitmapFactory.decodeStream(weixinQrIs));
+        WeiXinDonate.donateViaWeiXin(getActivity(), qrPath);
     }
 }

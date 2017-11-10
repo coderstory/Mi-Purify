@@ -15,16 +15,13 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Gravity;
-import android.view.Menu;
 import android.view.MenuItem;
 
 import com.coderstory.Purify.R;
 import com.coderstory.Purify.config.Misc;
 import com.coderstory.Purify.fragment.BlockADSFragment;
-import com.coderstory.Purify.fragment.BlogFragment;
 import com.coderstory.Purify.fragment.CleanFragment;
 import com.coderstory.Purify.fragment.DisbaleAppFragment;
-import com.coderstory.Purify.fragment.DonationFragment;
 import com.coderstory.Purify.fragment.HideAppFragment;
 import com.coderstory.Purify.fragment.HostsFragment;
 import com.coderstory.Purify.fragment.ManagerAppFragment;
@@ -32,7 +29,6 @@ import com.coderstory.Purify.fragment.SettingsFragment;
 import com.coderstory.Purify.fragment.WebViewFragment;
 import com.coderstory.Purify.utils.SnackBarUtils;
 import com.coderstory.Purify.utils.ViewUtils;
-import com.coderstory.Purify.utils.roothelper.SuHelper;
 
 import static com.coderstory.Purify.R.id.navigation_view;
 import static com.coderstory.Purify.utils.roothelper.SuHelper.canRunRootCommands;
@@ -201,9 +197,8 @@ public class MainActivity extends BaseActivity {
                         mToolbar.setTitle(R.string.disableapp);
                         switchFragment(DisbaleAppFragment.class);
                         break;
-                    case R.id.navigation_item_donation:
-                        mToolbar.setTitle(R.string.navigation_item_donation);
-                        switchFragment(DonationFragment.class);
+                    case R.id.navigation_item_about:
+                        startActivityWithoutExtras(AboutActivity.class);
                         break;
                     case R.id.navigation_item_ManagerApp:
                         mToolbar.setTitle(R.string.navigation_item_ManagerApp);
@@ -236,29 +231,6 @@ public class MainActivity extends BaseActivity {
 
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main_toolbar, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-
-        int id = item.getItemId();
-
-        if (id == R.id.action_settings) {
-            startActivityWithoutExtras(AboutActivity.class);
-        } else if (id == R.id.action_reboot) {
-            SuHelper.showTips("busybox killall system_server", getString(R.string.Tips_HotBoot), this);
-        } else if (id == R.id.action_blog) {
-            mToolbar.setTitle(R.string.myblog);
-            switchFragment(BlogFragment.class);
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
 
     @Override
     public void onBackPressed() {

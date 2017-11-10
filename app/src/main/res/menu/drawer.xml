@@ -38,9 +38,9 @@
         <item android:title="@string/other">
             <menu>
                 <item
-                    android:id="@+id/navigation_item_donation"
+                    android:id="@+id/navigation_item_about"
                     android:icon="@drawable/iconfont_custom_view"
-                    android:title="@string/navigation_item_donation" />
+                    android:title="@string/about" />
                 <item
                     android:id="@+id/navigation_item_settings"
                     android:icon="@drawable/iconfont_custom_view"
