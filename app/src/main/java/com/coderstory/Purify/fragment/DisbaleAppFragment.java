@@ -1,6 +1,7 @@
 package com.coderstory.Purify.fragment;
 
 
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.ProgressDialog;
@@ -12,13 +13,11 @@ import android.os.AsyncTask;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
-import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -41,11 +40,8 @@ import java.util.List;
 import static com.coderstory.Purify.config.Misc.BackUpFileName;
 import static com.coderstory.Purify.utils.FileUtils.readFile;
 
-/**
- * A simple {@link Fragment} subclass.
- */
+
 public class DisbaleAppFragment extends BaseFragment {
-    // private Context mContext=null;
     List<PackageInfo> packages = new ArrayList<>();
     AppInfoAdapter adapter = null;
     ListView listView = null;
@@ -57,6 +53,7 @@ public class DisbaleAppFragment extends BaseFragment {
     private List<AppInfo> appInfoList = new ArrayList<>();
     private List<AppInfo> appInfoList2 = new ArrayList<>();
     private Dialog dialog;
+    @SuppressLint("HandlerLeak")
     Handler myHandler = new Handler() {
         public void handleMessage(Message msg) {
             ((ProgressDialog) dialog).setMessage(getString(R.string.refreshing_list));
@@ -70,8 +67,10 @@ public class DisbaleAppFragment extends BaseFragment {
 
     private void initData() {
         packages = new ArrayList<>();
-        packages = getContext().getPackageManager().getInstalledPackages(0);
-        initFruit();
+        if (getContext() != null) {
+            packages = getContext().getPackageManager().getInstalledPackages(0);
+            initFruit();
+        }
     }
 
     @Override
@@ -81,92 +80,82 @@ public class DisbaleAppFragment extends BaseFragment {
     }
 
     private void initFruit() {
-        //packageInfo.applicationInfo.flags&ApplicationInfo.FLAG_SYSTEM)==0 表示是系统应用
         appInfoList.clear();
         appInfoList2.clear();
-        for (int i = 0; i < packages.size(); i++) {
-            PackageInfo packageInfo = packages.get(i);
-            if ((packageInfo.applicationInfo.flags & ApplicationInfo.FLAG_SYSTEM) > 0) {
-                if (packageInfo.applicationInfo.enabled) {
-                    AppInfo appInfo = new AppInfo(packageInfo.applicationInfo.loadLabel(getContext().getPackageManager()).toString(), packageInfo.applicationInfo.loadIcon(getContext().getPackageManager()), packageInfo.packageName, false, String.valueOf(packageInfo.versionName));
-                    appInfoList.add(appInfo);
-                } else {
-                    AppInfo appInfo = new AppInfo(packageInfo.applicationInfo.loadLabel(getContext().getPackageManager()).toString(), packageInfo.applicationInfo.loadIcon(getContext().getPackageManager()), packageInfo.packageName, true, String.valueOf(packageInfo.versionName));
-                    appInfoList2.add(appInfo);
+        if (getContext() != null) {
+            for (int i = 0; i < packages.size(); i++) {
+                PackageInfo packageInfo = packages.get(i);
+                if ((packageInfo.applicationInfo.flags & ApplicationInfo.FLAG_SYSTEM) > 0) {
+                    if (packageInfo.applicationInfo.enabled) {
+                        AppInfo appInfo = new AppInfo(packageInfo.applicationInfo.loadLabel(getContext().getPackageManager()).toString(), packageInfo.applicationInfo.loadIcon(getContext().getPackageManager()), packageInfo.packageName, false, String.valueOf(packageInfo.versionName));
+                        appInfoList.add(appInfo);
+                    } else {
+                        AppInfo appInfo = new AppInfo(packageInfo.applicationInfo.loadLabel(getContext().getPackageManager()).toString(), packageInfo.applicationInfo.loadIcon(getContext().getPackageManager()), packageInfo.packageName, true, String.valueOf(packageInfo.versionName));
+                        appInfoList2.add(appInfo);
+                    }
                 }
             }
+            appInfoList.addAll(appInfoList2);
         }
-        appInfoList.addAll(appInfoList2);
     }
 
     private void showData() {
         adapter = new AppInfoAdapter(getContext(), R.layout.app_info_item, appInfoList);
-        listView = (ListView) getContentView().findViewById(R.id.listView);
+        listView = getContentView().findViewById(R.id.listView);
         assert listView != null;
         listView.setAdapter(adapter);
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                mposition = position;
-                mview = view;
-                AlertDialog.Builder dialog = new AlertDialog.Builder(getContext());
-                dialog.setTitle(R.string.Tips_Title);
-                String tipsText;
-                String BtnText = getString(R.string.Btn_Sure);
-                appInfo = appInfoList.get(mposition);
-                if (appInfo.getDisable()) {
-                    tipsText = getString(R.string.sureAntiDisable) + appInfo.getName() + getString(R.string.sureAntiDisableAfter);
-                } else {
-                    tipsText = getString(R.string.sureDisable) + appInfo.getName() + getString(R.string.sureDisableAfter);
-                }
-                dialog.setMessage(tipsText);
-                dialog.setPositiveButton(BtnText, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-
-                        String commandText = (!appInfo.getDisable() ? "pm disable " : "pm enable ") + appInfo.getPackageName();
-                        Log.e("cc", commandText);
-                        Process process = null;
-                        DataOutputStream os = null;
-                        try {
-                            process = Runtime.getRuntime().exec("su"); //切换到root帐号
-                            os = new DataOutputStream(process.getOutputStream());
-                            os.writeBytes(commandText + "\n");
-                            os.writeBytes("exit\n");
-                            os.flush();
-                            process.waitFor();
-                            if (appInfo.getDisable()) {
-                                appInfo.setDisable(false);
-                                appInfoList.set(mposition, appInfo);
-                                mview.setBackgroundColor(getResources().getColor(R.color.colorPrimary)); //正常的颜色
-                            } else {
-                                appInfo.setDisable(true);
-                                appInfoList.set(mposition, appInfo);
-                                mview.setBackgroundColor(Color.parseColor("#d0d7d7d7")); //冻结的颜色
-                            }
-                        } catch (Exception ignored) {
-
-                        } finally {
-                            try {
-                                if (os != null) {
-                                    os.close();
-                                }
-                                assert process != null;
-                                process.destroy();
-                            } catch (Exception ignored) {
-                            }
-                        }
-                    }
-                });
-                dialog.setCancelable(true);
-                dialog.setNegativeButton(R.string.Btn_Cancel, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.cancel();
-                    }
-                });
-                dialog.show();
+        listView.setOnItemClickListener((parent, view, position, id) -> {
+            mposition = position;
+            mview = view;
+            AlertDialog.Builder dialog = new AlertDialog.Builder(getContext());
+            dialog.setTitle(R.string.Tips_Title);
+            String tipsText;
+            String BtnText = getString(R.string.Btn_Sure);
+            appInfo = appInfoList.get(mposition);
+            if (appInfo.getDisable()) {
+                tipsText = getString(R.string.sureAntiDisable) + appInfo.getName() + getString(R.string.sureAntiDisableAfter);
+            } else {
+                tipsText = getString(R.string.sureDisable) + appInfo.getName() + getString(R.string.sureDisableAfter);
             }
+            dialog.setMessage(tipsText);
+            dialog.setPositiveButton(BtnText, (dialog12, which) -> {
+
+                String commandText = (!appInfo.getDisable() ? "pm disable " : "pm enable ") + appInfo.getPackageName();
+                Log.e("cc", commandText);
+                Process process = null;
+                DataOutputStream os = null;
+                try {
+                    process = Runtime.getRuntime().exec("su"); //切换到root帐号
+                    os = new DataOutputStream(process.getOutputStream());
+                    os.writeBytes(commandText + "\n");
+                    os.writeBytes("exit\n");
+                    os.flush();
+                    process.waitFor();
+                    if (appInfo.getDisable()) {
+                        appInfo.setDisable(false);
+                        appInfoList.set(mposition, appInfo);
+                        mview.setBackgroundColor(getResources().getColor(R.color.colorPrimary)); //正常的颜色
+                    } else {
+                        appInfo.setDisable(true);
+                        appInfoList.set(mposition, appInfo);
+                        mview.setBackgroundColor(Color.parseColor("#d0d7d7d7")); //冻结的颜色
+                    }
+                } catch (Exception ignored) {
+
+                } finally {
+                    try {
+                        if (os != null) {
+                            os.close();
+                        }
+                        assert process != null;
+                        process.destroy();
+                    } catch (Exception ignored) {
+                    }
+                }
+            });
+            dialog.setCancelable(true);
+            dialog.setNegativeButton(R.string.Btn_Cancel, (dialog1, which) -> dialog1.cancel());
+            dialog.show();
         });
     }
 
@@ -184,20 +173,12 @@ public class DisbaleAppFragment extends BaseFragment {
 
         mPullToRefreshView = getContentView().findViewById(R.id.pull_to_refresh);
 
-        mPullToRefreshView.setOnRefreshListener(new PullToRefreshView.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-                mPullToRefreshView.postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        initData();
-                        showData();
-                        adapter.notifyDataSetChanged();
-                        mPullToRefreshView.setRefreshing(false);
-                    }
-                }, 2000);
-            }
-        });
+        mPullToRefreshView.setOnRefreshListener(() -> mPullToRefreshView.postDelayed(() -> {
+            initData();
+            showData();
+            adapter.notifyDataSetChanged();
+            mPullToRefreshView.setRefreshing(false);
+        }, 2000));
     }
 
     protected void showProgress() {
@@ -223,19 +204,9 @@ public class DisbaleAppFragment extends BaseFragment {
             dialog.setTitle(R.string.backup_list);
             String tipsText = getString(R.string.tips_sure_backuplist);
             dialog.setMessage(tipsText);
-            dialog.setPositiveButton(getString(R.string.Btn_Sure), new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    satrtBackuop();
-                }
-            });
+            dialog.setPositiveButton(getString(R.string.Btn_Sure), (dialog14, which) -> satrtBackuop());
             dialog.setCancelable(true);
-            dialog.setNegativeButton(R.string.Btn_Cancel, new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    dialog.cancel();
-                }
-            });
+            dialog.setNegativeButton(R.string.Btn_Cancel, (dialog13, which) -> dialog13.cancel());
 
             mydialog = dialog.create();
             mydialog.show();
@@ -245,19 +216,9 @@ public class DisbaleAppFragment extends BaseFragment {
             dialog.setTitle(R.string.tips_sure_restore_settings);
             String tipsText = getString(R.string.restore_set);
             dialog.setMessage(tipsText);
-            dialog.setPositiveButton(getString(R.string.Btn_Sure), new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    restoreList();
-                }
-            });
+            dialog.setPositiveButton(getString(R.string.Btn_Sure), (dialog1, which) -> restoreList());
             dialog.setCancelable(true);
-            dialog.setNegativeButton(R.string.Btn_Cancel, new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    dialog.cancel();
-                }
-            });
+            dialog.setNegativeButton(R.string.Btn_Cancel, (dialog12, which) -> dialog12.cancel());
             mydialog = dialog.create();
             mydialog.show();
         }
@@ -290,12 +251,10 @@ public class DisbaleAppFragment extends BaseFragment {
         dialog = ProgressDialog.show(getContext(), getString(R.string.tips), getString(R.string.restoreing));
         dialog.show();
 
-        new Thread(new Runnable() {
-            public void run() {
-                disableHelp dh = new disableHelp(list);
-                dh.execute();
-                myHandler.sendMessage(new Message());
-            }
+        new Thread(() -> {
+            disableHelp dh = new disableHelp(list);
+            dh.execute();
+            myHandler.sendMessage(new Message());
         }).start();
 
     }
@@ -306,7 +265,7 @@ public class DisbaleAppFragment extends BaseFragment {
         //遍历数据源
         for (AppInfo info : appInfoList) {
             if (info.getDisable()) { //判断是否被冻结
-                SB.append(info.getPackageName() + "\n");
+                SB.append(info.getPackageName()).append("\n");
             }
         }
 
@@ -335,6 +294,7 @@ public class DisbaleAppFragment extends BaseFragment {
         }
     }
 
+    @SuppressLint("StaticFieldLeak")
     class MyTask extends AsyncTask<String, Integer, String> {
 
         @Override

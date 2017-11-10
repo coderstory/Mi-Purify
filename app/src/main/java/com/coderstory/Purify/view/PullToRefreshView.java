@@ -117,7 +117,7 @@ public class PullToRefreshView extends ViewGroup {
         setRefreshing(false);
         switch (type) {
             case STYLE_SUN:
-                mBaseRefreshView = new SunRefreshView(getContext(), this);
+                mBaseRefreshView = new SunRefreshView(this);
                 break;
             default:
                 throw new InvalidParameterException("Type does not exist");
@@ -370,24 +370,10 @@ public class PullToRefreshView extends ViewGroup {
         mTarget.offsetTopAndBottom(offset);
         mBaseRefreshView.offsetTopAndBottom(offset);
         mCurrentOffsetTop = mTarget.getTop();
-        if (requiresUpdate && android.os.Build.VERSION.SDK_INT < 11) {
-            invalidate();
-        }
     }
 
     private boolean canChildScrollUp() {
-        if (android.os.Build.VERSION.SDK_INT < 14) {
-            if (mTarget instanceof AbsListView) {
-                final AbsListView absListView = (AbsListView) mTarget;
-                return absListView.getChildCount() > 0
-                        && (absListView.getFirstVisiblePosition() > 0 || absListView.getChildAt(0)
-                        .getTop() < absListView.getPaddingTop());
-            } else {
-                return mTarget.getScrollY() > 0;
-            }
-        } else {
-            return ViewCompat.canScrollVertically(mTarget, -1);
-        }
+        return ViewCompat.canScrollVertically(mTarget, -1);
     }
 
     @Override

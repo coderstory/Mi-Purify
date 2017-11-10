@@ -1,6 +1,7 @@
 package com.coderstory.Purify.fragment;
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
@@ -8,21 +9,15 @@ import android.view.ViewGroup;
 
 import java.util.List;
 
-/**
- * Created by cc on 2016/10/9.
- */
-
 public class TabFragmentAdapter extends FragmentPagerAdapter {
 
-    FragmentManager fm;
     private Bundle args;
     private List<Fragment> fragments;
 
-    public TabFragmentAdapter(FragmentManager fm, List<Fragment> fragments, Bundle args) {
+    TabFragmentAdapter(FragmentManager fm, List<Fragment> fragments, Bundle args) {
         super(fm);
         this.fragments = fragments;
         this.args = args;
-        this.fm = fm;
     }
 
     @Override
@@ -38,11 +33,12 @@ public class TabFragmentAdapter extends FragmentPagerAdapter {
     }
 
     @Override
-    public int getItemPosition(Object object) {
+    public int getItemPosition(@NonNull Object object) {
         return POSITION_NONE;
     }
 
     @Override
+    @NonNull
     public Object instantiateItem(ViewGroup container, int position) {
         return super.instantiateItem(container, position);
     }

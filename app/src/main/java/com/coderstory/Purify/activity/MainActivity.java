@@ -1,10 +1,10 @@
 package com.coderstory.Purify.activity;
 
 import android.Manifest;
-import android.content.DialogInterface;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.design.internal.NavigationMenuView;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
@@ -37,7 +37,6 @@ public class MainActivity extends BaseActivity {
 
     public static final long MAX_DOUBLE_BACK_DURATION = 1500;
     private static final int READ_EXTERNAL_STORAGE_CODE = 1;
-    private static String TAG = "MainActivity";
     private DrawerLayout mDrawerLayout;//侧边菜单视图
     private Toolbar mToolbar;
     private NavigationView mNavigationView;//侧边菜单项
@@ -68,7 +67,7 @@ public class MainActivity extends BaseActivity {
     }
 
     @Override
-    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,@NonNull  int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         if (requestCode == READ_EXTERNAL_STORAGE_CODE) {
             int grantResult = grantResults[0];
@@ -98,12 +97,7 @@ public class MainActivity extends BaseActivity {
             normalDialog.setTitle("提示");
             normalDialog.setMessage("请先授权应用ROOT权限");
             normalDialog.setPositiveButton("确定",
-                    new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            System.exit(0);
-                        }
-                    });
+                    (dialog, which) -> System.exit(0));
 
             // 显示
             normalDialog.show();
@@ -116,42 +110,26 @@ public class MainActivity extends BaseActivity {
         setNavigationViewItemClickListener();
         ActionBarDrawerToggle mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout, mToolbar, R.string.drawer_open, R.string.drawer_close);
         mDrawerToggle.syncState();
-        mDrawerLayout.setDrawerListener(mDrawerToggle);
+        mDrawerLayout.addDrawerListener(mDrawerToggle);
         mToolbar.setNavigationIcon(R.drawable.ic_drawer_home);
         initDefaultFragment();
 
         //取消滚动条
-        NavigationView v = (NavigationView) findViewById(R.id.navigation_view);
+        NavigationView v = findViewById(R.id.navigation_view);
         v.setEnabled(false);
         v.setClickable(false);
-        if (v != null) {
-            NavigationMenuView navigationMenuView = (NavigationMenuView) v.getChildAt(0);
-            if (navigationMenuView != null) {
-                navigationMenuView.setVerticalScrollBarEnabled(false);
-            }
+        NavigationMenuView navigationMenuView = (NavigationMenuView) v.getChildAt(0);
+        if (navigationMenuView != null) {
+            navigationMenuView.setVerticalScrollBarEnabled(false);
         }
     }
 
-    @Override
-    protected void onSaveInstanceState(Bundle outState) {
-        super.onSaveInstanceState(outState);
-        Log.i(TAG, "onSaveInstanceState");
-    }
-
     //init the default checked fragment
-
     private void initDefaultFragment() {
-        Log.i(TAG, "initDefaultFragment");
         mCurrentFragment = ViewUtils.createFragment(BlockADSFragment.class);
         mFragmentManager.beginTransaction().add(R.id.frame_content, mCurrentFragment).commit();
         mPreMenuItem = mNavigationView.getMenu().getItem(0);
         mPreMenuItem.setChecked(true);
-    }
-
-    @Override
-    protected void onRestoreInstanceState(Bundle savedInstanceState) {
-        //super.onRestoreInstanceState(savedInstanceState);
-        Log.i(TAG, "onRestoreInstanceState");
     }
 
     public boolean isEnable() {
@@ -159,40 +137,61 @@ public class MainActivity extends BaseActivity {
     }
 
     private void setNavigationViewItemClickListener() {
-        mNavigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+        mNavigationView.setNavigationItemSelectedListener(item -> {
+            if (null != mPreMenuItem) {
+                mPreMenuItem.setChecked(false);
+            }
 
-            @Override
-            public boolean onNavigationItemSelected(MenuItem item) {
-                if (null != mPreMenuItem) {
-                    mPreMenuItem.setChecked(false);
-                }
+            if (Misc.isProcessing) {
+                SnackBarUtils.makeShort(mDrawerLayout, getString(R.string.isWorkingTips)).danger();
+                return false;
+            }
 
-                if (Misc.isProcessing) {
-                    SnackBarUtils.makeShort(mDrawerLayout, getString(R.string.isWorkingTips)).danger();
-                    return false;
-                }
+            switch (item.getItemId()) {
+                case R.id.navigation_item_blockads:
+                    mToolbar.setTitle(R.string.MIUI_Purify);
+                    switchFragment(BlockADSFragment.class);
+                    break;
 
-                switch (item.getItemId()) {
-                    case R.id.navigation_item_blockads:
-                        mToolbar.setTitle(R.string.MIUI_Purify);
-                        switchFragment(BlockADSFragment.class);
-                        break;
+                case R.id.navigation_item_hosts:
+                    mToolbar.setTitle(R.string.hosts);
+                    switchFragment(HostsFragment.class);
+                    break;
 
-                    case R.id.navigation_item_hosts:
-                        mToolbar.setTitle(R.string.hosts);
-                        switchFragment(HostsFragment.class);
-                        break;
+                case R.id.navigation_item_settings:
+                    mToolbar.setTitle(R.string.othersettings);
+                    switchFragment(SettingsFragment.class);
+                    break;
 
-                    case R.id.navigation_item_settings:
-                        mToolbar.setTitle(R.string.othersettings);
-                        switchFragment(SettingsFragment.class);
-                        break;
+                case R.id.navigation_item_Clean:
+                    mToolbar.setTitle(R.string.appclean);
+                    switchFragment(CleanFragment.class);
+                    break;
 
-                    case R.id.navigation_item_Clean:
-                        mToolbar.setTitle(R.string.appclean);
-                        switchFragment(CleanFragment.class);
-                        break;
+                case R.id.navigation_item_disableapps:
+                    mToolbar.setTitle(R.string.disableapp);
+                    switchFragment(DisbaleAppFragment.class);
+                    break;
+                case R.id.navigation_item_donation:
+                    mToolbar.setTitle(R.string.navigation_item_donation);
+                    switchFragment(DonationFragment.class);
+                    break;
+                case R.id.navigation_item_ManagerApp:
+                    mToolbar.setTitle(R.string.navigation_item_ManagerApp);
+                    switchFragment(ManagerAppFragment.class);
+                    break;
+                case R.id.navigation_item_hide_app:
+                    mToolbar.setTitle(R.string.hide_app_icon);
+                    switchFragment(HideAppFragment.class);
+                    break;
 
+                default:
+                    break;
+            }
+            item.setChecked(true);
+            mDrawerLayout.closeDrawer(Gravity.START);
+            mPreMenuItem = item;
+            return false;
                     case R.id.navigation_item_disableapps:
                         mToolbar.setTitle(R.string.disableapp);
                         switchFragment(DisbaleAppFragment.class);
@@ -228,18 +227,38 @@ public class MainActivity extends BaseActivity {
             mFragmentManager.beginTransaction().replace(mCurrentFragment.getId(), to).commit();
         }
         mCurrentFragment = to;
-
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_main_toolbar, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        if (id == R.id.action_settings) {
+            startActivityWithoutExtras(AboutActivity.class);
+        } else if (id == R.id.action_reboot) {
+            SuHelper.showTips("busybox killall system_server", getString(R.string.Tips_HotBoot), this);
+        } else if (id == R.id.action_blog) {
+            mToolbar.setTitle(R.string.myblog);
+            switchFragment(BlogFragment.class);
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
 
     @Override
     public void onBackPressed() {
-        if (mDrawerLayout.isDrawerOpen(Gravity.START)) {//当前抽屉是打开的，则关闭
+        //当前抽屉是打开的，则关闭
+        if (mDrawerLayout.isDrawerOpen(Gravity.START)) {
             mDrawerLayout.closeDrawer(Gravity.START);
             return;
         }
-
-        if (mCurrentFragment instanceof WebViewFragment) {//如果当前的Fragment是WebViewFragment 则监听返回事件
+        //如果当前的Fragment是WebViewFragment 则监听返回事件
+        if (mCurrentFragment instanceof WebViewFragment) {
             WebViewFragment webViewFragment = (WebViewFragment) mCurrentFragment;
             if (webViewFragment.canGoBack()) {
                 webViewFragment.goBack();

@@ -1,12 +1,12 @@
 package com.coderstory.Purify.refresh_view;
 
-import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Matrix;
 import android.graphics.Rect;
 import android.graphics.drawable.Animatable;
+import android.support.annotation.NonNull;
 import android.view.animation.Animation;
 import android.view.animation.Interpolator;
 import android.view.animation.LinearInterpolator;
@@ -67,21 +67,16 @@ public class SunRefreshView extends BaseRefreshView implements Animatable {
 
     private boolean isRefreshing = false;
 
-    public SunRefreshView(Context context, final PullToRefreshView parent) {
-        super(context, parent);
+    public SunRefreshView(final PullToRefreshView parent) {
+        super(parent);
         mParent = parent;
         mMatrix = new Matrix();
 
         setupAnimations();
-        parent.post(new Runnable() {
-            @Override
-            public void run() {
-                initiateDimens(parent.getWidth());
-            }
-        });
+        parent.post(() -> initiateDimens(parent.getWidth()));
     }
 
-    public void initiateDimens(int viewWidth) {
+    private void initiateDimens(int viewWidth) {
         if (viewWidth <= 0 || viewWidth == mScreenWidth) return;
 
         mScreenWidth = viewWidth;
@@ -127,7 +122,7 @@ public class SunRefreshView extends BaseRefreshView implements Animatable {
     }
 
     @Override
-    public void draw(Canvas canvas) {
+    public void draw(@NonNull Canvas canvas) {
         if (mScreenWidth <= 0) return;
 
         final int saveCount = canvas.save();
@@ -151,7 +146,6 @@ public class SunRefreshView extends BaseRefreshView implements Animatable {
         float skyScale;
         float scalePercentDelta = dragPercent - SCALE_START_PERCENT;
         if (scalePercentDelta > 0) {
-            /** Change skyScale between {@link #SKY_INITIAL_SCALE} and 1.0f depending on {@link #mPercent} */
             float scalePercent = scalePercentDelta / (1.0f - SCALE_START_PERCENT);
             skyScale = SKY_INITIAL_SCALE - (SKY_INITIAL_SCALE - 1.0f) * scalePercent;
         } else {
@@ -179,10 +173,6 @@ public class SunRefreshView extends BaseRefreshView implements Animatable {
         float townMoveOffset;
         float scalePercentDelta = dragPercent - SCALE_START_PERCENT;
         if (scalePercentDelta > 0) {
-            /**
-             * Change townScale between {@link #TOWN_INITIAL_SCALE} and {@link #TOWN_FINAL_SCALE} depending on {@link #mPercent}
-             * Change townTopOffset between {@link #mTownInitialTopOffset} and {@link #mTownFinalTopOffset} depending on {@link #mPercent}
-             */
             float scalePercent = scalePercentDelta / (1.0f - SCALE_START_PERCENT);
             townScale = TOWN_INITIAL_SCALE + (TOWN_FINAL_SCALE - TOWN_INITIAL_SCALE) * scalePercent;
             townTopOffset = mTownInitialTopOffset - (mTownFinalTopOffset - mTownInitialTopOffset) * scalePercent;
@@ -249,16 +239,16 @@ public class SunRefreshView extends BaseRefreshView implements Animatable {
         canvas.drawBitmap(mSun, matrix, null);
     }
 
-    public void setPercent(float percent) {
+    private void setPercent(float percent) {
         mPercent = percent;
     }
 
-    public void setRotate(float rotate) {
+    private void setRotate(float rotate) {
         mRotate = rotate;
         invalidateSelf();
     }
 
-    public void resetOriginals() {
+    private void resetOriginals() {
         setPercent(0);
         setRotate(0);
     }

@@ -40,7 +40,7 @@ import static com.coderstory.Purify.config.Misc.BackPath;
 public class BackupAppFragment extends BaseFragment {
 
 
-    List<PackageInfo> packages = new ArrayList<PackageInfo>();
+    List<PackageInfo> packages = new ArrayList<>();
     AppInfoAdapter adapter = null;
     ListView listView = null;
     AppInfo appInfo = null;
@@ -48,8 +48,8 @@ public class BackupAppFragment extends BaseFragment {
     View mView = null;
     PullToRefreshView mPullToRefreshView;
     private View view;
-    private List<AppInfo> appInfoList = new ArrayList<AppInfo>();
-    private List<AppInfo> appInfoList2 = new ArrayList<AppInfo>();
+    private List<AppInfo> appInfoList = new ArrayList<>();
+    private List<AppInfo> appInfoList2 = new ArrayList<>();
     private Dialog dialog;
 
     @Override
@@ -73,22 +73,14 @@ public class BackupAppFragment extends BaseFragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         new MyTask().execute();
-        mPullToRefreshView = (PullToRefreshView) getActivity().findViewById(R.id.pull_to_refresh);
+        mPullToRefreshView = getActivity().findViewById(R.id.pull_to_refresh);
 
-        mPullToRefreshView.setOnRefreshListener(new PullToRefreshView.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-                mPullToRefreshView.postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        initData();
-                        showData();
-                        adapter.notifyDataSetChanged();
-                        mPullToRefreshView.setRefreshing(false);
-                    }
-                }, 2000);
-            }
-        });
+        mPullToRefreshView.setOnRefreshListener(() -> mPullToRefreshView.postDelayed(() -> {
+            initData();
+            showData();
+            adapter.notifyDataSetChanged();
+            mPullToRefreshView.setRefreshing(false);
+        }, 2000));
     }
 
     private void initFruit() {
@@ -114,7 +106,6 @@ public class BackupAppFragment extends BaseFragment {
 
         appInfoList.clear();
         packages = getContext().getPackageManager().getInstalledPackages(0);
-        //packageInfo.applicationInfo.flags&ApplicationInfo.FLAG_SYSTEM)==0 表示是系统应用
         if (packages != null) {
             for (int i = 0; i < packages.size(); i++) {
                 PackageInfo packageInfo = packages.get(i);
@@ -130,7 +121,6 @@ public class BackupAppFragment extends BaseFragment {
                             AppInfo appInfo2 = new AppInfo(packageInfo.applicationInfo.loadLabel(getActivity().getPackageManager()).toString(), packageInfo.applicationInfo.loadIcon(getActivity().getPackageManager()), packageInfo.packageName, false, packageInfo.applicationInfo.sourceDir, packageInfo.versionName + "  有新版本未备份", packageInfo.versionCode);
                             appInfoList.add(appInfo2);
                             break;
-
                     }
                 }
             }

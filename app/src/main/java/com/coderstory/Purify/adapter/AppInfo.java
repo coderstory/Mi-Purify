@@ -2,14 +2,10 @@ package com.coderstory.Purify.adapter;
 
 import android.graphics.drawable.Drawable;
 
-/**
- * Created by cc on 2015/12/11. 单个app info的模型
- */
 public class AppInfo {
 
     private String name;
     private Drawable imageId;
-    //private String AppDir;
     private boolean isDisable = true;
     private String packageName = "";
     private String Version = "";

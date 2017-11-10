@@ -49,7 +49,6 @@ public class AboutFragment extends BaseFragment {
 
                 new LicensesDialog.Builder(getMContext())
                         .setNotices(notices)
-                        //.setIncludeOwnLicense(true)
                         .build()
                         .show();
             }

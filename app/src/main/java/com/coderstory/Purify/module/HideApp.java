@@ -14,10 +14,6 @@ import de.robv.android.xposed.XposedBridge;
 import de.robv.android.xposed.callbacks.XC_InitPackageResources;
 import de.robv.android.xposed.callbacks.XC_LoadPackage;
 
-/**
- * Created by CoderStory on 2017/10/20 0020.
- */
-
 public class HideApp extends XposedHelper implements IModule {
     @Override
     public void handleInitPackageResources(XC_InitPackageResources.InitPackageResourcesParam resparam) {

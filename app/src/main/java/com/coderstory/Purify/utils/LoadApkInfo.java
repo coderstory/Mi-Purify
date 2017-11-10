@@ -18,15 +18,15 @@ public class LoadApkInfo {
 
     // 获取当前目录下所有的apk文件
     public static Vector<String> GetApkFileName(String fileAbsolutePath) {
-        Vector<String> vecFile = new Vector<String>();
+        Vector<String> vecFile = new Vector<>();
         File file = new File(fileAbsolutePath);
         File[] subFile = file.listFiles();
 
         if (subFile != null) {
-            for (int iFileLength = 0; iFileLength < subFile.length; iFileLength++) {
+            for (File aSubFile : subFile) {
                 // 判断是否为文件夹
-                if (!subFile[iFileLength].isDirectory()) {
-                    String filename = subFile[iFileLength].getName();
+                if (!aSubFile.isDirectory()) {
+                    String filename = aSubFile.getName();
                     // 判断是否为apk结尾
                     if (filename.trim().toLowerCase().endsWith(".apk")) {
                         vecFile.add(filename);
@@ -42,8 +42,7 @@ public class LoadApkInfo {
         AppInfo app = new AppInfo();
         app.setAppDir(BackPath + appPath);
         PackageManager pm = content.getPackageManager();
-        PackageInfo info = pm.getPackageArchiveInfo(app.getAppDir(), PackageManager.GET_ACTIVITIES);
-        return info;
+        return pm.getPackageArchiveInfo(app.getAppDir(), PackageManager.GET_ACTIVITIES);
     }
 
 

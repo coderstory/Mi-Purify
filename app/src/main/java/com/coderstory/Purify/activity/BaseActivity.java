@@ -44,13 +44,6 @@ public abstract class BaseActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    protected SharedPreferences.Editor getEditor() {
-        if (editor == null) {
-            editor = prefs.edit();
-        }
-        return editor;
-    }
-
     protected SharedPreferences getPrefs() {
         prefs = getBaseContext().getSharedPreferences("UserSettings", Context.MODE_PRIVATE);
         return prefs;

@@ -2,6 +2,7 @@ package com.coderstory.Purify.adapter;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.support.annotation.NonNull;
 import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -24,7 +25,8 @@ public class AppInfoAdapter extends ArrayAdapter {
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    @NonNull
+    public View getView(int position, View convertView,@NonNull ViewGroup parent) {
         AppInfo appInfo = (AppInfo) getItem(position);
         View view;
         ViewHolder vh;
@@ -42,7 +44,7 @@ public class AppInfoAdapter extends ArrayAdapter {
         assert appInfo != null;
         vh.myText.setTag(appInfo.getPackageName());
         vh.myImage.setImageDrawable(appInfo.getImageId());
-        vh.myText.setText(" 应用名 : " + appInfo.getName() + "\r\n 版本号 : " + appInfo.getVersion());
+        vh.myText.setText(String.format(getContext().getString(R.string.appname),appInfo.getName(),appInfo.getVersion()));
         if (appInfo.getDisable()) {
             view.setBackgroundColor(Color.parseColor("#d0d7d7d7")); //冻结的颜色
         } else {

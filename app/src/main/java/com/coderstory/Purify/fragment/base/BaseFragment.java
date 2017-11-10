@@ -31,41 +31,11 @@ public abstract class BaseFragment extends Fragment {
 
     public static final String PREFS_FOLDER = " /data/data/" + ApplicationName + "/shared_prefs\n";
     public static final String PREFS_FILE = " /data/data/" + ApplicationName + "/shared_prefs/" + SharedPreferencesName + ".xml\n";
-    private static final String TAG = "AA";
     private static SharedPreferences prefs;
     private static SharedPreferences.Editor editor;
     private View mContentView;
     private Context mContext;
     private ProgressDialog mProgressDialog;
-
-    //静态方法，便于作为工具类
-    public static String getMd5(String plainText) {
-        try {
-            MessageDigest md = MessageDigest.getInstance("MD5");
-            md.update(plainText.getBytes());
-            byte b[] = md.digest();
-
-            int i;
-
-            StringBuffer buf = new StringBuffer("");
-            for (int offset = 0; offset < b.length; offset++) {
-                i = b[offset];
-                if (i < 0)
-                    i += 256;
-                if (i < 16)
-                    buf.append("0");
-                buf.append(Integer.toHexString(i));
-            }
-            //32位加密
-            return buf.toString();
-            // 16位的加密
-            //return buf.toString().substring(8, 24);
-        } catch (NoSuchAlgorithmException e) {
-            e.printStackTrace();
-            return null;
-        }
-
-    }
 
     @Nullable
     @Override
@@ -85,7 +55,6 @@ public abstract class BaseFragment extends Fragment {
     protected abstract int setLayoutResourceID();
 
     protected void setUpData() {
-
     }
 
     protected SharedPreferences.Editor getEditor() {
@@ -97,19 +66,11 @@ public abstract class BaseFragment extends Fragment {
     }
 
     protected SharedPreferences getPrefs() {
-
-
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            prefs = getContext().getSharedPreferences("UserSettings", Context.MODE_PRIVATE);
-        } else {
-            prefs = getContext().getSharedPreferences("UserSettings", Context.MODE_WORLD_READABLE);
-        }
-
+        prefs = getContext().getSharedPreferences("UserSettings", Context.MODE_PRIVATE);
         return prefs;
     }
 
     protected void init() {
-
     }
 
     protected void setUpView() {
@@ -145,7 +106,6 @@ public abstract class BaseFragment extends Fragment {
                 Shell.SU.run("chmod  755 " + PREFS_FOLDER);
                 // Set preferences file permissions to be world readable
                 Shell.SU.run("chmod  644 " + PREFS_FILE);
-                Log.d(TAG, "Saved Preferences Successfully.");
             }
         }.start();
     }

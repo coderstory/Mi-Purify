@@ -62,82 +62,58 @@ public class BlockADSFragment extends BaseFragment {
             }
         });
 
-        $(R.id.enableBlockADBasic).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                getEditor().putBoolean("EnableBlockADBasic", ((Switch) v).isChecked());
-                getEditor().apply();
-                sudoFixPermissions();
+        $(R.id.enableBlockADBasic).setOnClickListener(v -> {
+            getEditor().putBoolean("EnableBlockADBasic", ((Switch) v).isChecked());
+            getEditor().apply();
+            sudoFixPermissions();
 
-            }
         });
 
-        $(R.id.enableMMS).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                getEditor().putBoolean("EnableMMS", ((Switch) v).isChecked());
-                getEditor().apply();
-                sudoFixPermissions();
+        $(R.id.enableMMS).setOnClickListener(v -> {
+            getEditor().putBoolean("EnableMMS", ((Switch) v).isChecked());
+            getEditor().apply();
+            sudoFixPermissions();
 
-            }
         });
-        $(R.id.enableWeather).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                getEditor().putBoolean("EnableWeather", ((Switch) v).isChecked());
-                getEditor().apply();
-                sudoFixPermissions();
+        $(R.id.enableWeather).setOnClickListener(v -> {
+            getEditor().putBoolean("EnableWeather", ((Switch) v).isChecked());
+            getEditor().apply();
+            sudoFixPermissions();
 
-            }
         });
-        $(R.id.enableFileManager).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                getEditor().putBoolean("EnableFileManager", ((Switch) v).isChecked());
-                getEditor().apply();
-                sudoFixPermissions();
+        $(R.id.enableFileManager).setOnClickListener(v -> {
+            getEditor().putBoolean("EnableFileManager", ((Switch) v).isChecked());
+            getEditor().apply();
+            sudoFixPermissions();
 
-            }
         });
 
-        $(R.id.enableDownload).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                getEditor().putBoolean("EnableDownload", ((Switch) v).isChecked());
-                getEditor().apply();
-                sudoFixPermissions();
+        $(R.id.enableDownload).setOnClickListener(v -> {
+            getEditor().putBoolean("EnableDownload", ((Switch) v).isChecked());
+            getEditor().apply();
+            sudoFixPermissions();
 
-            }
         });
 
-        $(R.id.enableSafeCenter).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                getEditor().putBoolean("EnableSafeCenter", ((Switch) v).isChecked());
-                getEditor().apply();
-                sudoFixPermissions();
+        $(R.id.enableSafeCenter).setOnClickListener(v -> {
+            getEditor().putBoolean("EnableSafeCenter", ((Switch) v).isChecked());
+            getEditor().apply();
+            sudoFixPermissions();
 
-            }
         });
 
-        $(R.id.enableMusic).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                getEditor().putBoolean("EnableMusic", ((Switch) v).isChecked());
-                getEditor().apply();
-                sudoFixPermissions();
+        $(R.id.enableMusic).setOnClickListener(v -> {
+            getEditor().putBoolean("EnableMusic", ((Switch) v).isChecked());
+            getEditor().apply();
+            sudoFixPermissions();
 
-            }
         });
 
-        $(R.id.enabletheme).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        $(R.id.enabletheme).setOnClickListener(v -> {
 
-                getEditor().putBoolean("EnableTheme", ((Switch) v).isChecked());
-                getEditor().apply();
-                sudoFixPermissions();
-            }
+            getEditor().putBoolean("EnableTheme", ((Switch) v).isChecked());
+            getEditor().apply();
+            sudoFixPermissions();
         });
 
     }

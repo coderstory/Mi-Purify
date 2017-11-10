@@ -1,10 +1,10 @@
 package com.coderstory.Purify.fragment;
 
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageInfo;
@@ -20,7 +20,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -72,25 +71,23 @@ public class RestoreAppFragment extends BaseFragment {
 
         super.onActivityCreated(savedInstanceState);
         new MyTask().execute();
+        if (getActivity() == null) {
+            return;
+        }
         mPullToRefreshView = getActivity().findViewById(R.id.pull_to_refresh);
-        mPullToRefreshView.setOnRefreshListener(new PullToRefreshView.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-                mPullToRefreshView.postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        initData();
-                        showData();
-                        adapter.notifyDataSetChanged();
-                        mPullToRefreshView.setRefreshing(false);
-                    }
-                }, 2000);
-            }
-        });
+        mPullToRefreshView.setOnRefreshListener(() -> mPullToRefreshView.postDelayed(() -> {
+            initData();
+            showData();
+            adapter.notifyDataSetChanged();
+            mPullToRefreshView.setRefreshing(false);
+        }, 2000));
     }
 
     private void initData() {
         appInfoList = new ArrayList<>();
+        if (getActivity() == null) {
+            return;
+        }
         PackageManager pm = getActivity().getPackageManager();
         LoadApkInfo.apkAll = LoadApkInfo.GetApkFileName(BackPath);
         packages = new ArrayList<>();
@@ -113,69 +110,54 @@ public class RestoreAppFragment extends BaseFragment {
         adapter = new AppInfoAdapter(getActivity(), R.layout.app_info_item, appInfoList);
         listView = view.findViewById(R.id.listView);
         listView.setAdapter(adapter);
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        listView.setOnItemClickListener((parent, view, position, id) -> {
 
-                mPosition = position;
-                mView = view;
-                AlertDialog.Builder dialog = new AlertDialog.Builder(getActivity());
-                dialog.setTitle(R.string.Tips_Title);
-                String tipsText;
-                String BtnText = getString(R.string.Btn_Sure);
-                appInfo = appInfoList.get(mPosition);
-                tipsText = "你确定要安装" + appInfo.getName() + "吗？";
-                dialog.setMessage(tipsText);
-                dialog.setPositiveButton(BtnText, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
+            mPosition = position;
+            mView = view;
+            AlertDialog.Builder dialog = new AlertDialog.Builder(getActivity());
+            dialog.setTitle(R.string.Tips_Title);
+            String tipsText;
+            String BtnText = getString(R.string.Btn_Sure);
+            appInfo = appInfoList.get(mPosition);
+            tipsText = "你确定要安装" + appInfo.getName() + "吗？";
+            dialog.setMessage(tipsText);
+            dialog.setPositiveButton(BtnText, (dialog12, which) -> {
 
-                        if (getPrefs().getBoolean("installType", false)) {
-                            String commandText = "pm install  \"" + BackPath + appInfo.getPackageName() + ".apk\"";
-                            Log.e("cc", commandText);
-                            Process process = null;
-                            DataOutputStream os = null;
-                            try {
-                                process = Runtime.getRuntime().exec("su"); //切换到root帐号
-                                os = new DataOutputStream(process.getOutputStream());
-                                os.writeBytes(commandText + "&\n");
-                                os.writeBytes("exit\n");
-                                os.flush();
-                                process.waitFor();
-                            } catch (Exception ignored) {
+                if (getPrefs().getBoolean("installType", false)) {
+                    String commandText = "pm install  \"" + BackPath + appInfo.getPackageName() + ".apk\"";
+                    Log.e("cc", commandText);
+                    Process process = null;
+                    DataOutputStream os = null;
+                    try {
+                        process = Runtime.getRuntime().exec("su"); //切换到root帐号
+                        os = new DataOutputStream(process.getOutputStream());
+                        os.writeBytes(commandText + "&\n");
+                        os.writeBytes("exit\n");
+                        os.flush();
+                        process.waitFor();
+                    } catch (Exception ignored) {
 
-                            } finally {
-                                try {
-                                    if (os != null) {
-                                        os.close();
-                                    }
-                                    assert process != null;
-                                    process.destroy();
-                                } catch (Exception ignored) {
-                                }
+                    } finally {
+                        try {
+                            if (os != null) {
+                                os.close();
                             }
-                            closeProgress();
-                            Toast.makeText(context, "正在后台安装！", Toast.LENGTH_SHORT).show();
-                        } else {
-//                            Intent intent = new Intent();
-//                            intent.setAction(Intent.ACTION_VIEW);
-//                            intent.setDataAndType(Uri.fromFile(new File(path_backup + appInfo.getPackageName() + ".apk")), "application/vnd.android.package-archive");
-//                            startActivity(intent);
-                            installApkFile(BackPath + appInfo.getPackageName() + ".apk");
+                            assert process != null;
+                            process.destroy();
+                        } catch (Exception ignored) {
                         }
+                    }
+                    closeProgress();
+                    Toast.makeText(context, "正在后台安装！", Toast.LENGTH_SHORT).show();
+                } else {
+                    installApkFile(BackPath + appInfo.getPackageName() + ".apk");
+                }
 
 
-                    }
-                });
-                dialog.setCancelable(true);
-                dialog.setNegativeButton(R.string.Btn_Cancel, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.cancel();
-                    }
-                });
-                dialog.show();
-            }
+            });
+            dialog.setCancelable(true);
+            dialog.setNegativeButton(R.string.Btn_Cancel, (dialog1, which) -> dialog1.cancel());
+            dialog.show();
         });
 
     }
@@ -209,11 +191,11 @@ public class RestoreAppFragment extends BaseFragment {
         startActivity(intent);
     }
 
+    @SuppressLint("StaticFieldLeak")
     public class MyTask extends AsyncTask<String, Integer, String> {
 
         @Override
         protected void onPreExecute() {
-            ;
             showProgress();
         }
 
@@ -224,17 +206,6 @@ public class RestoreAppFragment extends BaseFragment {
             closeProgress();
         }
 
-        @Override
-        protected void onCancelled() {
-            // TODO Auto-generated method stub
-            super.onCancelled();
-        }
-
-        @Override
-        protected void onProgressUpdate(Integer... values) {
-            // TODO Auto-generated method stub
-            super.onProgressUpdate(values);
-        }
 
         @Override
         protected String doInBackground(String... params) {
