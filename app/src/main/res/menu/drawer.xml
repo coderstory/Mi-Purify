@@ -22,24 +22,23 @@
 
         <item
             android:id="@+id/navigation_item_hide_app"
-            android:icon="@drawable/hosts"
+            android:icon="@drawable/iconfont_source"
             android:title="@string/hide_app_icon" />
 
         <item
             android:id="@+id/navigation_item_hosts"
             android:icon="@drawable/hosts"
             android:title="@string/hosts" />
-
         <item
             android:id="@+id/navigation_item_ManagerApp"
-            android:icon="@drawable/hosts"
+            android:icon="@drawable/iconfont_blog"
             android:title="@string/navigation_item_ManagerApp" />
 
         <item android:title="@string/other">
             <menu>
                 <item
                     android:id="@+id/navigation_item_about"
-                    android:icon="@drawable/iconfont_custom_view"
+                    android:icon="@drawable/iconfont_about"
                     android:title="@string/about" />
                 <item
                     android:id="@+id/navigation_item_settings"

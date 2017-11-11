@@ -28,7 +28,6 @@ public class start implements IXposedHookZygoteInit, IXposedHookLoadPackage, IXp
     public void handleLoadPackage(XC_LoadPackage.LoadPackageParam lpparam) throws Throwable {
         new IsEnable().handleLoadPackage(lpparam);
         new RemoveAds().handleLoadPackage(lpparam);
-        new ThemePather8().handleLoadPackage(lpparam);
         new HideApp().handleLoadPackage(lpparam);
         new Others().handleLoadPackage(lpparam);
         new MiuiRoot().handleLoadPackage(lpparam);
