@@ -23,6 +23,12 @@ public class SettingsFragment extends BaseFragment {
             sudoFixPermissions();
         });
 
+        $(R.id.hide_icon_label).setOnClickListener(v -> {
+            getEditor().putBoolean("hide_icon_label", ((Switch) v).isChecked());
+            getEditor().apply();
+            sudoFixPermissions();
+        });
+
         $(R.id.RemoveSearchBar).setOnClickListener(v -> {
             getEditor().putBoolean("RemoveSearchBar", ((Switch) v).isChecked());
             getEditor().apply();
@@ -81,5 +87,6 @@ public class SettingsFragment extends BaseFragment {
         ((Switch) $(R.id.installType)).setChecked(getPrefs().getBoolean("installType", false));
         ((Switch) $(R.id.fixpcb)).setChecked(getPrefs().getBoolean("fixpcb", false));
         ((Switch) $(R.id.root25)).setChecked(getPrefs().getBoolean("root25", false));
+        ((Switch) $(R.id.hide_icon_label)).setChecked(getPrefs().getBoolean("hide_icon_label", false));
     }
 }
