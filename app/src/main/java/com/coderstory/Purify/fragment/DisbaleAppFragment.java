@@ -5,7 +5,6 @@ import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.ProgressDialog;
-import android.content.DialogInterface;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageInfo;
 import android.graphics.Color;
@@ -26,7 +25,7 @@ import com.coderstory.Purify.adapter.AppInfo;
 import com.coderstory.Purify.adapter.AppInfoAdapter;
 import com.coderstory.Purify.fragment.base.BaseFragment;
 import com.coderstory.Purify.utils.SnackBarUtils;
-import com.coderstory.Purify.utils.roothelper.SuHelper;
+import com.coderstory.Purify.utils.SuHelper;
 import com.coderstory.Purify.view.PullToRefreshView;
 
 import java.io.DataOutputStream;
@@ -36,6 +35,8 @@ import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
+
+import eu.chainfire.libsuperuser.Shell;
 
 import static com.coderstory.Purify.config.Misc.BackUpFileName;
 import static com.coderstory.Purify.utils.FileUtils.readFile;
@@ -252,8 +253,7 @@ public class DisbaleAppFragment extends BaseFragment {
         dialog.show();
 
         new Thread(() -> {
-            disableHelp dh = new disableHelp(list);
-            dh.execute();
+            Shell.SU.run(list);
             myHandler.sendMessage(new Message());
         }).start();
 

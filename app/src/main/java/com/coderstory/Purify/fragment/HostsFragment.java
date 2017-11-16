@@ -12,6 +12,8 @@ import com.coderstory.Purify.fragment.base.BaseFragment;
 import com.coderstory.Purify.utils.hostshelper.FileHelper;
 import com.coderstory.Purify.utils.hostshelper.HostsHelper;
 
+import java.io.UnsupportedEncodingException;
+
 
 public class HostsFragment extends BaseFragment {
 
@@ -80,7 +82,7 @@ public class HostsFragment extends BaseFragment {
 
     //因为hosts修改比较慢 所以改成异步的
     //更新hosts操作
-    private void UpdateHosts() {
+    private void UpdateHosts() throws UnsupportedEncodingException {
         boolean enableHostsSet = getPrefs().getBoolean("enableHosts", false); //1
         boolean enableMIUIHostsSet = getPrefs().getBoolean("enableMIUIHosts", false); //4
         boolean enableBlockAdsHostsSet = getPrefs().getBoolean("enableBlockAdsHosts", false); //4
@@ -174,7 +176,11 @@ public class HostsFragment extends BaseFragment {
             if (Looper.myLooper() == null) {
                 Looper.prepare();
             }
-            UpdateHosts();
+            try {
+                UpdateHosts();
+            } catch (UnsupportedEncodingException e) {
+                e.printStackTrace();
+            }
             return null;
         }
     }

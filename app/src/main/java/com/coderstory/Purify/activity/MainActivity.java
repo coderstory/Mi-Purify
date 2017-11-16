@@ -33,8 +33,9 @@ import com.coderstory.Purify.fragment.WebViewFragment;
 import com.coderstory.Purify.utils.SnackBarUtils;
 import com.coderstory.Purify.utils.ViewUtils;
 
+import eu.chainfire.libsuperuser.Shell;
+
 import static com.coderstory.Purify.R.id.navigation_view;
-import static com.coderstory.Purify.utils.roothelper.SuHelper.canRunRootCommands;
 
 public class MainActivity extends BaseActivity {
 
@@ -112,7 +113,7 @@ public class MainActivity extends BaseActivity {
 
 
         new Thread(() -> {
-            if (!canRunRootCommands()) {
+            if (!Shell.SU.available()) {
                 myHandler.sendMessage(new Message());
             }
         }).start();

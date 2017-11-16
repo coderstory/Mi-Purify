@@ -3,7 +3,7 @@ package com.coderstory.Purify.utils.hostshelper;
 
 import android.content.Context;
 
-import com.coderstory.Purify.utils.roothelper.SuHelper;
+import com.coderstory.Purify.utils.SuHelper;
 
 import java.io.BufferedWriter;
 import java.io.FileNotFoundException;

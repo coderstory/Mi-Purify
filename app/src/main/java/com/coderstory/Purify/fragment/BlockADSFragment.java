@@ -6,7 +6,8 @@ import android.widget.Switch;
 import com.coderstory.Purify.R;
 import com.coderstory.Purify.fragment.base.BaseFragment;
 
-import static com.coderstory.Purify.utils.roothelper.ShellUtils.execCommand;
+import eu.chainfire.libsuperuser.Shell;
+
 
 public class BlockADSFragment extends BaseFragment {
 
@@ -34,29 +35,23 @@ public class BlockADSFragment extends BaseFragment {
                 getEditor().apply();
 
                 if (((Switch) v).isChecked()) {
-                    new Thread() {
-                        @Override
-                        public void run() {
-                            super.run();
-                            execCommand("pm disable com.miui.systemAdSolution", true);
-                            execCommand("pm disable com.miui.analytics", true);
-                            execCommand("pm disable com.qualcomm.qti.seemp", true);
-                            execCommand("pm disable com.xiaomi.ab", true);
-                            execCommand("pm disable com.miLink", true);
-                        }
-                    }.start();
+                    new Thread(() -> {
+                        String list[] = new String[]{"pm disable com.miui.systemAdSolution",
+                                "pm disable com.miui.analytics",
+                                "pm disable com.qualcomm.qti.seemp",
+                                "pm disable com.xiaomi.ab",
+                                "pm disable com.miLink"};
+                        Shell.SU.run(list);
+                    }).start();
                 } else {
-                    new Thread() {
-                        @Override
-                        public void run() {
-                            super.run();
-                            execCommand("pm enable com.miui.systemAdSolution", true);
-                            execCommand("pm enable com.miui.analytics", true);
-                            execCommand("pm enable com.qualcomm.qti.seemp", true);
-                            execCommand("pm enable com.xiaomi.ab", true);
-                            execCommand("pm enable com.miLink", true);
-                        }
-                    }.start();
+                    new Thread(() -> {
+                        String list[] = new String[]{"pm enable com.miui.systemAdSolution",
+                                "pm enable com.miui.analytics",
+                                "pm enable com.qualcomm.qti.seemp",
+                                "pm enable com.xiaomi.ab",
+                                "pm enable com.miLink"};
+                        Shell.SU.run(list);
+                    }).start();
                 }
                 sudoFixPermissions();
             }

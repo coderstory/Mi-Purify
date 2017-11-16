@@ -6,7 +6,6 @@ import android.os.Handler;
 import android.os.Message;
 import android.support.v4.app.Fragment;
 import android.util.Log;
-import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -15,12 +14,11 @@ import com.coderstory.Purify.config.Misc;
 import com.coderstory.Purify.fragment.base.BaseFragment;
 import com.coderstory.Purify.utils.SnackBarUtils;
 import com.coderstory.Purify.utils.hostshelper.FileHelper;
-import com.coderstory.Purify.utils.roothelper.CommandResult;
-import com.coderstory.Purify.utils.roothelper.RootUtils;
 
-/**
- * A simple {@link Fragment} subclass.
- */
+import java.util.List;
+
+import eu.chainfire.libsuperuser.Shell;
+
 public class CleanFragment extends BaseFragment {
     Thread th;
     private TextView tvClean = null;
@@ -71,24 +69,23 @@ public class CleanFragment extends BaseFragment {
         th = new Thread(() -> {
             long totalSize = 0L; // K
             Misc.isProcessing = true;
-            CommandResult ret = RootUtils.runCommand("find /data/data/ -type dir -name \"cache\"", true);
-            String[] items = ret.result.split("\n");
+            List<String> ret = Shell.SU.run("find /data/data/ -type dir -name \"cache\"");
             CacheSize cs;
-            for (String s : items) {
+            for (String s : ret) {
                 cs = getSize(s);
                 if (cs.size > 16) { // clean only above 16K
-                    if (deleteCache(s)) {
-                        sendMessageStr(getString(R.string.view_clean_cache, s, cs.sizeReadable));
-                        totalSize += cs.size;
-                    }
+                    deleteCache(s);
+                    sendMessageStr(getString(R.string.view_clean_cache, s, cs.sizeReadable));
+                    totalSize += cs.size;
+
                 }
             }
             // clean anr log
             CacheSize anrSize = getSize("/data/anr/");
-            if (deleteAnrLog()) {
-                sendMessageStr(getString(R.string.view_clean_anr, anrSize.sizeReadable));
-                totalSize += anrSize.size;
-            }
+            deleteAnrLog();
+            sendMessageStr(getString(R.string.view_clean_anr, anrSize.sizeReadable));
+            totalSize += anrSize.size;
+
             // clean art
             totalSize += deleteRemainArtCache();
             sendMessageStr(getString(R.string.view_clean_complete, FileHelper.getReadableFileSize(totalSize)));
@@ -100,11 +97,10 @@ public class CleanFragment extends BaseFragment {
 
 
     private CacheSize getSize(String path) {
-
         try {
-            CommandResult ret = RootUtils.runCommand(String.format("du -s -k \"%s\"", path), true);
-            String sizeStr = ret.result.substring(0, ret.result.indexOf('\t')).trim();
-            long size ;
+            String result = Shell.SU.run(String.format("du -s -k \"%s\"", path)).get(0);
+            String sizeStr = result.substring(0, result.indexOf('\t')).trim();
+            long size;
             size = Long.parseLong(sizeStr);
             return new CacheSize(sizeStr + "K", size);
         } catch (Exception e) {
@@ -113,28 +109,21 @@ public class CleanFragment extends BaseFragment {
 
     }
 
-    private boolean deleteCache(String path) {
-        CommandResult ret = RootUtils.runCommand(String.format("rm -r \"%s\"", path), true);
-        return ret.error.equals("");
+    private void deleteCache(String path) {
+        Shell.SU.run(String.format("rm -r \"%s\"", path));
     }
 
-    private boolean deleteAnrLog() {
-        CommandResult ret = RootUtils.runCommand("rm -r /data/anr/*", true);
-        return ret.error.equals("");
+    private void deleteAnrLog() {
+        Shell.SU.run("rm -r /data/anr/*");
     }
 
     private long deleteRemainArtCache() {
 
-        CommandResult list = RootUtils.runCommand("ls /data/app", true);
-        String[] listInstalled = list.result.split("\n");
-        CommandResult listAll = RootUtils.runCommand("pm list packages", true);
-        String[] listAllInstalled = listAll.result.split("\n");
-        CommandResult retArm = RootUtils.runCommand("ls /data/dalvik-cache/arm", true);
-        CommandResult retArm64 = RootUtils.runCommand("ls /data/dalvik-cache/arm64", true);
-        CommandResult retProfile = RootUtils.runCommand("ls /data/dalvik-cache/profiles", true);
-        String[] listArm = retArm.result.split("\n");
-        String[] listArm64 = retArm64.result.split("\n");
-        String[] listProfile = retProfile.result.split("\n");
+        List<String> listInstalled = Shell.SU.run("ls /data/app");
+        List<String> listAllInstalled = Shell.SU.run("pm list packages");
+        List<String> listArm = Shell.SU.run("ls /data/dalvik-cache/arm");
+        List<String> listArm64 = Shell.SU.run("ls /data/dalvik-cache/arm64");
+        List<String> listProfile = Shell.SU.run("ls /data/dalvik-cache/profiles");
         long totalSize = 0L;
         String tmpPath;
         CacheSize size;
@@ -143,10 +132,10 @@ public class CleanFragment extends BaseFragment {
                 if (!isCachedAppInstalled(listInstalled, s)) {
                     tmpPath = "/data/dalvik-cache/arm/" + s;
                     size = getSize(tmpPath);
-                    if (deleteCache(tmpPath)) {
-                        sendMessageStr(getString(R.string.view_clean_art_remain, s, size.sizeReadable));
-                        totalSize += size.size;
-                    }
+                    deleteCache(tmpPath);
+                    sendMessageStr(getString(R.string.view_clean_art_remain, s, size.sizeReadable));
+                    totalSize += size.size;
+
                 }
             }
         }
@@ -156,10 +145,10 @@ public class CleanFragment extends BaseFragment {
                 if (!isCachedAppInstalled(listInstalled, s)) {
                     tmpPath = "/data/dalvik-cache/arm64/" + s;
                     size = getSize(tmpPath);
-                    if (deleteCache(tmpPath)) {
-                        sendMessageStr(getString(R.string.view_clean_art_remain, s, size.sizeReadable));
-                        totalSize += size.size;
-                    }
+                    deleteCache(tmpPath);
+                    sendMessageStr(getString(R.string.view_clean_art_remain, s, size.sizeReadable));
+                    totalSize += size.size;
+
                 }
             }
         }
@@ -169,17 +158,16 @@ public class CleanFragment extends BaseFragment {
                 if (!isProfileInstalled(listAllInstalled, s)) {
                     tmpPath = "/data/dalvik-cache/profiles/" + s;
                     size = getSize(tmpPath);
-                    if (deleteCache(tmpPath)) {
-                        sendMessageStr(getString(R.string.view_clean_art_remain, s, size.sizeReadable));
-                        totalSize += size.size;
-                    }
+                    deleteCache(tmpPath);
+                    sendMessageStr(getString(R.string.view_clean_art_remain, s, size.sizeReadable));
+                    totalSize += size.size;
                 }
             }
         }
         return totalSize;
     }
 
-    private boolean isCachedAppInstalled(String[] oriList, String app) {
+    private boolean isCachedAppInstalled(List<String> oriList, String app) {
         if (app.startsWith("system") || app.startsWith("data@dalvik-cache")) {
             return true;
         }
@@ -187,7 +175,7 @@ public class CleanFragment extends BaseFragment {
         try {
             newAppPath = newAppPath.substring(0, newAppPath.indexOf("@"));
         } catch (Exception e) {
-            Log.e("MIUI", "isCachedAppInstalled: "+e.getMessage() );
+            Log.e("MIUI", "isCachedAppInstalled: " + e.getMessage());
         }
 
         boolean ret = false;
@@ -200,7 +188,7 @@ public class CleanFragment extends BaseFragment {
         return ret;
     }
 
-    private boolean isProfileInstalled(String[] oriList, String app) {
+    private boolean isProfileInstalled(List<String> oriList, String app) {
         boolean ret = false;
         for (String s : oriList) {
             if (s.contains(app)) {
