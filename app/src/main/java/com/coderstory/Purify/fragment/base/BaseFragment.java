@@ -95,18 +95,15 @@ public abstract class BaseFragment extends Fragment {
     }
 
     protected void sudoFixPermissions() {
-        new Thread() {
-            @Override
-            public void run() {
-                File pkgFolder = new File("/data/data/" + ApplicationName);
-                if (pkgFolder.exists()) {
-                    pkgFolder.setExecutable(true, false);
-                    pkgFolder.setReadable(true, false);
-                }
-                Shell.SU.run("chmod  755 " + PREFS_FOLDER);
-                // Set preferences file permissions to be world readable
-                Shell.SU.run("chmod  644 " + PREFS_FILE);
+        new Thread(()->{
+            File pkgFolder = new File("/data/data/" + ApplicationName);
+            if (pkgFolder.exists()) {
+                pkgFolder.setExecutable(true, false);
+                pkgFolder.setReadable(true, false);
             }
-        }.start();
+            Shell.SU.run("chmod  755 " + PREFS_FOLDER);
+            // Set preferences file permissions to be world readable
+            Shell.SU.run("chmod  644 " + PREFS_FILE);
+        }).start();
     }
 }
