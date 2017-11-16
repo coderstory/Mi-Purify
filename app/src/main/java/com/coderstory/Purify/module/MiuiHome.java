@@ -1,19 +1,12 @@
 package com.coderstory.Purify.module;
 
 import android.view.View;
-import android.widget.LinearLayout;
-import android.widget.TextView;
 
 import com.coderstory.Purify.plugins.IModule;
 import com.coderstory.Purify.utils.XposedHelper;
 
-import java.lang.reflect.Field;
-import java.lang.reflect.Method;
-
 import de.robv.android.xposed.IXposedHookZygoteInit;
 import de.robv.android.xposed.XC_MethodHook;
-import de.robv.android.xposed.XposedBridge;
-import de.robv.android.xposed.XposedHelpers;
 import de.robv.android.xposed.callbacks.XC_InitPackageResources;
 import de.robv.android.xposed.callbacks.XC_LoadPackage;
 

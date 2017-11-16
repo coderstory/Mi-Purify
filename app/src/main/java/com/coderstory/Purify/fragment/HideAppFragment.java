@@ -187,7 +187,7 @@ public class HideAppFragment extends BaseFragment {
             dialog.setTitle("提示");
             String tipsText = "是否重启MIUI桌面应用当前设置?";
             dialog.setMessage(tipsText);
-            dialog.setPositiveButton(getString(R.string.Btn_Sure), (dialog12, which) -> new Thread(()->{
+            dialog.setPositiveButton(getString(R.string.Btn_Sure), (dialog12, which) -> new Thread(() -> {
                 Shell.SU.run("am force-stop com.miui.home");
             }).start());
             dialog.setCancelable(true);

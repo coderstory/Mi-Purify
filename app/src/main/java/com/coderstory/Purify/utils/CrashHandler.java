@@ -211,7 +211,7 @@ public class CrashHandler implements Thread.UncaughtExceptionHandler {
 
     /**
      * 自定义错误处理,收集错误信息 发送错误报告等操作均在此完成.
-
+     *
      * @return true:如果处理了该异常信息;否则返回false.
      */
     private boolean handleException(Throwable ex) {
@@ -219,11 +219,11 @@ public class CrashHandler implements Thread.UncaughtExceptionHandler {
             return false;
         }
         //使用Toast来显示异常信息
-        new Thread(()->{
+        new Thread(() -> {
             Looper.prepare();
             Toast.makeText(mContext, "很抱歉,程序出现异常", Toast.LENGTH_LONG).show();
             Looper.loop();
-        }) .start();
+        }).start();
 
         //收集设备参数信息
         collectDeviceInfo(mContext);

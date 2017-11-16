@@ -26,7 +26,7 @@ public class AppInfoAdapter extends ArrayAdapter {
 
     @Override
     @NonNull
-    public View getView(int position, View convertView,@NonNull ViewGroup parent) {
+    public View getView(int position, View convertView, @NonNull ViewGroup parent) {
         AppInfo appInfo = (AppInfo) getItem(position);
         View view;
         ViewHolder vh;
@@ -44,7 +44,7 @@ public class AppInfoAdapter extends ArrayAdapter {
         assert appInfo != null;
         vh.myText.setTag(appInfo.getPackageName());
         vh.myImage.setImageDrawable(appInfo.getImageId());
-        vh.myText.setText(String.format(getContext().getString(R.string.appname),appInfo.getName(),appInfo.getVersion()));
+        vh.myText.setText(String.format(getContext().getString(R.string.appname), appInfo.getName(), appInfo.getVersion()));
         if (appInfo.getDisable()) {
             view.setBackgroundColor(Color.parseColor("#d0d7d7d7")); //冻结的颜色
         } else {

@@ -25,14 +25,12 @@ import com.coderstory.Purify.adapter.AppInfo;
 import com.coderstory.Purify.adapter.AppInfoAdapter;
 import com.coderstory.Purify.fragment.base.BaseFragment;
 import com.coderstory.Purify.utils.SnackBarUtils;
-import com.coderstory.Purify.utils.SuHelper;
 import com.coderstory.Purify.view.PullToRefreshView;
 
 import java.io.DataOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -332,25 +330,6 @@ public class DisbaleAppFragment extends BaseFragment {
             initData();
             return null;
         }
-    }
-
-    class disableHelp extends SuHelper {
-        String[] list;
-
-        disableHelp(String[] list) {
-            this.list = list;
-        }
-
-        @Override
-        protected ArrayList<String> getCommandsToExecute() throws UnsupportedEncodingException {
-            ArrayList<String> mylist = new ArrayList<>();
-
-            for (String item : list) {
-                mylist.add("pm disable " + item);
-            }
-            return mylist;
-        }
-
     }
 }
 

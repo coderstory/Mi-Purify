@@ -4,7 +4,6 @@ package com.coderstory.Purify.fragment;
 import android.annotation.SuppressLint;
 import android.os.Handler;
 import android.os.Message;
-import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.widget.Button;
 import android.widget.TextView;

@@ -14,7 +14,6 @@ import android.view.animation.Animation;
 import android.view.animation.DecelerateInterpolator;
 import android.view.animation.Interpolator;
 import android.view.animation.Transformation;
-import android.widget.AbsListView;
 import android.widget.ImageView;
 
 import com.coderstory.Purify.R;

@@ -3,7 +3,6 @@ package com.coderstory.Purify.fragment;
 
 import android.content.ComponentName;
 import android.content.pm.PackageManager;
-import android.view.View;
 import android.widget.Switch;
 
 import com.coderstory.Purify.R;

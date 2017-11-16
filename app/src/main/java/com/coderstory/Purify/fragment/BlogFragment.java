@@ -4,15 +4,12 @@ package com.coderstory.Purify.fragment;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Intent;
-import android.net.Uri;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 
 import com.coderstory.Purify.R;
 import com.coderstory.Purify.utils.SnackBarUtils;
-
-import java.io.File;
 
 import static android.content.Context.CLIPBOARD_SERVICE;
 import static com.coderstory.Purify.config.Misc.MyBlogUrl;
@@ -38,7 +35,7 @@ public class BlogFragment extends WebViewFragment {
                 ClipData myClip;
                 String text = mWebView.getUrl();
                 myClip = ClipData.newPlainText("text", text);
-                if (myClipboard!=null) {
+                if (myClipboard != null) {
                     myClipboard.setPrimaryClip(myClip);
                     SnackBarUtils.makeLong(getView(), getString(R.string.cp_url_success)).show();
                 }

@@ -41,6 +41,20 @@ public class MainActivity extends BaseActivity {
 
     public static final long MAX_DOUBLE_BACK_DURATION = 1500;
     private static final int READ_EXTERNAL_STORAGE_CODE = 1;
+    @SuppressLint("HandlerLeak")
+    Handler myHandler = new Handler() {
+        public void handleMessage(Message msg) {
+            final AlertDialog.Builder normalDialog =
+                    new AlertDialog.Builder(MainActivity.this);
+            normalDialog.setTitle("提示");
+            normalDialog.setMessage("请先授权应用ROOT权限");
+            normalDialog.setPositiveButton("确定",
+                    (dialog, which) -> System.exit(0));
+            // 显示
+            normalDialog.show();
+            super.handleMessage(msg);
+        }
+    };
     private DrawerLayout mDrawerLayout;//侧边菜单视图
     private Toolbar mToolbar;
     private NavigationView mNavigationView;//侧边菜单项
@@ -48,7 +62,6 @@ public class MainActivity extends BaseActivity {
     private Fragment mCurrentFragment;
     private MenuItem mPreMenuItem;
     private long lastBackKeyDownTick = 0;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,21 +93,6 @@ public class MainActivity extends BaseActivity {
             Log.i("MainActivity", "onRequestPermissionsResult granted=" + granted);
         }
     }
-
-    @SuppressLint("HandlerLeak")
-    Handler myHandler = new Handler() {
-        public void handleMessage(Message msg) {
-            final AlertDialog.Builder normalDialog =
-                    new AlertDialog.Builder(MainActivity.this);
-            normalDialog.setTitle("提示");
-            normalDialog.setMessage("请先授权应用ROOT权限");
-            normalDialog.setPositiveButton("确定",
-                    (dialog, which) -> System.exit(0));
-            // 显示
-            normalDialog.show();
-            super.handleMessage(msg);
-        }
-    };
 
     @Override
     protected void setUpView() {

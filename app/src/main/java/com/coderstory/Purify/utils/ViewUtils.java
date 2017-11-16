@@ -1,10 +1,5 @@
 package com.coderstory.Purify.utils;
 
-import android.content.Context;
-import android.content.res.TypedArray;
-import android.util.DisplayMetrics;
-import android.util.TypedValue;
-
 import com.coderstory.Purify.fragment.base.BaseFragment;
 
 import java.util.HashMap;

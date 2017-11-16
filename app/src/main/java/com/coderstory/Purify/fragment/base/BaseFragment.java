@@ -3,18 +3,14 @@ package com.coderstory.Purify.fragment.base;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import java.io.File;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
 
 import eu.chainfire.libsuperuser.Shell;
 
@@ -95,7 +91,7 @@ public abstract class BaseFragment extends Fragment {
     }
 
     protected void sudoFixPermissions() {
-        new Thread(()->{
+        new Thread(() -> {
             File pkgFolder = new File("/data/data/" + ApplicationName);
             if (pkgFolder.exists()) {
                 pkgFolder.setExecutable(true, false);
