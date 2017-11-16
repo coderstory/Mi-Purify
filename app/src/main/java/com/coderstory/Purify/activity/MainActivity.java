@@ -28,6 +28,7 @@ import com.coderstory.Purify.fragment.DisbaleAppFragment;
 import com.coderstory.Purify.fragment.HideAppFragment;
 import com.coderstory.Purify.fragment.HostsFragment;
 import com.coderstory.Purify.fragment.ManagerAppFragment;
+import com.coderstory.Purify.fragment.OthersFragment;
 import com.coderstory.Purify.fragment.SettingsFragment;
 import com.coderstory.Purify.fragment.WebViewFragment;
 import com.coderstory.Purify.utils.SnackBarUtils;
@@ -173,7 +174,7 @@ public class MainActivity extends BaseActivity {
                     break;
 
                 case R.id.navigation_item_settings:
-                    mToolbar.setTitle(R.string.othersettings);
+                    mToolbar.setTitle(R.string.others_appsettings);
                     switchFragment(SettingsFragment.class);
                     break;
 
@@ -196,6 +197,11 @@ public class MainActivity extends BaseActivity {
                 case R.id.navigation_item_hide_app:
                     mToolbar.setTitle(R.string.hide_app_icon);
                     switchFragment(HideAppFragment.class);
+                    break;
+
+                case R.id.navigation_item_otherssettings:
+                    mToolbar.setTitle(R.string.othersettings);
+                    switchFragment(OthersFragment.class);
                     break;
 
                 default:

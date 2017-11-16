@@ -1,6 +1,7 @@
 package com.coderstory.Purify.plugins;
 
 
+import com.coderstory.Purify.module.CorePatch;
 import com.coderstory.Purify.module.HideApp;
 import com.coderstory.Purify.module.IsEnable;
 import com.coderstory.Purify.module.MiuiHome;
@@ -32,13 +33,14 @@ public class start implements IXposedHookZygoteInit, IXposedHookLoadPackage, IXp
         new HideApp().handleLoadPackage(lpparam);
         new Others().handleLoadPackage(lpparam);
         new MiuiRoot().handleLoadPackage(lpparam);
-        //new ThemePather8().handleLoadPackage(lpparam);
         new MiuiHome().handleLoadPackage(lpparam);
+        new CorePatch().handleLoadPackage(lpparam);
     }
 
     @Override
     public void initZygote(StartupParam startupParam) throws Throwable {
         XposedBridge.log("小米净化 2.x 开始Patch");
         new ThemePather8().initZygote(startupParam);
+        new CorePatch().initZygote(startupParam);
     }
 }
