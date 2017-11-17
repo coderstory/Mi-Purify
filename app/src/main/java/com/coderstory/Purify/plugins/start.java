@@ -9,7 +9,6 @@ import com.coderstory.Purify.module.MiuiRoot;
 import com.coderstory.Purify.module.Others;
 import com.coderstory.Purify.module.RemoveAds;
 import com.coderstory.Purify.module.RemoveSearchBar;
-import com.coderstory.Purify.module.ThemePather8;
 
 import de.robv.android.xposed.IXposedHookInitPackageResources;
 import de.robv.android.xposed.IXposedHookLoadPackage;
@@ -40,7 +39,6 @@ public class start implements IXposedHookZygoteInit, IXposedHookLoadPackage, IXp
     @Override
     public void initZygote(StartupParam startupParam) throws Throwable {
         XposedBridge.log("小米净化 2.x 开始Patch");
-        new ThemePather8().initZygote(startupParam);
         new CorePatch().initZygote(startupParam);
     }
 }

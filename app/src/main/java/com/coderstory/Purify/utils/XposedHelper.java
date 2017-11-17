@@ -42,6 +42,16 @@ public class XposedHelper {
         }
     }
 
+    public static void hookAllMethods(String p1, ClassLoader lpparam, Object... parameterTypesAndCallback) {
+        try {
+            XposedHelpers.findAndHookConstructor(p1, lpparam, lpparam, parameterTypesAndCallback);
+
+        } catch (Throwable localString3) {
+            XposedBridge.log(localString3);
+        }
+    }
+
+
     protected static Object getDrmResultSUCCESS() {
         try {
             Class<Enum> drmSuccess = (Class<Enum>) Class.forName("miui.drm.DrmManager$DrmResult");

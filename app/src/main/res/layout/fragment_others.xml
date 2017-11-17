@@ -114,6 +114,17 @@
                 android:paddingStart="30dp"
                 android:text="@string/hide_icon_label" />
 
+
+            <Switch
+                android:id="@+id/prevent_freeze_reverse"
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:layout_marginTop="10dp"
+                android:background="@color/switchBtn"
+                android:paddingEnd="30dp"
+                android:paddingStart="30dp"
+                android:text="@string/prevent_freeze_reverse" />
+
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

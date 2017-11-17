@@ -48,7 +48,7 @@
     <string name="downgr"><b>允许降级安装应用 - 实时生效</b>\n允许应用在安装新版本的情况下直接覆盖安装旧版本</string>
     <string name="authcreak"><b>禁用软件包管理器签名验证 - 实时生效</b>\n关闭安装应用时的签名验证,可以安装被篡改的应用</string>
     <string name="zipauthcreak"><b>禁用APK签名验证 - 实时生效</b>\n允许直接覆盖安装同包名不同签名的应用</string>
-
+    <string name="prevent_freeze_reverse"><b>阻止自动恢复被禁用的APP</b>\n部分被冻结的系统app在系统后会自动解冻，开启后将不会自动恢复</string>
     <string name="Tips_Title">温馨提示</string>
     <string name="Btn_Sure">确定</string>
     <string name="Btn_Cancel">取消</string>
@@ -139,6 +139,7 @@
     <string name="historyFunctions">历史功能</string>
     <string name="appname">应用名: %1$s \n版本号 :%2$s</string>
     <string name="others_appsettings">应用设置</string>
+
 
 
 </resources>

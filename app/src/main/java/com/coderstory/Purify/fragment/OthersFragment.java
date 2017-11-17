@@ -58,6 +58,11 @@ public class OthersFragment extends BaseFragment {
             getEditor().apply();
             sudoFixPermissions();
         });
+        $(R.id.prevent_freeze_reverse).setOnClickListener(v -> {
+            getEditor().putBoolean("prevent_freeze_reverse", ((Switch) v).isChecked());
+            getEditor().apply();
+            sudoFixPermissions();
+        });
     }
 
     @Override
@@ -74,5 +79,6 @@ public class OthersFragment extends BaseFragment {
         ((Switch) $(R.id.authcreak)).setChecked(getPrefs().getBoolean("authcreak", false));
         ((Switch) $(R.id.zipauthcreak)).setChecked(getPrefs().getBoolean("zipauthcreak", false));
         ((Switch) $(R.id.downgrade)).setChecked(getPrefs().getBoolean("downgrade", false));
+        ((Switch) $(R.id.prevent_freeze_reverse)).setChecked(getPrefs().getBoolean("prevent_freeze_reverse", false));
     }
 }
