@@ -1,7 +1,5 @@
 package com.coderstory.Purify.module;
 
-import android.widget.Toast;
-
 import com.coderstory.Purify.plugins.IModule;
 import com.coderstory.Purify.utils.XposedHelper;
 
@@ -20,7 +18,7 @@ public class CorePatch extends XposedHelper implements IModule {
 
     public void initZygote(IXposedHookZygoteInit.StartupParam paramStartupParam) {
 
-        XposedHelpers.findAndHookMethod("java.security.MessageDigest", null, "isEqual", byte[].class, byte[].class, new XC_MethodHook() {
+        findAndHookMethod("java.security.MessageDigest", null, "isEqual", byte[].class, byte[].class, new XC_MethodHook() {
             protected void beforeHookedMethod(MethodHookParam methodHookParam)
                     throws Throwable {
                 prefs.reload();
@@ -30,7 +28,7 @@ public class CorePatch extends XposedHelper implements IModule {
             }
         });
 
-        XposedBridge.hookAllMethods(XposedHelpers.findClass("com.android.org.conscrypt.OpenSSLSignature", null), "engineVerify", new XC_MethodHook() {
+        hookAllMethods("com.android.org.conscrypt.OpenSSLSignature", null, "engineVerify", new XC_MethodHook() {
             protected void beforeHookedMethod(XC_MethodHook.MethodHookParam paramAnonymousMethodHookParam)
                     throws Throwable {
                 prefs.reload();
@@ -51,10 +49,9 @@ public class CorePatch extends XposedHelper implements IModule {
 
         if (("android".equals(paramLoadPackageParam.packageName)) && (paramLoadPackageParam.processName.equals("android"))) {
 
-            Class localClass = XposedHelpers.findClass("com.android.server.pm.PackageManagerService", paramLoadPackageParam.classLoader);
             Class packageClass = XposedHelpers.findClass("android.content.pm.PackageParser.Package", paramLoadPackageParam.classLoader);
 
-            XposedBridge.hookAllMethods(localClass, "checkDowngrade", new XC_MethodHook() {
+            hookAllMethods("com.android.server.pm.PackageManagerService",paramLoadPackageParam.classLoader, "checkDowngrade", new XC_MethodHook() {
                 @Override
                 protected void beforeHookedMethod(MethodHookParam methodHookParam) throws Throwable {
                     super.beforeHookedMethod(methodHookParam);
@@ -63,11 +60,12 @@ public class CorePatch extends XposedHelper implements IModule {
                     if (prefs.getBoolean("downgrade", false)) {
                         Field field = packageClass.getField("mVersionCode");
                         field.set(packageInfoLite, 0);
-                    };
+                    }
+                    ;
                 }
             });
 
-            XposedBridge.hookAllMethods(localClass, "verifySignaturesLP", new XC_MethodHook() {
+            hookAllMethods("com.android.server.pm.PackageManagerService",paramLoadPackageParam.classLoader, "verifySignaturesLP", new XC_MethodHook() {
 
                 protected void beforeHookedMethod(MethodHookParam methodHookParam) throws Throwable {
                     prefs.reload();
@@ -77,8 +75,8 @@ public class CorePatch extends XposedHelper implements IModule {
                 }
             });
 
-            XposedBridge.hookAllMethods(localClass, "compareSignatures", new XC_MethodHook() {
-                protected void beforeHookedMethod(MethodHookParam methodHookParam) throws  Throwable {
+            hookAllMethods("com.android.server.pm.PackageManagerService",paramLoadPackageParam.classLoader,"compareSignatures", new XC_MethodHook() {
+                protected void beforeHookedMethod(MethodHookParam methodHookParam) throws Throwable {
                     prefs.reload();
                     if (prefs.getBoolean("zipauthcreak", false)) {
                         methodHookParam.setResult(0);
