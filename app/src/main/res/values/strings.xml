@@ -15,7 +15,6 @@
             <b>LicensesDialog</b>\nhttps://github.com/PSDev/LicensesDialog\n\n
     </string>
     <string name="about_msg3"><b>声明</b>\n软件授权协议</string>
-    <string name="version">2.0.2</string>
     <string name="alipay_url">https://qr.alipay.com/aex06874ga0wkuhwuajgzb8</string>
     <string name="enableBlockADS"><b>基础功能</b>\n去除大部分的广告</string>
     <string name="downloadexplorer"><b>下载管理</b>\n去下载管理界面的广告</string>

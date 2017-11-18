@@ -9,6 +9,7 @@ import android.text.util.Linkify;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.coderstory.Purify.BuildConfig;
 import com.coderstory.Purify.R;
 import com.coderstory.Purify.fragment.base.BaseFragment;
 import com.coderstory.Purify.utils.licensesdialog.LicensesDialog;
@@ -58,6 +59,8 @@ public class AboutFragment extends BaseFragment {
                 // donateWeixin()
                 Toast.makeText(getMContext(), "暂不支持微信捐赠通道(#腊鸡微信)", Toast.LENGTH_LONG).show()
         );
+
+        ((TextView) $(R.id.version)).setText(BuildConfig.VERSION_NAME);
     }
 
     /* 支付宝支付
