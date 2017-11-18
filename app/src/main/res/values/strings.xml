@@ -17,13 +17,10 @@
     <string name="about_msg3"><b>声明</b>\n软件授权协议</string>
     <string name="version">2.0.2</string>
     <string name="alipay_url">https://qr.alipay.com/aex06874ga0wkuhwuajgzb8</string>
-    <string name="enableBlockADS"><b>启用模块</b>\n去广告功能的总开关</string>
+    <string name="enableBlockADS"><b>基础功能</b>\n去除大部分的广告</string>
     <string name="downloadexplorer"><b>下载管理</b>\n去下载管理界面的广告</string>
-    <string name="calendar"><b>日历</b>\n去除日历界面上的小广告和默认的卡片</string>
     <string name="filemanager"><b>文件管理器</b>\n去文件管理界面上的热门表情和热门视频等无用信息</string>
-    <string name="weather"><b>天气</b>\n去除天气中的广告和天气资讯</string>
     <string name="mms"><b>短信</b>\n去除具体短信信息界面上的充值话费充值流量贷款申请信用卡等垃圾信息，开启后无法直接复制短信验证码</string>
-    <string name="blockadsbasic"><b>功能基础模块(必选)</b>\n开启去广告功能必选项</string>
     <string name="enableHosts"><b>启用模块</b>\n开启Hosts支持模块</string>
     <string name="miuiads"><b>屏蔽小米广告</b>\n通过hosts屏蔽部分小米的广告,但可能导致小部分小米服务访问异常</string>
     <string name="blockads"><b>开启常规去广告</b>\nGithub上的hosts合集,用于屏蔽国内广告.</string>
@@ -37,7 +34,7 @@
     <string name="miui_root_25"><b>去除MIUI Root的25秒等待</b>\n开启后使用MIUI自带的ROOT授权无需等待25秒的倒计时</string>
     <string name="RemoveSearchBar"><b>移除通知栏下拉菜单的搜索</b>\n移除通知栏下拉菜单中的搜索框\nXposed目前不兼容FBE,7.x的机型可能无法开启本功能</string>
     <string name="enableSafeCenter"><b>去除安全中心的推广信息</b>\n去除安全中心中显示的推广信息</string>
-    <string name="mvadnote"><b>注意事项</b>\n部分应用需要清空应用数据才能去除广告,并且有些广告是可以在应用中直接关闭的，并不需要本插件去修改.</string>
+    <string name="mvadnote"><b>注意事项</b>\n文件管理，音乐，安全中心等APP的广告是可以在应用设置中直接关闭，并不需要本插件去修改.</string>
     <string name="music"><b>屏蔽音乐广告</b>\n屏蔽系统自带的音乐APP中的广告内容</string>
     <string name="wifi"><b>修复wifi自动连接</b>\n修复系统提示wifi热点未检测网络连接而不会自动连接的问题,需ROOT</string>
     <string name="enablethemenoad"><b>去除miui主题广告</b>\n去除miui个性主题的主题详情页的图片广告</string>
@@ -52,26 +49,17 @@
     <string name="Tips_Title">温馨提示</string>
     <string name="Btn_Sure">确定</string>
     <string name="Btn_Cancel">取消</string>
-    <string name="App_Update">应用更新</string>
-    <string name="Update">立即更新</string>
-    <string name="Downloading">正在下载。。。</string>
-    <string name="Download_Success">下载完毕</string>
-    <string name="Download_Fail">下载错误</string>
-    <string name="Tips_HotBoot">你确定要快速重启系统吗？</string>
-    <string name="copy_url">复制链接</string>
     <string name="save">保存</string>
     <string name="share">分享</string>
     <string name="fastboot">快速重启</string>
     <string name="about">关于应用</string>
     <string name="MIUI_Purify">净化广告</string>
-    <string name="fucktheme">主题和谐</string>
-    <string name="hosts">Hosts设置</string>
-    <string name="disableapp">冻结应用</string>
-    <string name="appclean">应用清理</string>
-    <string name="othersettings">其他设置</string>
+    <string name="hosts">Hosts去广告</string>
+    <string name="disableapp">冻结应用程序</string>
+    <string name="appclean">清理应用缓存</string>
+    <string name="othersettings">Xposed功能设置</string>
     <string name="other">其他</string>
-    <string name="myblog">我的博客</string>
-    <string name="changeskin">主题换肤</string>
+    <string name="copy_url">复制链接</string>
 
     <string name="Working">正在处理</string>
     <string name="Waiting">请耐心等待。。</string>
@@ -133,13 +121,12 @@
     <string name="not_fond_backup_list">未找到备份列表！</string>
     <string name="not_fond_backup_list_file">未找到备份列表！</string>
     <string name="hide_app_icon">隐藏桌面图标</string>
-    <string name="navigation_item_ManagerApp">应用管理</string>
+    <string name="navigation_item_ManagerApp">备份/还原应用</string>
     <string name="navigation_item_donation">捐赠</string>
     <string name="fixpcb"><b>禁用窗口权限检测</b>\n修复PCB在miui8上的问题,仅Android 6.0系统可用</string>
     <string name="historyFunctions">历史功能</string>
     <string name="appname">应用名: %1$s \n版本号 :%2$s</string>
-    <string name="others_appsettings">应用设置</string>
-
+    <string name="others_appsettings">设置</string>
 
 
 </resources>

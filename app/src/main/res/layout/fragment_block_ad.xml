@@ -27,15 +27,6 @@
                 android:paddingStart="30dp"
                 android:text="@string/enableBlockADS" />
 
-            <Switch
-                android:id="@+id/enableBlockADBasic"
-                android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:layout_marginTop="10dp"
-                android:background="@color/switchBtn"
-                android:paddingEnd="30dp"
-                android:paddingStart="30dp"
-                android:text="@string/blockadsbasic" />
 
             <Switch
                 android:id="@+id/enableMMS"
@@ -48,26 +39,6 @@
                 android:text="@string/mms" />
 
             <Switch
-                android:id="@+id/enableWeather"
-                android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:layout_marginTop="10dp"
-                android:background="@color/switchBtn"
-                android:paddingEnd="30dp"
-                android:paddingStart="30dp"
-                android:text="@string/weather" />
-
-            <Switch
-                android:id="@+id/enableFileManager"
-                android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:layout_marginTop="10dp"
-                android:background="@color/switchBtn"
-                android:paddingEnd="30dp"
-                android:paddingStart="30dp"
-                android:text="@string/filemanager" />
-
-            <Switch
                 android:id="@+id/enableDownload"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
@@ -76,26 +47,6 @@
                 android:paddingEnd="30dp"
                 android:paddingStart="30dp"
                 android:text="@string/downloadexplorer" />
-
-            <Switch
-                android:id="@+id/enableSafeCenter"
-                android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:layout_marginTop="10dp"
-                android:background="@color/switchBtn"
-                android:paddingEnd="30dp"
-                android:paddingStart="30dp"
-                android:text="@string/enableSafeCenter" />
-
-            <Switch
-                android:id="@+id/enableMusic"
-                android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:layout_marginTop="10dp"
-                android:background="@color/switchBtn"
-                android:paddingEnd="30dp"
-                android:paddingStart="30dp"
-                android:text="@string/music" />
 
             <Switch
                 android:id="@+id/enabletheme"
