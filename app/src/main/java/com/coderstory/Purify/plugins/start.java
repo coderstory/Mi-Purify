@@ -28,7 +28,6 @@ public class start implements IXposedHookZygoteInit, IXposedHookLoadPackage, IXp
     @Override
     public void handleLoadPackage(XC_LoadPackage.LoadPackageParam lpparam) throws Throwable {
         new IsEnable().handleLoadPackage(lpparam);
-        //new ThemePather8().handleLoadPackage(lpparam);
         new RemoveAds().handleLoadPackage(lpparam);
         new HideApp().handleLoadPackage(lpparam);
         new Others().handleLoadPackage(lpparam);
@@ -40,7 +39,6 @@ public class start implements IXposedHookZygoteInit, IXposedHookLoadPackage, IXp
     @Override
     public void initZygote(StartupParam startupParam) throws Throwable {
         XposedBridge.log("小米净化 2.x 开始Patch");
-        // new ThemePather8().initZygote(startupParam);
         new CorePatch().initZygote(startupParam);
     }
 }
