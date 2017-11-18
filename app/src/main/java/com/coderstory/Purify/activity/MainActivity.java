@@ -22,7 +22,6 @@ import android.view.MenuItem;
 
 import com.coderstory.Purify.R;
 import com.coderstory.Purify.config.Misc;
-import com.coderstory.Purify.fragment.BlockADSFragment;
 import com.coderstory.Purify.fragment.CleanFragment;
 import com.coderstory.Purify.fragment.DisbaleAppFragment;
 import com.coderstory.Purify.fragment.HideAppFragment;
@@ -141,7 +140,7 @@ public class MainActivity extends BaseActivity {
 
     //init the default checked fragment
     private void initDefaultFragment() {
-        mCurrentFragment = ViewUtils.createFragment(BlockADSFragment.class);
+        mCurrentFragment = ViewUtils.createFragment(OthersFragment.class);
         mFragmentManager.beginTransaction().add(R.id.frame_content, mCurrentFragment).commit();
         mPreMenuItem = mNavigationView.getMenu().getItem(0);
         mPreMenuItem.setChecked(true);
@@ -163,10 +162,6 @@ public class MainActivity extends BaseActivity {
             }
 
             switch (item.getItemId()) {
-                case R.id.navigation_item_blockads:
-                    mToolbar.setTitle(R.string.MIUI_Purify);
-                    switchFragment(BlockADSFragment.class);
-                    break;
 
                 case R.id.navigation_item_hosts:
                     mToolbar.setTitle(R.string.hosts);

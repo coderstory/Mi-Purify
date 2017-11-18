@@ -6,11 +6,6 @@
     <group android:checkableBehavior="single">
 
         <item
-            android:id="@+id/navigation_item_blockads"
-            android:checked="true"
-            android:icon="@drawable/skin"
-            android:title="@string/MIUI_Purify" />
-        <item
             android:id="@+id/navigation_item_otherssettings"
             android:icon="@drawable/iconfont_custom_view"
             android:title="@string/othersettings" />
