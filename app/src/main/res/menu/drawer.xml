@@ -10,11 +10,18 @@
             android:checked="true"
             android:icon="@drawable/skin"
             android:title="@string/MIUI_Purify" />
-
+        <item
+            android:id="@+id/navigation_item_otherssettings"
+            android:icon="@drawable/iconfont_custom_view"
+            android:title="@string/othersettings" />
         <item
             android:id="@+id/navigation_item_disableapps"
             android:icon="@drawable/disable"
             android:title="@string/disableapp" />
+        <item
+            android:id="@+id/navigation_item_ManagerApp"
+            android:icon="@drawable/iconfont_blog"
+            android:title="@string/navigation_item_ManagerApp" />
         <item
             android:id="@+id/navigation_item_Clean"
             android:icon="@drawable/clean"
@@ -29,16 +36,6 @@
             android:id="@+id/navigation_item_hosts"
             android:icon="@drawable/hosts"
             android:title="@string/hosts" />
-        <item
-            android:id="@+id/navigation_item_ManagerApp"
-            android:icon="@drawable/iconfont_blog"
-            android:title="@string/navigation_item_ManagerApp" />
-
-
-        <item
-            android:id="@+id/navigation_item_otherssettings"
-            android:icon="@drawable/iconfont_custom_view"
-            android:title="@string/othersettings" />
 
         <item android:title="@string/other">
             <menu>

@@ -53,11 +53,11 @@
     <string name="share">分享</string>
     <string name="fastboot">快速重启</string>
     <string name="about">关于应用</string>
-    <string name="MIUI_Purify">净化广告</string>
+    <string name="MIUI_Purify">净化系统广告</string>
     <string name="hosts">Hosts去广告</string>
     <string name="disableapp">冻结应用程序</string>
     <string name="appclean">清理应用缓存</string>
-    <string name="othersettings">Xposed功能设置</string>
+    <string name="othersettings">其他Xposed功能</string>
     <string name="other">其他</string>
     <string name="copy_url">复制链接</string>
 
@@ -126,7 +126,7 @@
     <string name="fixpcb"><b>禁用窗口权限检测</b>\n修复PCB在miui8上的问题,仅Android 6.0系统可用</string>
     <string name="historyFunctions">历史功能</string>
     <string name="appname">应用名: %1$s \n版本号 :%2$s</string>
-    <string name="others_appsettings">设置</string>
+    <string name="others_appsettings">应用设置</string>
 
 
 </resources>
