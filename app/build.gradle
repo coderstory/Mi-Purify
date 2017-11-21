@@ -7,8 +7,8 @@ android {
         applicationId "com.coderstory.Purify"
         minSdkVersion 19
         targetSdkVersion 27
-        versionCode 10006
-        versionName "2.0.4"
+        versionCode 10010
+        versionName "2.0.5"
         resConfigs "cn"
     }
     repositories {
