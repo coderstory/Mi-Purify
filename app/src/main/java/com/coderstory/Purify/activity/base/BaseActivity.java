@@ -1,13 +1,15 @@
 package com.coderstory.Purify.activity.base;
 
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
 public abstract class BaseActivity extends AppCompatActivity {
-    protected abstract void setUpView();
-
-    protected abstract int setLayoutResourceID();
+    private static SharedPreferences prefs;
+    private static SharedPreferences.Editor editor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,8 +30,29 @@ public abstract class BaseActivity extends AppCompatActivity {
 
     }
 
-    @SuppressWarnings("unchecked")
+    protected abstract void setUpView();
+
+    protected abstract int setLayoutResourceID();
+
     protected <T extends View> T $(int id) {
         return (T) super.findViewById(id);
+    }
+
+    protected void startActivityWithoutExtras(Class<?> clazz) {
+        Intent intent = new Intent(this, clazz);
+        startActivity(intent);
+    }
+
+    protected SharedPreferences getPrefs() {
+        prefs = getBaseContext().getSharedPreferences("UserSettings", Context.MODE_PRIVATE);
+        return prefs;
+    }
+
+    protected SharedPreferences.Editor getEditor() {
+        if (editor == null) {
+            editor = prefs.edit();
+        }
+        return editor;
+
     }
 }
