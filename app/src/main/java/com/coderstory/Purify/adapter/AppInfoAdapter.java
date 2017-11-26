@@ -41,7 +41,6 @@ public class AppInfoAdapter extends ArrayAdapter {
             view.setTag(vh); //保存到view中
         }
 
-        assert appInfo != null;
         vh.myText.setTag(appInfo.getPackageName());
         vh.myImage.setImageDrawable(appInfo.getImageId());
         vh.myText.setText(String.format(getContext().getString(R.string.appname), appInfo.getName(), appInfo.getVersion()));
