@@ -8,8 +8,6 @@ import com.coderstory.Purify.fragment.base.BaseFragment;
 
 import eu.chainfire.libsuperuser.Shell;
 
-import eu.chainfire.libsuperuser.Shell;
-
 
 public class OthersFragment extends BaseFragment {
     public OthersFragment() {
