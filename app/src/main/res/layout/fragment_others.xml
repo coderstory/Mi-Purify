@@ -136,16 +136,6 @@
                 android:paddingStart="30dp"
                 android:text="@string/fixpcb" />
 
-            <Switch
-                android:id="@+id/root25"
-                android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:layout_marginTop="10dp"
-                android:background="@color/switchBtn"
-                android:paddingEnd="30dp"
-                android:paddingStart="30dp"
-                android:text="@string/miui_root_25" />
-
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
@@ -154,16 +144,6 @@
                 android:paddingStart="30dp"
                 android:paddingTop="0dp"
                 android:text="@string/xposedmodule" />
-
-            <Switch
-                android:id="@+id/RemoveSearchBar"
-                android:layout_width="match_parent"
-                android:layout_height="70dp"
-                android:layout_marginTop="10dp"
-                android:background="@color/switchBtn"
-                android:paddingEnd="30dp"
-                android:paddingStart="30dp"
-                android:text="@string/RemoveSearchBar" />
 
             <Switch
                 android:id="@+id/hide_icon_label"
