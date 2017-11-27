@@ -53,7 +53,7 @@ public class AboutFragment extends BaseFragment {
         });
 
         $(R.id.alipay).setOnClickListener(view ->
-                donateAlipay("aex087445gnaa6gawjaohe8")
+                donateAlipay("FKX06996WLPADKEKFYIXE1")
         );
         $(R.id.wechat).setOnClickListener(view ->
                 // donateWeixin()
@@ -65,7 +65,7 @@ public class AboutFragment extends BaseFragment {
 
     /* 支付宝支付
      * @param payCode 收款码后面的字符串；例如：收款二维码里面的字符串为 https://qr.alipay.com/stx00187oxldjvyo3ofaw60 ，则
-     *payCode = stx00187oxldjvyo3ofaw60
+     *payCode = aex087445gnaa6gawjaohe8
      *注：不区分大小写
      */
     private void donateAlipay(String payCode) {
