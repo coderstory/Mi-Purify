@@ -17,6 +17,12 @@ public class OthersFragment extends BaseFragment {
     protected void setUpView() {
 
 
+        $(R.id.RemoveSearchBar).setOnClickListener(v -> {
+            getEditor().putBoolean("RemoveSearchBar", ((Switch) v).isChecked());
+            getEditor().apply();
+            sudoFixPermissions();
+        });
+
         $(R.id.enableBlockAD).setOnClickListener(v -> {
             getEditor().putBoolean("EnableBlockAD", ((Switch) v).isChecked());
             getEditor().apply();
@@ -66,9 +72,15 @@ public class OthersFragment extends BaseFragment {
             sudoFixPermissions();
         });
 
-
         $(R.id.fixpcb).setOnClickListener(v -> {
             getEditor().putBoolean("fixpcb", ((Switch) v).isChecked());
+            getEditor().apply();
+            sudoFixPermissions();
+        });
+
+
+        $(R.id.root25).setOnClickListener(v -> {
+            getEditor().putBoolean("root25", ((Switch) v).isChecked());
             getEditor().apply();
             sudoFixPermissions();
         });
@@ -111,7 +123,9 @@ public class OthersFragment extends BaseFragment {
 
     @Override
     protected void setUpData() {
+        ((Switch) $(R.id.RemoveSearchBar)).setChecked(getPrefs().getBoolean("RemoveSearchBar", false));
         ((Switch) $(R.id.fixpcb)).setChecked(getPrefs().getBoolean("fixpcb", false));
+        ((Switch) $(R.id.root25)).setChecked(getPrefs().getBoolean("root25", false));
         ((Switch) $(R.id.hide_icon_label)).setChecked(getPrefs().getBoolean("hide_icon_label", false));
         ((Switch) $(R.id.authcreak)).setChecked(getPrefs().getBoolean("authcreak", false));
         ((Switch) $(R.id.zipauthcreak)).setChecked(getPrefs().getBoolean("zipauthcreak", false));
