@@ -66,10 +66,30 @@ public class CorePatch extends XposedHelper implements IModule {
                 if (prefs.getBoolean("authcreak", true)) {
                     Field field = packageClass.getField(" SF_ATTRIBUTE_ANDROID_APK_SIGNED_ID");
                     field.setAccessible(true);
-                    field.set(packageInfoLite, 3);
+                    field.set(packageInfoLite, -1);
                 }
             }
         });
+
+        Class AppOpsService = null;
+        try {
+            AppOpsService = XposedHelpers.findClass("com.android.server.AppOpsService", null);
+
+        } catch (XposedHelpers.ClassNotFoundError e) {
+            XposedBridge.log(e);
+        }
+
+        if (AppOpsService != null) {
+            XposedBridge.hookAllMethods(AppOpsService, "isSystemOrPrivApp", new XC_MethodHook() {
+                protected void beforeHookedMethod(MethodHookParam paramAnonymousMethodHookParam)
+                        throws Throwable {
+                    prefs.reload();
+                    if (prefs.getBoolean("authcreak", true)) {
+                        paramAnonymousMethodHookParam.setResult(true);
+                    }
+                }
+            });
+        }
     }
 
 
@@ -137,17 +157,25 @@ public class CorePatch extends XposedHelper implements IModule {
                 }
             });
 
-            final Class AppOpsService = XposedHelpers.findClass("com.android.server.AppOpsService", null);
+            Class AppOpsService = null;
+            try {
+                AppOpsService = XposedHelpers.findClass("com.android.server.AppOpsService", null);
 
-            XposedBridge.hookAllMethods(AppOpsService, "isSystemOrPrivApp", new XC_MethodHook() {
-                protected void beforeHookedMethod(MethodHookParam paramAnonymousMethodHookParam)
-                        throws Throwable {
-                    prefs.reload();
-                    if (prefs.getBoolean("authcreak", true)) {
-                        paramAnonymousMethodHookParam.setResult(true);
+            } catch (XposedHelpers.ClassNotFoundError e) {
+                XposedBridge.log(e);
+            }
+            if (AppOpsService != null) {
+                XposedBridge.hookAllMethods(AppOpsService, "isSystemOrPrivApp", new XC_MethodHook() {
+                    protected void beforeHookedMethod(MethodHookParam paramAnonymousMethodHookParam)
+                            throws Throwable {
+                        prefs.reload();
+                        if (prefs.getBoolean("authcreak", true)) {
+                            paramAnonymousMethodHookParam.setResult(true);
+                        }
                     }
-                }
-            });
+                });
+            }
+
         }
     }
 }
