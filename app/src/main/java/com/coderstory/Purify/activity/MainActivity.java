@@ -43,6 +43,14 @@ public class MainActivity extends BaseActivity {
 
     public static final long MAX_DOUBLE_BACK_DURATION = 1500;
     private static final int READ_EXTERNAL_STORAGE_CODE = 1;
+    private DrawerLayout mDrawerLayout;//侧边菜单视图
+    private Toolbar mToolbar;
+    private NavigationView mNavigationView;//侧边菜单项
+    private FragmentManager mFragmentManager;
+    private Fragment mCurrentFragment;
+    private MenuItem mPreMenuItem;
+    private long lastBackKeyDownTick = 0;
+    private ProgressDialog dialog;
     @SuppressLint("HandlerLeak")
     Handler myHandler = new Handler() {
         public void handleMessage(Message msg) {
@@ -80,14 +88,6 @@ public class MainActivity extends BaseActivity {
 
         }
     };
-    private DrawerLayout mDrawerLayout;//侧边菜单视图
-    private Toolbar mToolbar;
-    private NavigationView mNavigationView;//侧边菜单项
-    private FragmentManager mFragmentManager;
-    private Fragment mCurrentFragment;
-    private MenuItem mPreMenuItem;
-    private long lastBackKeyDownTick = 0;
-    private ProgressDialog dialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
