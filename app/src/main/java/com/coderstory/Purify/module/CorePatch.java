@@ -43,18 +43,7 @@ public class CorePatch extends XposedHelper implements IModule {
         final Class packageParser = XposedHelpers.findClass("android.content.pm.PackageParser", null);
         final Class strictJarVerifier = XposedHelpers.findClass("android.util.jar.StrictJarVerifier", null);
         final Class packageClass = XposedHelpers.findClass("android.content.pm.PackageParser.Package", null);
-        final Class AppOpsService = XposedHelpers.findClass("com.android.server.AppOpsService", null);
 
-
-        XposedBridge.hookAllMethods(AppOpsService, "isSystemOrPrivApp", new XC_MethodHook() {
-            protected void beforeHookedMethod(MethodHookParam paramAnonymousMethodHookParam)
-                    throws Throwable {
-                prefs.reload();
-                if (prefs.getBoolean("authcreak", true)) {
-                    paramAnonymousMethodHookParam.setResult(true);
-                }
-            }
-        });
 
         XposedBridge.hookAllMethods(packageParser, "getApkSigningVersion", XC_MethodReplacement.returnConstant(1));
 
@@ -81,7 +70,6 @@ public class CorePatch extends XposedHelper implements IModule {
                 }
             }
         });
-
     }
 
 
