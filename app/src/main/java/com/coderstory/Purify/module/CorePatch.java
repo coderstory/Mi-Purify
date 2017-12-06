@@ -107,7 +107,7 @@ public class CorePatch extends XposedHelper implements IModule {
                     if (prefs.getBoolean("downgrade", true)) {
                         Field field = packageClass.getField("mVersionCode");
                         field.setAccessible(true);
-                        field.set(packageInfoLite, 0);
+                        field.set(packageInfoLite, -1);
                     }
                 }
             });
@@ -139,6 +139,7 @@ public class CorePatch extends XposedHelper implements IModule {
                     }
                 }
             });
+
             XposedBridge.hookAllMethods(localClass, "compareSignaturesRecover", new XC_MethodHook() {
                 protected void beforeHookedMethod(XC_MethodHook.MethodHookParam paramAnonymousMethodHookParam) {
                     prefs.reload();
@@ -150,7 +151,6 @@ public class CorePatch extends XposedHelper implements IModule {
 
             final Class AppOpsService = XposedHelpers.findClass("com.android.server.AppOpsService", null);
 
-
             XposedBridge.hookAllMethods(AppOpsService, "isSystemOrPrivApp", new XC_MethodHook() {
                 protected void beforeHookedMethod(MethodHookParam paramAnonymousMethodHookParam)
                         throws Throwable {
@@ -160,8 +160,6 @@ public class CorePatch extends XposedHelper implements IModule {
                     }
                 }
             });
-
         }
     }
-
 }
