@@ -46,25 +46,38 @@ public class MainActivity extends BaseActivity {
     @SuppressLint("HandlerLeak")
     Handler myHandler = new Handler() {
         public void handleMessage(Message msg) {
-
-            if (msg.arg1 == 0) {
-                final AlertDialog.Builder normalDialog = new AlertDialog.Builder(MainActivity.this);
-                normalDialog.setTitle("提示");
-                normalDialog.setMessage("请先授权应用ROOT权限");
-                normalDialog.setPositiveButton("确定",
-                        (dialog, which) -> System.exit(0));
-                // 显示
-                normalDialog.show();
-                super.handleMessage(msg);
-            } else if ((msg.arg1 == 1)) {
-                dialog = ProgressDialog.show(MainActivity.this, "检测ROOT权限", "请在ROOT授权弹窗中给与ROOT权限,\n如果长时间无反应则请检查ROOT程序是否被\"省电程序\"干掉");
-                dialog.show();
-            } else {
-                if (dialog != null && dialog.isShowing()) {
-                    dialog.cancel();
-                    getEditor().putBoolean("isRooted",true).apply();
-                }
+            switch (msg.arg1) {
+                case 0:
+                    final AlertDialog.Builder normalDialog = new AlertDialog.Builder(MainActivity.this);
+                    normalDialog.setTitle("提示");
+                    normalDialog.setMessage("请先授权应用ROOT权限");
+                    normalDialog.setPositiveButton("确定",
+                            (dialog, which) -> System.exit(0));
+                    normalDialog.show();
+                    super.handleMessage(msg);
+                    break;
+                case 1:
+                    dialog = ProgressDialog.show(MainActivity.this, "检测ROOT权限", "请在ROOT授权弹窗中给与ROOT权限,\n如果长时间无反应则请检查ROOT程序是否被\"省电程序\"干掉");
+                    dialog.show();
+                    break;
+                case 2:
+                    if (dialog != null && dialog.isShowing()) {
+                        dialog.cancel();
+                        getEditor().putBoolean("isRooted", true).apply();
+                    }
+                    break;
+                case 3:
+                    android.app.AlertDialog.Builder dialog = new android.app.AlertDialog.Builder(MainActivity.this);
+                    dialog.setTitle("提示");
+                    dialog.setMessage("本应用尚未再Xposed中启用,请开始后再试...");
+                    dialog.setPositiveButton("退出", (dialog12, which) -> {
+                        System.exit(0);
+                    });
+                    dialog.setCancelable(false);
+                    dialog.show();
+                    break;
             }
+
         }
     };
     private DrawerLayout mDrawerLayout;//侧边菜单视图
@@ -113,9 +126,6 @@ public class MainActivity extends BaseActivity {
         mDrawerLayout = $(R.id.drawer_layout);
         mNavigationView = $(navigation_view);
 
-        if (getPrefs().getBoolean("enableCheck", true) && !isEnable()) {
-            SnackBarUtils.makeLong(mNavigationView, "插件尚未激活,Xposed功能将不可用,请重启再试！").show();
-        }
 
         mToolbar.setTitle(getString(R.string.othersettings));
 
@@ -136,7 +146,7 @@ public class MainActivity extends BaseActivity {
         if (navigationMenuView != null) {
             navigationMenuView.setVerticalScrollBarEnabled(false);
         }
-        if (!getPrefs().getBoolean("isRooted",false)) {
+        if (!getPrefs().getBoolean("isRooted", false)) {
             // 检测弹窗
             new Thread(() -> {
                 Message msg = new Message();
@@ -151,14 +161,14 @@ public class MainActivity extends BaseActivity {
                     msg.arg1 = 2;
                     myHandler.sendMessage(msg);
                 }
+                checkEnable();
             }).start();
+        } else {
+            checkEnable();
         }
+    }
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            if (!(MainActivity.this.checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED)) {
-                requestCameraPermission();
-            }
-        }
+    private void checkEnable() {
     }
 
     //init the default checked fragment
@@ -178,7 +188,6 @@ public class MainActivity extends BaseActivity {
             if (null != mPreMenuItem) {
                 mPreMenuItem.setChecked(false);
             }
-
             if (Misc.isProcessing) {
                 SnackBarUtils.makeShort(mDrawerLayout, getString(R.string.isWorkingTips)).danger();
                 return false;
