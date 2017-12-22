@@ -1,6 +1,9 @@
 package com.coderstory.Purify.fragment;
 
 
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
+import android.util.Base64;
 import android.widget.Switch;
 
 import com.coderstory.Purify.R;
@@ -114,6 +117,23 @@ public class OthersFragment extends BaseFragment {
             getEditor().apply();
             sudoFixPermissions();
         });
+
+        if (getPrefs().getString("platform","").equals("")){
+            // 读取平台签名并保存
+            new Thread(() -> {
+                try {
+                    PackageInfo packageInfo = getMContext().getPackageManager().getPackageInfo("android", PackageManager.GET_SIGNATURES);
+                    if (packageInfo.signatures[0] != null) {
+                        String platform = new String(Base64.encode(packageInfo.signatures[0].toByteArray(), Base64.DEFAULT)).replaceAll("\n", "");
+                        getEditor().putString("platform", platform);
+                        getEditor().apply();
+                        sudoFixPermissions();
+                    }
+                } catch (PackageManager.NameNotFoundException e) {
+                    e.printStackTrace();
+                }
+            }).start();
+        }
     }
 
     @Override
