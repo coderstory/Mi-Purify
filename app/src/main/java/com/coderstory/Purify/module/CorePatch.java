@@ -116,11 +116,11 @@ public class CorePatch extends XposedHelper implements IModule {
             XposedBridge.hookAllMethods(localClass, "compareSignatures", new XC_MethodHook() {
                 protected void beforeHookedMethod(MethodHookParam methodHookParam) throws Throwable {
                     prefs.reload();
-                    if (prefs.getBoolean("zipauthcreak", false) ) {
+                    if (prefs.getBoolean("zipauthcreak", false)) {
 
-                        String platform = prefs.getString("platform","DEFAULT");
+                        String platform = prefs.getString("platform", "DEFAULT");
 
-                        if (platform.equals("DEFAULT")){
+                        if (platform.equals("DEFAULT")) {
                             XposedBridge.log("警告:核心破解上未初始化,请至少打开一次APP!");
                         }
 
@@ -141,7 +141,6 @@ public class CorePatch extends XposedHelper implements IModule {
                                 }
                             }
                         }
-
                         methodHookParam.setResult(0);
                     }
                 }
