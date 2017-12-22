@@ -1,5 +1,8 @@
 package com.coderstory.Purify.module;
 
+import android.content.pm.Signature;
+import android.util.Base64;
+
 import com.coderstory.Purify.plugins.IModule;
 import com.coderstory.Purify.utils.XposedHelper;
 
@@ -70,28 +73,7 @@ public class CorePatch extends XposedHelper implements IModule {
                 }
             }
         });
-
-        Class AppOpsService = null;
-        try {
-            AppOpsService = XposedHelpers.findClass("com.android.server.AppOpsService", null);
-
-        } catch (XposedHelpers.ClassNotFoundError e) {
-            XposedBridge.log(e);
-        }
-
-        if (AppOpsService != null) {
-            XposedBridge.hookAllMethods(AppOpsService, "isSystemOrPrivApp", new XC_MethodHook() {
-                protected void beforeHookedMethod(MethodHookParam paramAnonymousMethodHookParam)
-                        throws Throwable {
-                    prefs.reload();
-                    if (prefs.getBoolean("authcreak", true)) {
-                        paramAnonymousMethodHookParam.setResult(true);
-                    }
-                }
-            });
-        }
     }
-
 
     @Override
     public void handleInitPackageResources(XC_InitPackageResources.InitPackageResourcesParam resparam) {
@@ -100,6 +82,7 @@ public class CorePatch extends XposedHelper implements IModule {
 
     @Override
     public void handleLoadPackage(XC_LoadPackage.LoadPackageParam paramLoadPackageParam) {
+
 
         if (("android".equals(paramLoadPackageParam.packageName)) && (paramLoadPackageParam.processName.equals("android"))) {
 
@@ -133,7 +116,32 @@ public class CorePatch extends XposedHelper implements IModule {
             XposedBridge.hookAllMethods(localClass, "compareSignatures", new XC_MethodHook() {
                 protected void beforeHookedMethod(MethodHookParam methodHookParam) throws Throwable {
                     prefs.reload();
-                    if (prefs.getBoolean("zipauthcreak", true)) {
+                    if (prefs.getBoolean("zipauthcreak", false) ) {
+
+                        String platform = prefs.getString("platform","DEFAULT");
+
+                        if (platform.equals("DEFAULT")){
+                            XposedBridge.log("警告:核心破解上未初始化,请至少打开一次APP!");
+                        }
+
+                        Signature[] signatures = (Signature[]) methodHookParam.args[0];
+                        if (signatures != null && signatures.length > 0) {
+                            for (Signature signature : signatures) {
+                                if (new String(Base64.encode(signature.toByteArray(), Base64.DEFAULT)).replaceAll("\n", "").equals(platform)) {
+                                    return;
+                                }
+                            }
+                        }
+
+                        signatures = (Signature[]) methodHookParam.args[1];
+                        if (signatures != null && signatures.length > 0) {
+                            for (Signature signature : signatures) {
+                                if (new String(Base64.encode(signature.toByteArray(), Base64.DEFAULT)).replaceAll("\n", "").equals(platform)) {
+                                    return;
+                                }
+                            }
+                        }
+
                         methodHookParam.setResult(0);
                     }
                 }
@@ -147,7 +155,6 @@ public class CorePatch extends XposedHelper implements IModule {
                     }
                 }
             });
-
             XposedBridge.hookAllMethods(localClass, "compareSignaturesRecover", new XC_MethodHook() {
                 protected void beforeHookedMethod(XC_MethodHook.MethodHookParam paramAnonymousMethodHookParam) {
                     prefs.reload();
@@ -156,26 +163,6 @@ public class CorePatch extends XposedHelper implements IModule {
                     }
                 }
             });
-
-            Class AppOpsService = null;
-            try {
-                AppOpsService = XposedHelpers.findClass("com.android.server.AppOpsService", null);
-
-            } catch (XposedHelpers.ClassNotFoundError e) {
-                XposedBridge.log(e);
-            }
-            if (AppOpsService != null) {
-                XposedBridge.hookAllMethods(AppOpsService, "isSystemOrPrivApp", new XC_MethodHook() {
-                    protected void beforeHookedMethod(MethodHookParam paramAnonymousMethodHookParam)
-                            throws Throwable {
-                        prefs.reload();
-                        if (prefs.getBoolean("authcreak", true)) {
-                            paramAnonymousMethodHookParam.setResult(true);
-                        }
-                    }
-                });
-            }
-
         }
     }
 }
