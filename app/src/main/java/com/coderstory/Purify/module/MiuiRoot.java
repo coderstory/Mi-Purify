@@ -46,7 +46,7 @@ public class MiuiRoot extends XposedHelper implements IModule {
                     }
                 }
             });
-            //这个方法是修改每次点击确定时显示不同的警告文字的 在miui8上找不到方法 可能不存在 或者已经改名
+
             XposedHelpers.findAndHookMethod("com.miui.permcenter.root.c", loadPackageParam.classLoader, "handleMessage", Message.class, new XC_MethodReplacement() {
                 protected Object replaceHookedMethod(MethodHookParam paramAnonymousMethodHookParam)
                         throws Throwable {
@@ -54,13 +54,20 @@ public class MiuiRoot extends XposedHelper implements IModule {
                 }
             });
 
-            //这个方法是修改每次点击确定时显示不同的警告文字的 在miui8上找不到方法 可能不存在 或者已经改名
             XposedHelpers.findAndHookMethod("com.miui.permcenter.root.a", loadPackageParam.classLoader, "handleMessage", Message.class, new XC_MethodReplacement() {
                 protected Object replaceHookedMethod(MethodHookParam paramAnonymousMethodHookParam)
                         throws Throwable {
                     return null;
                 }
             });
+
+            XposedHelpers.findAndHookMethod("com.miui.permcenter.root.g", loadPackageParam.classLoader, "handleMessage", Message.class, new XC_MethodReplacement() {
+                protected Object replaceHookedMethod(MethodHookParam paramAnonymousMethodHookParam)
+                        throws Throwable {
+                    return null;
+                }
+            });
+
         }
     }
 
