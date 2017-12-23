@@ -47,20 +47,6 @@ public class MiuiRoot extends XposedHelper implements IModule {
                 }
             });
 
-            XposedHelpers.findAndHookMethod("com.miui.permcenter.root.c", loadPackageParam.classLoader, "handleMessage", Message.class, new XC_MethodReplacement() {
-                protected Object replaceHookedMethod(MethodHookParam paramAnonymousMethodHookParam)
-                        throws Throwable {
-                    return null;
-                }
-            });
-
-            XposedHelpers.findAndHookMethod("com.miui.permcenter.root.a", loadPackageParam.classLoader, "handleMessage", Message.class, new XC_MethodReplacement() {
-                protected Object replaceHookedMethod(MethodHookParam paramAnonymousMethodHookParam)
-                        throws Throwable {
-                    return null;
-                }
-            });
-
             XposedHelpers.findAndHookMethod("com.miui.permcenter.root.g", loadPackageParam.classLoader, "handleMessage", Message.class, new XC_MethodReplacement() {
                 protected Object replaceHookedMethod(MethodHookParam paramAnonymousMethodHookParam)
                         throws Throwable {

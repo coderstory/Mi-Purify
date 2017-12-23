@@ -83,7 +83,6 @@ public class CorePatch extends XposedHelper implements IModule {
     @Override
     public void handleLoadPackage(XC_LoadPackage.LoadPackageParam paramLoadPackageParam) {
 
-
         if (("android".equals(paramLoadPackageParam.packageName)) && (paramLoadPackageParam.processName.equals("android"))) {
 
             final Class localClass = XposedHelpers.findClass("com.android.server.pm.PackageManagerService", paramLoadPackageParam.classLoader);
@@ -121,7 +120,7 @@ public class CorePatch extends XposedHelper implements IModule {
                         String platform = prefs.getString("platform", "DEFAULT");
 
                         if (platform.equals("DEFAULT")) {
-                            XposedBridge.log("警告:核心破解上未初始化,请至少打开一次APP!");
+                            // XposedBridge.log("警告:核心破解上未初始化,请至少打开一次APP!");
                         }
 
                         Signature[] signatures = (Signature[]) methodHookParam.args[0];
