@@ -55,7 +55,7 @@ public abstract class BaseFragment extends Fragment {
 
     protected SharedPreferences.Editor getEditor() {
         if (editor == null) {
-            editor = prefs.edit();
+            editor = getPrefs().edit();
         }
         return editor;
 
