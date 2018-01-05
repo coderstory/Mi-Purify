@@ -10,7 +10,7 @@ import com.coderstory.Purify.module.Others;
 import com.coderstory.Purify.module.RemoveAds;
 import com.coderstory.Purify.module.RemoveSearchBar;
 import com.coderstory.Purify.module.ThemePatcher;
-
+import com.coderstory.Purify.module.ThemePatcher;
 import de.robv.android.xposed.IXposedHookInitPackageResources;
 import de.robv.android.xposed.IXposedHookLoadPackage;
 import de.robv.android.xposed.IXposedHookZygoteInit;
@@ -32,7 +32,6 @@ public class start implements IXposedHookZygoteInit, IXposedHookLoadPackage, IXp
         new RemoveAds().handleLoadPackage(lpparam);
         new HideApp().handleLoadPackage(lpparam);
         new Others().handleLoadPackage(lpparam);
-        new MiuiRoot().handleLoadPackage(lpparam);
         new MiuiHome().handleLoadPackage(lpparam);
         new CorePatch().handleLoadPackage(lpparam);
         new ThemePatcher().handleLoadPackage(lpparam);
