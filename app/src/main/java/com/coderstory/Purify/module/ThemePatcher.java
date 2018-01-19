@@ -42,17 +42,24 @@ public class ThemePatcher extends XposedHelper implements IModule {
                 } catch (XposedHelpers.ClassNotFoundError e) {
                 }
             }
+            // 修改为已购买
+            CorePatch.findAndHookMethod("com.android.thememanager.e.p", lpparam.classLoader, "isProductBought", XC_MethodReplacement.returnConstant(true));
+            CorePatch.findAndHookMethod("com.android.thememanager.util.dv", lpparam.classLoader, "k", XC_MethodReplacement.returnConstant(true));
         }
     }
 
     private void patch(XC_LoadPackage.LoadPackageParam lpparam, String classStr) {
         CorePatch.findAndHookMethod(classStr, lpparam.classLoader, "isTrialable", XC_MethodReplacement.returnConstant(true));
         CorePatch.findAndHookMethod(classStr, lpparam.classLoader, "v", XC_MethodReplacement.returnConstant(true));
+
+
         CorePatch.findAndHookMethod(classStr, lpparam.classLoader, "isLegal", XC_MethodReplacement.returnConstant(true));
         CorePatch.findAndHookMethod(classStr, lpparam.classLoader, "a", XC_MethodReplacement.returnConstant(true));
         CorePatch.findAndHookMethod(classStr, lpparam.classLoader, "C", XC_MethodReplacement.returnConstant(true));
         CorePatch.findAndHookMethod(classStr, lpparam.classLoader, "isAuthorizedResource", XC_MethodReplacement.returnConstant(true));
         CorePatch.findAndHookMethod(classStr, lpparam.classLoader, "k", XC_MethodReplacement.returnConstant(true));
+
+
         CorePatch.findAndHookMethod(classStr, lpparam.classLoader, "isPermanentRights", XC_MethodReplacement.returnConstant(true));
         CorePatch.findAndHookMethod(classStr, lpparam.classLoader, "x", XC_MethodReplacement.returnConstant(true));
         CorePatch.findAndHookMethod(classStr, lpparam.classLoader, "w", XC_MethodReplacement.returnConstant(true));
