@@ -16,6 +16,8 @@ import de.robv.android.xposed.XposedHelpers;
 import de.robv.android.xposed.callbacks.XC_InitPackageResources;
 import de.robv.android.xposed.callbacks.XC_LoadPackage;
 
+import static com.coderstory.Purify.config.Misc.enableThemePatch;
+
 public class ThemePatcher extends XposedHelper implements IModule {
 
     private final String[] CLASSES = new String[]{"ThemeOperationHandler", "ds", "du"};
@@ -29,6 +31,9 @@ public class ThemePatcher extends XposedHelper implements IModule {
     @Override
     public void handleLoadPackage(XC_LoadPackage.LoadPackageParam lpparam) {
 
+        if (!enableThemePatch) {
+            return;
+        }
         if ((lpparam.packageName.equals("miui.drm")) || (lpparam.packageName.equals("com.miui.system")) || (lpparam.packageName.equals("miui.system"))) {
             this.MIUI_DRM();
         }
@@ -49,16 +54,17 @@ public class ThemePatcher extends XposedHelper implements IModule {
     }
 
     private void patch(XC_LoadPackage.LoadPackageParam lpparam, String classStr) {
+        if (!enableThemePatch) {
+            return;
+        }
         CorePatch.findAndHookMethod(classStr, lpparam.classLoader, "isTrialable", XC_MethodReplacement.returnConstant(true));
         CorePatch.findAndHookMethod(classStr, lpparam.classLoader, "v", XC_MethodReplacement.returnConstant(true));
-
 
         CorePatch.findAndHookMethod(classStr, lpparam.classLoader, "isLegal", XC_MethodReplacement.returnConstant(true));
         CorePatch.findAndHookMethod(classStr, lpparam.classLoader, "a", XC_MethodReplacement.returnConstant(true));
         CorePatch.findAndHookMethod(classStr, lpparam.classLoader, "C", XC_MethodReplacement.returnConstant(true));
         CorePatch.findAndHookMethod(classStr, lpparam.classLoader, "isAuthorizedResource", XC_MethodReplacement.returnConstant(true));
         CorePatch.findAndHookMethod(classStr, lpparam.classLoader, "k", XC_MethodReplacement.returnConstant(true));
-
 
         CorePatch.findAndHookMethod(classStr, lpparam.classLoader, "isPermanentRights", XC_MethodReplacement.returnConstant(true));
         CorePatch.findAndHookMethod(classStr, lpparam.classLoader, "x", XC_MethodReplacement.returnConstant(true));
