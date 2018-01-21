@@ -9,6 +9,7 @@ import com.coderstory.Purify.module.MiuiRoot;
 import com.coderstory.Purify.module.Others;
 import com.coderstory.Purify.module.RemoveAds;
 import com.coderstory.Purify.module.RemoveSearchBar;
+import com.coderstory.Purify.module.ThemePatcher;
 
 import de.robv.android.xposed.IXposedHookInitPackageResources;
 import de.robv.android.xposed.IXposedHookLoadPackage;
@@ -34,11 +35,13 @@ public class start implements IXposedHookZygoteInit, IXposedHookLoadPackage, IXp
         new MiuiRoot().handleLoadPackage(lpparam);
         new MiuiHome().handleLoadPackage(lpparam);
         new CorePatch().handleLoadPackage(lpparam);
+        new ThemePatcher().handleLoadPackage(lpparam);
     }
 
     @Override
     public void initZygote(StartupParam startupParam) throws Throwable {
         XposedBridge.log("小米净化 2.x 开始Patch");
         new CorePatch().initZygote(startupParam);
+        new ThemePatcher().initZygote(startupParam);
     }
 }
