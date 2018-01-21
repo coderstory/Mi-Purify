@@ -135,29 +135,6 @@
             </android.support.v7.widget.CardView>
 
             <android.support.v7.widget.CardView
-                android:id="@+id/os"
-                android:layout_width="341dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="20dp"
-                android:foreground="?android:attr/selectableItemBackground"
-                android:padding="10dp"
-                app:cardCornerRadius="10dp"
-                app:cardElevation="0dp">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_margin="10dp"
-                    android:autoLink="none"
-                    android:linksClickable="false"
-                    android:text="@string/about_msg3"
-                    android:textColor="#262626"
-                    android:textSize="14sp" />
-
-            </android.support.v7.widget.CardView>
-
-            <android.support.v7.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_gravity="center"
@@ -181,6 +158,29 @@
                     android:textColor="#262626"
                     android:textColorLink="#000"
                     android:textSize="14sp" />
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:id="@+id/os"
+                android:layout_width="363dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp"
+                android:foreground="?android:attr/selectableItemBackground"
+                android:padding="10dp"
+                app:cardCornerRadius="10dp"
+                app:cardElevation="0dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_margin="10dp"
+                    android:autoLink="none"
+                    android:linksClickable="false"
+                    android:text="@string/about_msg3"
+                    android:textColor="#262626"
+                    android:textSize="14sp" />
+
             </android.support.v7.widget.CardView>
 
         </LinearLayout>
