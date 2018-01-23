@@ -119,10 +119,6 @@ public class CorePatch extends XposedHelper implements IModule {
 
                         String platform = prefs.getString("platform", "DEFAULT");
 
-                        if (platform.equals("DEFAULT")) {
-                            // XposedBridge.log("警告:核心破解上未初始化,请至少打开一次APP!");
-                        }
-
                         Signature[] signatures = (Signature[]) methodHookParam.args[0];
                         if (signatures != null && signatures.length > 0) {
                             for (Signature signature : signatures) {

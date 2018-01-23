@@ -25,6 +25,7 @@
     <string name="blockads"><b>开启常规去广告</b>\nGithub上的hosts合集,用于屏蔽国内广告.</string>
     <string name="googlehosts"><b>开启常见国外网站访问支持</b>\nGithub上随意找的Hosts,包含了一些常见的国外网站,有时效性</string>
     <string name="hostsnote"><b>注意事项:</b>\n本功能需要ROOT权限,所有修改重启后才能生效.hosts的更新需要重新启用一次开关才能生效.国外网站请使用https访问.</string>
+    <string name="GGHOSTS"><b>开启谷歌网站访问支持</b>\nGithub上随意找的Hosts,包含了谷歌的网站地址,此项很容易失效！！！</string>
     <string name="miui7crack"><b>旧版本的MIUI模式</b>\nMIUI9之前的用户请勾选</string>
     <string name="miui9crack"><b>MIUI9模式</b>\nMIUI9用户请勾选</string>
     <string name="cracknote"><b>注意事项</b>\n此为Xposed插件功能,必须在启用插件的情况下才能使用,且所有选项修改重启生效。</string>

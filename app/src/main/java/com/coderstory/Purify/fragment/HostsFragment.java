@@ -42,6 +42,13 @@ public class HostsFragment extends BaseFragment {
             new MyTask().execute();
         });
 
+        $(R.id.enableGGHosts).setOnClickListener(v -> {
+            getEditor().putBoolean("enableGGHosts", ((Switch) v).isChecked());
+            getEditor().apply();
+            sudoFixPermissions();
+            new MyTask().execute();
+        });
+
         $(R.id.enableBlockAdsHosts).setOnClickListener(v -> {
             getEditor().putBoolean("enableBlockAdsHosts", ((Switch) v).isChecked());
             getEditor().apply();
@@ -77,6 +84,7 @@ public class HostsFragment extends BaseFragment {
         ((Switch) $(R.id.enableGoogleHosts)).setChecked(getPrefs().getBoolean("enableGoogleHosts", false));
         ((Switch) $(R.id.enableStore)).setChecked(getPrefs().getBoolean("enableStore", false));
         ((Switch) $(R.id.enableupdater)).setChecked(getPrefs().getBoolean("enableUpdater", false));
+        ((Switch) $(R.id.enableGGHosts)).setChecked(getPrefs().getBoolean("enableUpdater", false));
         setCheck(getPrefs().getBoolean("enableHosts", false));
     }
 
@@ -89,6 +97,7 @@ public class HostsFragment extends BaseFragment {
         boolean enableGoogleHostsSet = getPrefs().getBoolean("enableGoogleHosts", false); //4
         boolean enableStoreSet = getPrefs().getBoolean("enableStore", false); //4
         boolean enableupdaterSet = getPrefs().getBoolean("enableUpdater", false); //4
+        boolean enableGGHosts = getPrefs().getBoolean("enableGGHosts", false); //4
 
         if (enableHostsSet) {
             FileHelper fh = new FileHelper();
@@ -110,6 +119,9 @@ public class HostsFragment extends BaseFragment {
                 }
                 if (enableMIUIHostsSet) {
                     HostsContext += fh.getFromAssets("hosts_miui", getMContext());
+                }
+                if (enableGGHosts) {
+                    HostsContext += fh.getFromAssets("hosts_google", getMContext());
                 }
             }
 
@@ -140,12 +152,14 @@ public class HostsFragment extends BaseFragment {
             $(R.id.enableGoogleHosts).setEnabled(true);
             $(R.id.enableStore).setEnabled(true);
             $(R.id.enableupdater).setEnabled(true);
+            $(R.id.enableGGHosts).setEnabled(true);
         } else {
             $(R.id.enableMIUIHosts).setEnabled(false);
             $(R.id.enableBlockAdsHosts).setEnabled(false);
             $(R.id.enableGoogleHosts).setEnabled(false);
             $(R.id.enableStore).setEnabled(false);
             $(R.id.enableupdater).setEnabled(false);
+            $(R.id.enableGGHosts).setEnabled(false);
         }
     }
 

@@ -3,6 +3,7 @@ package com.coderstory.Purify.utils.hostshelper;
 import android.content.Context;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.InputStreamReader;
 import java.text.DecimalFormat;
 
@@ -33,15 +34,13 @@ public class FileHelper {
             InputStreamReader inputReader = new InputStreamReader(mContext.getAssets().open(FileName), "utf-8");
             BufferedReader bufReader = new BufferedReader(inputReader);
             String line;
-            String Result = "";
+            StringBuilder Result = new StringBuilder();
             while ((line = bufReader.readLine()) != null)
-                Result += line + "\n";
-            return Result;
+                Result.append(line).append("\n");
+            return Result.toString();
         } catch (Exception e) {
             e.printStackTrace();
             return "";
         }
     }
-
-
 }

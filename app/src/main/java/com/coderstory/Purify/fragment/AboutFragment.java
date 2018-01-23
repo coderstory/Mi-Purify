@@ -53,7 +53,7 @@ public class AboutFragment extends BaseFragment {
         });
 
         $(R.id.alipay).setOnClickListener(view ->
-                donateAlipay("FKX06996WLPADKEKFYIXE1")
+                donateAlipay("FKX03884EYVUJKBZLWQTFA")
         );
         $(R.id.wechat).setOnClickListener(view ->
                 // donateWeixin()
