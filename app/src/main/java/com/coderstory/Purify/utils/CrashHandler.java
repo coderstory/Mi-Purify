@@ -6,7 +6,6 @@ import android.content.Context;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.os.Build;
-import android.os.Environment;
 import android.os.Looper;
 import android.util.Log;
 import android.widget.Toast;
@@ -26,6 +25,8 @@ import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
 
+import static com.coderstory.Purify.config.Misc.CrashFilePath;
+
 
 /**
  * 收集手机全局崩溃时的exception,并log到本地
@@ -36,7 +37,6 @@ public class CrashHandler implements Thread.UncaughtExceptionHandler {
 
     public static final int LogFileLimit = 10;
     public static final String TAG = "CrashHandler";
-    public static String CrashFilePath;
     //CrashHandler实例
     @SuppressLint("StaticFieldLeak")
     private static CrashHandler INSTANCE = new CrashHandler();
@@ -85,7 +85,6 @@ public class CrashHandler implements Thread.UncaughtExceptionHandler {
         mDefaultHandler = Thread.getDefaultUncaughtExceptionHandler();
         //设置该CrashHandler为程序的默认处理器
         Thread.setDefaultUncaughtExceptionHandler(this);
-        CrashFilePath = Environment.getExternalStorageDirectory().getPath() + "/MIUI_Purify/CrashLog/";
     }
 
     /**
