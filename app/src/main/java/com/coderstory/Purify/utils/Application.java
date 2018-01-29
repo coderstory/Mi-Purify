@@ -16,8 +16,7 @@ public class Application extends android.app.Application {
                     .getDeclaredField("disableHooks");
             v0_1.setAccessible(true);
             v0_1.set(null, true);
-        }
-        catch(Throwable v0) {
+        } catch (Throwable v0) {
         }
     }
 

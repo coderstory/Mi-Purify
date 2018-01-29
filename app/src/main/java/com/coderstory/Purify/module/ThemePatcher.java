@@ -1,6 +1,3 @@
-
-
-
 package com.coderstory.Purify.module;
 
 import android.content.Context;

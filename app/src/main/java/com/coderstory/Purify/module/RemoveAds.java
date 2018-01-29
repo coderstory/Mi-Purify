@@ -1,7 +1,6 @@
 package com.coderstory.Purify.module;
 
 import android.content.Context;
-import android.opengl.Visibility;
 import android.view.View;
 
 import com.coderstory.Purify.plugins.IModule;
@@ -10,7 +9,6 @@ import com.coderstory.Purify.utils.XposedHelper;
 import org.json.JSONObject;
 
 import java.lang.reflect.Constructor;
-import java.lang.reflect.InvocationTargetException;
 
 import de.robv.android.xposed.IXposedHookZygoteInit;
 import de.robv.android.xposed.XC_MethodHook;
@@ -81,10 +79,10 @@ public class RemoveAds extends XposedHelper implements IModule {
         //个性主题
         if (loadPackageParam.packageName.equals("com.android.thememanager")) {
             if (prefs.getBoolean("EnableTheme", false)) {
-             
+
 
                 findAndHookMethod("com.android.thememanager.e.a", loadPackageParam.classLoader, "parseAdInfo", String.class, XC_MethodReplacement.returnConstant(null));
-                findAndHookMethod("com.android.thememanager.view.b", loadPackageParam.classLoader, "getAdInfo",XC_MethodReplacement.returnConstant(null));
+                findAndHookMethod("com.android.thememanager.view.b", loadPackageParam.classLoader, "getAdInfo", XC_MethodReplacement.returnConstant(null));
                 findAndHookMethod("com.android.thememanager.e.a", loadPackageParam.classLoader, "getAdMarker", XC_MethodReplacement.returnConstant(0));
                 findAndHookMethod("com.android.thememanager.view.b", loadPackageParam.classLoader, "c", XC_MethodReplacement.returnConstant(null));
                 // return new com.android.thememanager.view.a(this.aJ, arg4.getExtraMeta().getSerializable("ad_info")).a();
@@ -92,13 +90,13 @@ public class RemoveAds extends XposedHelper implements IModule {
                 if (clsPageItem != null) {
                     findAndHookMethod("com.android.thememanager.a.b.m", loadPackageParam.classLoader, "k", clsPageItem, XC_MethodReplacement.returnConstant(null));
                 }
-                
+
                 try {
                     final Class localClass = XposedHelpers.findClass("  miui.hybrid.Request", loadPackageParam.classLoader);
-                    Constructor c=localClass.getConstructor(int.class);
+                    Constructor c = localClass.getConstructor(int.class);
                     Object a = c.newInstance(0);
-                    findAndHookMethod("com.android.thememanager.h5.feature.AdFeature", loadPackageParam.classLoader, "performClick", localClass,XC_MethodReplacement.returnConstant(a));
-                    findAndHookMethod("com.android.thememanager.h5.feature.AdFeature", loadPackageParam.classLoader, "reportView",localClass, XC_MethodReplacement.returnConstant(a));
+                    findAndHookMethod("com.android.thememanager.h5.feature.AdFeature", loadPackageParam.classLoader, "performClick", localClass, XC_MethodReplacement.returnConstant(a));
+                    findAndHookMethod("com.android.thememanager.h5.feature.AdFeature", loadPackageParam.classLoader, "reportView", localClass, XC_MethodReplacement.returnConstant(a));
                 } catch (NoSuchMethodException e) {
                     e.printStackTrace();
                 } catch (Exception e) {

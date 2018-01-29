@@ -10,7 +10,7 @@ import com.coderstory.Purify.module.Others;
 import com.coderstory.Purify.module.RemoveAds;
 import com.coderstory.Purify.module.RemoveSearchBar;
 import com.coderstory.Purify.module.ThemePatcher;
-import com.coderstory.Purify.module.ThemePatcher;
+
 import de.robv.android.xposed.IXposedHookInitPackageResources;
 import de.robv.android.xposed.IXposedHookLoadPackage;
 import de.robv.android.xposed.IXposedHookZygoteInit;
