@@ -35,6 +35,7 @@ public class start implements IXposedHookZygoteInit, IXposedHookLoadPackage, IXp
         new MiuiHome().handleLoadPackage(lpparam);
         new CorePatch().handleLoadPackage(lpparam);
         new ThemePatcher().handleLoadPackage(lpparam);
+        new MiuiRoot().handleLoadPackage(lpparam);
     }
 
     @Override

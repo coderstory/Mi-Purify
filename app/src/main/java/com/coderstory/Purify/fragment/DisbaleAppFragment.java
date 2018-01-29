@@ -36,7 +36,7 @@ import java.util.List;
 
 import eu.chainfire.libsuperuser.Shell;
 
-import static com.coderstory.Purify.config.Misc.BackUpFileName;
+import static com.coderstory.Purify.config.Misc.BackPath;
 import static com.coderstory.Purify.utils.FileUtils.readFile;
 
 
@@ -227,7 +227,7 @@ public class DisbaleAppFragment extends BaseFragment {
 
 
     private void restoreList() {
-        File dir = new File(BackUpFileName);
+        File dir = new File(BackPath);
         String fileName = "userList";
         String content = "";
         if (!dir.exists()) {
@@ -235,7 +235,7 @@ public class DisbaleAppFragment extends BaseFragment {
             return;
         }
         try {
-            content = readFile(BackUpFileName + fileName, null);
+            content = readFile(BackPath + fileName, null);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -267,7 +267,7 @@ public class DisbaleAppFragment extends BaseFragment {
             }
         }
 
-        File dir = new File(BackUpFileName);
+        File dir = new File(BackPath);
         String fileName = "userList";
         if (!dir.exists()) {
             if (!dir.mkdirs()) {
@@ -278,7 +278,7 @@ public class DisbaleAppFragment extends BaseFragment {
         FileOutputStream fos;
         String result = "";
         try {
-            fos = new FileOutputStream(BackUpFileName + fileName);
+            fos = new FileOutputStream(BackPath + fileName);
             fos.write(SB.toString().getBytes());
             fos.close();
         } catch (IOException e) {
