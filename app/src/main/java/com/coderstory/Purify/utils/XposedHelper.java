@@ -1,5 +1,6 @@
 package com.coderstory.Purify.utils;
 
+import de.robv.android.xposed.XC_MethodHook;
 import de.robv.android.xposed.XSharedPreferences;
 import de.robv.android.xposed.XposedBridge;
 import de.robv.android.xposed.XposedHelpers;
@@ -25,9 +26,10 @@ public class XposedHelper {
         }
     }
 
-    public static void findAndHookConstructor(String p1, ClassLoader lpparam, Object... parameterTypesAndCallback) {
+    public static void hookAllConstructors(String p1, XC_MethodHook parameterTypesAndCallback) {
         try {
-            XposedHelpers.findAndHookConstructor(p1, lpparam, lpparam, parameterTypesAndCallback);
+            Class packageParser = XposedHelpers.findClass(p1, null);
+            XposedBridge.hookAllConstructors(packageParser, parameterTypesAndCallback);
 
         } catch (Throwable localString3) {
             XposedBridge.log(localString3);

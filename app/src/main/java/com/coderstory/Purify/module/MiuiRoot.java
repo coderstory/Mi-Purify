@@ -12,15 +12,10 @@ import com.coderstory.Purify.utils.XposedHelper;
 import de.robv.android.xposed.IXposedHookZygoteInit;
 import de.robv.android.xposed.XC_MethodHook;
 import de.robv.android.xposed.XC_MethodReplacement;
-import de.robv.android.xposed.XposedHelpers;
 import de.robv.android.xposed.callbacks.XC_InitPackageResources;
 import de.robv.android.xposed.callbacks.XC_LayoutInflated;
 import de.robv.android.xposed.callbacks.XC_LoadPackage;
 
-/**
- * 去除root25秒等待
- * Created by cc on 2016/6/17.
- */
 public class MiuiRoot extends XposedHelper implements IModule {
     @SuppressLint("StaticFieldLeak")
     private static TextView WarningText;
@@ -32,7 +27,7 @@ public class MiuiRoot extends XposedHelper implements IModule {
 
         if (prefs.getBoolean("root25", false) && loadPackageParam.packageName.equals("com.miui.securitycenter")) {
             //创建弹出ROOT警告activity的方法
-            XposedHelpers.findAndHookMethod("com.miui.permcenter.root.RootApplyActivity", loadPackageParam.classLoader, "onCreate", Bundle.class, new XC_MethodHook() {
+            findAndHookMethod("com.miui.permcenter.root.RootApplyActivity", loadPackageParam.classLoader, "onCreate", Bundle.class, new XC_MethodHook() {
                 protected void afterHookedMethod(MethodHookParam paramAnonymousMethodHookParam)
                         throws Throwable {
                     if (MiuiRoot.accept == null) {
@@ -47,7 +42,7 @@ public class MiuiRoot extends XposedHelper implements IModule {
                 }
             });
 
-            XposedHelpers.findAndHookMethod("com.miui.permcenter.root.g", loadPackageParam.classLoader, "handleMessage", Message.class, new XC_MethodReplacement() {
+            findAndHookMethod("com.miui.permcenter.root.g", loadPackageParam.classLoader, "handleMessage", Message.class, new XC_MethodReplacement() {
                 protected Object replaceHookedMethod(MethodHookParam paramAnonymousMethodHookParam)
                         throws Throwable {
                     return null;
