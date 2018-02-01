@@ -9,6 +9,7 @@ import com.coderstory.Purify.utils.XposedHelper;
 import org.json.JSONObject;
 
 import java.lang.reflect.Constructor;
+import java.util.Arrays;
 
 import de.robv.android.xposed.IXposedHookZygoteInit;
 import de.robv.android.xposed.XC_MethodHook;
@@ -106,8 +107,22 @@ public class RemoveAds extends XposedHelper implements IModule {
                 //v2.setShowType(arg7.optInt("showType"));
                 //v2.setRecommendMaxCol(arg7.optInt("shopWindowCols", -1));
                 //v2.setResourceStamp(arg7.optString("category"));
-                findAndHookMethod("com.android.thememanager.a.b.f", loadPackageParam.classLoader, "a", JSONObject.class, XC_MethodReplacement.returnConstant(null));
+                // findAndHookMethod("com.android.thememanager.a.b.f", loadPackageParam.classLoader, "a", JSONObject.class, XC_MethodReplacement.returnConstant(null));
+                Class<?> cls = XposedHelpers.findClass("com.android.thememanager.e.h$b", loadPackageParam.classLoader);
                 findAndHookMethod("com.android.thememanager.view.z", loadPackageParam.classLoader, "a", int.class, XC_MethodReplacement.returnConstant(View.GONE));
+                findAndHookMethod("com.android.thememanager.a.b.f", loadPackageParam.classLoader, "a", cls, XC_MethodReplacement.returnConstant(false));
+                findAndHookMethod("com.android.thememanager.a.b.f", loadPackageParam.classLoader, "a", JSONObject.class, new XC_MethodReplacement() {
+                    @Override
+                    protected Object replaceHookedMethod(MethodHookParam param) throws Throwable {
+                        JSONObject json = (JSONObject) param.args[0];
+                        XposedBridge.log("AAAAAA" + json.toString());
+                        if (isAd(json.getString("type"))) {
+                            return null;
+                        } else {
+                            return XposedBridge.invokeOriginalMethod(param.method, param.thisObject, param.args);
+                        }
+                    }
+                });
                 return;
             }
         }
@@ -133,6 +148,10 @@ public class RemoveAds extends XposedHelper implements IModule {
         }
     }
 
+    private boolean isAd(String s) {
+        String[] keys = new String[]{"SHOPWINDOW", "SHOPWINDOWNEW", "PURCHASE", "ADBANNER"};
+        return Arrays.asList(keys).contains(s.toUpperCase());
+    }
 }
 
 
