@@ -6,8 +6,8 @@ android {
     defaultConfig {
         applicationId "com.coderstory.Purify"
         minSdkVersion 19
-        versionCode 10500
-        versionName "2.0.9"
+        versionCode 10550
+        versionName "2.0.9 fix"
         resConfigs "cn"
     }
     repositories {
