@@ -1,21 +1,18 @@
 package com.coderstory.Purify.module;
 
 import android.content.Context;
-import android.view.View;
 
 import com.coderstory.Purify.plugins.IModule;
 import com.coderstory.Purify.utils.XposedHelper;
 
 import org.json.JSONObject;
 
-import java.lang.reflect.Constructor;
 import java.util.Arrays;
 
 import de.robv.android.xposed.IXposedHookZygoteInit;
 import de.robv.android.xposed.XC_MethodHook;
 import de.robv.android.xposed.XC_MethodReplacement;
 import de.robv.android.xposed.XposedBridge;
-import de.robv.android.xposed.XposedHelpers;
 import de.robv.android.xposed.callbacks.XC_InitPackageResources;
 import de.robv.android.xposed.callbacks.XC_LoadPackage;
 
@@ -80,42 +77,10 @@ public class RemoveAds extends XposedHelper implements IModule {
         //个性主题
         if (loadPackageParam.packageName.equals("com.android.thememanager")) {
             if (prefs.getBoolean("EnableTheme", false)) {
-
-
-                findAndHookMethod("com.android.thememanager.e.a", loadPackageParam.classLoader, "parseAdInfo", String.class, XC_MethodReplacement.returnConstant(null));
-                findAndHookMethod("com.android.thememanager.view.b", loadPackageParam.classLoader, "getAdInfo", XC_MethodReplacement.returnConstant(null));
-                findAndHookMethod("com.android.thememanager.e.a", loadPackageParam.classLoader, "getAdMarker", XC_MethodReplacement.returnConstant(0));
-                findAndHookMethod("com.android.thememanager.view.b", loadPackageParam.classLoader, "c", XC_MethodReplacement.returnConstant(null));
-                // return new com.android.thememanager.view.a(this.aJ, arg4.getExtraMeta().getSerializable("ad_info")).a();
-                Class<?> clsPageItem = XposedHelpers.findClass("com.android.thememanager.e.h", loadPackageParam.classLoader);
-                if (clsPageItem != null) {
-                    findAndHookMethod("com.android.thememanager.a.b.m", loadPackageParam.classLoader, "k", clsPageItem, XC_MethodReplacement.returnConstant(null));
-                }
-
-                try {
-                    final Class localClass = XposedHelpers.findClass("  miui.hybrid.Request", loadPackageParam.classLoader);
-                    Constructor c = localClass.getConstructor(int.class);
-                    Object a = c.newInstance(0);
-                    findAndHookMethod("com.android.thememanager.h5.feature.AdFeature", loadPackageParam.classLoader, "performClick", localClass, XC_MethodReplacement.returnConstant(a));
-                    findAndHookMethod("com.android.thememanager.h5.feature.AdFeature", loadPackageParam.classLoader, "reportView", localClass, XC_MethodReplacement.returnConstant(a));
-                } catch (NoSuchMethodException e) {
-                    e.printStackTrace();
-                } catch (Exception e) {
-                    XposedBridge.log(e);
-                }
-
-                //v2.setShowType(arg7.optInt("showType"));
-                //v2.setRecommendMaxCol(arg7.optInt("shopWindowCols", -1));
-                //v2.setResourceStamp(arg7.optString("category"));
-                // findAndHookMethod("com.android.thememanager.a.b.f", loadPackageParam.classLoader, "a", JSONObject.class, XC_MethodReplacement.returnConstant(null));
-                Class<?> cls = XposedHelpers.findClass("com.android.thememanager.e.h$b", loadPackageParam.classLoader);
-                findAndHookMethod("com.android.thememanager.view.z", loadPackageParam.classLoader, "a", int.class, XC_MethodReplacement.returnConstant(View.GONE));
-                findAndHookMethod("com.android.thememanager.a.b.f", loadPackageParam.classLoader, "a", cls, XC_MethodReplacement.returnConstant(false));
                 findAndHookMethod("com.android.thememanager.a.b.f", loadPackageParam.classLoader, "a", JSONObject.class, new XC_MethodReplacement() {
                     @Override
                     protected Object replaceHookedMethod(MethodHookParam param) throws Throwable {
                         JSONObject json = (JSONObject) param.args[0];
-                        XposedBridge.log("AAAAAA" + json.toString());
                         if (isAd(json.getString("type"))) {
                             return null;
                         } else {
