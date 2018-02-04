@@ -95,19 +95,24 @@ public class HostsFragment extends BaseFragment {
             String HostsContext = fh.getFromAssets("hosts_default", getMContext());
 
             if (getPrefs().getBoolean("enableHosts", false)) { //如果未启用hosts
+
+                // 国内广告
                 if (enableBlockAdsHostsSet) {
                     HostsContext += fh.getFromAssets("hosts_noad", getMContext());
                 }
+                //  国外一些网站 不含google
                 if (enableGoogleHostsSet) {
                     HostsContext += fh.getFromAssets("hosts_foreign", getMContext());
                 }
-
+                // 屏蔽在线更新
                 if (enableupdaterSet) {
-                    HostsContext += fh.getFromAssets("hosts_noup", getMContext());
+                    HostsContext += "\n127.0.0.1 update.miui.com\n";
                 }
+                // 屏蔽应用商店 游戏 等
                 if (enableStoreSet) {
                     HostsContext += fh.getFromAssets("hosts_nostore", getMContext());
                 }
+                // 屏蔽miui广告
                 if (enableMIUIHostsSet) {
                     HostsContext += fh.getFromAssets("hosts_miui", getMContext());
                 }
