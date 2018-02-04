@@ -92,7 +92,7 @@ public class HostsFragment extends BaseFragment {
 
         if (enableHostsSet) {
             FileHelper fh = new FileHelper();
-            String HostsContext = fh.getFromAssets("none", getMContext());
+            String HostsContext = fh.getFromAssets("hosts_default", getMContext());
 
             if (getPrefs().getBoolean("enableHosts", false)) { //如果未启用hosts
                 if (enableBlockAdsHostsSet) {
