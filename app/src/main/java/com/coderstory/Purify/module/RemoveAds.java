@@ -75,6 +75,9 @@ public class RemoveAds extends XposedHelper implements IModule {
         }
 
         //个性主题
+        /*localh.setShowType(paramJSONObject.optInt("showType"));
+        localh.setRecommendMaxCol(paramJSONObject.optInt("shopWindowCols", -1));
+        localh.setResourceStamp(paramJSONObject.optString("category"));*/
         if (loadPackageParam.packageName.equals("com.android.thememanager")) {
             if (prefs.getBoolean("EnableTheme", false)) {
                 findAndHookMethod("com.android.thememanager.a.b.f", loadPackageParam.classLoader, "a", JSONObject.class, new XC_MethodReplacement() {
