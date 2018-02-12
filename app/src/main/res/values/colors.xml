@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!--ToolBar-->
-    <color name="colorPrimary">#55b7e7</color>
+    <!--ToolBar 55b7e7-->
+    <color name="colorPrimary">#dd191d</color>
     <!--状态栏-->
-    <color name="colorPrimaryDark">#55b7e7</color>
-    <color name="colorAccent">#55b7e7</color>
+    <color name="colorPrimaryDark">#dd191d</color>
+    <color name="colorAccent">#dd191d</color>
     <color name="colorItem">#55b7e7</color>
     <color name="enableApp">#55b7e7</color>
 

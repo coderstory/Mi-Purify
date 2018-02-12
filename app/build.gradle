@@ -7,11 +7,10 @@ android {
         applicationId "com.coderstory.Purify"
         minSdkVersion 19
         versionCode 106500
-        versionName "2.1.0"
+        versionName "2.1.0 春节限定"
         resConfigs "cn"
     }
     repositories {
-        maven { url 'https://jitpack.io' }
     }
 
     signingConfigs {

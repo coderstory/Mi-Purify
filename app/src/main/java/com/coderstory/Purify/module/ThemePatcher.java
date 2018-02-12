@@ -13,7 +13,7 @@ import de.robv.android.xposed.XposedHelpers;
 import de.robv.android.xposed.callbacks.XC_InitPackageResources;
 import de.robv.android.xposed.callbacks.XC_LoadPackage;
 
-import static com.coderstory.Purify.config.Misc.enableThemePatch;
+import static com.coderstory.Purify.config.Misc.isEnable;
 
 public class ThemePatcher extends XposedHelper implements IModule {
 
@@ -28,7 +28,7 @@ public class ThemePatcher extends XposedHelper implements IModule {
     @Override
     public void handleLoadPackage(XC_LoadPackage.LoadPackageParam lpparam) {
 
-        if (!enableThemePatch) {
+        if (!isEnable()) {
             return;
         }
         if ((lpparam.packageName.equals("miui.drm")) || (lpparam.packageName.equals("com.miui.system")) || (lpparam.packageName.equals("miui.system"))) {
@@ -51,7 +51,7 @@ public class ThemePatcher extends XposedHelper implements IModule {
     }
 
     private void patch(XC_LoadPackage.LoadPackageParam lpparam, String classStr) {
-        if (!enableThemePatch) {
+        if (!isEnable()) {
             return;
         }
         CorePatch.findAndHookMethod(classStr, lpparam.classLoader, "isTrialable", XC_MethodReplacement.returnConstant(true));
