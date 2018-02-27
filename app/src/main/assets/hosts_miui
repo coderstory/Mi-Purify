@@ -106,3 +106,21 @@
 127.0.0.1 t4.a.market.xiaomi.com
 127.0.0.1 t5.a.market.xiaomi.com
 127.0.0.1 zeus.ad.xiaomi.com
+
+#cm-adfuture
+127.0.0.1 adfuture.cn
+127.0.0.1 bigdata.adfuture.cn
+127.0.0.1 folder.adfuture.cn
+127.0.0.1 fotacontrol.adfuture.cn
+#cm-adkmob
+127.0.0.1 cm.adkmob.com
+127.0.0.1 ssdk.adkmob.com
+#cm-adsunflower
+127.0.0.1 adsunflower.com
+127.0.0.1 bigdata.adsunflower.com
+127.0.0.1 folder.adsunflower.com
+127.0.0.1 bigdata.adups.com
+127.0.0.1 fota4.adups.cn
+#cm-advmob
+127.0.0.1 bigdata.advmob.cn
+127.0.0.1 folder.advmob.cn
