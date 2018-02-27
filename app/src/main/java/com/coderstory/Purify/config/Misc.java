@@ -1,11 +1,6 @@
 package com.coderstory.Purify.config;
 
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
-
 public class Misc {
     public static final String BasePath = "/sdcard/MIUI_Purify";
     public static final String BackPath = BasePath + "/Backup/";
@@ -17,7 +12,7 @@ public class Misc {
     public static boolean isProcessing = false;
 
     public static boolean isEnable() {
-        Date currentTime = new Date();// 当前时间
+       /* Date currentTime = new Date();// 当前时间
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         String nowtime = formatter.format(currentTime);
 
@@ -30,6 +25,7 @@ public class Misc {
         } catch (ParseException e) {
             e.printStackTrace();
         }
-        return now.compareTo(c1) < 0;// 比开始时间小，未开始
+        return now.compareTo(c1) < 0;// 比开始时间小，未开始*/
+        return false;
     }
 }
