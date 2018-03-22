@@ -126,6 +126,11 @@ public class MainActivity extends BaseActivity {
         mDrawerLayout = $(R.id.drawer_layout);
         mNavigationView = $(navigation_view);
 
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            if (!(MainActivity.this.checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED)) {
+                requestCameraPermission();
+            }
+        }
 
         mToolbar.setTitle(getString(R.string.othersettings));
 
