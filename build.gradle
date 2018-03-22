@@ -6,14 +6,14 @@ buildscript {
         google()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.0.1'
+        classpath 'com.android.tools.build:gradle:3.2.0-alpha07'
     }
 }
 
 allprojects {
     repositories {
         jcenter()
-        maven { url "https://jitpack.io" }//photoview required
+        maven { url "https://jitpack.io" }
         google()
     }
 }
