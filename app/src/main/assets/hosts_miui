@@ -10,7 +10,7 @@
 #127.0.0.1 sousuo.xm.sjzhushou.com
 
 127.0.0.1 adv.sec.miui.com
-127.0.0.1 data.mistat.xiaomi.com
+#127.0.0.1 data.mistat.xiaomi.com
 127.0.0.1 a.stat.xiaomi.com
 127.0.0.1 a.union.mi.com
 127.0.0.1 abtest.mistat.xiaomi.com
