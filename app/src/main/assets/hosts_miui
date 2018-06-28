@@ -27,11 +27,10 @@
 127.0.0.1 calopenupdate.comm.miui.com
 127.0.0.1 cdn.ad.xiaomi.com
 127.0.0.1 cm066.getui.igexin.com
-127.0.0.1 connect.rom.miui.com
+#127.0.0.1 connect.rom.miui.com
 127.0.0.1 e.ad.xiaomi.com
 127.0.0.1 fcanr.tracking.miui.com
 127.0.0.1 fclick.baidu.com
-127.0.0.1 get.sogou.com
 127.0.0.1 image.box.xiaomi.com
 127.0.0.1 info.analysis.kp.sec.miui.com
 127.0.0.1 info.sec.miui.com
