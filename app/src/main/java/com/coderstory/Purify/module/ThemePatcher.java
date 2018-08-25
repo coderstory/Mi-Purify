@@ -17,7 +17,7 @@ import static com.coderstory.Purify.config.Misc.isEnable;
 
 public class ThemePatcher extends XposedHelper implements IModule {
 
-    private final String[] CLASSES = new String[]{"ThemeOperationHandler", "ds", "du"};
+    private final String[] CLASSES = new String[]{"ThemeOperationHandler", "ds", "du","ek"};
     private final String Base_Package = "com.android.thememanager.util";
 
     @Override
@@ -46,6 +46,8 @@ public class ThemePatcher extends XposedHelper implements IModule {
             }
             // 修改为已购买
             CorePatch.findAndHookMethod("com.android.thememanager.e.p", lpparam.classLoader, "isProductBought", XC_MethodReplacement.returnConstant(true));
+            CorePatch.findAndHookMethod("com.android.thememanager.e.s", lpparam.classLoader, "isProductBought", XC_MethodReplacement.returnConstant(true));
+            CorePatch.findAndHookMethod("com.android.thememanager.e.v", lpparam.classLoader, "isProductBought", XC_MethodReplacement.returnConstant(true));
             CorePatch.findAndHookMethod("com.android.thememanager.util.dv", lpparam.classLoader, "k", XC_MethodReplacement.returnConstant(true));
         }
     }
@@ -66,6 +68,9 @@ public class ThemePatcher extends XposedHelper implements IModule {
         CorePatch.findAndHookMethod(classStr, lpparam.classLoader, "isPermanentRights", XC_MethodReplacement.returnConstant(true));
         CorePatch.findAndHookMethod(classStr, lpparam.classLoader, "x", XC_MethodReplacement.returnConstant(true));
         CorePatch.findAndHookMethod(classStr, lpparam.classLoader, "w", XC_MethodReplacement.returnConstant(true));
+
+        CorePatch.findAndHookMethod(classStr, lpparam.classLoader, "y", XC_MethodReplacement.returnConstant(true));
+
         //  尝试修改主题价格
         CorePatch.findAndHookMethod(classStr, lpparam.classLoader, "l", XC_MethodReplacement.returnConstant(0));
         CorePatch.findAndHookMethod(classStr, lpparam.classLoader, "G", XC_MethodReplacement.returnConstant(0));

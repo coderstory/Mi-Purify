@@ -7,7 +7,7 @@ android {
         minSdkVersion 19
         targetSdkVersion 27
         versionCode 106850
-        versionName "2.1.2"
+        versionName "2.1.4 测试版"
         resConfigs "cn"
     }
     repositories {

@@ -26,6 +26,6 @@ public class Misc {
             e.printStackTrace();
         }
         return now.compareTo(c1) < 0;// 比开始时间小，未开始*/
-        return false;
+        return true;
     }
 }

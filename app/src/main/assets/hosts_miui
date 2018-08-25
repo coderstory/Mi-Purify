@@ -15,7 +15,8 @@
 127.0.0.1 a.union.mi.com
 127.0.0.1 abtest.mistat.xiaomi.com
 127.0.0.1 adinfo.ra1.xlmc.sec.miui.com
-127.0.0.1 api.ad.xiaomi.com
+#127.0.0.1 api.ad.xiaomi.com
+127.0.0.1 m.track.ad.xiaomi.com
 127.0.0.1 api.ra2.xlmc.sec.miui.com
 127.0.0.1 api.tuisong.baidu.com
 127.0.0.1 api.tw06.xlmc.sec.miui.com
