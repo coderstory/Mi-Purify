@@ -22,16 +22,17 @@ import android.content.DialogInterface;
 import android.content.res.Resources;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.annotation.ColorInt;
-import android.support.annotation.ColorRes;
-import android.support.annotation.NonNull;
-import android.support.annotation.RawRes;
-import android.support.annotation.StyleRes;
-import android.support.v4.app.DialogFragment;
 
 import com.coderstory.Purify.R;
 import com.coderstory.Purify.utils.licensesdialog.model.Notice;
 import com.coderstory.Purify.utils.licensesdialog.model.Notices;
+
+import androidx.annotation.ColorInt;
+import androidx.annotation.ColorRes;
+import androidx.annotation.NonNull;
+import androidx.annotation.RawRes;
+import androidx.annotation.StyleRes;
+import androidx.fragment.app.DialogFragment;
 
 public class LicensesDialogFragment extends DialogFragment {
 

@@ -2,9 +2,6 @@ package com.coderstory.Purify.view;
 
 import android.content.Context;
 import android.content.res.TypedArray;
-import android.support.annotation.NonNull;
-import android.support.v4.view.MotionEventCompat;
-import android.support.v4.view.ViewCompat;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
@@ -22,6 +19,10 @@ import com.coderstory.Purify.refresh_view.SunRefreshView;
 import com.coderstory.Purify.utils.Utils;
 
 import java.security.InvalidParameterException;
+
+import androidx.annotation.NonNull;
+import androidx.core.view.MotionEventCompat;
+import androidx.core.view.ViewCompat;
 
 public class PullToRefreshView extends ViewGroup {
 

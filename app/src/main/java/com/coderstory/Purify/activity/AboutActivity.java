@@ -1,8 +1,9 @@
 package com.coderstory.Purify.activity;
 
-import android.support.v4.app.Fragment;
 
 import com.coderstory.Purify.fragment.AboutFragment;
+
+import androidx.fragment.app.Fragment;
 
 public class AboutActivity extends ToolbarActivity {
 

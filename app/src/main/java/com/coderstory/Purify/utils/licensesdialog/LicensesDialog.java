@@ -25,7 +25,6 @@ import android.content.Intent;
 import android.content.res.Resources;
 import android.net.Uri;
 import android.os.Message;
-import android.support.annotation.Nullable;
 import android.view.ContextThemeWrapper;
 import android.view.View;
 import android.webkit.WebChromeClient;
@@ -37,6 +36,8 @@ import com.coderstory.Purify.utils.licensesdialog.model.Notice;
 import com.coderstory.Purify.utils.licensesdialog.model.Notices;
 
 import java.util.List;
+
+import androidx.annotation.Nullable;
 
 
 public class LicensesDialog {
@@ -178,11 +179,11 @@ public class LicensesDialog {
         //Get resources
         final WebView webView = new WebView(mContext);
         webView.loadDataWithBaseURL(null, mLicensesText, "text/html", "utf-8", null);
-        final android.support.v7.app.AlertDialog.Builder builder;
+        final AlertDialog.Builder builder;
         if (mThemeResourceId != 0) {
-            builder = new android.support.v7.app.AlertDialog.Builder(new ContextThemeWrapper(mContext, mThemeResourceId));
+            builder = new AlertDialog.Builder(new ContextThemeWrapper(mContext, mThemeResourceId));
         } else {
-            builder = new android.support.v7.app.AlertDialog.Builder(mContext);
+            builder = new AlertDialog.Builder(mContext);
         }
         builder.setTitle(mTitleText)
                 .setView(webView)
@@ -191,7 +192,7 @@ public class LicensesDialog {
                         dialogInterface.dismiss();
                     }
                 });
-        final android.support.v7.app.AlertDialog dialog = builder.create();
+        final AlertDialog dialog = builder.create();
         dialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
             @Override
             public void onDismiss(final DialogInterface dialog) {

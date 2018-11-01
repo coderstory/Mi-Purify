@@ -14,8 +14,6 @@ import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Looper;
-import android.support.annotation.Nullable;
-import android.support.v4.content.FileProvider;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -36,6 +34,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static com.coderstory.Purify.config.Misc.BackPath;
+import androidx.annotation.Nullable;
+import androidx.core.content.FileProvider;
+
+import static com.coderstory.purify.config.Misc.BackPath;
 
 
 public class RestoreAppFragment extends BaseFragment {

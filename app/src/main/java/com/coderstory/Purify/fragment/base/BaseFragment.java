@@ -4,14 +4,14 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import java.io.File;
 
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
 import eu.chainfire.libsuperuser.Shell;
 
 import static com.coderstory.Purify.config.Misc.ApplicationName;

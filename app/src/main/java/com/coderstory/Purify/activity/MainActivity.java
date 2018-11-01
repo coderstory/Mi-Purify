@@ -3,22 +3,13 @@ package com.coderstory.Purify.activity;
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.support.annotation.NonNull;
-import android.support.design.internal.NavigationMenuView;
-import android.support.design.widget.NavigationView;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.view.Gravity;
 import android.view.MenuItem;
 
 import com.coderstory.Purify.R;
@@ -35,13 +26,19 @@ import com.coderstory.Purify.fragment.SettingsFragment;
 import com.coderstory.Purify.fragment.WebViewFragment;
 import com.coderstory.Purify.utils.SnackBarUtils;
 import com.coderstory.Purify.utils.ViewUtils;
-
+import com.google.android.material.navigation.NavigationView;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import eu.chainfire.libsuperuser.Shell;
 
-import static com.coderstory.Purify.R.id.navigation_view;
+import static com.coderstory.purify.R.id.navigation_view;
 
 public class MainActivity extends BaseActivity {
-
     public static final long MAX_DOUBLE_BACK_DURATION = 1500;
     private static final int READ_EXTERNAL_STORAGE_CODE = 1;
     private DrawerLayout mDrawerLayout;//侧边菜单视图
@@ -78,7 +75,7 @@ public class MainActivity extends BaseActivity {
                 case 3:
                     android.app.AlertDialog.Builder dialog = new android.app.AlertDialog.Builder(MainActivity.this);
                     dialog.setTitle("提示");
-                    dialog.setMessage("本应用尚未再Xposed中启用,请开始后再试...");
+                    dialog.setMessage("本应用尚未再Xposed中启用,请启用后再试...");
                     dialog.setPositiveButton("退出", (dialog12, which) -> {
                         System.exit(0);
                     });
@@ -144,14 +141,6 @@ public class MainActivity extends BaseActivity {
         mToolbar.setNavigationIcon(R.drawable.ic_drawer_home);
         initDefaultFragment();
 
-        //取消滚动条
-        NavigationView v = findViewById(R.id.navigation_view);
-        v.setEnabled(false);
-        v.setClickable(false);
-        NavigationMenuView navigationMenuView = (NavigationMenuView) v.getChildAt(0);
-        if (navigationMenuView != null) {
-            navigationMenuView.setVerticalScrollBarEnabled(false);
-        }
         if (!getPrefs().getBoolean("isRooted", false)) {
             // 检测弹窗
             new Thread(() -> {
@@ -175,6 +164,9 @@ public class MainActivity extends BaseActivity {
     }
 
     private void checkEnable() {
+        if (MainActivity.this.getSharedPreferences(Misc.SharedPreferencesName, Context.MODE_PRIVATE).getBoolean("enableCheck", true) && !isEnable()) {
+            SnackBarUtils.makeLong(mNavigationView, "插件尚未激活,Xposed功能将不可用,请重启再试！").show();
+        }
     }
 
     //init the default checked fragment
@@ -244,7 +236,7 @@ public class MainActivity extends BaseActivity {
                     break;
             }
             item.setChecked(true);
-            mDrawerLayout.closeDrawer(Gravity.START);
+            mDrawerLayout.closeDrawer(GravityCompat.START);
             mPreMenuItem = item;
             return false;
         });
@@ -264,8 +256,8 @@ public class MainActivity extends BaseActivity {
     @Override
     public void onBackPressed() {
         //当前抽屉是打开的，则关闭
-        if (mDrawerLayout.isDrawerOpen(Gravity.START)) {
-            mDrawerLayout.closeDrawer(Gravity.START);
+        if (mDrawerLayout.isDrawerOpen(GravityCompat.START)) {
+            mDrawerLayout.closeDrawer(GravityCompat.START);
             return;
         }
         //如果当前的Fragment是WebViewFragment 则监听返回事件

@@ -2,8 +2,6 @@ package com.coderstory.Purify.adapter;
 
 import android.content.Context;
 import android.graphics.Color;
-import android.support.annotation.NonNull;
-import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +12,9 @@ import android.widget.TextView;
 import com.coderstory.Purify.R;
 
 import java.util.List;
+
+import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 
 public class AppInfoAdapter extends ArrayAdapter {
     private int resourceId;
