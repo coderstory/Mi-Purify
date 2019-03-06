@@ -1,5 +1,6 @@
 package com.coderstory.Purify.module;
 
+import android.content.Context;
 import android.view.View;
 
 import com.coderstory.Purify.plugins.IModule;
@@ -7,7 +8,7 @@ import com.coderstory.Purify.utils.XposedHelper;
 
 import de.robv.android.xposed.IXposedHookZygoteInit;
 import de.robv.android.xposed.XC_MethodHook;
-import de.robv.android.xposed.callbacks.XC_InitPackageResources;
+import de.robv.android.xposed.XC_MethodReplacement;
 import de.robv.android.xposed.callbacks.XC_LoadPackage;
 
 
@@ -24,6 +25,8 @@ public class MiuiHome extends XposedHelper implements IModule {
                     v2.setVisibility(View.GONE);
                 }
             });
+
+            findAndHookMethod("com.miui.home.launcher.FolderInfo", lpparam.classLoader, "getTitle", Context.class, XC_MethodReplacement.returnConstant(""));
         }
     }
 
