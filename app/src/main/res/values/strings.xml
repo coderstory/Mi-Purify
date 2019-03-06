@@ -32,7 +32,7 @@
     <string name="hideicon"><b>隐藏应用图标</b>\n隐藏小米净化在桌上面的图标，隐藏图标后可在Xposed安装器中打开</string>
     <string name="installapk"><b>APK安装模式</b>\n默认为显示安装模式（普通模式），开启选项后改为后台安装模式(静默安装)。在MIUI系统中，由于系统底层机制被修改，无法开启静默安装，否则会安装失败，切记！</string>
     <string name="hide_icon_label"><b>隐藏桌面图标标签</b>\n隐藏桌面图标下的文字,不能隐藏文件夹的名字，但可以通过修改文件夹的名字为【一个空格】的方式解决</string>
-    <string name="corepatch">核心破解(Android P 暂时无效)</string>
+    <string name="corepatch">核心破解(仅支持Android P)</string>
     <string name="downgr"><b>允许降级安装应用 - 实时生效</b>\n允许应用在安装新版本的情况下直接覆盖安装旧版本</string>
     <string name="authcreak"><b>禁用软件包管理器签名验证 - 实时生效</b>\n关闭安装应用时的签名验证,可以安装被篡改的应用</string>
     <string name="zipauthcreak"><b>禁用APK签名验证 - 实时生效</b>\n允许直接覆盖安装同包名不同签名的应用</string>

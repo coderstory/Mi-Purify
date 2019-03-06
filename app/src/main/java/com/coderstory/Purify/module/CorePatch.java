@@ -12,7 +12,6 @@ import de.robv.android.xposed.IXposedHookZygoteInit;
 import de.robv.android.xposed.XC_MethodHook;
 import de.robv.android.xposed.XC_MethodReplacement;
 import de.robv.android.xposed.XposedHelpers;
-import de.robv.android.xposed.callbacks.XC_InitPackageResources;
 import de.robv.android.xposed.callbacks.XC_LoadPackage;
 
 
@@ -65,7 +64,19 @@ public class CorePatch extends XposedHelper implements IModule {
                 if (prefs.getBoolean("authcreak", true)) {
                     Field field = packageClass.getField(" SF_ATTRIBUTE_ANDROID_APK_SIGNED_ID");
                     field.setAccessible(true);
-                    field.set(packageInfoLite, -1);
+                    field.set(packageInfoLite, 9999);
+                }
+            }
+        });
+        hookAllConstructors("android.util.apk.ApkSignatureSchemeV3Verifier", new XC_MethodHook() {
+            @Override
+            protected void afterHookedMethod(MethodHookParam param) throws Throwable {
+                Object packageInfoLite = param.thisObject;
+                prefs.reload();
+                if (prefs.getBoolean("authcreak", true)) {
+                    Field field = packageClass.getField(" SF_ATTRIBUTE_ANDROID_APK_SIGNED_ID");
+                    field.setAccessible(true);
+                    field.set(packageInfoLite, 9999);
                 }
             }
         });
@@ -85,7 +96,7 @@ public class CorePatch extends XposedHelper implements IModule {
                     Object packageInfoLite = methodHookParam.args[0];
                     prefs.reload();
                     if (prefs.getBoolean("downgrade", true)) {
-                        Field field = packageClass.getField("mVersionCode");
+                        Field field = packageClass.getField("mVersionCodeMajor");
                         field.setAccessible(true);
                         field.set(packageInfoLite, -1);
                     }
@@ -102,7 +113,7 @@ public class CorePatch extends XposedHelper implements IModule {
                 }
             });
 
-            hookAllMethods("com.android.server.pm.PackageManagerService", paramLoadPackageParam.classLoader, "compareSignatures", new XC_MethodHook() {
+            hookAllMethods("com.android.server.pm. PackageManagerServiceUtils", paramLoadPackageParam.classLoader, "compareSignatures", new XC_MethodHook() {
                 protected void beforeHookedMethod(MethodHookParam methodHookParam) throws Throwable {
                     prefs.reload();
                     if (prefs.getBoolean("zipauthcreak", false)) {
