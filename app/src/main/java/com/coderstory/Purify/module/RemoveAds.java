@@ -20,17 +20,6 @@ import de.robv.android.xposed.callbacks.XC_LoadPackage;
 public class RemoveAds extends XposedHelper implements IModule {
 
     @Override
-    public void handleInitPackageResources(XC_InitPackageResources.InitPackageResourcesParam resparam) {
-
-        if (resparam.packageName.equals("com.miui.cleanmaster")) {
-
-            if (prefs.getBoolean("EnableSafeCenter", false)) {
-                resparam.res.setReplacement(resparam.packageName, "string", "no_network", "");
-            }
-        }
-    }
-
-    @Override
     public void initZygote(IXposedHookZygoteInit.StartupParam startupParam) {
     }
 
@@ -71,27 +60,6 @@ public class RemoveAds extends XposedHelper implements IModule {
                 findAndHookMethod("com.android.providers.downloads.ui.utils.CloudConfigHelper", loadPackageParam.classLoader, "isShouldShowRecommendInfo", XC_MethodReplacement.returnConstant(false));
                 findAndHookMethod("com.android.providers.downloads.ui.utils.CloudConfigHelper", loadPackageParam.classLoader, "isStableShowActivateNotify", XC_MethodReplacement.returnConstant(false));
                 findAndHookMethod("com.android.providers.downloads.ui.utils.CloudConfigHelper", loadPackageParam.classLoader, "supportRank", XC_MethodReplacement.returnConstant(false));
-            }
-        }
-
-        //个性主题
-        /*localh.setShowType(paramJSONObject.optInt("showType"));
-        localh.setRecommendMaxCol(paramJSONObject.optInt("shopWindowCols", -1));
-        localh.setResourceStamp(paramJSONObject.optString("category"));*/
-        if (loadPackageParam.packageName.equals("com.android.thememanager")) {
-            if (prefs.getBoolean("EnableTheme", false)) {
-                findAndHookMethod("com.android.thememanager.a.b.f", loadPackageParam.classLoader, "a", JSONObject.class, new XC_MethodReplacement() {
-                    @Override
-                    protected Object replaceHookedMethod(MethodHookParam param) throws Throwable {
-                        JSONObject json = (JSONObject) param.args[0];
-                        if (isAd(json.getString("type"))) {
-                            return null;
-                        } else {
-                            return XposedBridge.invokeOriginalMethod(param.method, param.thisObject, param.args);
-                        }
-                    }
-                });
-                return;
             }
         }
 

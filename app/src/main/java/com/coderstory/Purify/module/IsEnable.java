@@ -15,9 +15,6 @@ import static com.coderstory.Purify.config.Misc.ApplicationName;
 public class IsEnable extends XposedHelper implements IModule {
 
 
-    @Override
-    public void handleInitPackageResources(XC_InitPackageResources.InitPackageResourcesParam resparam) {
-    }
 
     @Override
     public void handleLoadPackage(XC_LoadPackage.LoadPackageParam lpparam) {

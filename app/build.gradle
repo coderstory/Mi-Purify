@@ -6,8 +6,8 @@ android {
         applicationId "com.coderstory.Purify"
         minSdkVersion 19
         targetSdkVersion 27
-        versionCode 106850
-        versionName "2.1.4 测试版"
+        versionCode 106999
+        versionName "2.1.5 EdXposed专用版"
         resConfigs "cn"
     }
     repositories {

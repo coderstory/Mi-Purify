@@ -57,7 +57,7 @@ public class XposedHelper {
 
     protected static Object getDrmResultSUCCESS() {
         try {
-            Class<Enum> drmSuccess = (Class<Enum>) Class.forName("miui.drm.DrmManager$DrmResult");
+            Class<Enum> drmSuccess = (Class<Enum>) XposedHelpers.findClass("miui.drm.DrmManager.DrmResult",null);
             if (drmSuccess != null) {
                 return Enum.valueOf(drmSuccess, "DRM_SUCCESS");
             }
@@ -67,6 +67,4 @@ public class XposedHelper {
         }
         return null;
     }
-
-
 }
