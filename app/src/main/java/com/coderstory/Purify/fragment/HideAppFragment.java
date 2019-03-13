@@ -21,12 +21,12 @@ import com.coderstory.Purify.R;
 import com.coderstory.Purify.adapter.AppInfo;
 import com.coderstory.Purify.adapter.AppInfoAdapter;
 import com.coderstory.Purify.fragment.base.BaseFragment;
+import com.coderstory.Purify.utils.RuntimeUtil;
 import com.coderstory.Purify.view.PullToRefreshView;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import eu.chainfire.libsuperuser.Shell;
 
 
 public class HideAppFragment extends BaseFragment {
@@ -188,7 +188,7 @@ public class HideAppFragment extends BaseFragment {
             String tipsText = "是否重启MIUI桌面应用当前设置?";
             dialog.setMessage(tipsText);
             dialog.setPositiveButton(getString(R.string.Btn_Sure), (dialog12, which) -> new Thread(() -> {
-                Shell.SU.run("am force-stop com.miui.home");
+                RuntimeUtil.exec("am force-stop com.miui.home");
             }).start());
             dialog.setCancelable(true);
             dialog.setNegativeButton(R.string.Btn_Cancel, (dialog1, which) -> dialog1.cancel());

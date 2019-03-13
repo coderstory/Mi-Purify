@@ -8,8 +8,8 @@ import android.widget.Switch;
 
 import com.coderstory.Purify.R;
 import com.coderstory.Purify.fragment.base.BaseFragment;
+import com.coderstory.Purify.utils.RuntimeUtil;
 
-import eu.chainfire.libsuperuser.Shell;
 
 
 public class OthersFragment extends BaseFragment {
@@ -31,7 +31,7 @@ public class OthersFragment extends BaseFragment {
                             "pm disable com.qualcomm.qti.seemp",
                             "pm disable com.xiaomi.ab",
                             "pm disable com.miLink"};
-                    Shell.SU.run(list);
+                    RuntimeUtil.execSilent(list);
                 }).start();
             } else {
                 new Thread(() -> {
@@ -40,7 +40,7 @@ public class OthersFragment extends BaseFragment {
                             "pm enable com.qualcomm.qti.seemp",
                             "pm enable com.xiaomi.ab",
                             "pm enable com.miLink"};
-                    Shell.SU.run(list);
+                    RuntimeUtil.execSilent(list);
                 }).start();
             }
             sudoFixPermissions();

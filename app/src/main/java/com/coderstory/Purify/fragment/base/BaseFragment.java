@@ -8,11 +8,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.coderstory.Purify.utils.RuntimeUtil;
+
 import java.io.File;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import eu.chainfire.libsuperuser.Shell;
 
 import static com.coderstory.Purify.config.Misc.ApplicationName;
 import static com.coderstory.Purify.config.Misc.SharedPreferencesName;
@@ -97,9 +98,9 @@ public abstract class BaseFragment extends Fragment {
                 pkgFolder.setExecutable(true, false);
                 pkgFolder.setReadable(true, false);
             }
-            Shell.SU.run("chmod  755 " + PREFS_FOLDER);
+            RuntimeUtil.exec("chmod  755 " + PREFS_FOLDER);
             // Set preferences file permissions to be world readable
-            Shell.SU.run("chmod  644 " + PREFS_FILE);
+            RuntimeUtil.exec("chmod  644 " + PREFS_FILE);
         }).start();
     }
 }

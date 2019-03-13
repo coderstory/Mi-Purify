@@ -4,12 +4,9 @@ import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Intent;
-import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.v4.content.ContextCompat;
-import android.support.v4.view.ViewCompat;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowInsets;
@@ -17,6 +14,9 @@ import android.widget.TextView;
 
 import com.coderstory.Purify.BuildConfig;
 import com.coderstory.Purify.R;
+
+import androidx.core.content.ContextCompat;
+import androidx.core.view.ViewCompat;
 
 
 public class SplashActivity extends Activity {

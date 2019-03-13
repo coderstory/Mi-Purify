@@ -10,13 +10,13 @@ import android.widget.TextView;
 import com.coderstory.Purify.R;
 import com.coderstory.Purify.config.Misc;
 import com.coderstory.Purify.fragment.base.BaseFragment;
+import com.coderstory.Purify.utils.RuntimeUtil;
 import com.coderstory.Purify.utils.SnackBarUtils;
 import com.coderstory.Purify.utils.hostshelper.FileHelper;
 
 
 import java.util.List;
 
-import eu.chainfire.libsuperuser.Shell;
 
 public class CleanFragment extends BaseFragment {
     Thread th;
@@ -68,7 +68,7 @@ public class CleanFragment extends BaseFragment {
         th = new Thread(() -> {
             long totalSize = 0L; // K
             Misc.isProcessing = true;
-            List<String> ret = Shell.SU.run("find /data/data/ -type dir -name \"cache\"");
+            List<String> ret = RuntimeUtil.exec("find /data/data/ -type dir -name \"cache\"");
             CacheSize cs;
             for (String s : ret) {
                 cs = getSize(s);
@@ -95,7 +95,7 @@ public class CleanFragment extends BaseFragment {
 
     private CacheSize getSize(String path) {
         try {
-            String result = Shell.SU.run(String.format("du -s -k \"%s\"", path)).get(0);
+            String result = RuntimeUtil.exec(String.format("du -s -k \"%s\"", path)).get(0);
             String sizeStr = result.substring(0, result.indexOf('\t')).trim();
             long size;
             size = Long.parseLong(sizeStr);
@@ -107,11 +107,11 @@ public class CleanFragment extends BaseFragment {
     }
 
     private void deleteCache(String path) {
-        Shell.SU.run(String.format("rm -r \"%s\"", path));
+        RuntimeUtil.execSilent(String.format("rm -r \"%s\"", path));
     }
 
     private void deleteAnrLog() {
-        Shell.SU.run("rm -r /data/anr/*");
+        RuntimeUtil.exec("rm -r /data/anr/*");
     }
 
     private class CacheSize {

@@ -37,7 +37,6 @@ import static com.coderstory.Purify.config.Misc.BackPath;
 import androidx.annotation.Nullable;
 import androidx.core.content.FileProvider;
 
-import static com.coderstory.purify.config.Misc.BackPath;
 
 
 public class RestoreAppFragment extends BaseFragment {

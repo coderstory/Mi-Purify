@@ -1,7 +1,7 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 27
+    compileSdkVersion 28
     defaultConfig {
         applicationId "com.coderstory.Purify"
         minSdkVersion 24
@@ -38,9 +38,8 @@ android {
 dependencies {
     compileOnly fileTree(include: ['*.jar'], dir: 'libs')
     compile 'androidx.legacy:legacy-support-v4:1.0.0'
-    compile 'androidx.appcompat:appcompat:1.0.0'
+    compile 'androidx.appcompat:appcompat:1.0.2'
     compile 'com.google.android.material:material:1.0.0'
-    compile 'eu.chainfire:libsuperuser:1.0.0.201704021214'
     compile 'androidx.cardview:cardview:1.0.0'
     compile 'de.hdodenhof:circleimageview:2.2.0'
     compile 'com.github.didikee:AndroidDonate:0.1.0'

@@ -24,6 +24,7 @@ import com.coderstory.Purify.R;
 import com.coderstory.Purify.adapter.AppInfo;
 import com.coderstory.Purify.adapter.AppInfoAdapter;
 import com.coderstory.Purify.fragment.base.BaseFragment;
+import com.coderstory.Purify.utils.RuntimeUtil;
 import com.coderstory.Purify.utils.SnackBarUtils;
 import com.coderstory.Purify.view.PullToRefreshView;
 
@@ -33,8 +34,6 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-
-import eu.chainfire.libsuperuser.Shell;
 
 import static com.coderstory.Purify.config.Misc.BackPath;
 import static com.coderstory.Purify.utils.FileUtils.readFile;
@@ -251,7 +250,7 @@ public class DisbaleAppFragment extends BaseFragment {
         dialog.show();
 
         new Thread(() -> {
-            Shell.SU.run(list);
+            RuntimeUtil.execSilent(list);
             myHandler.sendMessage(new Message());
         }).start();
 

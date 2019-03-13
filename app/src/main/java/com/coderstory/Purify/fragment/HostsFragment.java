@@ -3,16 +3,24 @@ package com.coderstory.Purify.fragment;
 import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Looper;
 import android.widget.Switch;
 
 import com.coderstory.Purify.R;
 import com.coderstory.Purify.fragment.base.BaseFragment;
+import com.coderstory.Purify.utils.RuntimeUtil;
 import com.coderstory.Purify.utils.hostshelper.FileHelper;
-import com.coderstory.Purify.utils.hostshelper.HostsHelper;
 
+import java.io.BufferedWriter;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStreamWriter;
 import java.io.UnsupportedEncodingException;
+
+import static com.coderstory.Purify.config.Misc.HostFileTmpName;
 
 
 public class HostsFragment extends BaseFragment {
@@ -118,10 +126,36 @@ public class HostsFragment extends BaseFragment {
                 }
             }
 
-            HostsHelper h = new HostsHelper(HostsContext, getMContext());
-            h.execute();
+            RuntimeUtil.execSilent(getCommandsToExecute(HostsContext));
 
         }
+    }
+
+    protected String[] getCommandsToExecute(String context) throws UnsupportedEncodingException {
+        String[] list = new String[3];
+        list[0] = "mount -o rw,remount /system";
+
+        String path = getMContext().getFilesDir().getPath() + HostFileTmpName;
+
+        FileOutputStream out = null;
+        BufferedWriter writer;
+        try {
+            out = getMContext().openFileOutput("hosts", Context.MODE_PRIVATE);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        if (out != null) {
+            writer = new BufferedWriter(new OutputStreamWriter(out));
+            try {
+                writer.write(context);
+                writer.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        list[1] = String.format("mv %s %s", path, "/etc/hosts");
+        list[2] = String.format("chmod 755 %s", "/system/etc/hosts");
+        return list;
     }
 
     private void showProgress() {

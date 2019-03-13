@@ -24,19 +24,20 @@ import com.coderstory.Purify.fragment.ManagerAppFragment;
 import com.coderstory.Purify.fragment.OthersFragment;
 import com.coderstory.Purify.fragment.SettingsFragment;
 import com.coderstory.Purify.fragment.WebViewFragment;
+import com.coderstory.Purify.utils.RuntimeUtil;
 import com.coderstory.Purify.utils.SnackBarUtils;
 import com.coderstory.Purify.utils.ViewUtils;
 import com.google.android.material.navigation.NavigationView;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
-import eu.chainfire.libsuperuser.Shell;
 
-import static com.coderstory.purify.R.id.navigation_view;
+import static com.coderstory.Purify.R.id.navigation_view;
 
 public class MainActivity extends BaseActivity {
     public static final long MAX_DOUBLE_BACK_DURATION = 1500;
@@ -147,7 +148,7 @@ public class MainActivity extends BaseActivity {
                 Message msg = new Message();
                 msg.arg1 = 1;
                 myHandler.sendMessage(msg);
-                if (!Shell.SU.available()) {
+                if (!RuntimeUtil.hasRooted()) {
                     msg = new Message();
                     msg.arg1 = 0;
                     myHandler.sendMessage(msg);
