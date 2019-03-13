@@ -1,10 +1,18 @@
 package com.coderstory.Purify.activity;
 
 import android.annotation.SuppressLint;
+import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
+import android.support.v4.content.ContextCompat;
+import android.support.v4.view.ViewCompat;
+import android.view.View;
+import android.view.Window;
+import android.view.WindowInsets;
 import android.widget.TextView;
 
 import com.coderstory.Purify.BuildConfig;
@@ -21,30 +29,31 @@ public class SplashActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
         ((TextView) findViewById(R.id.ccd)).setText(BuildConfig.VERSION_NAME);
-        //倒计时返回主界面
 
-        new AsyncTask<Void, Void, Integer>() {
-            @Override
-            protected void onPostExecute(Integer result) {
-                Intent intent = new Intent(SplashActivity.this, MainActivity.class);
-                startActivity(intent);
-                finish();
-            }
-
-            @Override
-            protected Integer doInBackground(Void... params) {
-                long startTime = System.currentTimeMillis();
-                long loadingTime = System.currentTimeMillis() - startTime;
-                if (loadingTime < SHOW_TIME_MIN) {
-                    try {
-                        Thread.sleep(SHOW_TIME_MIN - loadingTime);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            Window window = getWindow();
+            View decorView = window.getDecorView();
+            decorView.setOnApplyWindowInsetsListener(new View.OnApplyWindowInsetsListener() {
+                @TargetApi(Build.VERSION_CODES.KITKAT_WATCH)
+                @Override
+                public WindowInsets onApplyWindowInsets(View v, WindowInsets insets) {
+                    WindowInsets defaultInsets = v.onApplyWindowInsets(insets);
+                    return defaultInsets.replaceSystemWindowInsets(
+                            defaultInsets.getSystemWindowInsetLeft(),
+                            0,
+                            defaultInsets.getSystemWindowInsetRight(),
+                            defaultInsets.getSystemWindowInsetBottom());
                 }
-                return 1;
-            }
-        }.execute();
+            });
+            ViewCompat.requestApplyInsets(decorView);
+            //将状态栏设成透明，如不想透明可设置其他颜色
+            window.setStatusBarColor(ContextCompat.getColor(this, android.R.color.transparent));
+        }
+
+        new Handler().postDelayed(() -> {
+            finish();
+            startActivity(new Intent(SplashActivity.this, MainActivity.class));
+        }, 1500);
     }
 
 }

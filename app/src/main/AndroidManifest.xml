@@ -32,12 +32,14 @@
                 <category android:name="de.robv.android.xposed.category.MODULE_SETTINGS" />
             </intent-filter>
         </activity>
+
         <activity
             android:name=".activity.AboutActivity"
             android:screenOrientation="portrait" />
+
         <activity
             android:name=".activity.SplashActivity"
-            android:theme="@style/fulscreen_theme">
+            android:theme="@style/SplashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
