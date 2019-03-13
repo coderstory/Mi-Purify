@@ -39,6 +39,10 @@
                     android:icon="@drawable/iconfont_custom_view"
                     android:title="@string/others_appsettings" />
                 <item
+                    android:id="@+id/navigation_item_Blog"
+                    android:icon="@drawable/clean"
+                    android:title="@string/blog" />
+                <item
                     android:id="@+id/navigation_item_about"
                     android:icon="@drawable/iconfont_about"
                     android:title="@string/about" />

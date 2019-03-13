@@ -24,6 +24,7 @@ import android.view.MenuItem;
 import com.coderstory.Purify.R;
 import com.coderstory.Purify.activity.base.BaseActivity;
 import com.coderstory.Purify.config.Misc;
+import com.coderstory.Purify.fragment.BlogFragment;
 import com.coderstory.Purify.fragment.CleanFragment;
 import com.coderstory.Purify.fragment.DisbaleAppFragment;
 import com.coderstory.Purify.fragment.HideAppFragment;
@@ -235,7 +236,10 @@ public class MainActivity extends BaseActivity {
                     mToolbar.setTitle(R.string.othersettings);
                     switchFragment(OthersFragment.class);
                     break;
-
+                case R.id.navigation_item_Blog:
+                    mToolbar.setTitle(R.string.blog);
+                    switchFragment(BlogFragment.class);
+                    break;
                 default:
                     break;
             }

@@ -117,6 +117,6 @@
     <string name="historyFunctions">历史功能</string>
     <string name="appname">应用名: %1$s \n版本号 :%2$s</string>
     <string name="others_appsettings">应用设置</string>
-
+    <string name="blog">作者博客</string>
 
 </resources>
