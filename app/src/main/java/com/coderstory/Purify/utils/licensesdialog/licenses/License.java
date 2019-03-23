@@ -14,7 +14,7 @@
  *    limitations under the License.
  */
 
-package com.coderstory.Purify.utils.licensesdialog.licenses;
+package com.coderstory.purify.utils.licensesdialog.licenses;
 
 import android.content.Context;
 

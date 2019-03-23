@@ -14,7 +14,7 @@
  *    limitations under the License.
  */
 
-package com.coderstory.Purify.utils.licensesdialog;
+package com.coderstory.purify.utils.licensesdialog;
 
 import android.app.Dialog;
 import android.content.Context;
@@ -23,9 +23,9 @@ import android.content.res.Resources;
 import android.os.Build;
 import android.os.Bundle;
 
-import com.coderstory.Purify.R;
-import com.coderstory.Purify.utils.licensesdialog.model.Notice;
-import com.coderstory.Purify.utils.licensesdialog.model.Notices;
+import com.coderstory.purify.R;
+import com.coderstory.purify.utils.licensesdialog.model.Notice;
+import com.coderstory.purify.utils.licensesdialog.model.Notices;
 
 import androidx.annotation.ColorInt;
 import androidx.annotation.ColorRes;

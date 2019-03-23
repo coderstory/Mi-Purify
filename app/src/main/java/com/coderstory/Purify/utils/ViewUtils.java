@@ -1,6 +1,6 @@
-package com.coderstory.Purify.utils;
+package com.coderstory.purify.utils;
 
-import com.coderstory.Purify.fragment.base.BaseFragment;
+import com.coderstory.purify.fragment.base.BaseFragment;
 
 import java.util.HashMap;
 import java.util.Map;

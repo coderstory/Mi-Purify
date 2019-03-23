@@ -1,4 +1,4 @@
-package com.coderstory.Purify.adapter;
+package com.coderstory.purify.adapter;
 
 import android.graphics.drawable.Drawable;
 

@@ -14,12 +14,12 @@
  *    limitations under the License.
  */
 
-package com.coderstory.Purify.utils.licensesdialog;
+package com.coderstory.purify.utils.licensesdialog;
 
 
-import com.coderstory.Purify.utils.licensesdialog.licenses.ApacheSoftwareLicense20;
-import com.coderstory.Purify.utils.licensesdialog.licenses.GnuGeneralPublicLicense20;
-import com.coderstory.Purify.utils.licensesdialog.licenses.License;
+import com.coderstory.purify.utils.licensesdialog.licenses.ApacheSoftwareLicense20;
+import com.coderstory.purify.utils.licensesdialog.licenses.GnuGeneralPublicLicense20;
+import com.coderstory.purify.utils.licensesdialog.licenses.License;
 
 import java.util.HashMap;
 import java.util.Map;

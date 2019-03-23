@@ -1,4 +1,4 @@
-package com.coderstory.Purify.view;
+package com.coderstory.purify.view;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -13,10 +13,10 @@ import android.view.animation.Interpolator;
 import android.view.animation.Transformation;
 import android.widget.ImageView;
 
-import com.coderstory.Purify.R;
-import com.coderstory.Purify.refresh_view.BaseRefreshView;
-import com.coderstory.Purify.refresh_view.SunRefreshView;
-import com.coderstory.Purify.utils.Utils;
+import com.coderstory.purify.R;
+import com.coderstory.purify.refresh_view.BaseRefreshView;
+import com.coderstory.purify.refresh_view.SunRefreshView;
+import com.coderstory.purify.utils.Utils;
 
 import java.security.InvalidParameterException;
 

@@ -1,4 +1,4 @@
-package com.coderstory.Purify.activity;
+package com.coderstory.purify.activity;
 
 import com.google.android.material.appbar.AppBarLayout;
 
@@ -7,8 +7,8 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
-import com.coderstory.Purify.R;
-import com.coderstory.Purify.activity.base.BaseActivity;
+import com.coderstory.purify.R;
+import com.coderstory.purify.activity.base.BaseActivity;
 
 
 public abstract class ToolbarActivity extends BaseActivity {

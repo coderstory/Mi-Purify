@@ -14,13 +14,13 @@
  *    limitations under the License.
  */
 
-package com.coderstory.Purify.utils.licensesdialog;
+package com.coderstory.purify.utils.licensesdialog;
 
 import android.util.Xml;
 
-import com.coderstory.Purify.utils.licensesdialog.licenses.License;
-import com.coderstory.Purify.utils.licensesdialog.model.Notice;
-import com.coderstory.Purify.utils.licensesdialog.model.Notices;
+import com.coderstory.purify.utils.licensesdialog.licenses.License;
+import com.coderstory.purify.utils.licensesdialog.model.Notice;
+import com.coderstory.purify.utils.licensesdialog.model.Notices;
 
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;

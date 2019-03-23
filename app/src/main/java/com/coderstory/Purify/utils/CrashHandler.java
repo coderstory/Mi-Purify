@@ -1,4 +1,4 @@
-package com.coderstory.Purify.utils;
+package com.coderstory.purify.utils;
 
 
 import android.annotation.SuppressLint;
@@ -25,7 +25,7 @@ import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
 
-import static com.coderstory.Purify.config.Misc.CrashFilePath;
+import static com.coderstory.purify.config.Misc.CrashFilePath;
 
 
 /**

@@ -1,4 +1,4 @@
-package com.coderstory.Purify.fragment;
+package com.coderstory.purify.fragment;
 
 
 import android.annotation.SuppressLint;
@@ -17,12 +17,12 @@ import android.view.View;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.coderstory.Purify.R;
-import com.coderstory.Purify.adapter.AppInfo;
-import com.coderstory.Purify.adapter.AppInfoAdapter;
-import com.coderstory.Purify.fragment.base.BaseFragment;
-import com.coderstory.Purify.utils.RuntimeUtil;
-import com.coderstory.Purify.view.PullToRefreshView;
+import com.coderstory.purify.R;
+import com.coderstory.purify.adapter.AppInfo;
+import com.coderstory.purify.adapter.AppInfoAdapter;
+import com.coderstory.purify.fragment.base.BaseFragment;
+import com.coderstory.purify.utils.RuntimeUtil;
+import com.coderstory.purify.view.PullToRefreshView;
 
 import java.util.ArrayList;
 import java.util.List;

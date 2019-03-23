@@ -1,4 +1,4 @@
-package com.coderstory.Purify.utils;
+package com.coderstory.purify.utils;
 
 import android.util.Log;
 

@@ -1,12 +1,12 @@
-package com.coderstory.Purify.utils;
+package com.coderstory.purify.utils;
 
 import de.robv.android.xposed.XC_MethodHook;
 import de.robv.android.xposed.XSharedPreferences;
 import de.robv.android.xposed.XposedBridge;
 import de.robv.android.xposed.XposedHelpers;
 
-import static com.coderstory.Purify.config.Misc.ApplicationName;
-import static com.coderstory.Purify.config.Misc.SharedPreferencesName;
+import static com.coderstory.purify.config.Misc.ApplicationName;
+import static com.coderstory.purify.config.Misc.SharedPreferencesName;
 
 public class XposedHelper {
     protected XSharedPreferences prefs = new XSharedPreferences(ApplicationName, SharedPreferencesName);

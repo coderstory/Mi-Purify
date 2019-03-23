@@ -1,4 +1,4 @@
-package com.coderstory.Purify.fragment;
+package com.coderstory.purify.fragment;
 
 
 import android.annotation.SuppressLint;
@@ -10,8 +10,8 @@ import android.view.ViewGroup;
 import android.widget.TabHost;
 import android.widget.TextView;
 
-import com.coderstory.Purify.R;
-import com.coderstory.Purify.fragment.base.BaseFragment;
+import com.coderstory.purify.R;
+import com.coderstory.purify.fragment.base.BaseFragment;
 
 import java.util.ArrayList;
 import java.util.List;

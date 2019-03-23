@@ -1,4 +1,4 @@
-package com.coderstory.Purify.fragment;
+package com.coderstory.purify.fragment;
 
 
 import android.content.ClipData;
@@ -8,11 +8,11 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 
-import com.coderstory.Purify.R;
-import com.coderstory.Purify.utils.SnackBarUtils;
+import com.coderstory.purify.R;
+import com.coderstory.purify.utils.SnackBarUtils;
 
 import static android.content.Context.CLIPBOARD_SERVICE;
-import static com.coderstory.Purify.config.Misc.MyBlogUrl;
+import static com.coderstory.purify.config.Misc.MyBlogUrl;
 
 public class BlogFragment extends WebViewFragment {
     @Override

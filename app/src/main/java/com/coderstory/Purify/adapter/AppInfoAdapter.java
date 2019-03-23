@@ -1,4 +1,4 @@
-package com.coderstory.Purify.adapter;
+package com.coderstory.purify.adapter;
 
 import android.content.Context;
 import android.graphics.Color;
@@ -9,7 +9,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.coderstory.Purify.R;
+import com.coderstory.purify.R;
 
 import java.util.List;
 

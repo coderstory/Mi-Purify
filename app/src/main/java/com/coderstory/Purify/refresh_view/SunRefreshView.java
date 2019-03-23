@@ -1,4 +1,4 @@
-package com.coderstory.Purify.refresh_view;
+package com.coderstory.purify.refresh_view;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -11,9 +11,9 @@ import android.view.animation.Interpolator;
 import android.view.animation.LinearInterpolator;
 import android.view.animation.Transformation;
 
-import com.coderstory.Purify.R;
-import com.coderstory.Purify.utils.Utils;
-import com.coderstory.Purify.view.PullToRefreshView;
+import com.coderstory.purify.R;
+import com.coderstory.purify.utils.Utils;
+import com.coderstory.purify.view.PullToRefreshView;
 
 import androidx.annotation.NonNull;
 

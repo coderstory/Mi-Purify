@@ -14,7 +14,7 @@
  *    limitations under the License.
  */
 
-package com.coderstory.Purify.utils.licensesdialog.model;
+package com.coderstory.purify.utils.licensesdialog.model;
 
 import android.os.Parcel;
 import android.os.Parcelable;

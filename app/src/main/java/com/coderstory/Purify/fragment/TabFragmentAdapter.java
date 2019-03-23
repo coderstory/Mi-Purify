@@ -1,4 +1,4 @@
-package com.coderstory.Purify.fragment;
+package com.coderstory.purify.fragment;
 
 import android.os.Bundle;
 import android.view.ViewGroup;

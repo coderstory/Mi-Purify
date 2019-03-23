@@ -1,13 +1,13 @@
-package com.coderstory.Purify.plugins;
+package com.coderstory.purify.plugins;
 
 
-import com.coderstory.Purify.module.CorePatch;
-import com.coderstory.Purify.module.HideApp;
-import com.coderstory.Purify.module.IsEnable;
-import com.coderstory.Purify.module.MiuiHome;
-import com.coderstory.Purify.module.Others;
-import com.coderstory.Purify.module.RemoveAds;
-import com.coderstory.Purify.module.ThemePatcher;
+import com.coderstory.purify.module.CorePatch;
+import com.coderstory.purify.module.HideApp;
+import com.coderstory.purify.module.IsEnable;
+import com.coderstory.purify.module.MiuiHome;
+import com.coderstory.purify.module.Others;
+import com.coderstory.purify.module.RemoveAds;
+import com.coderstory.purify.module.ThemePatcher;
 
 import de.robv.android.xposed.IXposedHookLoadPackage;
 import de.robv.android.xposed.IXposedHookZygoteInit;

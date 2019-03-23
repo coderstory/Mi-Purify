@@ -1,4 +1,4 @@
-package com.coderstory.Purify.activity;
+package com.coderstory.purify.activity;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
@@ -12,21 +12,21 @@ import android.os.Message;
 import android.util.Log;
 import android.view.MenuItem;
 
-import com.coderstory.Purify.R;
-import com.coderstory.Purify.activity.base.BaseActivity;
-import com.coderstory.Purify.config.Misc;
-import com.coderstory.Purify.fragment.BlogFragment;
-import com.coderstory.Purify.fragment.CleanFragment;
-import com.coderstory.Purify.fragment.DisbaleAppFragment;
-import com.coderstory.Purify.fragment.HideAppFragment;
-import com.coderstory.Purify.fragment.HostsFragment;
-import com.coderstory.Purify.fragment.ManagerAppFragment;
-import com.coderstory.Purify.fragment.OthersFragment;
-import com.coderstory.Purify.fragment.SettingsFragment;
-import com.coderstory.Purify.fragment.WebViewFragment;
-import com.coderstory.Purify.utils.RuntimeUtil;
-import com.coderstory.Purify.utils.SnackBarUtils;
-import com.coderstory.Purify.utils.ViewUtils;
+import com.coderstory.purify.R;
+import com.coderstory.purify.activity.base.BaseActivity;
+import com.coderstory.purify.config.Misc;
+import com.coderstory.purify.fragment.BlogFragment;
+import com.coderstory.purify.fragment.CleanFragment;
+import com.coderstory.purify.fragment.DisbaleAppFragment;
+import com.coderstory.purify.fragment.HideAppFragment;
+import com.coderstory.purify.fragment.HostsFragment;
+import com.coderstory.purify.fragment.ManagerAppFragment;
+import com.coderstory.purify.fragment.OthersFragment;
+import com.coderstory.purify.fragment.SettingsFragment;
+import com.coderstory.purify.fragment.WebViewFragment;
+import com.coderstory.purify.utils.RuntimeUtil;
+import com.coderstory.purify.utils.SnackBarUtils;
+import com.coderstory.purify.utils.ViewUtils;
 import com.google.android.material.navigation.NavigationView;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -37,7 +37,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
-import static com.coderstory.Purify.R.id.navigation_view;
+import static com.coderstory.purify.R.id.navigation_view;
 
 public class MainActivity extends BaseActivity {
     public static final long MAX_DOUBLE_BACK_DURATION = 1500;

@@ -1,7 +1,7 @@
-package com.coderstory.Purify.fragment;
+package com.coderstory.purify.fragment;
 
-import com.coderstory.Purify.R;
-import com.coderstory.Purify.fragment.base.BaseFragment;
+import com.coderstory.purify.R;
+import com.coderstory.purify.fragment.base.BaseFragment;
 
 /**
  * Created by _SOLID

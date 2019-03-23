@@ -1,12 +1,12 @@
-package com.coderstory.Purify.fragment;
+package com.coderstory.purify.fragment;
 
 
 import android.content.ComponentName;
 import android.content.pm.PackageManager;
 import android.widget.Switch;
 
-import com.coderstory.Purify.R;
-import com.coderstory.Purify.fragment.base.BaseFragment;
+import com.coderstory.purify.R;
+import com.coderstory.purify.fragment.base.BaseFragment;
 
 
 public class SettingsFragment extends BaseFragment {
@@ -32,11 +32,11 @@ public class SettingsFragment extends BaseFragment {
             getEditor().putBoolean("hideIcon", ((Switch) v).isChecked());
             getEditor().apply();
             sudoFixPermissions();
-            ComponentName localComponentName = new ComponentName(getMContext(), "com.coderstory.Purify.activity.SplashActivity");
+            ComponentName localComponentName = new ComponentName(getMContext(), "com.coderstory.purify.activity.SplashActivity");
             PackageManager localPackageManager = getMContext().getPackageManager();
             localPackageManager.getComponentEnabledSetting(localComponentName);
             PackageManager packageManager = getMContext().getPackageManager();
-            ComponentName componentName = new ComponentName(getMContext(), "com.coderstory.Purify.activity.SplashActivity");
+            ComponentName componentName = new ComponentName(getMContext(), "com.coderstory.purify.activity.SplashActivity");
 
             if (((Switch) v).isChecked()) {
                 packageManager.setComponentEnabledSetting(componentName, PackageManager.COMPONENT_ENABLED_STATE_DISABLED,

@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <com.coderstory.Purify.view.PullToRefreshView
+    <com.coderstory.purify.view.PullToRefreshView
         android:id="@+id/pull_to_refresh"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -17,5 +17,5 @@
             android:layout_alignParentTop="false"
             android:divider="@color/divider"
             android:dividerHeight="1px" />
-    </com.coderstory.Purify.view.PullToRefreshView>
+    </com.coderstory.purify.view.PullToRefreshView>
 </RelativeLayout>

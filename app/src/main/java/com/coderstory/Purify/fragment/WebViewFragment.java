@@ -1,4 +1,4 @@
-package com.coderstory.Purify.fragment;
+package com.coderstory.purify.fragment;
 
 import android.view.View;
 import android.webkit.WebChromeClient;
@@ -7,8 +7,8 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.ProgressBar;
 
-import com.coderstory.Purify.R;
-import com.coderstory.Purify.fragment.base.BaseFragment;
+import com.coderstory.purify.R;
+import com.coderstory.purify.fragment.base.BaseFragment;
 
 public abstract class WebViewFragment extends BaseFragment {
 

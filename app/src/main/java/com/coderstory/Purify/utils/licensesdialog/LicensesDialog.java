@@ -14,7 +14,7 @@
  *    limitations under the License.
  */
 
-package com.coderstory.Purify.utils.licensesdialog;
+package com.coderstory.purify.utils.licensesdialog;
 
 
 import android.app.AlertDialog;
@@ -30,10 +30,10 @@ import android.view.View;
 import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 
-import com.coderstory.Purify.R;
-import com.coderstory.Purify.utils.licensesdialog.licenses.ApacheSoftwareLicense20;
-import com.coderstory.Purify.utils.licensesdialog.model.Notice;
-import com.coderstory.Purify.utils.licensesdialog.model.Notices;
+import com.coderstory.purify.R;
+import com.coderstory.purify.utils.licensesdialog.licenses.ApacheSoftwareLicense20;
+import com.coderstory.purify.utils.licensesdialog.model.Notice;
+import com.coderstory.purify.utils.licensesdialog.model.Notices;
 
 import java.util.List;
 

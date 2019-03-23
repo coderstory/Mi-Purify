@@ -1,9 +1,9 @@
-package com.coderstory.Purify.module;
+package com.coderstory.purify.module;
 
 import android.content.ComponentName;
 
-import com.coderstory.Purify.plugins.IModule;
-import com.coderstory.Purify.utils.XposedHelper;
+import com.coderstory.purify.plugins.IModule;
+import com.coderstory.purify.utils.XposedHelper;
 
 import java.util.Arrays;
 import java.util.List;

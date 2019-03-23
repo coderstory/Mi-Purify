@@ -1,10 +1,10 @@
-package com.coderstory.Purify.module;
+package com.coderstory.purify.module;
 
 import android.content.pm.Signature;
 import android.util.Base64;
 
-import com.coderstory.Purify.plugins.IModule;
-import com.coderstory.Purify.utils.XposedHelper;
+import com.coderstory.purify.plugins.IModule;
+import com.coderstory.purify.utils.XposedHelper;
 
 import java.lang.reflect.Field;
 

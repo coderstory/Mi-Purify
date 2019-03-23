@@ -1,4 +1,4 @@
-package com.coderstory.Purify.fragment;
+package com.coderstory.purify.fragment;
 
 
 import android.annotation.SuppressLint;
@@ -20,13 +20,13 @@ import android.view.View;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.coderstory.Purify.R;
-import com.coderstory.Purify.adapter.AppInfo;
-import com.coderstory.Purify.adapter.AppInfoAdapter;
-import com.coderstory.Purify.fragment.base.BaseFragment;
-import com.coderstory.Purify.utils.RuntimeUtil;
-import com.coderstory.Purify.utils.SnackBarUtils;
-import com.coderstory.Purify.view.PullToRefreshView;
+import com.coderstory.purify.R;
+import com.coderstory.purify.adapter.AppInfo;
+import com.coderstory.purify.adapter.AppInfoAdapter;
+import com.coderstory.purify.fragment.base.BaseFragment;
+import com.coderstory.purify.utils.RuntimeUtil;
+import com.coderstory.purify.utils.SnackBarUtils;
+import com.coderstory.purify.view.PullToRefreshView;
 
 import java.io.DataOutputStream;
 import java.io.File;
@@ -35,8 +35,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.coderstory.Purify.config.Misc.BackPath;
-import static com.coderstory.Purify.utils.FileUtils.readFile;
+import static com.coderstory.purify.config.Misc.BackPath;
+import static com.coderstory.purify.utils.FileUtils.readFile;
 
 
 public class DisbaleAppFragment extends BaseFragment {

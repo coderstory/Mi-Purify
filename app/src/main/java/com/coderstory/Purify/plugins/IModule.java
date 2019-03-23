@@ -1,4 +1,4 @@
-package com.coderstory.Purify.plugins;
+package com.coderstory.purify.plugins;
 
 import de.robv.android.xposed.IXposedHookZygoteInit;
 import de.robv.android.xposed.callbacks.XC_InitPackageResources;

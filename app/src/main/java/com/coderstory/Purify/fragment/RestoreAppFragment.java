@@ -1,4 +1,4 @@
-package com.coderstory.Purify.fragment;
+package com.coderstory.purify.fragment;
 
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
@@ -21,19 +21,19 @@ import android.view.ViewGroup;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.coderstory.Purify.R;
-import com.coderstory.Purify.adapter.AppInfo;
-import com.coderstory.Purify.adapter.AppInfoAdapter;
-import com.coderstory.Purify.fragment.base.BaseFragment;
-import com.coderstory.Purify.utils.LoadApkInfo;
-import com.coderstory.Purify.view.PullToRefreshView;
+import com.coderstory.purify.R;
+import com.coderstory.purify.adapter.AppInfo;
+import com.coderstory.purify.adapter.AppInfoAdapter;
+import com.coderstory.purify.fragment.base.BaseFragment;
+import com.coderstory.purify.utils.LoadApkInfo;
+import com.coderstory.purify.view.PullToRefreshView;
 
 import java.io.DataOutputStream;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.coderstory.Purify.config.Misc.BackPath;
+import static com.coderstory.purify.config.Misc.BackPath;
 import androidx.annotation.Nullable;
 import androidx.core.content.FileProvider;
 
@@ -183,7 +183,7 @@ public class RestoreAppFragment extends BaseFragment {
         Intent intent = new Intent(Intent.ACTION_VIEW);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
             intent.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-            Uri contentUri = FileProvider.getUriForFile(context, "com.coderstory.Purify.fileprovider", new File(filePath));
+            Uri contentUri = FileProvider.getUriForFile(context, "com.coderstory.purify.fileprovider", new File(filePath));
             intent.setDataAndType(contentUri, "application/vnd.android.package-archive");
         } else {
             intent.setDataAndType(Uri.fromFile(new File(filePath)), "application/vnd.android.package-archive");

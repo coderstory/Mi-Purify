@@ -1,9 +1,9 @@
-package com.coderstory.Purify.module;
+package com.coderstory.purify.module;
 
 import android.content.Context;
 
-import com.coderstory.Purify.plugins.IModule;
-import com.coderstory.Purify.utils.XposedHelper;
+import com.coderstory.purify.plugins.IModule;
+import com.coderstory.purify.utils.XposedHelper;
 
 import java.io.File;
 
@@ -13,7 +13,7 @@ import de.robv.android.xposed.XposedHelpers;
 import de.robv.android.xposed.callbacks.XC_InitPackageResources;
 import de.robv.android.xposed.callbacks.XC_LoadPackage;
 
-import static com.coderstory.Purify.config.Misc.isEnable;
+import static com.coderstory.purify.config.Misc.isEnable;
 
 public class ThemePatcher extends XposedHelper implements IModule {
 

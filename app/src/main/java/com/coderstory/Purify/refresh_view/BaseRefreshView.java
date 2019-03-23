@@ -1,4 +1,4 @@
-package com.coderstory.Purify.refresh_view;
+package com.coderstory.purify.refresh_view;
 
 import android.content.Context;
 import android.graphics.ColorFilter;
@@ -6,7 +6,7 @@ import android.graphics.PixelFormat;
 import android.graphics.drawable.Animatable;
 import android.graphics.drawable.Drawable;
 
-import com.coderstory.Purify.view.PullToRefreshView;
+import com.coderstory.purify.view.PullToRefreshView;
 
 import androidx.annotation.NonNull;
 

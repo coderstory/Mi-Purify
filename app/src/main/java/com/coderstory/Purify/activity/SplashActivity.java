@@ -1,4 +1,4 @@
-package com.coderstory.Purify.activity;
+package com.coderstory.purify.activity;
 
 import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
@@ -12,8 +12,8 @@ import android.view.Window;
 import android.view.WindowInsets;
 import android.widget.TextView;
 
-import com.coderstory.Purify.BuildConfig;
-import com.coderstory.Purify.R;
+import com.coderstory.purify.BuildConfig;
+import com.coderstory.purify.R;
 
 import androidx.core.content.ContextCompat;
 import androidx.core.view.ViewCompat;

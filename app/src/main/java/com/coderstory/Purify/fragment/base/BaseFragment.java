@@ -1,4 +1,4 @@
-package com.coderstory.Purify.fragment.base;
+package com.coderstory.purify.fragment.base;
 
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -8,15 +8,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.coderstory.Purify.utils.RuntimeUtil;
+import com.coderstory.purify.utils.RuntimeUtil;
 
 import java.io.File;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import static com.coderstory.Purify.config.Misc.ApplicationName;
-import static com.coderstory.Purify.config.Misc.SharedPreferencesName;
+import static com.coderstory.purify.config.Misc.ApplicationName;
+import static com.coderstory.purify.config.Misc.SharedPreferencesName;
 
 
 /**

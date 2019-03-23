@@ -1,15 +1,15 @@
-package com.coderstory.Purify.utils;
+package com.coderstory.purify.utils;
 
 import android.app.Activity;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 
-import com.coderstory.Purify.adapter.AppInfo;
+import com.coderstory.purify.adapter.AppInfo;
 
 import java.io.File;
 import java.util.Vector;
 
-import static com.coderstory.Purify.config.Misc.BackPath;
+import static com.coderstory.purify.config.Misc.BackPath;
 
 
 public class LoadApkInfo {

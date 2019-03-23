@@ -1,4 +1,4 @@
-package com.coderstory.Purify.fragment;
+package com.coderstory.purify.fragment;
 
 import android.annotation.SuppressLint;
 import android.app.Dialog;
@@ -8,10 +8,10 @@ import android.os.AsyncTask;
 import android.os.Looper;
 import android.widget.Switch;
 
-import com.coderstory.Purify.R;
-import com.coderstory.Purify.fragment.base.BaseFragment;
-import com.coderstory.Purify.utils.RuntimeUtil;
-import com.coderstory.Purify.utils.hostshelper.FileHelper;
+import com.coderstory.purify.R;
+import com.coderstory.purify.fragment.base.BaseFragment;
+import com.coderstory.purify.utils.RuntimeUtil;
+import com.coderstory.purify.utils.hostshelper.FileHelper;
 
 import java.io.BufferedWriter;
 import java.io.FileNotFoundException;
@@ -20,7 +20,7 @@ import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.io.UnsupportedEncodingException;
 
-import static com.coderstory.Purify.config.Misc.HostFileTmpName;
+import static com.coderstory.purify.config.Misc.HostFileTmpName;
 
 
 public class HostsFragment extends BaseFragment {

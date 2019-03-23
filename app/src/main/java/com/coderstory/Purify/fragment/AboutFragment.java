@@ -1,4 +1,4 @@
-package com.coderstory.Purify.fragment;
+package com.coderstory.purify.fragment;
 
 import android.didikee.donate.AlipayDonate;
 import android.didikee.donate.WeiXinDonate;
@@ -9,14 +9,14 @@ import android.text.util.Linkify;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.coderstory.Purify.BuildConfig;
-import com.coderstory.Purify.R;
-import com.coderstory.Purify.fragment.base.BaseFragment;
-import com.coderstory.Purify.utils.licensesdialog.LicensesDialog;
-import com.coderstory.Purify.utils.licensesdialog.licenses.ApacheSoftwareLicense20;
-import com.coderstory.Purify.utils.licensesdialog.licenses.GnuGeneralPublicLicense20;
-import com.coderstory.Purify.utils.licensesdialog.model.Notice;
-import com.coderstory.Purify.utils.licensesdialog.model.Notices;
+import com.coderstory.purify.BuildConfig;
+import com.coderstory.purify.R;
+import com.coderstory.purify.fragment.base.BaseFragment;
+import com.coderstory.purify.utils.licensesdialog.LicensesDialog;
+import com.coderstory.purify.utils.licensesdialog.licenses.ApacheSoftwareLicense20;
+import com.coderstory.purify.utils.licensesdialog.licenses.GnuGeneralPublicLicense20;
+import com.coderstory.purify.utils.licensesdialog.model.Notice;
+import com.coderstory.purify.utils.licensesdialog.model.Notices;
 
 import java.io.File;
 import java.io.InputStream;

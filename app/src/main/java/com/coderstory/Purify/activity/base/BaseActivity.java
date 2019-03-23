@@ -1,4 +1,4 @@
-package com.coderstory.Purify.activity.base;
+package com.coderstory.purify.activity.base;
 
 import android.content.Context;
 import android.content.Intent;

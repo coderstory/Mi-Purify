@@ -1,4 +1,4 @@
-package com.coderstory.Purify.fragment;
+package com.coderstory.purify.fragment;
 
 
 import android.annotation.SuppressLint;
@@ -7,12 +7,12 @@ import android.os.Message;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.coderstory.Purify.R;
-import com.coderstory.Purify.config.Misc;
-import com.coderstory.Purify.fragment.base.BaseFragment;
-import com.coderstory.Purify.utils.RuntimeUtil;
-import com.coderstory.Purify.utils.SnackBarUtils;
-import com.coderstory.Purify.utils.hostshelper.FileHelper;
+import com.coderstory.purify.R;
+import com.coderstory.purify.config.Misc;
+import com.coderstory.purify.fragment.base.BaseFragment;
+import com.coderstory.purify.utils.RuntimeUtil;
+import com.coderstory.purify.utils.SnackBarUtils;
+import com.coderstory.purify.utils.hostshelper.FileHelper;
 
 
 import java.util.List;

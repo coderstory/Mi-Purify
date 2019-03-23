@@ -1,4 +1,4 @@
-package com.coderstory.Purify.fragment;
+package com.coderstory.purify.fragment;
 
 
 import android.app.AlertDialog;
@@ -18,19 +18,19 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
-import com.coderstory.Purify.R;
-import com.coderstory.Purify.adapter.AppInfo;
-import com.coderstory.Purify.adapter.AppInfoAdapter;
-import com.coderstory.Purify.fragment.base.BaseFragment;
-import com.coderstory.Purify.utils.LoadApkInfo;
-import com.coderstory.Purify.view.PullToRefreshView;
+import com.coderstory.purify.R;
+import com.coderstory.purify.adapter.AppInfo;
+import com.coderstory.purify.adapter.AppInfoAdapter;
+import com.coderstory.purify.fragment.base.BaseFragment;
+import com.coderstory.purify.utils.LoadApkInfo;
+import com.coderstory.purify.view.PullToRefreshView;
 
 import java.io.DataOutputStream;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import androidx.annotation.Nullable;
-import static com.coderstory.Purify.config.Misc.BackPath;
+import static com.coderstory.purify.config.Misc.BackPath;
 
 /**
  * A simple {@link Fragment} subclass.

@@ -1,9 +1,9 @@
-package com.coderstory.Purify.module;
+package com.coderstory.purify.module;
 
 import android.content.Context;
 
-import com.coderstory.Purify.plugins.IModule;
-import com.coderstory.Purify.utils.XposedHelper;
+import com.coderstory.purify.plugins.IModule;
+import com.coderstory.purify.utils.XposedHelper;
 
 import org.json.JSONObject;
 

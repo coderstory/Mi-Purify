@@ -1,7 +1,7 @@
-package com.coderstory.Purify.activity;
+package com.coderstory.purify.activity;
 
 
-import com.coderstory.Purify.fragment.AboutFragment;
+import com.coderstory.purify.fragment.AboutFragment;
 
 import androidx.fragment.app.Fragment;
 
