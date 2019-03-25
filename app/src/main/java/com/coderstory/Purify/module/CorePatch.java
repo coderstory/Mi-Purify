@@ -24,7 +24,7 @@ public class CorePatch extends XposedHelper implements IModule {
             protected void beforeHookedMethod(MethodHookParam methodHookParam)
                     throws Throwable {
                 prefs.reload();
-                if (prefs.getBoolean("authcreak", true)) {
+                if (prefs.getBoolean("signatureCheck", true)) {
                     methodHookParam.setResult(true);
                 }
             }
@@ -34,7 +34,7 @@ public class CorePatch extends XposedHelper implements IModule {
             protected void beforeHookedMethod(MethodHookParam paramAnonymousMethodHookParam)
                     throws Throwable {
                 prefs.reload();
-                if (prefs.getBoolean("authcreak", true)) {
+                if (prefs.getBoolean("signatureCheck", true)) {
                     paramAnonymousMethodHookParam.setResult(true);
                 }
             }
@@ -50,7 +50,7 @@ public class CorePatch extends XposedHelper implements IModule {
             protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
 
                 prefs.reload();
-                if (prefs.getBoolean("authcreak", true)) {
+                if (prefs.getBoolean("signatureCheck", true)) {
                     param.args[3] = false;
                 }
             }
@@ -61,7 +61,7 @@ public class CorePatch extends XposedHelper implements IModule {
             protected void afterHookedMethod(MethodHookParam param) throws Throwable {
                 Object packageInfoLite = param.thisObject;
                 prefs.reload();
-                if (prefs.getBoolean("authcreak", true)) {
+                if (prefs.getBoolean("signatureCheck", true)) {
                     Field field = packageClass.getField(" SF_ATTRIBUTE_ANDROID_APK_SIGNED_ID");
                     field.setAccessible(true);
                     field.set(packageInfoLite, 9999);
@@ -73,7 +73,7 @@ public class CorePatch extends XposedHelper implements IModule {
             protected void afterHookedMethod(MethodHookParam param) throws Throwable {
                 Object packageInfoLite = param.thisObject;
                 prefs.reload();
-                if (prefs.getBoolean("authcreak", true)) {
+                if (prefs.getBoolean("v", true)) {
                     Field field = packageClass.getField(" SF_ATTRIBUTE_ANDROID_APK_SIGNED_ID");
                     field.setAccessible(true);
                     field.set(packageInfoLite, 9999);
@@ -107,16 +107,67 @@ public class CorePatch extends XposedHelper implements IModule {
 
                 protected void beforeHookedMethod(MethodHookParam methodHookParam) throws Throwable {
                     prefs.reload();
-                    if (prefs.getBoolean("authcreak", true)) {
+                    if (prefs.getBoolean("signatureCheck", true)) {
                         methodHookParam.setResult(true);
                     }
                 }
             });
 
-            hookAllMethods("com.android.server.pm. PackageManagerServiceUtils", paramLoadPackageParam.classLoader, "compareSignatures", new XC_MethodHook() {
+
+            hookAllMethods("com.android.server.pm.PackageManagerServiceUtils", paramLoadPackageParam.classLoader, "verifySignatures", new XC_MethodHook() {
+
                 protected void beforeHookedMethod(MethodHookParam methodHookParam) throws Throwable {
                     prefs.reload();
-                    if (prefs.getBoolean("zipauthcreak", false)) {
+                    if (prefs.getBoolean("signatureCheck", true)) {
+                        methodHookParam.setResult(true);
+                    }
+                }
+            });
+
+            hookAllMethods("com.android.server.pm.KeySetManagerService", paramLoadPackageParam.classLoader, "checkUpgradeKeySetLocked", new XC_MethodHook() {
+
+                protected void beforeHookedMethod(MethodHookParam methodHookParam) throws Throwable {
+                    prefs.reload();
+                    if (prefs.getBoolean("signatureCheck", true)) {
+                        methodHookParam.setResult(true);
+                    }
+                }
+            });
+
+            hookAllMethods("android.content.pm.PackageParser", paramLoadPackageParam.classLoader, "checkCapability", new XC_MethodHook() {
+
+                protected void beforeHookedMethod(MethodHookParam methodHookParam) throws Throwable {
+                    prefs.reload();
+                    if (prefs.getBoolean("signatureCheck", true)) {
+                        methodHookParam.setResult(true);
+                    }
+                }
+            });
+
+            hookAllMethods("android.content.pm.PackageParser", paramLoadPackageParam.classLoader, "checkCapability", new XC_MethodHook() {
+
+                protected void beforeHookedMethod(MethodHookParam methodHookParam) throws Throwable {
+                    prefs.reload();
+                    if (prefs.getBoolean("signatureCheck", true)) {
+                        methodHookParam.setResult(true);
+                    }
+                }
+            });
+
+            hookAllMethods("android.content.pm.PackageParser", paramLoadPackageParam.classLoader, "checkCapabilityRecover", new XC_MethodHook() {
+
+                protected void beforeHookedMethod(MethodHookParam methodHookParam) throws Throwable {
+                    prefs.reload();
+                    if (prefs.getBoolean("signatureCheck", true)) {
+                        methodHookParam.setResult(true);
+                    }
+                }
+            });
+
+            hookAllMethods("com.android.server.pm.PackageManagerServiceUtils", paramLoadPackageParam.classLoader, "compareSignatures", new XC_MethodHook() {
+                protected void beforeHookedMethod(MethodHookParam methodHookParam) throws Throwable {
+                    prefs.reload();
+                    if (prefs.getBoolean("comparisonSignature", false)) {
 
                         String platform = prefs.getString("platform", "DEFAULT");
 
@@ -145,7 +196,7 @@ public class CorePatch extends XposedHelper implements IModule {
             hookAllMethods("com.android.server.pm.PackageManagerService", paramLoadPackageParam.classLoader, "compareSignaturesCompat", new XC_MethodHook() {
                 protected void beforeHookedMethod(XC_MethodHook.MethodHookParam paramAnonymousMethodHookParam) {
                     prefs.reload();
-                    if (prefs.getBoolean("authcreak", true)) {
+                    if (prefs.getBoolean("signatureCheck", true)) {
                         paramAnonymousMethodHookParam.setResult(0);
                     }
                 }
@@ -153,7 +204,7 @@ public class CorePatch extends XposedHelper implements IModule {
             hookAllMethods("com.android.server.pm.PackageManagerService", paramLoadPackageParam.classLoader, "compareSignaturesRecover", new XC_MethodHook() {
                 protected void beforeHookedMethod(XC_MethodHook.MethodHookParam paramAnonymousMethodHookParam) {
                     prefs.reload();
-                    if (prefs.getBoolean("authcreak", true)) {
+                    if (prefs.getBoolean("signatureCheck", true)) {
                         paramAnonymousMethodHookParam.setResult(0);
                     }
                 }

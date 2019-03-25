@@ -68,14 +68,14 @@ public class OthersFragment extends BaseFragment {
             sudoFixPermissions();
         });
 
-        $(R.id.authcreak).setOnClickListener(v -> {
-            getEditor().putBoolean("authcreak", ((Switch) v).isChecked());
+        $(R.id.signatureCheck).setOnClickListener(v -> {
+            getEditor().putBoolean("autsignatureCheckhcreak", ((Switch) v).isChecked());
             getEditor().apply();
             sudoFixPermissions();
         });
 
-        $(R.id.zipauthcreak).setOnClickListener(v -> {
-            getEditor().putBoolean("zipauthcreak", ((Switch) v).isChecked());
+        $(R.id.comparisonSignature).setOnClickListener(v -> {
+            getEditor().putBoolean("comparisonSignature", ((Switch) v).isChecked());
             getEditor().apply();
             sudoFixPermissions();
         });
@@ -124,8 +124,8 @@ public class OthersFragment extends BaseFragment {
     @Override
     protected void setUpData() {
         ((Switch) $(R.id.hide_icon_label)).setChecked(getPrefs().getBoolean("hide_icon_label", false));
-        ((Switch) $(R.id.authcreak)).setChecked(getPrefs().getBoolean("authcreak", false));
-        ((Switch) $(R.id.zipauthcreak)).setChecked(getPrefs().getBoolean("zipauthcreak", false));
+        ((Switch) $(R.id.signatureCheck)).setChecked(getPrefs().getBoolean("authcreak", false));
+        ((Switch) $(R.id.comparisonSignature)).setChecked(getPrefs().getBoolean("comparisonSignature", false));
         ((Switch) $(R.id.downgrade)).setChecked(getPrefs().getBoolean("downgrade", false));
         ((Switch) $(R.id.prevent_freeze_reverse)).setChecked(getPrefs().getBoolean("prevent_freeze_reverse", false));
         ((Switch) $(R.id.enableBlockAD)).setChecked(getPrefs().getBoolean("EnableBlockAD", false));
