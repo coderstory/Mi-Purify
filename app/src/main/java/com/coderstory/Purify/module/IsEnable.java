@@ -18,7 +18,7 @@ public class IsEnable extends XposedHelper implements IModule {
     @Override
     public void handleLoadPackage(XC_LoadPackage.LoadPackageParam lpparam) {
         if (lpparam.packageName.equals(ApplicationName)) {
-            findAndHookMethod("com.coderstory.Purify.activity.MainActivity", lpparam.classLoader, "isEnable", XC_MethodReplacement.returnConstant(true));
+            findAndHookMethod("com.coderstory.purify.activity.MainActivity", lpparam.classLoader, "isEnable", XC_MethodReplacement.returnConstant(true));
         }
     }
 

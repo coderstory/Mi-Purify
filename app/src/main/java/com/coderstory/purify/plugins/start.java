@@ -23,7 +23,7 @@ public class start implements IXposedHookZygoteInit, IXposedHookLoadPackage {
         new HideApp().handleLoadPackage(lpparam);
         new Others().handleLoadPackage(lpparam);
         new MiuiHome().handleLoadPackage(lpparam);
-        // new CorePatch().handleLoadPackage(lpparam);
+        new CorePatch().handleLoadPackage(lpparam);
         new ThemePatcher().handleLoadPackage(lpparam);
     }
 
