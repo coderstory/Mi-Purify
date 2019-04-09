@@ -76,6 +76,7 @@
                 android:paddingEnd="30dp"
                 android:paddingStart="30dp"
                 android:paddingTop="30dp"
+                android:visibility="gone"
                 android:text="@string/corepatch" />
 
             <Switch
@@ -86,6 +87,7 @@
                 android:background="@color/switchBtn"
                 android:paddingEnd="30dp"
                 android:paddingStart="30dp"
+                android:visibility="gone"
                 android:text="@string/downgr" />
 
             <Switch
@@ -96,6 +98,7 @@
                 android:background="@color/switchBtn"
                 android:paddingEnd="30dp"
                 android:paddingStart="30dp"
+                android:visibility="gone"
                 android:text="@string/signatureCheck" />
 
             <Switch
@@ -106,6 +109,7 @@
                 android:background="@color/switchBtn"
                 android:paddingEnd="30dp"
                 android:paddingStart="30dp"
+                android:visibility="gone"
                 android:text="@string/comparisonSignature" />
 
             <TextView

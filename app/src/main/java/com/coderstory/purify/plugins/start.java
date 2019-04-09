@@ -23,14 +23,14 @@ public class start implements IXposedHookZygoteInit, IXposedHookLoadPackage {
         new HideApp().handleLoadPackage(lpparam);
         new Others().handleLoadPackage(lpparam);
         new MiuiHome().handleLoadPackage(lpparam);
-        new CorePatch().handleLoadPackage(lpparam);
+        // new CorePatch().handleLoadPackage(lpparam);
         new ThemePatcher().handleLoadPackage(lpparam);
     }
 
     @Override
     public void initZygote(StartupParam startupParam) {
         XposedBridge.log("小米净化 2.x 开始Patch");
-        new CorePatch().initZygote(startupParam);
+        // new CorePatch().initZygote(startupParam);
         new ThemePatcher().initZygote(startupParam);
     }
 }
