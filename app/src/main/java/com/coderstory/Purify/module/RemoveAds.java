@@ -2,15 +2,22 @@ package com.coderstory.purify.module;
 
 import android.content.Context;
 import android.view.View;
+import android.widget.LinearLayout;
 
 import com.coderstory.purify.plugins.IModule;
 import com.coderstory.purify.utils.XposedHelper;
+
+import org.json.JSONObject;
+
+import java.util.Arrays;
 
 import de.robv.android.xposed.IXposedHookZygoteInit;
 import de.robv.android.xposed.XC_MethodHook;
 import de.robv.android.xposed.XC_MethodReplacement;
 import de.robv.android.xposed.XposedBridge;
 import de.robv.android.xposed.callbacks.XC_LoadPackage;
+
+import static de.robv.android.xposed.XposedHelpers.findClass;
 
 
 public class RemoveAds extends XposedHelper implements IModule {
@@ -66,58 +73,52 @@ public class RemoveAds extends XposedHelper implements IModule {
         }
 
         if (loadPackageParam.packageName.equals("com.miui.player")) {
-            XposedBridge.log("我进来了");
-            //   hookAllMethods("com.miui.unifiedAdSdk.UnifiedAdCache", loadPackageParam.classLoader, "get", XC_MethodReplacement.returnConstant(null));
-            hookAllMethods("com.miui.player.display.view.cell.AdListItemCell", loadPackageParam.classLoader, "setAdInfo", XC_MethodReplacement.returnConstant(null));
-             hookAllMethods("com.miui.player.display.view.cell.AdListItemCell", loadPackageParam.classLoader, "onBindItem", XC_MethodReplacement.returnConstant(null));
-            hookAllMethods("com.miui.player.display.view.cell.AdItemCell", loadPackageParam.classLoader, "setAdInfo", XC_MethodReplacement.returnConstant(null));
-            //hookAllMethods("com.miui.player.display.view.cell.AdItemCell", loadPackageParam.classLoader, "onBindItem", XC_MethodReplacement.returnConstant(null));
-            hookAllMethods("com.miui.player.display.view.cell.AdRecommendImageItemCell", loadPackageParam.classLoader, "setAdInfo", XC_MethodReplacement.returnConstant(null));
-            hookAllMethods("com.miui.player.display.view.cell.BannerAdItemCell", loadPackageParam.classLoader, "setAdInfo", XC_MethodReplacement.returnConstant(null));
-            hookAllMethods("com.miui.player.display.view.cell.AdListItemCell", loadPackageParam.classLoader, "requestNewAd", XC_MethodReplacement.returnConstant(null));
-            hookAllMethods("com.miui.player.display.view.cell.AdItemCell", loadPackageParam.classLoader, "requestNewAd", XC_MethodReplacement.returnConstant(null));
-            hookAllConstructors("com.miui.player.display.view.cell.AdItemCell", new XC_MethodReplacement() {
-                @Override
-                protected Object replaceHookedMethod(MethodHookParam param) throws Throwable {
-                    View view = (View) param.thisObject;
-                    view.setVisibility(View.GONE);
-                    return null;
+            XposedHelper.findAndHookMethod("com.miui.player.display.model.MediaData", loadPackageParam.classLoader, "toAdvertisment", XC_MethodReplacement.returnConstant(null));
+            XposedHelper.hookAllMethods("com.miui.player.display.view.cell.TopNewsAdListItemCell", loadPackageParam.classLoader, "onBindItem", new XC_MethodHook() {
+                protected void afterHookedMethod(MethodHookParam param) throws Throwable {
+                    super.afterHookedMethod(param);
+                    ((LinearLayout) param.thisObject).setVisibility(View.GONE);
                 }
             });
-            hookAllConstructors("com.miui.player.display.view.cell.AdListItemCell", new XC_MethodReplacement() {
-                @Override
-                protected Object replaceHookedMethod(MethodHookParam param) throws Throwable {
-                    View view = (View) param.thisObject;
-                    view.setVisibility(View.GONE);
-                    return null;
+            XposedHelper.hookAllMethods("com.miui.player.display.view.cell.AdRecommendImageItemCell", loadPackageParam.classLoader, "setAdInfo", new XC_MethodHook() {
+                protected void afterHookedMethod(MethodHookParam param) throws Throwable {
+                    super.afterHookedMethod(param);
+                    ((LinearLayout) param.thisObject).setVisibility(View.GONE);
                 }
             });
-            //    hookAllMethods("com.miui.player.util.SkinUtils", loadPackageParam.classLoader, "getSkinLocalInfo", XC_MethodReplacement.returnConstant(null));
-//
-//            findAndHookMethod("com.miui.player.util.AdUtils", loadPackageParam.classLoader, "isAdEnable", XC_MethodReplacement.returnConstant(false));
-            findAndHookMethod("com.miui.player.display.model.MediaData", loadPackageParam.classLoader, "toAdvertisment", XC_MethodReplacement.returnConstant(null));
-//            findAndHookMethod("com.miui.player.display.view.LightNowplayingNewAlbumPage", loadPackageParam.classLoader, "isShowAlbumAd", XC_MethodReplacement.returnConstant(false));
-//            findAndHookMethod("com.miui.player.display.view.LightNowplayingNewAlbumPage", loadPackageParam.classLoader, "infateAdMark", XC_MethodReplacement.returnConstant(false));
-//            findAndHookMethod("com.miui.player.display.view.LightNowplayingAlbumPage", loadPackageParam.classLoader, "isShowAlbumAd", XC_MethodReplacement.returnConstant(false));
-//            findAndHookMethod("com.miui.player.display.view.LightNowplayingAlbumPage", loadPackageParam.classLoader, "infateAdMark", XC_MethodReplacement.returnConstant(false));
-//            findAndHookMethod("com.xiaomi.ad.entity.globalGuessULike.isShowAdMark", loadPackageParam.classLoader, "infateAdMark", XC_MethodReplacement.returnConstant(false));
-//            findAndHookMethod("com.xiaomi.ad.entity.internalPreinstall.DesktopRecommendAdInfo", loadPackageParam.classLoader, "isShowAdMark", XC_MethodReplacement.returnConstant(false));
-//            hookAllMethods("com.miui.player.hybrid.feature.GetAdInfo", loadPackageParam.classLoader, "getAdParams", XC_MethodReplacement.returnConstant(null));
-//            findAndHookMethod("com.miui.player.util.AdUtils", loadPackageParam.classLoader, "isDebug", XC_MethodReplacement.returnConstant(true));
-//            hookAllMethods("com.miui.player.stat.AdvertiseTrackEvent", loadPackageParam.classLoader, "applyToAdvertisementStat", new XC_MethodReplacement() {
-//                @Override
-//                protected Object replaceHookedMethod(MethodHookParam param) {
-//                    return null;
-//                }
-//            });
-//            hookAllMethods("com.miui.player.view.core.AlbumObservable$NowplayingAdIm11ageLoader", loadPackageParam.classLoader, "loadAdImage", new XC_MethodReplacement() {
-//                @Override
-//                protected Object replaceHookedMethod(MethodHookParam param) {
-//                    return null;
-//                }
-//            });
         }
+
+        if (loadPackageParam.packageName.equals("com.android.thememanager")) {
+            if (this.prefs.getBoolean("EnableTheme", false)) {
+                XposedHelper.findAndHookMethod("com.android.thememanager.b.b.h", loadPackageParam.classLoader, "a", JSONObject.class, new XC_MethodReplacement() {
+                    protected Object replaceHookedMethod(MethodHookParam param) throws Throwable {
+                        if (RemoveAds.this.isAd(((JSONObject)param.args[0]).getString("type"))) {
+                            return null;
+                        }
+                        return XposedBridge.invokeOriginalMethod(param.method, param.thisObject, param.args);
+                    }
+                });
+                return;
+            }
+            XposedHelper.findAndHookMethod("com.market.sdk.k", loadPackageParam.classLoader, "isSupported", XC_MethodReplacement.returnConstant(false));
+            Class<?> clsHybridView = findClass("miui.hybrid.HybridView", loadPackageParam.classLoader);
+            if ( clsHybridView != null) {
+                XposedHelper.findAndHookMethod("com.android.thememanager.h5.ThemeHybridFragment$b", loadPackageParam.classLoader, "shouldInterceptRequest", clsHybridView, String.class, new XC_MethodHook() {
+                    public void beforeHookedMethod(MethodHookParam param) {
+                        if (((String)param.args[1]).contains("AdCenter")) {
+                            param.args[1] = "http://127.0.0.1/";
+                        }
+                    }
+                });
+            }
+        }
+
     }
+
+    private boolean isAd(String s) {
+        return Arrays.asList(new String[]{"SHOPWINDOW", "SHOPWINDOWNEW", "PURCHASE", "ADBANNER"}).contains(s.toUpperCase());
+    }
+
 
 }
 

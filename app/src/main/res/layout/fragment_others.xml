@@ -72,7 +72,6 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-
                 android:paddingEnd="30dp"
                 android:paddingStart="30dp"
                 android:paddingTop="30dp"

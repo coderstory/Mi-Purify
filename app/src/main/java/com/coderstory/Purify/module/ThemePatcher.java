@@ -1,19 +1,18 @@
-package com.coderstory.Purify.module;
+package com.coderstory.purify.module;
 
 import android.content.Context;
 
-import com.coderstory.Purify.plugins.IModule;
-import com.coderstory.Purify.utils.XposedHelper;
+import com.coderstory.purify.plugins.IModule;
+import com.coderstory.purify.utils.XposedHelper;
 
 import java.io.File;
 
 import de.robv.android.xposed.IXposedHookZygoteInit;
 import de.robv.android.xposed.XC_MethodReplacement;
 import de.robv.android.xposed.XposedHelpers;
-import de.robv.android.xposed.callbacks.XC_InitPackageResources;
 import de.robv.android.xposed.callbacks.XC_LoadPackage;
 
-import static com.coderstory.Purify.config.Misc.isEnable;
+import static com.coderstory.purify.config.Misc.isEnable;
 
 public class ThemePatcher extends XposedHelper implements IModule {
 
@@ -33,7 +32,7 @@ public class ThemePatcher extends XposedHelper implements IModule {
         if (lpparam.packageName.equals("com.android.thememanager")) {
             CorePatch.findAndHookMethod("com.android.thememanager.f.q", lpparam.classLoader, "isProductBought", XC_MethodReplacement.returnConstant(true));
             CorePatch.findAndHookMethod("com.android.thememanager.f.t", lpparam.classLoader, "isProductBought", XC_MethodReplacement.returnConstant(true));
-            CorePatch.findAndHookMethod("com.android.thememanager.util.ce", lpparam.classLoader, "k", XC_MethodReplacement.returnConstant(true));
+            // CorePatch.findAndHookMethod("com.android.thememanager.util.ce", lpparam.classLoader, "k", XC_MethodReplacement.returnConstant(true));
             CorePatch.findAndHookMethod("com.android.thememanager.f.q", lpparam.classLoader, "isAuthorizedResource", XC_MethodReplacement.returnConstant(true));
             // return this.eV.getTrialTime() > 0;
             CorePatch.findAndHookMethod("com.android.thememanager.util.ce", lpparam.classLoader, "u", XC_MethodReplacement.returnConstant(true));
