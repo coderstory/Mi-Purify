@@ -1,5 +1,7 @@
 package com.coderstory.purify.utils;
 
+import java.util.Set;
+
 import de.robv.android.xposed.XC_MethodHook;
 import de.robv.android.xposed.XSharedPreferences;
 import de.robv.android.xposed.XposedBridge;
@@ -16,28 +18,49 @@ public class XposedHelper {
     }
 
     public static void findAndHookMethod(String p1, ClassLoader lpparam, String p2, Object... parameterTypesAndCallback) {
-        XposedHelpers.findAndHookMethod(p1, lpparam, p2, parameterTypesAndCallback);
+        try {
+            XposedHelpers.findAndHookMethod(p1, lpparam, p2, parameterTypesAndCallback);
+        } catch (Exception e) {
+            XposedBridge.log(e);
+        }
     }
 
     public static void hookAllConstructors(String p1, XC_MethodHook parameterTypesAndCallback) {
-
+        try {
         Class packageParser = XposedHelpers.findClass(p1, null);
-        XposedBridge.hookAllConstructors(packageParser, parameterTypesAndCallback);
+            hookAllConstructors(packageParser, parameterTypesAndCallback);
+        } catch (Exception e) {
+            XposedBridge.log(e);
+        }
+    }
 
+    public static Set<XC_MethodHook.Unhook> hookAllConstructors(Class<?> hookClass, XC_MethodHook callback) {
+        try {
+            return XposedBridge.hookAllConstructors(hookClass, callback);
+        } catch (Exception e) {
+            XposedBridge.log(e);
+            return null;
+        }
 
     }
 
     protected static void findAndHookMethod(String p1, String p2, Object[] p3) throws ClassNotFoundException {
-        XposedHelpers.findAndHookMethod(Class.forName(p1), p2, p3);
-
+        try {
+            XposedHelpers.findAndHookMethod(Class.forName(p1), p2, p3);
+        } catch (Exception e) {
+            XposedBridge.log(e);
+        }
     }
 
     public static void hookAllMethods(String p1, ClassLoader lpparam, String methodName, XC_MethodHook parameterTypesAndCallback) {
-        Class packageParser = XposedHelpers.findClass(p1, lpparam);
-        XposedBridge.hookAllMethods(packageParser, methodName, parameterTypesAndCallback);
+        try {
+            Class packageParser = XposedHelpers.findClass(p1, lpparam);
+            XposedBridge.hookAllMethods(packageParser, methodName, parameterTypesAndCallback);
+        } catch (Exception e) {
+            XposedBridge.log(e);
+        }
 
     }
-
 
     protected static Object getDrmResultSUCCESS() {
         Class<Enum> drmSuccess = (Class<Enum>) XposedHelpers.findClass("miui.drm.DrmManager.DrmResult", null);
