@@ -58,16 +58,6 @@
                 android:paddingStart="30dp"
                 android:text="@string/downloadexplorer" />
 
-            <Switch
-                android:id="@+id/enabletheme"
-                android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:layout_marginTop="10dp"
-                android:background="@color/switchBtn"
-                android:paddingEnd="30dp"
-                android:paddingStart="30dp"
-                android:text="@string/enablethemenoad" />
-
 
             <TextView
                 android:layout_width="match_parent"
@@ -86,7 +76,6 @@
                 android:background="@color/switchBtn"
                 android:paddingEnd="30dp"
                 android:paddingStart="30dp"
-                android:visibility="gone"
                 android:text="@string/downgr" />
 
             <Switch
@@ -97,7 +86,6 @@
                 android:background="@color/switchBtn"
                 android:paddingEnd="30dp"
                 android:paddingStart="30dp"
-                android:visibility="gone"
                 android:text="@string/signatureCheck" />
 
             <Switch
@@ -108,7 +96,6 @@
                 android:background="@color/switchBtn"
                 android:paddingEnd="30dp"
                 android:paddingStart="30dp"
-                android:visibility="gone"
                 android:text="@string/comparisonSignature" />
 
             <TextView
@@ -140,6 +127,67 @@
                 android:paddingEnd="30dp"
                 android:paddingStart="30dp"
                 android:text="@string/prevent_freeze_reverse" />
+
+            <Switch
+                android:id="@+id/downloadVip"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="10dp"
+                android:background="@color/switchBtn"
+                android:paddingEnd="30dp"
+                android:paddingStart="30dp"
+                android:text="@string/downloadVip" />
+
+            <Switch
+                android:id="@+id/lowBatteryWarning"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="10dp"
+                android:background="@color/switchBtn"
+                android:paddingEnd="30dp"
+                android:paddingStart="30dp"
+                android:text="@string/lowBatteryWarning" />
+
+
+            <Switch
+                android:id="@+id/alarmClockIcon"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="10dp"
+                android:background="@color/switchBtn"
+                android:paddingEnd="30dp"
+                android:paddingStart="30dp"
+                android:text="@string/alarmClockIcon" />
+
+            <Switch
+                android:id="@+id/noBatteryWarning"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="10dp"
+                android:background="@color/switchBtn"
+                android:paddingEnd="30dp"
+                android:paddingStart="30dp"
+                android:text="@string/noBatteryWarning" />
+
+            <Switch
+                android:id="@+id/default_store"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="10dp"
+                android:background="@color/switchBtn"
+                android:paddingEnd="30dp"
+                android:paddingStart="30dp"
+                android:text="@string/default_store" />
+
+            <Switch
+                android:id="@+id/hideNetworkSpeed"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="10dp"
+                android:background="@color/switchBtn"
+                android:paddingEnd="30dp"
+                android:paddingStart="30dp"
+                android:text="@string/hideNetworkSpeed" />
 
         </LinearLayout>
     </ScrollView>

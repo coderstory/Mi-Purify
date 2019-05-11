@@ -22,7 +22,6 @@ public class RemoveAds extends XposedHelper implements IModule {
     @Override
     public void handleLoadPackage(XC_LoadPackage.LoadPackageParam loadPackageParam) {
 
-
         //核心模块
         if (loadPackageParam.packageName.equals("com.miui.core")) {
             findAndHookMethod("miui.os.SystemProperties", loadPackageParam.classLoader, "get", String.class, String.class, new XC_MethodHook() {
@@ -45,7 +44,7 @@ public class RemoveAds extends XposedHelper implements IModule {
 
         //下载管理
         if (loadPackageParam.packageName.equals("com.android.providers.downloads.ui")) {
-            if (prefs.getBoolean("EnableDownload", false)) {
+            if (getPrefs().getBoolean("enableDownload", false)) {
                 findAndHookMethod("com.android.providers.downloads.ui.utils.CloudConfigHelper", loadPackageParam.classLoader, "getAdButtonType", XC_MethodReplacement.returnConstant(0));
                 findAndHookMethod("com.android.providers.downloads.ui.utils.CloudConfigHelper", loadPackageParam.classLoader, "isShouldShowAppSubject", XC_MethodReplacement.returnConstant(false));
                 findAndHookMethod("com.android.providers.downloads.ui.utils.CloudConfigHelper", loadPackageParam.classLoader, "isShouldShowExtraAd", XC_MethodReplacement.returnConstant(false));
@@ -57,7 +56,7 @@ public class RemoveAds extends XposedHelper implements IModule {
 
         // 短信
         if (loadPackageParam.packageName.equals("com.android.mms")) {
-            if (prefs.getBoolean("EnableMMS", false)) {
+            if (getPrefs().getBoolean("enableMMS", false)) {
                 findAndHookMethod("com.android.mms.util.SmartMessageUtils", loadPackageParam.classLoader, "isMessagingTemplateAllowed", Context.class, XC_MethodReplacement.returnConstant(true));
                 findAndHookMethod("com.android.mms.ui.SingleRecipientConversationActivity", loadPackageParam.classLoader, "showMenuMode", boolean.class, XC_MethodReplacement.returnConstant(null));
             }

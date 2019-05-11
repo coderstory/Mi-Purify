@@ -1,5 +1,6 @@
 package com.coderstory.purify.utils;
 
+import java.lang.ref.WeakReference;
 import java.util.Set;
 
 import de.robv.android.xposed.XC_MethodHook;
@@ -11,11 +12,22 @@ import static com.coderstory.purify.config.Misc.ApplicationName;
 import static com.coderstory.purify.config.Misc.SharedPreferencesName;
 
 public class XposedHelper {
-    protected XSharedPreferences prefs = new XSharedPreferences(ApplicationName, SharedPreferencesName);
-    {
-        prefs.makeWorldReadable();
-        prefs.reload();
+
+    private static WeakReference<XSharedPreferences> prefs = new WeakReference<>(null);
+    protected static XSharedPreferences getPrefs() {
+        XSharedPreferences xSharedPreferences = prefs.get();
+        if (xSharedPreferences == null) {
+            xSharedPreferences = new XSharedPreferences(ApplicationName);
+            xSharedPreferences.makeWorldReadable();
+            xSharedPreferences.reload();
+            prefs = new WeakReference<>(xSharedPreferences);
+            return xSharedPreferences;
+        }
+        xSharedPreferences.reload();
+        return xSharedPreferences;
     }
+
+
 
     public static void findAndHookMethod(String p1, ClassLoader lpparam, String p2, Object... parameterTypesAndCallback) {
         try {
@@ -34,7 +46,7 @@ public class XposedHelper {
         }
     }
 
-    public static Set<XC_MethodHook.Unhook> hookAllConstructors(Class<?> hookClass, XC_MethodHook callback) {
+    private static Set<XC_MethodHook.Unhook> hookAllConstructors(Class<?> hookClass, XC_MethodHook callback) {
         try {
             return XposedBridge.hookAllConstructors(hookClass, callback);
         } catch (Exception e) {
