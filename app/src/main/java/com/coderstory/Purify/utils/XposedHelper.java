@@ -17,7 +17,7 @@ public class XposedHelper {
     protected static XSharedPreferences getPrefs() {
         XSharedPreferences xSharedPreferences = prefs.get();
         if (xSharedPreferences == null) {
-            xSharedPreferences = new XSharedPreferences(ApplicationName);
+            xSharedPreferences = new XSharedPreferences(ApplicationName,SharedPreferencesName);
             xSharedPreferences.makeWorldReadable();
             xSharedPreferences.reload();
             prefs = new WeakReference<>(xSharedPreferences);
@@ -26,7 +26,6 @@ public class XposedHelper {
         xSharedPreferences.reload();
         return xSharedPreferences;
     }
-
 
 
     public static void findAndHookMethod(String p1, ClassLoader lpparam, String p2, Object... parameterTypesAndCallback) {

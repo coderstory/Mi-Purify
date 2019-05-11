@@ -96,12 +96,6 @@ public class OthersFragment extends BaseFragment {
             sudoFixPermissions();
         });
 
-        $(R.id.downloadVip).setOnClickListener(v -> {
-            getEditor().putBoolean("downloadVip", ((Switch) v).isChecked());
-            getEditor().apply();
-            sudoFixPermissions();
-        });
-
         $(R.id.lowBatteryWarning).setOnClickListener(v -> {
             getEditor().putBoolean("lowBatteryWarning", ((Switch) v).isChecked());
             getEditor().apply();
@@ -163,8 +157,7 @@ public class OthersFragment extends BaseFragment {
         ((Switch) $(R.id.noBatteryWarning)).setChecked(getPrefs().getBoolean("noBatteryWarning", false));
         ((Switch) $(R.id.alarmClockIcon)).setChecked(getPrefs().getBoolean("alarmClockIcon", false));
         ((Switch) $(R.id.lowBatteryWarning)).setChecked(getPrefs().getBoolean("lowBatteryWarning", false));
-        ((Switch) $(R.id.downloadVip)).setChecked(getPrefs().getBoolean("downloadVip", false));
-        ((Switch) $(R.id.enableMMS)).setChecked(getPrefs().getBoolean("enableMMS", false));
+         ((Switch) $(R.id.enableMMS)).setChecked(getPrefs().getBoolean("enableMMS", false));
         ((Switch) $(R.id.enableDownload)).setChecked(getPrefs().getBoolean("enableDownload", false));
         ((Switch) $(R.id.hideNetworkSpeed)).setChecked(getPrefs().getBoolean("hideNetworkSpeed", false));
     }

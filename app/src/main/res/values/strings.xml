@@ -41,7 +41,6 @@
     <string name="noBatteryWarning"><b>电量不足警告</b>\n隐藏电量低于20%后的警告</string>
     <string name="alarmClockIcon"><b>隐藏闹钟图标</b>\n隐开启闹钟后，状态栏不显示闹钟图标</string>
     <string name="lowBatteryWarning"><b>低电量警告</b>\n禁止弹出低电量警告</string>
-    <string name="downloadVip"><b>下載管理开启VIP</b>\n开启迅雷VIP加速下载</string>
     <string name="Tips_Title">温馨提示</string>
     <string name="Btn_Sure">确定</string>
     <string name="Btn_Cancel">取消</string>

@@ -129,16 +129,6 @@
                 android:text="@string/prevent_freeze_reverse" />
 
             <Switch
-                android:id="@+id/downloadVip"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_marginTop="10dp"
-                android:background="@color/switchBtn"
-                android:paddingEnd="30dp"
-                android:paddingStart="30dp"
-                android:text="@string/downloadVip" />
-
-            <Switch
                 android:id="@+id/lowBatteryWarning"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
