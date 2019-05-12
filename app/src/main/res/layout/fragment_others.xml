@@ -19,11 +19,11 @@
 
             <TextView
                 android:layout_width="match_parent"
-                android:layout_height="40dp"
+                android:layout_height="60dp"
 
                 android:paddingEnd="30dp"
                 android:paddingStart="30dp"
-                android:paddingTop="20dp"
+                android:paddingTop="40dp"
                 android:text="@string/MIUI_Purify" />
 
             <Switch
@@ -61,11 +61,10 @@
 
             <TextView
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
+                android:layout_height="60dp"
                 android:paddingEnd="30dp"
                 android:paddingStart="30dp"
-                android:paddingTop="30dp"
-                android:visibility="gone"
+                android:paddingTop="40dp"
                 android:text="@string/corepatch" />
 
             <Switch
@@ -100,11 +99,11 @@
 
             <TextView
                 android:layout_width="match_parent"
-                android:layout_height="40dp"
+                android:layout_height="100dp"
 
-                android:paddingEnd="30dp"
+                android:paddingEnd="40dp"
                 android:paddingStart="30dp"
-                android:paddingTop="0dp"
+                android:paddingTop="10dp"
                 android:text="@string/xposedmodule" />
 
             <Switch

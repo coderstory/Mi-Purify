@@ -17,7 +17,7 @@ public class MiuiHome extends XposedHelper implements IModule {
 
     @Override
     public void handleLoadPackage(XC_LoadPackage.LoadPackageParam lpparam) {
-        if (lpparam.packageName.equals("com.miui.home") && getPrefs().getBoolean("hide_icon_label", false)) {
+        if (lpparam.packageName.equals("com.miui.home") && getPrefs().getBoolean("hide_icon_label", true)) {
             findAndHookMethod("com.miui.home.launcher.ShortcutIcon", lpparam.classLoader, "onFinishInflate", new XC_MethodHook() {
                 protected void afterHookedMethod(MethodHookParam arg10) throws Throwable {
                     View view = (View) arg10.thisObject;

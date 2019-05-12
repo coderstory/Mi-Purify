@@ -6,7 +6,7 @@ android {
         applicationId "com.coderstory.purify"
         minSdkVersion 24
         versionCode 106999
-        versionName "2.1.7"
+        versionName "2.1.8 测试"
         resConfigs "cn"
     }
     repositories {
