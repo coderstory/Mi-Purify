@@ -31,7 +31,7 @@ public class CorePatch extends XposedHelper implements IModule {
             @Override
             protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
                 super.beforeHookedMethod(param);
-                if (getPrefs().getBoolean("allow_no_sig", true)) {
+                if (getPrefs().getBoolean("signatureCheck", true)) {
                     param.setResult(Boolean.TRUE);
                 }
             }
@@ -41,7 +41,7 @@ public class CorePatch extends XposedHelper implements IModule {
             @Override
             protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
                 super.beforeHookedMethod(param);
-                if (getPrefs().getBoolean("allow_no_sig", true)) {
+                if (getPrefs().getBoolean("signatureCheck", true)) {
                     param.setResult(Boolean.TRUE);
                 }
             }
@@ -53,7 +53,7 @@ public class CorePatch extends XposedHelper implements IModule {
             @Override
             protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
                 super.beforeHookedMethod(param);
-                if (getPrefs().getBoolean("allow_no_sig", true)) {
+                if (getPrefs().getBoolean("signatureCheck", true)) {
                     param.args[3] = Boolean.FALSE;
                 }
             }
@@ -61,7 +61,7 @@ public class CorePatch extends XposedHelper implements IModule {
         hookAllConstructors("android.util.apk.ApkSignatureSchemeV2Verifier", new XC_MethodHook() {
 
             public void afterHookedMethod(MethodHookParam methodHookParam) throws NoSuchFieldException, IllegalAccessException {
-                if (getPrefs().getBoolean("allow_no_sig", true)) {
+                if (getPrefs().getBoolean("signatureCheck", true)) {
                     Field field = packageClazz.getField("SF_ATTRIBUTE_ANDROID_APK_SIGNED_ID");
                     field.setAccessible(true);
                     field.set(methodHookParam.thisObject, -1);
@@ -90,7 +90,7 @@ public class CorePatch extends XposedHelper implements IModule {
                         super.beforeHookedMethod(methodHookParam);
                         Object packageInfoLite = methodHookParam.args[0];
 
-                        if (getPrefs().getBoolean("allow_downgrade", true)) {
+                        if (getPrefs().getBoolean("downgrade", true)) {
                             Field field = packageClazz.getField("mVersionCode");
                             field.setAccessible(true);
                             field.set(packageInfoLite, 0);
@@ -104,7 +104,7 @@ public class CorePatch extends XposedHelper implements IModule {
                 @Override
                 protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
                     super.beforeHookedMethod(param);
-                    if (getPrefs().getBoolean("disable_verify", true)) {
+                    if (getPrefs().getBoolean("comparisonSignature", true)) {
                         param.setResult(Boolean.TRUE);
                     }
                 }
@@ -113,7 +113,7 @@ public class CorePatch extends XposedHelper implements IModule {
                 @Override
                 protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
                     super.beforeHookedMethod(param);
-                    if (getPrefs().getBoolean("disable_verify", true)) {
+                    if (getPrefs().getBoolean("comparisonSignature", true)) {
                         param.setResult(Boolean.TRUE);
                     }
                 }
@@ -122,7 +122,7 @@ public class CorePatch extends XposedHelper implements IModule {
                 @Override
                 protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
                     super.beforeHookedMethod(param);
-                    if (getPrefs().getBoolean("allow_no_sig", true)) {
+                    if (getPrefs().getBoolean("signatureCheck", true)) {
                         param.setResult(Boolean.FALSE);
                     }
                 }
@@ -135,7 +135,7 @@ public class CorePatch extends XposedHelper implements IModule {
                     public void afterHookedMethod(MethodHookParam methodHookParam) throws Throwable {
                         super.afterHookedMethod(methodHookParam);
 
-                        if (getPrefs().getBoolean("allow_no_sig", true)) {
+                        if (getPrefs().getBoolean("signatureCheck", true)) {
                             Throwable throwable = methodHookParam.getThrowable();
                             if (throwable != null) {
                                 Throwable cause = throwable.getCause();
@@ -167,7 +167,7 @@ public class CorePatch extends XposedHelper implements IModule {
                 @Override
                 protected void beforeHookedMethod(MethodHookParam methodHookParam) throws Throwable {
                     super.beforeHookedMethod(methodHookParam);
-                    if (getPrefs().getBoolean("disable_verify", false) && CorePatch.this.signatures != null) {
+                    if (getPrefs().getBoolean("comparisonSignature", false) && CorePatch.this.signatures != null) {
                         Signature[] signatureArr = (Signature[]) methodHookParam.args[0];
                         if (signatureArr != null && signatureArr.length > 0) {
                             for (Signature signature : signatures) {

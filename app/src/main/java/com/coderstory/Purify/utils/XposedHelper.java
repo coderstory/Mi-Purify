@@ -73,6 +73,14 @@ public class XposedHelper {
 
     }
 
+    public void hookAllMethods(Class packageManagerServiceUtils, String verifySignatures, XC_MethodHook methodHook) {
+        try {
+            XposedBridge.hookAllMethods(packageManagerServiceUtils, verifySignatures, methodHook);
+        } catch (Exception e) {
+            XposedBridge.log(e);
+        }
+    }
+
     protected static Object getDrmResultSUCCESS() {
         Class<Enum> drmSuccess = (Class<Enum>) XposedHelpers.findClass("miui.drm.DrmManager.DrmResult", null);
         return Enum.valueOf(drmSuccess, "DRM_SUCCESS");
