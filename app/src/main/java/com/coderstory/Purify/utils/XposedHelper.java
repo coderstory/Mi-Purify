@@ -13,18 +13,10 @@ import static com.coderstory.purify.config.Misc.SharedPreferencesName;
 
 public class XposedHelper {
 
-    private static WeakReference<XSharedPreferences> prefs = new WeakReference<>(null);
-    protected static XSharedPreferences getPrefs() {
-        XSharedPreferences xSharedPreferences = prefs.get();
-        if (xSharedPreferences == null) {
-            xSharedPreferences = new XSharedPreferences(ApplicationName,SharedPreferencesName);
-            xSharedPreferences.makeWorldReadable();
-            xSharedPreferences.reload();
-            prefs = new WeakReference<>(xSharedPreferences);
-            return xSharedPreferences;
-        }
-        xSharedPreferences.reload();
-        return xSharedPreferences;
+    protected XSharedPreferences prefs = new XSharedPreferences(ApplicationName, SharedPreferencesName);
+    {
+        prefs.makeWorldReadable();
+        prefs.reload();
     }
 
 

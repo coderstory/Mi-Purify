@@ -19,7 +19,7 @@ public class HideApp extends XposedHelper implements IModule {
 
     @Override
     public void handleLoadPackage(XC_LoadPackage.LoadPackageParam loadPackageParam) {
-        final String value = getPrefs().getString("Hide_App_List", "");
+        final String value = prefs.getString("Hide_App_List", "");
         if (!value.equals("")) {
             final List<String> hideAppList = Arrays.asList(value.split(":"));
             if (loadPackageParam.packageName.equals("com.miui.home")) {

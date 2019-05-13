@@ -36,7 +36,7 @@
     <string name="signatureCheck"><b>禁用软件包管理器签名验证 - 实时生效</b>\n关闭安装应用时的签名验证,可以安装被篡改的应用</string>
     <string name="comparisonSignature"><b>禁用APK签名验证 - 实时生效</b>\n允许直接覆盖安装同包名不同签名的应用</string>
     <string name="prevent_freeze_reverse"><b>阻止自动恢复被禁用的APP</b>\n部分被冻结的系统app在系统后会自动解冻，开启后将不会自动恢复</string>
-    <string name="hideNetworkSpeed"><b>自动隐藏状态栏网速</b>\n网速低于100k/s自动隐藏状态栏网速</string>
+    <string name="hideNetworkSpeed"><b>自动隐藏状态栏网速</b>\n网速低于10k/s自动隐藏状态栏网速</string>
     <string name="default_store"><b>解锁默认应用商店</b>\n不再强制锁定miui商店为默认商店</string>
     <string name="noBatteryWarning"><b>电量不足警告</b>\n隐藏电量低于20%后的警告</string>
     <string name="alarmClockIcon"><b>隐藏闹钟图标</b>\n隐开启闹钟后，状态栏不显示闹钟图标</string>

@@ -44,7 +44,7 @@ public class RemoveAds extends XposedHelper implements IModule {
 
         //下载管理
         if (loadPackageParam.packageName.equals("com.android.providers.downloads.ui")) {
-            if (getPrefs().getBoolean("enableDownload", false)) {
+            if (prefs.getBoolean("enableDownload", false)) {
                 findAndHookMethod("com.android.providers.downloads.ui.utils.CloudConfigHelper", loadPackageParam.classLoader, "getAdButtonType", XC_MethodReplacement.returnConstant(0));
                 findAndHookMethod("com.android.providers.downloads.ui.utils.CloudConfigHelper", loadPackageParam.classLoader, "isShouldShowAppSubject", XC_MethodReplacement.returnConstant(false));
                 findAndHookMethod("com.android.providers.downloads.ui.utils.CloudConfigHelper", loadPackageParam.classLoader, "isShouldShowExtraAd", XC_MethodReplacement.returnConstant(false));
@@ -56,7 +56,7 @@ public class RemoveAds extends XposedHelper implements IModule {
 
         // 短信
         if (loadPackageParam.packageName.equals("com.android.mms")) {
-            if (getPrefs().getBoolean("enableMMS", false)) {
+            if (prefs.getBoolean("enableMMS", false)) {
                 findAndHookMethod("com.android.mms.util.SmartMessageUtils", loadPackageParam.classLoader, "isMessagingTemplateAllowed", Context.class, XC_MethodReplacement.returnConstant(true));
                 findAndHookMethod("com.android.mms.ui.SingleRecipientConversationActivity", loadPackageParam.classLoader, "showMenuMode", boolean.class, XC_MethodReplacement.returnConstant(null));
             }
