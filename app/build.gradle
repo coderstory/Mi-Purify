@@ -5,8 +5,8 @@ android {
     defaultConfig {
         applicationId "com.coderstory.purify"
         minSdkVersion 24
-        versionCode 106999
-        versionName "2.1.8 测试"
+        versionCode 107000
+        versionName "2.1.8 正式版"
         resConfigs "cn"
     }
     repositories {
@@ -37,12 +37,12 @@ android {
 
 dependencies {
     compileOnly fileTree(include: ['*.jar'], dir: 'libs')
-    compile 'androidx.legacy:legacy-support-v4:1.0.0'
-    compile 'androidx.appcompat:appcompat:1.0.2'
-    compile 'com.google.android.material:material:1.0.0'
-    compile 'androidx.cardview:cardview:1.0.0'
-    compile 'de.hdodenhof:circleimageview:2.2.0'
-    compile 'com.github.didikee:AndroidDonate:0.1.0'
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    implementation 'androidx.appcompat:appcompat:1.0.2'
+    implementation 'com.google.android.material:material:1.0.0'
+    implementation 'androidx.cardview:cardview:1.0.0'
+    implementation 'de.hdodenhof:circleimageview:2.2.0'
+    implementation 'com.github.didikee:AndroidDonate:0.1.0'
     compileOnly 'de.robv.android.xposed:api:82'
     compileOnly 'de.robv.android.xposed:api:82:sources'
 }

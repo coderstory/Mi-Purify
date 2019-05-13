@@ -15,7 +15,9 @@
 -optimizations !code/simplification/arithmetic,!code/simplication/cast,!field/*,!class/mergin/*
 #避免混淆Annotation、内部类、泛型、匿名类
 -keepattributes *Annotation*,InnerClasses,Signature,EnclosingMethod
-
+-obfuscationdictionary dictionary.txt
+-classobfuscationdictionary dictionary.txt
+-packageobfuscationdictionary  dictionary.txt
 #保护注解
 -keepattributes Annotation
 #保持哪些类不被混淆
