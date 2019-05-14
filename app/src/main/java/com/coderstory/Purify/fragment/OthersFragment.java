@@ -144,7 +144,7 @@ public class OthersFragment extends BaseFragment {
         ((Switch) $(R.id.hideNetworkSpeed)).setChecked(getPrefs().getBoolean("hideNetworkSpeed", true));
 
         if (!BuildConfig.DEBUG) {
-            AdView mAdView = $(R.id.adView);
+            AdView mAdView = $(R.id.adView_other);
             AdRequest adRequest = new AdRequest.Builder().build();
             mAdView.loadAd(adRequest);
         }
