@@ -10,6 +10,7 @@ import com.coderstory.purify.utils.XposedHelper;
 import de.robv.android.xposed.IXposedHookZygoteInit;
 import de.robv.android.xposed.XC_MethodHook;
 import de.robv.android.xposed.XC_MethodReplacement;
+import de.robv.android.xposed.XposedBridge;
 import de.robv.android.xposed.callbacks.XC_LoadPackage;
 
 
@@ -75,6 +76,21 @@ public class RemoveAds extends XposedHelper implements IModule {
                 protected void afterHookedMethod(MethodHookParam param) throws Throwable {
                     super.afterHookedMethod(param);
                     ((LinearLayout) param.thisObject).setVisibility(View.GONE);
+                }
+            });
+        }
+
+        // 安全中心
+        if (loadPackageParam.packageName.equals("com.miui.securitycenter")) {
+            XposedBridge.log("w哦进来了");
+            hookAllMethods("com.miui.securityscan.utils.e", loadPackageParam.classLoader, "aE", new XC_MethodHook() {
+                protected void afterHookedMethod(MethodHookParam param) throws Throwable {
+                    super.afterHookedMethod(param);
+                    XposedBridge.log("分发内");
+                    XposedBridge.log("参数" + param.args[1]);
+                    // if ("securityscan_homelist_cache".equals(param.args[1].toString())) {
+                    param.setResult("");
+                    // }
                 }
             });
         }
