@@ -8,10 +8,13 @@ import android.os.AsyncTask;
 import android.os.Looper;
 import android.widget.Switch;
 
+import com.coderstory.purify.BuildConfig;
 import com.coderstory.purify.R;
 import com.coderstory.purify.fragment.base.BaseFragment;
 import com.coderstory.purify.utils.RuntimeUtil;
 import com.coderstory.purify.utils.hostshelper.FileHelper;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
 
 import java.io.BufferedWriter;
 import java.io.FileNotFoundException;
@@ -75,6 +78,12 @@ public class HostsFragment extends BaseFragment {
             sudoFixPermissions();
             new MyTask().execute();
         });
+
+        if (!BuildConfig.DEBUG) {
+            AdView mAdView = $(R.id.adView_hosts);
+            AdRequest adRequest = new AdRequest.Builder().build();
+            mAdView.loadAd(adRequest);
+        }
     }
 
     @Override

@@ -12,11 +12,12 @@ import android.view.Window;
 import android.view.WindowInsets;
 import android.widget.TextView;
 
-import com.coderstory.purify.BuildConfig;
-import com.coderstory.purify.R;
-
 import androidx.core.content.ContextCompat;
 import androidx.core.view.ViewCompat;
+
+import com.coderstory.purify.BuildConfig;
+import com.coderstory.purify.R;
+import com.google.android.gms.ads.MobileAds;
 
 
 public class SplashActivity extends Activity {
@@ -49,7 +50,9 @@ public class SplashActivity extends Activity {
             //将状态栏设成透明，如不想透明可设置其他颜色
             window.setStatusBarColor(ContextCompat.getColor(this, android.R.color.transparent));
         }
-
+        if (!BuildConfig.DEBUG) {
+            MobileAds.initialize(this, "ca-app-pub-2121887088795026~5012666149");
+        }
         new Handler().postDelayed(() -> {
             finish();
             startActivity(new Intent(SplashActivity.this, MainActivity.class));

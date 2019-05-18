@@ -20,6 +20,7 @@
         <item
             android:id="@+id/navigation_item_Clean"
             android:icon="@drawable/clean"
+            android:visible="false"
             android:title="@string/appclean" />
 
         <item

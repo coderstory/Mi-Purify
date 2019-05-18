@@ -1,15 +1,14 @@
 package com.coderstory.purify.fragment;
 
 
-import android.content.pm.PackageInfo;
-import android.content.pm.PackageManager;
-import android.util.Base64;
 import android.widget.Switch;
 
+import com.coderstory.purify.BuildConfig;
 import com.coderstory.purify.R;
 import com.coderstory.purify.fragment.base.BaseFragment;
 import com.coderstory.purify.utils.RuntimeUtil;
-
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
 
 
 public class OthersFragment extends BaseFragment {
@@ -143,5 +142,11 @@ public class OthersFragment extends BaseFragment {
          ((Switch) $(R.id.enableMMS)).setChecked(getPrefs().getBoolean("enableMMS", false));
         ((Switch) $(R.id.enableDownload)).setChecked(getPrefs().getBoolean("enableDownload", false));
         ((Switch) $(R.id.hideNetworkSpeed)).setChecked(getPrefs().getBoolean("hideNetworkSpeed", true));
+
+        if (!BuildConfig.DEBUG) {
+            AdView mAdView = $(R.id.adView_other);
+            AdRequest adRequest = new AdRequest.Builder().build();
+            mAdView.loadAd(adRequest);
+        }
     }
 }
