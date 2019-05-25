@@ -8,6 +8,10 @@ android {
         versionCode 107000
         versionName "2.1.8 正式版"
         resConfigs "cn"
+        targetSdkVersion 28
+        proguardFiles 'proguard-rules.pro'
+        testFunctionalTest = false
+        testHandleProfiling = false
     }
     repositories {
     }
@@ -33,6 +37,7 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+    buildToolsVersion = '28.0.3'
 }
 
 dependencies {
@@ -41,9 +46,9 @@ dependencies {
     implementation 'androidx.appcompat:appcompat:1.0.2'
     implementation 'com.google.android.material:material:1.0.0'
     implementation 'androidx.cardview:cardview:1.0.0'
-    implementation 'de.hdodenhof:circleimageview:2.2.0'
+    implementation 'de.hdodenhof:circleimageview:3.0.0'
     implementation 'com.github.didikee:AndroidDonate:0.1.0'
-    implementation 'com.google.android.gms:play-services-ads:17.2.0'
+    implementation 'com.google.android.gms:play-services-ads:17.2.1'
     compileOnly 'de.robv.android.xposed:api:82'
     compileOnly 'de.robv.android.xposed:api:82:sources'
 }
