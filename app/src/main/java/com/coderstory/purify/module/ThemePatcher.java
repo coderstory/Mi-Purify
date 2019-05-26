@@ -9,13 +9,12 @@ import java.io.File;
 
 import de.robv.android.xposed.IXposedHookZygoteInit;
 import de.robv.android.xposed.XC_MethodReplacement;
-import de.robv.android.xposed.XposedHelpers;
+import de.robv.android.xposed.XposedBridge;
 import de.robv.android.xposed.callbacks.XC_LoadPackage;
 
 import static com.coderstory.purify.config.Misc.isEnable;
 
 public class ThemePatcher extends XposedHelper implements IModule {
-
     @Override
     public void handleLoadPackage(XC_LoadPackage.LoadPackageParam lpparam) {
 
@@ -46,10 +45,19 @@ public class ThemePatcher extends XposedHelper implements IModule {
             // 1.5.9.0
             findAndHookMethod("com.android.thememanager.util.ch", lpparam.classLoader, "w", XC_MethodReplacement.returnConstant(true));
 
-            findAndHookMethod("com.android.thememanager.b.b.c", lpparam.classLoader, "a", XposedHelpers.findClass("com.android.thememanager.f.q", lpparam.classLoader), XC_MethodReplacement.returnConstant(getDrmResultSUCCESS()));
-            //1.5.9.0
-            findAndHookMethod("com.android.thememanager.b.b.d", lpparam.classLoader, "a", XposedHelpers.findClass("com.android.thememanager.f.q", lpparam.classLoader), XC_MethodReplacement.returnConstant(getDrmResultSUCCESS()));
-
+            XposedBridge.log("1111");
+            // stringBuilder.append("   check rights file: ");
+            // if (new File(uVar.b()).getAbsolutePath().startsWith("/system")) {
+            if (findClass("com.android.thememanager.f.q", lpparam.classLoader) != null) {
+                XposedBridge.log("222");
+                findAndHookMethod("com.android.thememanager.b.b.c", lpparam.classLoader, "a", findClass("com.android.thememanager.f.q", lpparam.classLoader), XC_MethodReplacement.returnConstant(getDrmResultSUCCESS()));
+            }
+            XposedBridge.log("444");
+            if (findClass("com.android.thememanager.g.q", lpparam.classLoader) != null) {
+                XposedBridge.log("3333");
+                //1.5.9.0
+                findAndHookMethod("com.android.thememanager.b.b.d", lpparam.classLoader, "a", findClass("com.android.thememanager.g.q", lpparam.classLoader), XC_MethodReplacement.returnConstant(getDrmResultSUCCESS()));
+            }
         }
     }
 
