@@ -6,17 +6,6 @@
     android:orientation="vertical"
     skin:enable="true">
 
-    <com.google.android.gms.ads.AdView
-        xmlns:ads="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/adView_other"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_alignParentBottom="true"
-        ads:adSize="FULL_BANNER"
-        ads:adUnitId="ca-app-pub-2121887088795026/2753680028">
-    </com.google.android.gms.ads.AdView>
-
     <ScrollView
         android:id="@+id/scrollView2"
         android:layout_width="match_parent"
@@ -58,6 +47,17 @@
                 android:paddingEnd="30dp"
                 android:paddingStart="30dp"
                 android:text="@string/mms" />
+
+            <Switch
+                android:id="@+id/enabletheme"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_marginTop="10dp"
+                android:background="@color/switchBtn"
+                android:paddingEnd="30dp"
+                android:paddingStart="30dp"
+                android:text="@string/enablethemenoad" />
+
 
             <Switch
                 android:id="@+id/enableDownload"

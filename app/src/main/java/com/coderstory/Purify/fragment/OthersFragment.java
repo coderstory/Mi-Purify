@@ -7,8 +7,6 @@ import com.coderstory.purify.BuildConfig;
 import com.coderstory.purify.R;
 import com.coderstory.purify.fragment.base.BaseFragment;
 import com.coderstory.purify.utils.RuntimeUtil;
-import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.AdView;
 
 
 public class OthersFragment extends BaseFragment {
@@ -118,6 +116,12 @@ public class OthersFragment extends BaseFragment {
             getEditor().apply();
             sudoFixPermissions();
         });
+
+        $(R.id.enabletheme).setOnClickListener(v -> {
+            getEditor().putBoolean("EnableTheme", ((Switch) v).isChecked());
+            getEditor().apply();
+            sudoFixPermissions();
+        });
     }
 
     @Override
@@ -133,20 +137,15 @@ public class OthersFragment extends BaseFragment {
         ((Switch) $(R.id.downgrade)).setChecked(getPrefs().getBoolean("downgrade", true));
         ((Switch) $(R.id.prevent_freeze_reverse)).setChecked(getPrefs().getBoolean("prevent_freeze_reverse", true));
         ((Switch) $(R.id.enableBlockAD)).setChecked(getPrefs().getBoolean("EnableBlockAD", false));
-        ((Switch) $(R.id.enableMMS)).setChecked(getPrefs().getBoolean("EnableMMS", false));
-        ((Switch) $(R.id.enableDownload)).setChecked(getPrefs().getBoolean("EnableDownload", false));
+        ((Switch) $(R.id.enableMMS)).setChecked(getPrefs().getBoolean("EnableMMS", true));
+        ((Switch) $(R.id.enableDownload)).setChecked(getPrefs().getBoolean("EnableDownload", true));
         ((Switch) $(R.id.default_store)).setChecked(getPrefs().getBoolean("default_store", true));
         ((Switch) $(R.id.noBatteryWarning)).setChecked(getPrefs().getBoolean("noBatteryWarning", true));
         ((Switch) $(R.id.alarmClockIcon)).setChecked(getPrefs().getBoolean("alarmClockIcon", true));
         ((Switch) $(R.id.lowBatteryWarning)).setChecked(getPrefs().getBoolean("lowBatteryWarning", true));
-         ((Switch) $(R.id.enableMMS)).setChecked(getPrefs().getBoolean("enableMMS", false));
-        ((Switch) $(R.id.enableDownload)).setChecked(getPrefs().getBoolean("enableDownload", false));
+         ((Switch) $(R.id.enableMMS)).setChecked(getPrefs().getBoolean("enableMMS", true));
+        ((Switch) $(R.id.enableDownload)).setChecked(getPrefs().getBoolean("enableDownload", true));
         ((Switch) $(R.id.hideNetworkSpeed)).setChecked(getPrefs().getBoolean("hideNetworkSpeed", true));
-
-        if (!BuildConfig.DEBUG) {
-            AdView mAdView = $(R.id.adView_other);
-            AdRequest adRequest = new AdRequest.Builder().build();
-            mAdView.loadAd(adRequest);
-        }
+        ((Switch) $(R.id.enabletheme)).setChecked(getPrefs().getBoolean("EnableTheme", false));
     }
 }

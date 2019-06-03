@@ -56,9 +56,5 @@
         <meta-data
             android:name="xposedminversion"
             android:value="54" />
-        <!-- Sample AdMob App ID: ca-app-pub-3940256099942544~3347511713 -->
-        <meta-data
-            android:name="com.google.android.gms.ads.APPLICATION_ID"
-            android:value="ca-app-pub-2121887088795026~5012666149"/>
     </application>
 </manifest>
