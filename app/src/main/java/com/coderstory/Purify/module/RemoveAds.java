@@ -26,15 +26,26 @@ public class RemoveAds extends XposedHelper implements IModule {
         if (loadPackageParam.packageName.equals("com.miui.core")) {
             findAndHookMethod("miui.os.SystemProperties", loadPackageParam.classLoader, "get", String.class, String.class, new XC_MethodHook() {
 
+                // # System property for AD
+                //ro.vendor.display.ad=1
+                //ro.vendor.display.ad.sdr_calib_data=/vendor/etc/sdr_config.cfg
+                //ro.vendor.display.ad.hdr_calib_data=/vendor/etc/hdr_config.cfg
+                //ro.vendor.display.sensortype=2
                 protected void afterHookedMethod(MethodHookParam paramAnonymousMethodHookParam) {
                     if (paramAnonymousMethodHookParam.args[0].toString().equals("ro.product.mod_device")) {
-                        paramAnonymousMethodHookParam.setResult("gemini_global");
+                        paramAnonymousMethodHookParam.setResult("cepheus_global");
+                    }
+                    if (paramAnonymousMethodHookParam.args[0].toString().equals("ro.vendor.display.ad")) {
+                        paramAnonymousMethodHookParam.setResult("0");
                     }
                 }
 
                 protected void beforeHookedMethod(MethodHookParam paramAnonymousMethodHookParam) {
                     if (paramAnonymousMethodHookParam.args[0].toString().equals("ro.product.mod_device")) {
-                        paramAnonymousMethodHookParam.setResult("gemini_global");
+                        paramAnonymousMethodHookParam.setResult("cepheus_global");
+                    }
+                    if (paramAnonymousMethodHookParam.args[0].toString().equals("ro.vendor.display.ad")) {
+                        paramAnonymousMethodHookParam.setResult("0");
                     }
                 }
             });
