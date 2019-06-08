@@ -35,7 +35,7 @@ public class XposedHelper {
 
     public static void hookAllConstructors(String p1, XC_MethodHook parameterTypesAndCallback) {
         try {
-            Class packageParser = XposedHelpers.findClass(p1, null);
+            Class packageParser = findClass(p1, null);
             hookAllConstructors(packageParser, parameterTypesAndCallback);
         } catch (Exception e) {
             if (BuildConfig.DEBUG)
@@ -65,7 +65,7 @@ public class XposedHelper {
 
     public static void hookAllMethods(String p1, ClassLoader lpparam, String methodName, XC_MethodHook parameterTypesAndCallback) {
         try {
-            Class packageParser = XposedHelpers.findClass(p1, lpparam);
+            Class packageParser = findClass(p1, lpparam);
             XposedBridge.hookAllMethods(packageParser, methodName, parameterTypesAndCallback);
         } catch (Exception e) {
             if (BuildConfig.DEBUG)

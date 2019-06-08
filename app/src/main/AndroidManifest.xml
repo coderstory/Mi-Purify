@@ -52,7 +52,7 @@
             android:value="true" />
         <meta-data
             android:name="xposeddescription"
-            android:value="小米净化 by coderstory" />
+            android:value="Power by CoderStory" />
         <meta-data
             android:name="xposedminversion"
             android:value="54" />
