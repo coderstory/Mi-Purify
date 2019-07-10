@@ -39,21 +39,31 @@ public class ThemePatcher extends XposedHelper implements IModule {
             findAndHookMethod("com.android.thememanager.f.q", lpparam.classLoader, "isAuthorizedResource", XC_MethodReplacement.returnConstant(true));
             //1.5.9.0
             findAndHookMethod("com.android.thememanager.g.q", lpparam.classLoader, "isAuthorizedResource", XC_MethodReplacement.returnConstant(true));
+            //1.6.2.0
+            findAndHookMethod("com.android.thememanager.i.q", lpparam.classLoader, "isAuthorizedResource", XC_MethodReplacement.returnConstant(true));
+            findAndHookMethod("com.android.thememanager.i.t", lpparam.classLoader, "isProductBought", XC_MethodReplacement.returnConstant(true));
 
             // return this.eV.getTrialTime() > 0;
             findAndHookMethod("com.android.thememanager.util.ce", lpparam.classLoader, "u", XC_MethodReplacement.returnConstant(true));
+            //1.6.20
+            findAndHookMethod("com.android.thememanager.util.cg", lpparam.classLoader, "w", XC_MethodReplacement.returnConstant(true));
             // 1.5.9.0
             findAndHookMethod("com.android.thememanager.util.ch", lpparam.classLoader, "w", XC_MethodReplacement.returnConstant(true));
 
             // stringBuilder.append("   check rights file: ");
             // if (new File(uVar.b()).getAbsolutePath().startsWith("/system")) {
-            if (findClass("com.android.thememanager.f.q", lpparam.classLoader) != null) {
+            if (findClassWithOutLog("com.android.thememanager.f.q", lpparam.classLoader) != null) {
                 findAndHookMethod("com.android.thememanager.b.b.c", lpparam.classLoader, "a", findClass("com.android.thememanager.f.q", lpparam.classLoader), XC_MethodReplacement.returnConstant(getDrmResultSUCCESS()));
             }
-            if (findClass("com.android.thememanager.g.q", lpparam.classLoader) != null) {
+            if (findClassWithOutLog("com.android.thememanager.g.q", lpparam.classLoader) != null) {
                 //1.5.9.0
                 findAndHookMethod("com.android.thememanager.b.b.d", lpparam.classLoader, "a", findClass("com.android.thememanager.g.q", lpparam.classLoader), XC_MethodReplacement.returnConstant(getDrmResultSUCCESS()));
             }
+            if (findClass("com.android.thememanager.d.b.d", lpparam.classLoader) != null) {
+                //1.6.2.0
+                findAndHookMethod("com.android.thememanager.b.b.d", lpparam.classLoader, "a", findClass("com.android.thememanager.i.q", lpparam.classLoader), XC_MethodReplacement.returnConstant(getDrmResultSUCCESS()));
+            }
+
         }
     }
 

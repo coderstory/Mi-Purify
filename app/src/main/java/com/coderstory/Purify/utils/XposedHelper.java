@@ -100,5 +100,14 @@ public class XposedHelper {
         return null;
     }
 
+    public static Class<?> findClassWithOutLog(String className, ClassLoader classLoader) {
+        try {
+            return Class.forName(className,false,classLoader);
+        } catch (Exception e) {
+            // 忽略
+        }
+        return null;
+    }
+
 
 }

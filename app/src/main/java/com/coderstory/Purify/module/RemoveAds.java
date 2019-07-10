@@ -76,13 +76,11 @@ public class RemoveAds extends XposedHelper implements IModule {
         //个性主题
         if (loadPackageParam.packageName.equals("com.android.thememanager") && prefs.getBoolean("EnableTheme", true)) {
             findAndHookMethod("com.xiaomi.mistatistic.ad.d", loadPackageParam.classLoader, "b", String.class, XC_MethodReplacement.returnConstant(null));
+            if (findClassWithOutLog("com.android.thememanager.ad.model.AdInfoResponse", loadPackageParam.classLoader) != null) {
+                hookAllMethods("com.android.thememanager.ad.model.AdInfoResponse", loadPackageParam.classLoader, "isAdValid", XC_MethodReplacement.returnConstant(false));
+                hookAllMethods("com.android.thememanager.ad.model.AdInfoResponse", loadPackageParam.classLoader, "checkAndGetAdInfo", XC_MethodReplacement.returnConstant(null));
+            }
         }
-
-        if (findClass("com.android.thememanager.ad.model.AdInfoResponse", loadPackageParam.classLoader) != null) {
-            hookAllMethods("com.android.thememanager.ad.model.AdInfoResponse", loadPackageParam.classLoader, "isAdValid", XC_MethodReplacement.returnConstant(false));
-            hookAllMethods("com.android.thememanager.ad.model.AdInfoResponse", loadPackageParam.classLoader, "checkAndGetAdInfo", XC_MethodReplacement.returnConstant(null));
-        }
-
     }
 }
 
