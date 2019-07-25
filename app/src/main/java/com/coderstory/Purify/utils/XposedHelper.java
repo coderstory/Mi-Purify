@@ -21,6 +21,15 @@ public class XposedHelper {
         prefs.reload();
     }
 
+    protected static void findAndHookMethod(String p1, String p2, Object[] p3) throws ClassNotFoundException {
+        try {
+            XposedHelpers.findAndHookMethod(Class.forName(p1), p2, p3);
+        } catch (Exception e) {
+            if (BuildConfig.DEBUG)
+                XposedBridge.log(e);
+        }
+    }
+
 
     public static void findAndHookMethod(String p1, ClassLoader lpparam, String p2, Object... parameterTypesAndCallback) {
         try {
@@ -52,15 +61,6 @@ public class XposedHelper {
             return null;
         }
 
-    }
-
-    protected static void findAndHookMethod(String p1, String p2, Object[] p3) throws ClassNotFoundException {
-        try {
-            XposedHelpers.findAndHookMethod(Class.forName(p1), p2, p3);
-        } catch (Exception e) {
-            if (BuildConfig.DEBUG)
-                XposedBridge.log(e);
-        }
     }
 
     public static void hookAllMethods(String p1, ClassLoader lpparam, String methodName, XC_MethodHook parameterTypesAndCallback) {
