@@ -44,11 +44,10 @@ public class ThemePatcher extends XposedHelper implements IModule {
             findAndHookMethod("com.android.thememanager.i.t", lpparam.classLoader, "isProductBought", XC_MethodReplacement.returnConstant(true));
 
             // return this.eV.getTrialTime() > 0;
-            findAndHookMethod("com.android.thememanager.util.ce", lpparam.classLoader, "u", XC_MethodReplacement.returnConstant(true));
-            //1.6.20
-            findAndHookMethod("com.android.thememanager.util.cg", lpparam.classLoader, "w", XC_MethodReplacement.returnConstant(true));
             // 1.5.9.0
             findAndHookMethod("com.android.thememanager.util.ch", lpparam.classLoader, "w", XC_MethodReplacement.returnConstant(true));
+            //1.6.20
+            findAndHookMethod("com.android.thememanager.util.cg", lpparam.classLoader, "w", XC_MethodReplacement.returnConstant(true));
 
             // stringBuilder.append("   check rights file: ");
             // if (new File(uVar.b()).getAbsolutePath().startsWith("/system")) {
