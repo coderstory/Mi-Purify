@@ -29,18 +29,11 @@ public class ThemePatcher extends XposedHelper implements IModule {
         }
 
         if (lpparam.packageName.equals("com.android.thememanager")) {
-            // older
-            // findAndHookMethod("com.android.thememanager.f.q", lpparam.classLoader, "isProductBought", XC_MethodReplacement.returnConstant(true));
-            findAndHookMethod("com.android.thememanager.f.t", lpparam.classLoader, "isProductBought", XC_MethodReplacement.returnConstant(true));
             // 1.5.9.0
             findAndHookMethod("com.android.thememanager.g.t", lpparam.classLoader, "isProductBought", XC_MethodReplacement.returnConstant(true));
             findAndHookMethod("com.android.thememanager.g.q", lpparam.classLoader, "isProductBought", XC_MethodReplacement.returnConstant(true));
 
-            // findAndHookMethod("com.android.thememanager.f.q", lpparam.classLoader, "isAuthorizedResource", XC_MethodReplacement.returnConstant(true));
-            //1.5.9.0
-            findAndHookMethod("com.android.thememanager.g.q", lpparam.classLoader, "isAuthorizedResource", XC_MethodReplacement.returnConstant(true));
             //1.6.2.0
-            //  findAndHookMethod("com.android.thememanager.i.q", lpparam.classLoader, "isAuthorizedResource", XC_MethodReplacement.returnConstant(true));
             findAndHookMethod("com.android.thememanager.i.t", lpparam.classLoader, "isProductBought", new XC_MethodReplacement() {
                 @Override
                 protected Object replaceHookedMethod(MethodHookParam param) throws Throwable {
@@ -61,9 +54,6 @@ public class ThemePatcher extends XposedHelper implements IModule {
 
             // stringBuilder.append("   check rights file: ");
             // if (new File(uVar.b()).getAbsolutePath().startsWith("/system")) {
-            if (findClassWithOutLog("com.android.thememanager.f.q", lpparam.classLoader) != null) {
-                findAndHookMethod("com.android.thememanager.b.b.c", lpparam.classLoader, "a", findClass("com.android.thememanager.f.q", lpparam.classLoader), XC_MethodReplacement.returnConstant(getDrmResultSUCCESS()));
-            }
             if (findClassWithOutLog("com.android.thememanager.g.q", lpparam.classLoader) != null) {
                 //1.5.9.0
                 findAndHookMethod("com.android.thememanager.b.b.d", lpparam.classLoader, "a", findClass("com.android.thememanager.g.q", lpparam.classLoader), XC_MethodReplacement.returnConstant(getDrmResultSUCCESS()));
