@@ -5,8 +5,10 @@ import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
+import android.content.pm.ResolveInfo;
 import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Looper;
@@ -26,7 +28,6 @@ import com.coderstory.purify.view.PullToRefreshView;
 
 import java.util.ArrayList;
 import java.util.List;
-
 
 
 public class HideAppFragment extends BaseFragment {
@@ -68,17 +69,33 @@ public class HideAppFragment extends BaseFragment {
                 Intent intent = getContext().getPackageManager().getLaunchIntentForPackage(packageInfo.packageName);
                 // 过来掉没启动器图标的app
                 if (intent != null) {
-                    if (!hideAppList.contains(packageInfo.applicationInfo.packageName)) {
-                        AppInfo appInfo = new AppInfo(packageInfo.applicationInfo.loadLabel(getContext().getPackageManager()).toString(), packageInfo.applicationInfo.loadIcon(getContext().getPackageManager()), packageInfo.packageName, false, String.valueOf(packageInfo.versionName));
+                    if (!hideAppList.contains(packageInfo.applicationInfo.packageName + "&" + getLauncherActivityNameByPackageName(getMContext(), packageInfo.packageName))) {
+                        AppInfo appInfo = new AppInfo(packageInfo.applicationInfo.loadLabel(getContext().getPackageManager()).toString(), packageInfo.applicationInfo.loadIcon(getContext().getPackageManager()), packageInfo.packageName + "&" + getLauncherActivityNameByPackageName(getMContext(), packageInfo.packageName), false, String.valueOf(packageInfo.versionName));
                         appInfoList.add(appInfo);
                     } else {
-                        AppInfo appInfo = new AppInfo(packageInfo.applicationInfo.loadLabel(getContext().getPackageManager()).toString(), packageInfo.applicationInfo.loadIcon(getContext().getPackageManager()), packageInfo.packageName, true, String.valueOf(packageInfo.versionName));
+                        AppInfo appInfo = new AppInfo(packageInfo.applicationInfo.loadLabel(getContext().getPackageManager()).toString(), packageInfo.applicationInfo.loadIcon(getContext().getPackageManager()), packageInfo.packageName + "&" + getLauncherActivityNameByPackageName(getMContext(), packageInfo.packageName), true, String.valueOf(packageInfo.versionName));
                         appInfoList2.add(appInfo);
                     }
                 }
             }
         }
         appInfoList.addAll(appInfoList2);
+    }
+
+    public static String getLauncherActivityNameByPackageName(Context context, String packageName) {
+        String className = null;
+        Intent resolveIntent = new Intent(Intent.ACTION_MAIN, null);//android.intent.action.MAIN
+        resolveIntent.addCategory(Intent.CATEGORY_LAUNCHER);//android.intent.category.LAUNCHER
+        resolveIntent.setPackage(packageName);
+        List<ResolveInfo> resolveinfoList = context.getPackageManager().queryIntentActivities(resolveIntent, 0);
+        if (resolveinfoList.iterator().hasNext()) {
+            ResolveInfo resolveinfo = resolveinfoList.iterator().next();
+            if (resolveinfo != null) {
+                className = resolveinfo.activityInfo.name;
+            }
+            return className;
+        }
+        return "";
     }
 
     private void showData() {
@@ -106,7 +123,7 @@ public class HideAppFragment extends BaseFragment {
                     // 解除隐藏
                     String tmp = "";
                     for (String s : hideAppList) {
-                        if (s.equals(appInfo.getPackageName())) {
+                        if (s.contains(appInfo.getPackageName())) {
                             tmp = s;
                         }
                     }
