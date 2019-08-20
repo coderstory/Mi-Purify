@@ -1,8 +1,6 @@
 package com.coderstory.purify.module;
 
 import android.content.Context;
-import android.view.View;
-import android.widget.LinearLayout;
 
 import com.coderstory.purify.plugins.IModule;
 import com.coderstory.purify.utils.XposedHelper;
@@ -35,17 +33,11 @@ public class RemoveAds extends XposedHelper implements IModule {
                     if (paramAnonymousMethodHookParam.args[0].toString().equals("ro.product.mod_device")) {
                         paramAnonymousMethodHookParam.setResult("cepheus_global");
                     }
-                    if (paramAnonymousMethodHookParam.args[0].toString().equals("ro.vendor.display.ad")) {
-                        paramAnonymousMethodHookParam.setResult("0");
-                    }
                 }
 
                 protected void beforeHookedMethod(MethodHookParam paramAnonymousMethodHookParam) {
                     if (paramAnonymousMethodHookParam.args[0].toString().equals("ro.product.mod_device")) {
                         paramAnonymousMethodHookParam.setResult("cepheus_global");
-                    }
-                    if (paramAnonymousMethodHookParam.args[0].toString().equals("ro.vendor.display.ad")) {
-                        paramAnonymousMethodHookParam.setResult("0");
                     }
                 }
             });
@@ -65,21 +57,27 @@ public class RemoveAds extends XposedHelper implements IModule {
             }
         }
 
-        // 短信
-        if (loadPackageParam.packageName.equals("com.android.mms")) {
-            if (prefs.getBoolean("enableMMS", true)) {
-                findAndHookMethod("com.android.mms.util.SmartMessageUtils", loadPackageParam.classLoader, "isMessagingTemplateAllowed", Context.class, XC_MethodReplacement.returnConstant(true));
-                findAndHookMethod("com.android.mms.ui.SingleRecipientConversationActivity", loadPackageParam.classLoader, "showMenuMode", boolean.class, XC_MethodReplacement.returnConstant(null));
-            }
-        }
-
         //个性主题
         if (loadPackageParam.packageName.equals("com.android.thememanager") && prefs.getBoolean("EnableTheme", true)) {
             findAndHookMethod("com.xiaomi.mistatistic.ad.d", loadPackageParam.classLoader, "b", String.class, XC_MethodReplacement.returnConstant(null));
-            if (findClassWithOutLog("com.android.thememanager.ad.model.AdInfoResponse", loadPackageParam.classLoader) != null) {
-                hookAllMethods("com.android.thememanager.ad.model.AdInfoResponse", loadPackageParam.classLoader, "isAdValid", XC_MethodReplacement.returnConstant(false));
-                hookAllMethods("com.android.thememanager.ad.model.AdInfoResponse", loadPackageParam.classLoader, "checkAndGetAdInfo", XC_MethodReplacement.returnConstant(null));
+            if (findClassWithOutLog("com.android.thememanager.basemodule.ad.model.AdInfoResponse", loadPackageParam.classLoader) != null) {
+                hookAllMethods("com.android.thememanager.basemodule.ad.model.AdInfoResponse", loadPackageParam.classLoader, "isAdValid", XC_MethodReplacement.returnConstant(false));
+                hookAllMethods("com.android.thememanager.basemodule.ad.model.AdInfoResponse", loadPackageParam.classLoader, "checkAndGetAdInfo", XC_MethodReplacement.returnConstant(null));
             }
+        }
+
+        // 全局mistatistic
+        if (findClassWithOutLog("com.xiaomi.mistatistic.sdk.BuildSetting",loadPackageParam.classLoader)!=null){
+            findAndHookMethod("com.xiaomi.mistatistic.sdk.BuildSetting", loadPackageParam.classLoader, "isInternationalBuild", XC_MethodReplacement.returnConstant(true));
+            findAndHookMethod("com.xiaomi.mistatistic.sdk.BuildSetting", loadPackageParam.classLoader, "isCTABuild", XC_MethodReplacement.returnConstant(true));
+            findAndHookMethod("com.xiaomi.mistatistic.sdk.BuildSetting", loadPackageParam.classLoader, "isDisabled", XC_MethodReplacement.returnConstant(true));
+            findAndHookMethod("com.xiaomi.mistatistic.sdk.MiStatInterface", loadPackageParam.classLoader, "enableStatistics", new XC_MethodHook() {
+                @Override
+                protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
+                    super.beforeHookedMethod(param);
+                    param.args[0]=false;
+                }
+            });
         }
     }
 }

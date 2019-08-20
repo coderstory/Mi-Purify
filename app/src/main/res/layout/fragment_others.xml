@@ -37,17 +37,6 @@
                 android:paddingStart="30dp"
                 android:text="@string/enableBlockADS" />
 
-
-            <Switch
-                android:id="@+id/enableMMS"
-                android:layout_width="match_parent"
-                android:layout_height="70dp"
-                android:layout_marginTop="10dp"
-                android:background="@color/switchBtn"
-                android:paddingEnd="30dp"
-                android:paddingStart="30dp"
-                android:text="@string/mms" />
-
             <Switch
                 android:id="@+id/enabletheme"
                 android:layout_width="match_parent"

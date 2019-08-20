@@ -42,14 +42,6 @@ public class OthersFragment extends BaseFragment {
             sudoFixPermissions();
         });
 
-
-        $(R.id.enableMMS).setOnClickListener(v -> {
-            getEditor().putBoolean("enableMMS", ((Switch) v).isChecked());
-            getEditor().apply();
-            sudoFixPermissions();
-
-        });
-
         $(R.id.enableDownload).setOnClickListener(v -> {
             getEditor().putBoolean("enableDownload", ((Switch) v).isChecked());
             getEditor().apply();
@@ -137,13 +129,11 @@ public class OthersFragment extends BaseFragment {
         ((Switch) $(R.id.downgrade)).setChecked(getPrefs().getBoolean("downgrade", true));
         ((Switch) $(R.id.prevent_freeze_reverse)).setChecked(getPrefs().getBoolean("prevent_freeze_reverse", true));
         ((Switch) $(R.id.enableBlockAD)).setChecked(getPrefs().getBoolean("EnableBlockAD", false));
-        ((Switch) $(R.id.enableMMS)).setChecked(getPrefs().getBoolean("EnableMMS", true));
         ((Switch) $(R.id.enableDownload)).setChecked(getPrefs().getBoolean("EnableDownload", true));
         ((Switch) $(R.id.default_store)).setChecked(getPrefs().getBoolean("default_store", true));
         ((Switch) $(R.id.noBatteryWarning)).setChecked(getPrefs().getBoolean("noBatteryWarning", true));
         ((Switch) $(R.id.alarmClockIcon)).setChecked(getPrefs().getBoolean("alarmClockIcon", true));
         ((Switch) $(R.id.lowBatteryWarning)).setChecked(getPrefs().getBoolean("lowBatteryWarning", true));
-         ((Switch) $(R.id.enableMMS)).setChecked(getPrefs().getBoolean("enableMMS", true));
         ((Switch) $(R.id.enableDownload)).setChecked(getPrefs().getBoolean("enableDownload", true));
         ((Switch) $(R.id.hideNetworkSpeed)).setChecked(getPrefs().getBoolean("hideNetworkSpeed", true));
         ((Switch) $(R.id.enabletheme)).setChecked(getPrefs().getBoolean("EnableTheme", false));

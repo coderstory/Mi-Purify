@@ -21,8 +21,6 @@ import com.coderstory.purify.R;
 
 public class SplashActivity extends Activity {
 
-    private static final int SHOW_TIME_MIN = 1200;
-
     @SuppressLint("StaticFieldLeak")
     @Override
     protected void onCreate(Bundle savedInstanceState) {

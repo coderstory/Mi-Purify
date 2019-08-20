@@ -57,7 +57,7 @@ public class AboutFragment extends BaseFragment {
         );
         $(R.id.wechat).setOnClickListener(view ->
                 // donateWeixin()
-                Toast.makeText(getMContext(), "暂不支持微信捐赠通道(#腊鸡微信)", Toast.LENGTH_LONG).show()
+                Toast.makeText(getMContext(), "暂不支持微信捐赠通道", Toast.LENGTH_LONG).show()
         );
 
         ((TextView) $(R.id.version)).setText(BuildConfig.VERSION_NAME);
@@ -75,14 +75,4 @@ public class AboutFragment extends BaseFragment {
         }
     }
 
-    /**
-     * 需要提前准备好 微信收款码 照片，可通过微信客户端生成
-     */
-    private void donateWeixin() {
-        InputStream weixinQrIs = getResources().openRawResource(R.raw.wechat);
-        String qrPath = Environment.getExternalStorageDirectory().getAbsolutePath() + File.separator + "AndroidDonateSample" + File.separator +
-                "didikee_weixin.png";
-        WeiXinDonate.saveDonateQrImage2SDCard(qrPath, BitmapFactory.decodeStream(weixinQrIs));
-        WeiXinDonate.donateViaWeiXin(getActivity(), qrPath);
-    }
 }
