@@ -5,8 +5,8 @@ android {
     defaultConfig {
         applicationId "com.coderstory.purify"
         minSdkVersion 24
-        versionCode 108000
-        versionName "3.2.4 Dev"
+        versionCode 108001
+        versionName "3.2.5 Dev"
         resConfigs "cn"
         targetSdkVersion 28
         proguardFiles 'proguard-rules.pro'
