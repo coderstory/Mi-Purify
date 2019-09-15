@@ -67,7 +67,7 @@ public class RemoveAds extends XposedHelper implements IModule {
         }
 
         // 全局mistatistic
-        if (findClassWithOutLog("com.xiaomi.mistatistic.sdk.BuildSetting",loadPackageParam.classLoader)!=null){
+        /**if (findClassWithOutLog("com.xiaomi.mistatistic.sdk.BuildSetting",loadPackageParam.classLoader)!=null){
             findAndHookMethod("com.xiaomi.mistatistic.sdk.BuildSetting", loadPackageParam.classLoader, "isInternationalBuild", XC_MethodReplacement.returnConstant(true));
             findAndHookMethod("com.xiaomi.mistatistic.sdk.BuildSetting", loadPackageParam.classLoader, "isCTABuild", XC_MethodReplacement.returnConstant(true));
             findAndHookMethod("com.xiaomi.mistatistic.sdk.BuildSetting", loadPackageParam.classLoader, "isDisabled", XC_MethodReplacement.returnConstant(true));
@@ -78,7 +78,7 @@ public class RemoveAds extends XposedHelper implements IModule {
                     param.args[0]=false;
                 }
             });
-        }
+        }**/
     }
 }
 
