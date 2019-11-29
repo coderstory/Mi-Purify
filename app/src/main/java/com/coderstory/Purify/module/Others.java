@@ -11,7 +11,6 @@ import java.util.List;
 import de.robv.android.xposed.IXposedHookZygoteInit;
 import de.robv.android.xposed.XC_MethodHook;
 import de.robv.android.xposed.XC_MethodReplacement;
-import de.robv.android.xposed.XposedBridge;
 import de.robv.android.xposed.XposedHelpers;
 import de.robv.android.xposed.callbacks.XC_LoadPackage;
 
@@ -67,8 +66,8 @@ public class Others extends XposedHelper implements IModule {
                             if (prefs.getBoolean("hideNetworkSpeed", true)) {
                                 String speed = (String) param.args[0];
                                 if (!"".equals(speed)) {
-                                    Double speedInt = Double.valueOf(speed.replace("K/s", "").replace("M/s", ""));
-                                    if (speed.contains("M/s")) {
+                                    Double speedInt = Double.valueOf(speed.replace("K's", "").replace("M's", "").replace("K/s", "").replace("M/s", ""));
+                                    if (speed.contains("M")) {
                                         speedInt *= 1024;
                                     }
                                     if (speedInt < 10 && !(boolean) XposedHelpers.callMethod(param.thisObject, "isNotch")) {

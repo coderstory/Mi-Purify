@@ -6,7 +6,7 @@ android {
         applicationId "com.coderstory.purify"
         minSdkVersion 24
         versionCode 108001
-        versionName "3.2.6 Dev"
+        versionName "3.2.7 Dev"
         resConfigs "cn"
         targetSdkVersion 28
         proguardFiles 'proguard-rules.pro'
