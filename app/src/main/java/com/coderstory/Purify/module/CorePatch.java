@@ -189,37 +189,48 @@ public class CorePatch extends XposedHelper implements IModule {
 
             final Class packageManagerService = findClass("com.android.server.pm.PackageManagerService", loadPackageParam.classLoader);
             if (android.os.Build.VERSION.SDK_INT >= 29) {
+                //allow_no_sig
                 hookAllMethods(packageManagerService, "compareSignaturesCompat", new XC_MethodHook() {
                     @Override
                     protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
                         super.beforeHookedMethod(param);
-                        param.setResult(0);
+                        if (prefs.getBoolean("comparisonSignature", true)) {
+                            param.setResult(0);
+                        }
                     }
                 });
+
                 hookAllMethods(packageManagerService, "compareSignaturesRecover", new XC_MethodHook() {
                     @Override
                     protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
                         super.beforeHookedMethod(param);
-                        param.setResult(0);
+                        if (prefs.getBoolean("comparisonSignature", true)) {
+                            param.setResult(0);
+                        }
                     }
                 });
 
 
                 findAndHookMethod("com.android.server.pm.PackageManagerServiceInjector", loadPackageParam.classLoader, "isAllowedInstall", XC_MethodReplacement.returnConstant(true));
 
+                //disable_verify
                 hookAllMethods(packageManagerService, "canSkipFullPackageVerification", new XC_MethodHook() {
                     @Override
                     protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
                         super.beforeHookedMethod(param);
-                        param.setResult(Boolean.TRUE);
+                        if (prefs.getBoolean("signatureCheck", true)) {
+                            param.setResult(Boolean.TRUE);
+                        }
                     }
                 });
-
+                // disable_verify
                 hookAllMethods(packageManagerService, "canSkipFullApkVerification", new XC_MethodHook() {
                     @Override
                     protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
                         super.beforeHookedMethod(param);
-                        param.setResult(Boolean.TRUE);
+                        if (prefs.getBoolean("signatureCheck", true)) {
+                            param.setResult(Boolean.TRUE);
+                        }
                     }
                 });
             }
