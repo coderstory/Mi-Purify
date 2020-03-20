@@ -46,7 +46,7 @@ public class Others extends XposedHelper implements IModule {
         if (loadPackageParam.packageName.equals("com.android.systemui")) {
             // 低电量警告
             if (prefs.getBoolean("lowBatteryWarning", true)) {
-                findAndHookMethod("com.android.systemui.power.PowerUI", loadPackageParam.classLoader, "playLowBatterySound", XC_MethodReplacement.returnConstant(null));
+               // findAndHookMethod("com.android.systemui.power.PowerUI", loadPackageParam.classLoader, "playLowBatterySound", XC_MethodReplacement.returnConstant(null));
             }
             // 隐藏闹钟图标
             if (prefs.getBoolean("alarmClockIcon", true)) {

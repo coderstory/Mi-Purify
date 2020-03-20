@@ -211,7 +211,7 @@ public class CorePatch extends XposedHelper implements IModule {
                 });
 
 
-                findAndHookMethod("com.android.server.pm.PackageManagerServiceInjector", loadPackageParam.classLoader, "isAllowedInstall", XC_MethodReplacement.returnConstant(true));
+               // findAndHookMethod("com.android.server.pm.PackageManagerServiceInjector", loadPackageParam.classLoader, "isAllowedInstall", XC_MethodReplacement.returnConstant(true));
 
                 //disable_verify
                 hookAllMethods(packageManagerService, "canSkipFullPackageVerification", new XC_MethodHook() {

@@ -42,14 +42,22 @@ public class ThemePatcher extends XposedHelper implements IModule {
                 }
             });
 
-            // return this.eV.getTrialTime() > 0;
+            //isProductBought
+            findAndHookMethod("com.android.thememanager.basemodule.resource.model.Resource", lpparam.classLoader, "isProductBought", XC_MethodReplacement.returnConstant(true));
+            findAndHookMethod("com.android.thememanager.basemodule.resource.model.ResourceOnlineProperties", lpparam.classLoader, "isProductBought", XC_MethodReplacement.returnConstant(true));
+
+            //isAuthorizedResource
+            findAndHookMethod("com.android.thememanager.basemodule.resource.model.Resource", lpparam.classLoader, "isAuthorizedResource", XC_MethodReplacement.returnConstant(true));
+
+            // return this.eV.getTrialTime() > 0; isProductBought isAuthorizedResource return this.eV.getTrialTime() > 0;
             //1.6.5.0
             findAndHookMethod("com.android.thememanager.util.ThemeOperationHandler", lpparam.classLoader, "r", XC_MethodReplacement.returnConstant(true));
+            findAndHookMethod("com.android.thememanager.util.ThemeOperationHandler", lpparam.classLoader, "Q", XC_MethodReplacement.returnConstant(true));
 
             // stringBuilder.append("   check rights file: ");
             // if (new File(uVar.b()).getAbsolutePath().startsWith("/system")) {
-            // 1.6.5.0
-            findAndHookMethod("com.android.thememanager.controller.a.c", lpparam.classLoader, "a", findClass("com.android.thememanager.basemodule.resource.model.Resource", lpparam.classLoader), XC_MethodReplacement.returnConstant(getDrmResultSUCCESS()));
+            // if (new File(resourceResolver.getContentPath()).getAbsolutePath().startsWith("/system")) {
+            findAndHookMethod("com.android.thememanager.g.a.e", lpparam.classLoader, "a", findClass("com.android.thememanager.basemodule.resource.model.Resource", lpparam.classLoader), XC_MethodReplacement.returnConstant(getDrmResultSUCCESS()));
         }
     }
 
