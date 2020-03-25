@@ -2,10 +2,11 @@
     <string name="app_name">小米净化</string>
     <string name="drawer_open">Open</string>
     <string name="drawer_close">Close</string>
-    <string name="about_msg">\n小米净化适配于MIUI10系统，主要用于去除系统自带的一些广告和其他一些修改.功能需要Xposed模块和ROOT支持
+    <string name="about_msg">\n小米净化适配于MIUI11系统，主要用于去除系统自带的一些广告和其他一些修改.功能需要Xposed模块和ROOT支持
         \n\n<b>作者:CoderStory</b>
         \n\n<b>博客主页: blog.coderstory.cn</b>
         \n\n<b>微博主页: weibo.com/codestory</b>
+         \n\n<b>开源项目: https://github.com/coderstory/Mi-Purify</b>
     </string>
     <string name="G1">
             <b>致谢如下开源项目</b>\n\n
