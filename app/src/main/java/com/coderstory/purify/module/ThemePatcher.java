@@ -29,7 +29,9 @@ public class ThemePatcher extends XposedHelper implements IModule {
         }
 
         if (lpparam.packageName.equals("com.android.thememanager")) {
-            //1.6.2.0
+            //isProductBought
+            findAndHookMethod("com.android.thememanager.basemodule.resource.model.Resource", lpparam.classLoader, "isProductBought", XC_MethodReplacement.returnConstant(true));
+            // 免费的不做处理 这样免费的就可以购买 出现在已购列表中
             findAndHookMethod("com.android.thememanager.basemodule.resource.model.ResourceOnlineProperties", lpparam.classLoader, "isProductBought", new XC_MethodReplacement() {
                 @Override
                 protected Object replaceHookedMethod(MethodHookParam param) throws Throwable {
@@ -42,10 +44,6 @@ public class ThemePatcher extends XposedHelper implements IModule {
                 }
             });
 
-            //isProductBought
-            findAndHookMethod("com.android.thememanager.basemodule.resource.model.Resource", lpparam.classLoader, "isProductBought", XC_MethodReplacement.returnConstant(true));
-            findAndHookMethod("com.android.thememanager.basemodule.resource.model.ResourceOnlineProperties", lpparam.classLoader, "isProductBought", XC_MethodReplacement.returnConstant(true));
-
             //isAuthorizedResource
             findAndHookMethod("com.android.thememanager.basemodule.resource.model.Resource", lpparam.classLoader, "isAuthorizedResource", XC_MethodReplacement.returnConstant(true));
 
@@ -54,8 +52,7 @@ public class ThemePatcher extends XposedHelper implements IModule {
             findAndHookMethod("com.android.thememanager.util.ThemeOperationHandler", lpparam.classLoader, "Q", XC_MethodReplacement.returnConstant(true));
 
             // onlineResourceDetail.bought || onlineResourceDetail.productPrice == 0;
-            findAndHookMethod("com.android.thememanager.module.detail.presenter.OnlineResourceDetailPresenter", lpparam.classLoader, "i", XC_MethodReplacement.returnConstant(true));
-            findAndHookMethod("com.android.thememanager.module.detail.presenter.OnlineResourceDetailPresenter", lpparam.classLoader, "g", XC_MethodReplacement.returnConstant(true));
+            findAndHookMethod("com.android.thememanager.module.detail.presenter.OnlineResourceDetailPresenter", lpparam.classLoader, "h", XC_MethodReplacement.returnConstant(true));
 
             // stringBuilder.append("   check rights file: ");
             // if (new File(uVar.b()).getAbsolutePath().startsWith("/system")) {
