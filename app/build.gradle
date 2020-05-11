@@ -1,17 +1,16 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 28
+    compileSdkVersion 29
+    buildToolsVersion "29.0.3"
     defaultConfig {
         applicationId "com.coderstory.purify"
         minSdkVersion 24
         versionCode 108002
         versionName "3.3.0 Dev"
         resConfigs "cn"
-        targetSdkVersion 28
+        targetSdkVersion 29
         proguardFiles 'proguard-rules.pro'
-        testFunctionalTest = false
-        testHandleProfiling = false
     }
     repositories {
     }
