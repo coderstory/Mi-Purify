@@ -2,7 +2,7 @@
 
 > 小米净化是基于Xposed开发的MIUI系统MOD工具
 
-CoderStory的博客：[blog.coderstory.cn](https://blog.coderstory.cn)   
+CoderStory的博客：[blog.coderstory.cn](http://blog.coderstory.cn:4433)
  
  
  
