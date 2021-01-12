@@ -46,4 +46,5 @@ dependencies {
     implementation 'androidx.cardview:cardview:1.0.0'
     implementation 'de.hdodenhof:circleimageview:3.1.0'
     compileOnly 'de.robv.android.xposed:api:82'
+    implementation "com.github.topjohnwu.libsu:core:3.0.2"
 }

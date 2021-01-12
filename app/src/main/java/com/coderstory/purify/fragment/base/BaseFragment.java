@@ -3,20 +3,22 @@ package com.coderstory.purify.fragment.base;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.coderstory.purify.utils.RuntimeUtil;
-
-import java.io.File;
-
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.coderstory.purify.config.Misc;
+import com.coderstory.purify.utils.Utils;
+import com.topjohnwu.superuser.Shell;
+
+import java.io.File;
+
 import static com.coderstory.purify.config.Misc.ApplicationName;
-import static com.coderstory.purify.config.Misc.SharedPreferencesName;
 
 
 /**
@@ -26,20 +28,20 @@ import static com.coderstory.purify.config.Misc.SharedPreferencesName;
  */
 public abstract class BaseFragment extends Fragment {
 
-    public static final String PREFS_FOLDER = " /data/data/" + ApplicationName + "/shared_prefs\n";
-    public static final String PREFS_FILE = " /data/data/" + ApplicationName + "/shared_prefs/" + SharedPreferencesName + ".xml\n";
+    public static final String PREFS_FOLDER = " /data/user_de/0/" + ApplicationName + "/shared_prefs\n";
+    public static final String PREFS_FILE = " /data/user_de/0/" + ApplicationName + "/shared_prefs/" + Misc.SharedPreferencesName + ".xml\n";
+    private static final String TAG = "BaseFragment";
     private static SharedPreferences prefs;
     private static SharedPreferences.Editor editor;
     private View mContentView;
     private Context mContext;
-    private ProgressDialog mProgressDialog;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         mContentView = inflater.inflate(setLayoutResourceID(), container, false);//setContentView(inflater, container);
         mContext = getContext();
-        mProgressDialog = new ProgressDialog(getMContext());
+        ProgressDialog mProgressDialog = new ProgressDialog(getMContext());
         mProgressDialog.setCanceledOnTouchOutside(false);
         setHasOptionsMenu(true);
         init();
@@ -56,15 +58,36 @@ public abstract class BaseFragment extends Fragment {
 
     protected SharedPreferences.Editor getEditor() {
         if (editor == null) {
-            editor = getPrefs().edit();
+            editor = prefs.edit();
         }
         return editor;
 
     }
 
+
     protected SharedPreferences getPrefs() {
-        prefs = getContext().getSharedPreferences("UserSettings", Context.MODE_PRIVATE);
+        prefs = Utils.getMySharedPreferences(getMContext().getApplicationContext(), "/data/user_de/0/" + ApplicationName + "/shared_prefs/", Misc.SharedPreferencesName);
         return prefs;
+    }
+
+    public void fix() {
+        getEditor().commit();
+        sudoFixPermissions();
+    }
+
+    protected void sudoFixPermissions() {
+        if (Build.VERSION.SDK_INT < 30) {
+            new Thread(() -> {
+                File pkgFolder = new File("/data/user_de/0/" + ApplicationName);
+                if (pkgFolder.exists()) {
+                    pkgFolder.setExecutable(true, false);
+                    pkgFolder.setReadable(true, false);
+                }
+                Shell.su("chmod  755 " + PREFS_FOLDER).exec();
+                // Set preferences file permissions to be world readable
+                Shell.su("chmod  644 " + PREFS_FILE).exec();
+            }).start();
+        }
     }
 
     protected void init() {
@@ -77,7 +100,6 @@ public abstract class BaseFragment extends Fragment {
         return (T) mContentView.findViewById(id);
     }
 
-    // protected abstract View setContentView(LayoutInflater inflater, ViewGroup container);
 
     protected View getContentView() {
         return mContentView;
@@ -85,22 +107,5 @@ public abstract class BaseFragment extends Fragment {
 
     public Context getMContext() {
         return mContext;
-    }
-
-    protected ProgressDialog getProgressDialog() {
-        return mProgressDialog;
-    }
-
-    protected void sudoFixPermissions() {
-        new Thread(() -> {
-            File pkgFolder = new File("/data/data/" + ApplicationName);
-            if (pkgFolder.exists()) {
-                pkgFolder.setExecutable(true, false);
-                pkgFolder.setReadable(true, false);
-            }
-            RuntimeUtil.exec("chmod  755 " + PREFS_FOLDER);
-            // Set preferences file permissions to be world readable
-            RuntimeUtil.exec("chmod  644 " + PREFS_FILE);
-        }).start();
     }
 }
