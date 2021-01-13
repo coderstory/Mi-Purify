@@ -21,12 +21,6 @@ public class RemoveAds extends XposedHelper implements IModule {
         //核心模块
         if (loadPackageParam.packageName.equals("com.miui.core")) {
             findAndHookMethod("miui.os.SystemProperties", loadPackageParam.classLoader, "get", String.class, String.class, new XC_MethodHook() {
-
-                // # System property for AD
-                //ro.vendor.display.ad=1
-                //ro.vendor.display.ad.sdr_calib_data=/vendor/etc/sdr_config.cfg
-                //ro.vendor.display.ad.hdr_calib_data=/vendor/etc/hdr_config.cfg
-                //ro.vendor.display.sensortype=2
                 protected void afterHookedMethod(MethodHookParam paramAnonymousMethodHookParam) {
                     if (paramAnonymousMethodHookParam.args[0].toString().equals("ro.product.mod_device")) {
                         paramAnonymousMethodHookParam.setResult("cepheus_global");
@@ -46,12 +40,14 @@ public class RemoveAds extends XposedHelper implements IModule {
         //下载管理
         if (loadPackageParam.packageName.equals("com.android.providers.downloads.ui")) {
             if (prefs.getBoolean("enableDownload", true)) {
-                findAndHookMethod("com.android.providers.downloads.ui.utils.CloudConfigHelper", loadPackageParam.classLoader, "getAdButtonType", XC_MethodReplacement.returnConstant(0));
-                findAndHookMethod("com.android.providers.downloads.ui.utils.CloudConfigHelper", loadPackageParam.classLoader, "isShouldShowAppSubject", XC_MethodReplacement.returnConstant(false));
-                findAndHookMethod("com.android.providers.downloads.ui.utils.CloudConfigHelper", loadPackageParam.classLoader, "isShouldShowExtraAd", XC_MethodReplacement.returnConstant(false));
-                findAndHookMethod("com.android.providers.downloads.ui.utils.CloudConfigHelper", loadPackageParam.classLoader, "isShouldShowRecommendInfo", XC_MethodReplacement.returnConstant(false));
-                findAndHookMethod("com.android.providers.downloads.ui.utils.CloudConfigHelper", loadPackageParam.classLoader, "isStableShowActivateNotify", XC_MethodReplacement.returnConstant(false));
-                findAndHookMethod("com.android.providers.downloads.ui.utils.CloudConfigHelper", loadPackageParam.classLoader, "supportRank", XC_MethodReplacement.returnConstant(false));
+                // isShouldShowAppSubject
+                findAndHookMethod("com.android.providers.downloads.ui.utils.g", loadPackageParam.classLoader, "r", XC_MethodReplacement.returnConstant(false));
+                //isShouldShowExtraAd
+                findAndHookMethod("com.android.providers.downloads.ui.utils.g", loadPackageParam.classLoader, "t", XC_MethodReplacement.returnConstant(false));
+                // isStableShowActivateNotify
+                findAndHookMethod("com.android.providers.downloads.ui.utils.g", loadPackageParam.classLoader, "n", XC_MethodReplacement.returnConstant(false));
+                //supportRank
+                findAndHookMethod("com.android.providers.downloads.ui.utils.g", loadPackageParam.classLoader, "h", XC_MethodReplacement.returnConstant(false));
             }
         }
 
@@ -65,17 +61,16 @@ public class RemoveAds extends XposedHelper implements IModule {
 
         // 全局mistatistic
         /**if (findClassWithOutLog("com.xiaomi.mistatistic.sdk.BuildSetting",loadPackageParam.classLoader)!=null){
-            findAndHookMethod("com.xiaomi.mistatistic.sdk.BuildSetting", loadPackageParam.classLoader, "isInternationalBuild", XC_MethodReplacement.returnConstant(true));
-            findAndHookMethod("com.xiaomi.mistatistic.sdk.BuildSetting", loadPackageParam.classLoader, "isCTABuild", XC_MethodReplacement.returnConstant(true));
-            findAndHookMethod("com.xiaomi.mistatistic.sdk.BuildSetting", loadPackageParam.classLoader, "isDisabled", XC_MethodReplacement.returnConstant(true));
-            findAndHookMethod("com.xiaomi.mistatistic.sdk.MiStatInterface", loadPackageParam.classLoader, "enableStatistics", new XC_MethodHook() {
-                @Override
-                protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
-                    super.beforeHookedMethod(param);
-                    param.args[0]=false;
-                }
-            });
-        }**/
+         findAndHookMethod("com.xiaomi.mistatistic.sdk.BuildSetting", loadPackageParam.classLoader, "isInternationalBuild", XC_MethodReplacement.returnConstant(true));
+         findAndHookMethod("com.xiaomi.mistatistic.sdk.BuildSetting", loadPackageParam.classLoader, "isCTABuild", XC_MethodReplacement.returnConstant(true));
+         findAndHookMethod("com.xiaomi.mistatistic.sdk.BuildSetting", loadPackageParam.classLoader, "isDisabled", XC_MethodReplacement.returnConstant(true));
+         findAndHookMethod("com.xiaomi.mistatistic.sdk.MiStatInterface", loadPackageParam.classLoader, "enableStatistics", new XC_MethodHook() {
+        @Override protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
+        super.beforeHookedMethod(param);
+        param.args[0]=false;
+        }
+        });
+         }**/
     }
 }
 
