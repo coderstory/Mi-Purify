@@ -12,23 +12,7 @@ android {
         targetSdkVersion 24
         proguardFiles 'proguard-rules.pro'
     }
-    repositories {
-    }
-
-    signingConfigs {
-        release {
-        }
-    }
-    buildTypes {
-        release {
-            shrinkResources true
-            minifyEnabled true
-            signingConfig signingConfigs.release
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-        }
-        debug {
-        }
-    }
+ 
     lintOptions {
         abortOnError false
     }
